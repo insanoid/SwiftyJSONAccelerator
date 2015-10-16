@@ -1,0 +1,405 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9361FD141BD18558001ED533 /* LineNumberRulerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9361FD131BD18558001ED533 /* LineNumberRulerView.swift */; settings = {ASSET_TAGS = (); }; };
+		9362F8661BD07DBA0001372E /* JSONHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9362F8651BD07DBA0001372E /* JSONHelperTests.swift */; settings = {ASSET_TAGS = (); }; };
+		93F174431BD0707D007E7DFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F174421BD0707D007E7DFC /* AppDelegate.swift */; };
+		93F174451BD0707D007E7DFC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F174441BD0707D007E7DFC /* ViewController.swift */; };
+		93F174471BD0707D007E7DFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93F174461BD0707D007E7DFC /* Assets.xcassets */; };
+		93F1744A1BD0707D007E7DFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93F174481BD0707D007E7DFC /* Main.storyboard */; };
+		93F174551BD0707D007E7DFC /* SwiftyJSONAcceleratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F174541BD0707D007E7DFC /* SwiftyJSONAcceleratorTests.swift */; };
+		93F174601BD070AA007E7DFC /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1745F1BD070AA007E7DFC /* JSONHelper.swift */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		93F174511BD0707D007E7DFC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93F174371BD0707D007E7DFC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 93F1743E1BD0707D007E7DFC;
+			remoteInfo = SwifyJSONAccelerator;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9361FD131BD18558001ED533 /* LineNumberRulerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineNumberRulerView.swift; sourceTree = "<group>"; };
+		9362F8651BD07DBA0001372E /* JSONHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHelperTests.swift; sourceTree = "<group>"; };
+		93F1743F1BD0707D007E7DFC /* SwiftyJSONAccelerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyJSONAccelerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		93F174421BD0707D007E7DFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		93F174441BD0707D007E7DFC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		93F174461BD0707D007E7DFC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		93F174491BD0707D007E7DFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		93F1744B1BD0707D007E7DFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93F174501BD0707D007E7DFC /* SwiftyJSONAccelerator.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyJSONAccelerator.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		93F174541BD0707D007E7DFC /* SwiftyJSONAcceleratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSONAcceleratorTests.swift; sourceTree = "<group>"; };
+		93F174561BD0707D007E7DFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93F1745F1BD070AA007E7DFC /* JSONHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		93F1743C1BD0707D007E7DFC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93F1744D1BD0707D007E7DFC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		93F174361BD0707D007E7DFC = {
+			isa = PBXGroup;
+			children = (
+				93F174411BD0707D007E7DFC /* SwiftyJSONAccelerator */,
+				93F174531BD0707D007E7DFC /* SwiftyJSONAcceleratorTests */,
+				93F174401BD0707D007E7DFC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		93F174401BD0707D007E7DFC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				93F1743F1BD0707D007E7DFC /* SwiftyJSONAccelerator.app */,
+				93F174501BD0707D007E7DFC /* SwiftyJSONAccelerator.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		93F174411BD0707D007E7DFC /* SwiftyJSONAccelerator */ = {
+			isa = PBXGroup;
+			children = (
+				93F174421BD0707D007E7DFC /* AppDelegate.swift */,
+				93F174441BD0707D007E7DFC /* ViewController.swift */,
+				9361FD131BD18558001ED533 /* LineNumberRulerView.swift */,
+				93F174461BD0707D007E7DFC /* Assets.xcassets */,
+				93F174481BD0707D007E7DFC /* Main.storyboard */,
+				93F1744B1BD0707D007E7DFC /* Info.plist */,
+				93F1745F1BD070AA007E7DFC /* JSONHelper.swift */,
+			);
+			path = SwiftyJSONAccelerator;
+			sourceTree = "<group>";
+		};
+		93F174531BD0707D007E7DFC /* SwiftyJSONAcceleratorTests */ = {
+			isa = PBXGroup;
+			children = (
+				93F174541BD0707D007E7DFC /* SwiftyJSONAcceleratorTests.swift */,
+				93F174561BD0707D007E7DFC /* Info.plist */,
+				9362F8651BD07DBA0001372E /* JSONHelperTests.swift */,
+			);
+			path = SwiftyJSONAcceleratorTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		93F1743E1BD0707D007E7DFC /* SwiftyJSONAccelerator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93F174591BD0707D007E7DFC /* Build configuration list for PBXNativeTarget "SwiftyJSONAccelerator" */;
+			buildPhases = (
+				93F1743B1BD0707D007E7DFC /* Sources */,
+				93F1743C1BD0707D007E7DFC /* Frameworks */,
+				93F1743D1BD0707D007E7DFC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftyJSONAccelerator;
+			productName = SwifyJSONAccelerator;
+			productReference = 93F1743F1BD0707D007E7DFC /* SwiftyJSONAccelerator.app */;
+			productType = "com.apple.product-type.application";
+		};
+		93F1744F1BD0707D007E7DFC /* SwiftyJSONAcceleratorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93F1745C1BD0707D007E7DFC /* Build configuration list for PBXNativeTarget "SwiftyJSONAcceleratorTests" */;
+			buildPhases = (
+				93F1744C1BD0707D007E7DFC /* Sources */,
+				93F1744D1BD0707D007E7DFC /* Frameworks */,
+				93F1744E1BD0707D007E7DFC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				93F174521BD0707D007E7DFC /* PBXTargetDependency */,
+			);
+			name = SwiftyJSONAcceleratorTests;
+			productName = SwifyJSONAcceleratorTests;
+			productReference = 93F174501BD0707D007E7DFC /* SwiftyJSONAccelerator.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		93F174371BD0707D007E7DFC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Karthikeya Udupa K M";
+				TargetAttributes = {
+					93F1743E1BD0707D007E7DFC = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+					93F1744F1BD0707D007E7DFC = {
+						CreatedOnToolsVersion = 7.0.1;
+						TestTargetID = 93F1743E1BD0707D007E7DFC;
+					};
+				};
+			};
+			buildConfigurationList = 93F1743A1BD0707D007E7DFC /* Build configuration list for PBXProject "SwiftyJSONAccelerator" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 93F174361BD0707D007E7DFC;
+			productRefGroup = 93F174401BD0707D007E7DFC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				93F1743E1BD0707D007E7DFC /* SwiftyJSONAccelerator */,
+				93F1744F1BD0707D007E7DFC /* SwiftyJSONAcceleratorTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		93F1743D1BD0707D007E7DFC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93F174471BD0707D007E7DFC /* Assets.xcassets in Resources */,
+				93F1744A1BD0707D007E7DFC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93F1744E1BD0707D007E7DFC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		93F1743B1BD0707D007E7DFC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93F174601BD070AA007E7DFC /* JSONHelper.swift in Sources */,
+				93F174451BD0707D007E7DFC /* ViewController.swift in Sources */,
+				9361FD141BD18558001ED533 /* LineNumberRulerView.swift in Sources */,
+				93F174431BD0707D007E7DFC /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93F1744C1BD0707D007E7DFC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93F174551BD0707D007E7DFC /* SwiftyJSONAcceleratorTests.swift in Sources */,
+				9362F8661BD07DBA0001372E /* JSONHelperTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		93F174521BD0707D007E7DFC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 93F1743E1BD0707D007E7DFC /* SwiftyJSONAccelerator */;
+			targetProxy = 93F174511BD0707D007E7DFC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		93F174481BD0707D007E7DFC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				93F174491BD0707D007E7DFC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		93F174571BD0707D007E7DFC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		93F174581BD0707D007E7DFC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		93F1745A1BD0707D007E7DFC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = SwiftyJSONAccelerator/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.karthik.SwiftyJSONAccelerator;
+				PRODUCT_NAME = SwiftyJSONAccelerator;
+			};
+			name = Debug;
+		};
+		93F1745B1BD0707D007E7DFC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = SwiftyJSONAccelerator/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.karthik.SwiftyJSONAccelerator;
+				PRODUCT_NAME = SwiftyJSONAccelerator;
+			};
+			name = Release;
+		};
+		93F1745D1BD0707D007E7DFC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = SwiftyJSONAcceleratorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.karthik.SwiftyJSONAcceleratorTests;
+				PRODUCT_NAME = SwiftyJSONAccelerator;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftyJSONAccelerator.app/Contents/MacOS/SwiftyJSONAccelerator";
+			};
+			name = Debug;
+		};
+		93F1745E1BD0707D007E7DFC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = SwiftyJSONAcceleratorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.karthik.SwiftyJSONAcceleratorTests;
+				PRODUCT_NAME = SwiftyJSONAccelerator;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftyJSONAccelerator.app/Contents/MacOS/SwiftyJSONAccelerator";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		93F1743A1BD0707D007E7DFC /* Build configuration list for PBXProject "SwiftyJSONAccelerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93F174571BD0707D007E7DFC /* Debug */,
+				93F174581BD0707D007E7DFC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		93F174591BD0707D007E7DFC /* Build configuration list for PBXNativeTarget "SwiftyJSONAccelerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93F1745A1BD0707D007E7DFC /* Debug */,
+				93F1745B1BD0707D007E7DFC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		93F1745C1BD0707D007E7DFC /* Build configuration list for PBXNativeTarget "SwiftyJSONAcceleratorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93F1745D1BD0707D007E7DFC /* Debug */,
+				93F1745E1BD0707D007E7DFC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 93F174371BD0707D007E7DFC /* Project object */;
+}
