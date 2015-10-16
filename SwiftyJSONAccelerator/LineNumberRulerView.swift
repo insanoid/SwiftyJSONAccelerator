@@ -41,7 +41,7 @@ extension NSTextView {
     
     func lnv_setUpLineNumberView() {
         if font == nil {
-            font = NSFont.systemFontOfSize(16)
+            font = NSFont.systemFontOfSize(12)
         }
         
         if let scrollView = enclosingScrollView {
@@ -67,6 +67,7 @@ extension NSTextView {
         
         lineNumberView.needsDisplay = true
     }
+    
 }
 
 class LineNumberRulerView: NSRulerView {
