@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SJEditorViewController.swift
 //  SwiftyJSONAccelerator
 //
 //  Created by Karthik on 16/10/2015.
@@ -8,12 +8,15 @@
 
 import Cocoa
 
-class ViewController: NSViewController, NSTextViewDelegate {
+/// View for the processing of the content and generation of the files.
+class SJEditorViewController: NSViewController, NSTextViewDelegate {
     
+    // MARK: Outlet files.
     @IBOutlet var textView: SJTextView?
     @IBOutlet var messageLabel: NSTextField?
     @IBOutlet var errorImageView: NSImageView?
     
+    // MARK: View methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,7 +32,7 @@ class ViewController: NSViewController, NSTextViewDelegate {
             // Update the view, if already loaded.
         }
     }
-    
+    // MARK: Actions
     @IBAction func format(sender: AnyObject?) {
         
         if textView?.string?.characters.count == 0 {
@@ -49,6 +52,20 @@ class ViewController: NSViewController, NSTextViewDelegate {
         textView!.lnv_textDidChange(NSNotification.init(name: NSTextDidChangeNotification, object: nil))
     }
     
+    // MARK: Internal Methods
+    
+    /**
+    Get the line number, column and the character for the position in the given string.
+    
+    - parameters:
+    - string: The JSON string that is in the textview.
+    - position: the location where the error is.
+    
+    - returns:
+    - character: the string that was causing the issue.
+    - line: the linenumber where the error was.
+    - column: the column where the error was.
+    */
     func characterRowAndLineAt(string: String,position: Int) -> (character: String, line: Int, column:Int) {
         var lineNumber = 0
         var characterPosition = 0
@@ -70,9 +87,13 @@ class ViewController: NSViewController, NSTextViewDelegate {
         return ("", 0,0)
     }
     
+    /**
+    Handle Error message that is provided by the JSON helper and extract the message and showing them accordingly.
     
+    - parameters:
+    - error: NSError that was provided.
+    */
     func handleError(error: NSError?) {
-        let alert: NSAlert = NSAlert.init(error: error!)
         if let _ = error!.userInfo["debugDescription"] as? String? {
             let message: String = error!.userInfo["NSDebugDescription"]! as! String
             let numbers: [String] = message.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)
@@ -91,22 +112,41 @@ class ViewController: NSViewController, NSTextViewDelegate {
                 invalidJSONError(message)
             }
         }
-        alert.runModal()
     }
     
+    ///MARK: Resetting and showing error messages
+    
+    /**
+    Reset the whole error view with no image and message.
+    */
     func resetErrorImage() {
         errorImageView?.image = nil
         messageLabel?.stringValue = ""
     }
     
+    /**
+    Show that the JSON is fine with proper icon.
+    */
     func correctJSONMessage() {
         errorImageView?.image = NSImage.init(named: "success")
         messageLabel?.stringValue = "Valid JSON!"
     }
     
+    /**
+    Show the invalid JSON error with proper error and message.
+    
+    - parameters:
+    - message: Error message that is to be shown.
+    */
     func invalidJSONError(message: String) {
-         errorImageView?.image = NSImage.init(named: "failure")
+        errorImageView?.image = NSImage.init(named: "failure")
         messageLabel?.stringValue = message
     }
+    
+    //MARK: TextView Delegate
+    func textDidChange(notification: NSNotification) {
+        format(textView)
+    }
+    
 }
 

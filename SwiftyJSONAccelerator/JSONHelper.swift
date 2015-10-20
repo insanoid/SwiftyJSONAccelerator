@@ -14,7 +14,8 @@ public class JSONHelper {
     /**
     Validates if te string that is provided can be converted into a valid JSON.
     
-    - parameter jsonString: Input string that is to be checked as JSON.
+    - parameters:
+        - jsonString: Input string that is to be checked as JSON.
     
     - returns: Bool indicating if it is a JSON or NSError with the error about the validation.
     */
@@ -26,7 +27,8 @@ public class JSONHelper {
     /**
     Converts the given string into an Object.
     
-    - parameter jsonString: Input string that has to be converted.
+    - parameters:
+        - jsonString: Input string that has to be converted.
     
     - returns: Bool indicating if the process was successful, Object if it worked else NSError.
     */
@@ -49,7 +51,8 @@ public class JSONHelper {
     /**
     Formats the given string into beautiful JSON with indentation.
     
-    - parameter jsonString: JSON string that has to be formatted.
+    - parameters:
+        - jsonString: JSON string that has to be formatted.
     
     - returns: String with JSON but well formatted.
     */
@@ -65,7 +68,8 @@ public class JSONHelper {
     /**
     Formats the given Object into beautiful JSON with indentation.
     
-    - parameter object: Object that has to be formatted.
+    - parameters:
+        - object: Object that has to be formatted.
     
     - returns: String with JSON but well formatted.
     */

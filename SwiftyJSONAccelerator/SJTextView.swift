@@ -8,6 +8,7 @@
 
 import Cocoa
 
+/// A textview customization to handle formatting and handling removal of quotes.
 class SJTextView: NSTextView {
     
     override init(frame frameRect: NSRect, textContainer container: NSTextContainer?) {
