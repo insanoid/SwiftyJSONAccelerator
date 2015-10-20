@@ -10,6 +10,20 @@ import Cocoa
 
 class SJTextView: NSTextView {
     
+    override init(frame frameRect: NSRect, textContainer container: NSTextContainer?) {
+        super.init(frame: frameRect, textContainer: container)
+        self.automaticQuoteSubstitutionEnabled = false
+        self.automaticDashSubstitutionEnabled = false
+        self.automaticTextReplacementEnabled = false
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        self.automaticQuoteSubstitutionEnabled = false
+        self.automaticDashSubstitutionEnabled = false
+        self.automaticTextReplacementEnabled = false
+    }
+    
     override var readablePasteboardTypes: [String] {
         get {
             return [NSPasteboardTypeString]
@@ -18,6 +32,7 @@ class SJTextView: NSTextView {
     
     internal func updateFormat() {
         textStorage?.font = NSFont(name: "Menlo", size: 12)
+        self.textColor = NSColor.whiteColor()
     }
     
     override func paste(sender: AnyObject?) {

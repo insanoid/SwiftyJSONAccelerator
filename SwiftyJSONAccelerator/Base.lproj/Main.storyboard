@@ -674,7 +674,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AwX-MF-DMD">
-                                <rect key="frame" x="14" y="3" width="565" height="32"/>
+                                <rect key="frame" x="377" y="3" width="212" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Fsx-eV-1MY"/>
+                                </constraints>
                                 <animations/>
                                 <buttonCell key="cell" type="push" title="Format" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lfq-UD-8WD">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -685,20 +688,21 @@
                                 </connections>
                             </button>
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gmg-Tp-PPn">
-                                <rect key="frame" x="0.0" y="39" width="593" height="421"/>
+                                <rect key="frame" x="0.0" y="42" width="593" height="418"/>
                                 <clipView key="contentView" id="V7d-R1-cDN">
-                                    <rect key="frame" x="1" y="1" width="591" height="419"/>
+                                    <rect key="frame" x="1" y="1" width="591" height="416"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="fWl-7Q-Cq6" customClass="SJTextView" customModule="SwiftyJSONAccelerator" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="591" height="419"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="591" height="416"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <animations/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="591" height="419"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <size key="minSize" width="591" height="416"/>
                                             <size key="maxSize" width="593" height="10000000"/>
-                                            <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="591" height="419"/>
+                                            <color key="insertionPointColor" name="controlLightHighlightColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="minSize" width="591" height="416"/>
                                             <size key="maxSize" width="593" height="10000000"/>
                                         </textView>
                                     </subviews>
@@ -712,24 +716,49 @@
                                     <animations/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="9fh-RH-upi">
-                                    <rect key="frame" x="576" y="1" width="16" height="419"/>
+                                    <rect key="frame" x="576" y="1" width="16" height="416"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                 </scroller>
                             </scrollView>
+                            <imageView translatesAutoresizingMaskIntoConstraints="NO" id="PJA-AP-s5I">
+                                <rect key="frame" x="15" y="15" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="48s-vB-xta"/>
+                                    <constraint firstAttribute="width" constant="20" id="t6S-fb-bjE"/>
+                                </constraints>
+                                <animations/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="failure" id="CKF-pW-DBY"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GbJ-FJ-Uuc">
+                                <rect key="frame" x="41" y="9" width="336" height="26"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="j5n-yT-9hg">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="AwX-MF-DMD" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="76H-O2-W7l"/>
+                            <constraint firstAttribute="trailing" secondItem="AwX-MF-DMD" secondAttribute="trailing" constant="10" id="1wF-Ly-8ue"/>
                             <constraint firstAttribute="trailing" secondItem="Gmg-Tp-PPn" secondAttribute="trailing" id="APF-Xg-5Am"/>
+                            <constraint firstItem="GbJ-FJ-Uuc" firstAttribute="leading" secondItem="PJA-AP-s5I" secondAttribute="trailing" constant="8" id="HqW-6O-Fdl"/>
+                            <constraint firstItem="GbJ-FJ-Uuc" firstAttribute="top" secondItem="PJA-AP-s5I" secondAttribute="top" id="IlE-F0-NZD"/>
                             <constraint firstItem="Gmg-Tp-PPn" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="KPd-r3-s21"/>
                             <constraint firstAttribute="bottom" secondItem="AwX-MF-DMD" secondAttribute="bottom" constant="10" id="LPE-ze-NHG"/>
-                            <constraint firstAttribute="trailing" secondItem="AwX-MF-DMD" secondAttribute="trailing" constant="20" id="OZL-DV-aKv"/>
-                            <constraint firstItem="AwX-MF-DMD" firstAttribute="top" secondItem="Gmg-Tp-PPn" secondAttribute="bottom" constant="8" id="Vba-Qc-kgy"/>
+                            <constraint firstItem="PJA-AP-s5I" firstAttribute="top" secondItem="fWl-7Q-Cq6" secondAttribute="bottom" constant="8" id="Lyo-zQ-FBS"/>
+                            <constraint firstAttribute="bottom" secondItem="GbJ-FJ-Uuc" secondAttribute="bottom" constant="9" id="WkT-89-7wT"/>
+                            <constraint firstItem="PJA-AP-s5I" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="ZKf-XD-X3C"/>
                             <constraint firstItem="Gmg-Tp-PPn" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="hMN-xb-eV1"/>
+                            <constraint firstAttribute="bottom" secondItem="PJA-AP-s5I" secondAttribute="bottom" constant="15" id="hYo-cP-Gqf"/>
+                            <constraint firstItem="AwX-MF-DMD" firstAttribute="leading" secondItem="GbJ-FJ-Uuc" secondAttribute="trailing" constant="8" id="i7q-la-dYw"/>
                         </constraints>
                         <animations/>
                     </view>
                     <connections>
+                        <outlet property="errorImageView" destination="PJA-AP-s5I" id="0nv-qV-54d"/>
+                        <outlet property="messageLabel" destination="GbJ-FJ-Uuc" id="19Z-0L-YwW"/>
                         <outlet property="textView" destination="fWl-7Q-Cq6" id="1lh-CW-y1Y"/>
                     </connections>
                 </viewController>
@@ -738,4 +767,7 @@
             <point key="canvasLocation" x="131.5" y="750"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="failure" width="30" height="30"/>
+    </resources>
 </document>
