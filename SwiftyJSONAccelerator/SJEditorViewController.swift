@@ -15,6 +15,10 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     @IBOutlet var textView: SJTextView?
     @IBOutlet var messageLabel: NSTextField?
     @IBOutlet var errorImageView: NSImageView?
+    @IBOutlet var baseClassTextField: NSTextField?
+    @IBOutlet var prefixClassTextField: NSTextField?
+    @IBOutlet var companyNameTextField: NSTextField?
+    @IBOutlet var authorNameTextField: NSTextField?
     
     // MARK: View methods
     override func viewDidLoad() {
@@ -24,6 +28,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         textView!.updateFormat()
         textView!.lnv_setUpLineNumberView()
         resetErrorImage()
+        authorNameTextField?.stringValue = NSFullUserName()
         
     }
     
@@ -33,30 +38,75 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         }
     }
     // MARK: Actions
-     @IBAction func format(sender: AnyObject?) {
-        validateAndFormat(true)
-    }
-    
-    func validateAndFormat(pretty: Bool) {
-        
-        if textView?.string?.characters.count == 0 {
-            return
+    @IBAction func format(sender: AnyObject?) {
+        if validateAndFormat(true) {
+            generateModel()
         }
         
+    }
+    
+    /**
+    Validates and updates the textview.
+    
+    - parameter pretty: If the JSON is to be pretty printed.
+    
+    - returns: if the format was valid.
+    */
+    func validateAndFormat(pretty: Bool) -> Bool {
+        
+        if textView?.string?.characters.count == 0 {
+            return false
+        }
+        
+        textView!.updateFormat()
         if let (valid, error): (Bool, NSError?) = JSONHelper.isStringValidJSON(textView?.string) {
             if valid {
                 if pretty {
                     textView?.string = JSONHelper.prettyJSON(textView?.string)!
+                    textView!.lnv_textDidChange(NSNotification.init(name: NSTextDidChangeNotification, object: nil))
+                    return true
                 }
                 correctJSONMessage()
-                ModelGenerator.generate(JSONHelper.convertToObject(textView?.string).1!, className: "Test", suffix: "EF")
             } else if error != nil {
                 handleError(error)
+                textView!.lnv_textDidChange(NSNotification.init(name: NSTextDidChangeNotification, object: nil))
+                return false
             }
         }
+        return false
+    }
+    
+    /**
+    Actual function that generates the model.
+    */
+    func generateModel() {
         
-        textView!.updateFormat()
-        textView!.lnv_textDidChange(NSNotification.init(name: NSTextDidChangeNotification, object: nil))
+        // The base class field is blank, cannot proceed without it. Possibly can have a default value in the future.
+        if  baseClassTextField?.stringValue.characters.count <= 0 {
+            let alert:NSAlert = NSAlert()
+            alert.messageText = "Enter a base class name to continue."
+            alert.runModal()
+            return
+        }
+        
+        let filePath: String? = openFile()
+        
+        // No file path was selected, go back!
+        if filePath == nil {
+            return
+        }
+        
+        let object: AnyObject? = JSONHelper.convertToObject(textView?.string).1
+        
+        // Checks for validity of the content, else can cause crashes.
+        if object != nil {
+            let generator: ModelGenerator = ModelGenerator.init(baseContent: JSON(object!), prefix:  prefixClassTextField?.stringValue, baseClassName: (baseClassTextField?.stringValue)!, authorName: authorNameTextField?.stringValue, companyName: companyNameTextField?.stringValue, type: "class", filePath:  filePath!)
+            generator.generate()
+        } else {
+            let alert:NSAlert = NSAlert()
+            alert.messageText = "Unable to save the file check the content."
+            alert.runModal()
+        }
     }
     
     // MARK: Internal Methods
@@ -152,8 +202,28 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     
     //MARK: TextView Delegate
     func textDidChange(notification: NSNotification) {
-         validateAndFormat(false)
+        validateAndFormat(false)
+    }
+    
+    //MARK: Internal Methods
+    
+    /**
+    Open the file selector to select a location to save the generated files.
+    
+    - returns: Return a valid path or nil.
+    */
+    func openFile() -> String? {
+        
+        let fileDialog: NSOpenPanel = NSOpenPanel()
+        fileDialog.canChooseFiles = false
+        fileDialog.canChooseDirectories = true
+        fileDialog.canCreateDirectories = true
+        
+        if fileDialog.runModal() == NSModalResponseOK {
+            return fileDialog.URL?.path
+        }
+        
+        return nil
     }
     
 }
-

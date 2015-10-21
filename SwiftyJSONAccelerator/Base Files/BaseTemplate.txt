@@ -2,44 +2,41 @@
 //  {OBJECT_NAME}.swift
 //
 //  Created by __NAME__ on {DATE}
-//  Copyright (c) {COMPANY_NAME}. All rights reserved.
+//  Copyright (c) __MyCompanyName__. All rights reserved.
 //
 
 import Foundation
 
-public {OBJECT_KIND} {OBJECT_NAME}: Serializable {
+public {OBJECT_KIND} {OBJECT_NAME} {
 
-{
-
-STRING_CONSTANT_BLOCK}
-
-
-// MARK: Declaration for string constants to be used to decode and also serialize.
+	// MARK: Declaration for string constants to be used to decode and also serialize.
 {STRING_CONSTANT_BLOCK}
 
-// MARK: Properties
+	// MARK: Properties
 {PROPERTIES}
 
-/**
-Initates the {OBJECT_KIND} based on the object
-
-- parameter object: The object of either Dictionary or Array kind that was passed.
-
-- returns: An initalized instance of the {OBJECT_KIND}.
-*/
+	// MARK: Initalizers
+    /**
+    Initates the class based on the object
+    
+    - parameter object: The object of either Dictionary or Array kind that was passed.
+    
+    - returns: An initalized instance of the class.
+    */
     convenience init(object: AnyObject) {
         self.init(json: JSON(object))
     }
 
-/**
-Initates the {OBJECT_KIND} based on the JSON that was passed.
-
-- parameter json: JSON object from SwiftyJSON.
-
-- returns: An initalized instance of the {OBJECT_KIND}.
-*/
+    /**
+    Initates the class based on the JSON that was passed.
+    
+    - parameter json: JSON object from SwiftyJSON.
+    
+    - returns: An initalized instance of the class.
+    */
     init(json: JSON) {
-        
-    }
 
-@end
+{INITALIZER}
+
+    }
+}
