@@ -750,6 +750,7 @@
                             <constraint firstItem="PJA-AP-s5I" firstAttribute="top" secondItem="fWl-7Q-Cq6" secondAttribute="bottom" constant="8" id="Lyo-zQ-FBS"/>
                             <constraint firstAttribute="bottom" secondItem="GbJ-FJ-Uuc" secondAttribute="bottom" constant="9" id="WkT-89-7wT"/>
                             <constraint firstItem="PJA-AP-s5I" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="ZKf-XD-X3C"/>
+                            <constraint firstAttribute="bottom" secondItem="Gmg-Tp-PPn" secondAttribute="bottom" constant="42" id="gFo-5j-XXF"/>
                             <constraint firstItem="Gmg-Tp-PPn" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="hMN-xb-eV1"/>
                             <constraint firstAttribute="bottom" secondItem="PJA-AP-s5I" secondAttribute="bottom" constant="15" id="hYo-cP-Gqf"/>
                             <constraint firstItem="AwX-MF-DMD" firstAttribute="leading" secondItem="GbJ-FJ-Uuc" secondAttribute="trailing" constant="8" id="i7q-la-dYw"/>
@@ -764,7 +765,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131.5" y="750"/>
+            <point key="canvasLocation" x="18.5" y="750"/>
         </scene>
     </scenes>
     <resources>
