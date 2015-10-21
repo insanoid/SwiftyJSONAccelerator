@@ -674,7 +674,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AwX-MF-DMD">
-                                <rect key="frame" x="377" y="97" width="212" height="32"/>
+                                <rect key="frame" x="377" y="97" width="212" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="Fsx-eV-1MY"/>
                                 </constraints>
@@ -791,10 +791,12 @@
                             <constraint firstItem="GbJ-FJ-Uuc" firstAttribute="top" secondItem="PJA-AP-s5I" secondAttribute="top" id="IlE-F0-NZD"/>
                             <constraint firstItem="aJ1-yn-Pl7" firstAttribute="top" secondItem="AwX-MF-DMD" secondAttribute="bottom" constant="5" id="KM7-XP-CAY"/>
                             <constraint firstItem="Gmg-Tp-PPn" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="KPd-r3-s21"/>
-                            <constraint firstItem="PJA-AP-s5I" firstAttribute="top" secondItem="fWl-7Q-Cq6" secondAttribute="bottom" constant="8" id="Lyo-zQ-FBS"/>
                             <constraint firstItem="b3c-Wz-v36" firstAttribute="leading" secondItem="mJg-3P-2Aw" secondAttribute="leading" id="Q9g-6W-fq3"/>
                             <constraint firstItem="sNu-7Z-F06" firstAttribute="top" secondItem="b3c-Wz-v36" secondAttribute="bottom" constant="2" id="Svz-9v-6zt"/>
                             <constraint firstItem="PJA-AP-s5I" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="ZKf-XD-X3C"/>
+                            <constraint firstItem="AwX-MF-DMD" firstAttribute="top" secondItem="Gmg-Tp-PPn" secondAttribute="bottom" constant="7" id="cHK-Sj-6ps"/>
+                            <constraint firstItem="AwX-MF-DMD" firstAttribute="top" secondItem="PJA-AP-s5I" secondAttribute="top" id="ds3-Tk-TKg"/>
+                            <constraint firstItem="aJ1-yn-Pl7" firstAttribute="top" secondItem="PJA-AP-s5I" secondAttribute="bottom" constant="10" id="gHI-A7-SyE"/>
                             <constraint firstItem="mJg-3P-2Aw" firstAttribute="top" secondItem="sNu-7Z-F06" secondAttribute="bottom" constant="2" id="h24-Ox-KU7"/>
                             <constraint firstItem="Gmg-Tp-PPn" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="hMN-xb-eV1"/>
                             <constraint firstAttribute="trailing" secondItem="mJg-3P-2Aw" secondAttribute="trailing" constant="12" id="hPT-9f-f0o"/>
@@ -803,7 +805,6 @@
                             <constraint firstItem="b3c-Wz-v36" firstAttribute="top" secondItem="aJ1-yn-Pl7" secondAttribute="bottom" constant="2" id="jIg-Xp-GaU"/>
                             <constraint firstAttribute="bottom" secondItem="mJg-3P-2Aw" secondAttribute="bottom" constant="5" id="mwR-zK-YI2"/>
                             <constraint firstItem="mJg-3P-2Aw" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="13" id="n4f-7b-FZR"/>
-                            <constraint firstAttribute="bottom" secondItem="Gmg-Tp-PPn" secondAttribute="bottom" constant="136" id="nNj-fX-fVM"/>
                         </constraints>
                         <animations/>
                     </view>
