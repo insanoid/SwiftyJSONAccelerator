@@ -33,16 +33,23 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         }
     }
     // MARK: Actions
-    @IBAction func format(sender: AnyObject?) {
+     @IBAction func format(sender: AnyObject?) {
+        validateAndFormat(true)
+    }
+    
+    func validateAndFormat(pretty: Bool) {
         
         if textView?.string?.characters.count == 0 {
             return
         }
         
         if let (valid, error): (Bool, NSError?) = JSONHelper.isStringValidJSON(textView?.string) {
-            if(valid){
-                textView?.string = JSONHelper.prettyJSON(textView?.string)!
+            if valid {
+                if pretty {
+                    textView?.string = JSONHelper.prettyJSON(textView?.string)!
+                }
                 correctJSONMessage()
+                ModelGenerator.generate(JSONHelper.convertToObject(textView?.string).1!, className: "Test", suffix: "EF")
             } else if error != nil {
                 handleError(error)
             }
@@ -145,7 +152,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     
     //MARK: TextView Delegate
     func textDidChange(notification: NSNotification) {
-        format(textView)
+         validateAndFormat(false)
     }
     
 }
