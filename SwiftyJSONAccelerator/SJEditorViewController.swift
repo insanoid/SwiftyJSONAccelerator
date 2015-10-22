@@ -98,6 +98,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
 
         // Checks for validity of the content, else can cause crashes.
         if object != nil {
+
             let generator: ModelGenerator = ModelGenerator.init(baseContent: JSON(object!), prefix:  prefixClassTextField?.stringValue, baseClassName: (baseClassTextField?.stringValue)!, authorName: authorNameTextField?.stringValue, companyName: companyNameTextField?.stringValue, type: ModelType.kClassType, filePath:  filePath!)
             generator.generate()
         } else {

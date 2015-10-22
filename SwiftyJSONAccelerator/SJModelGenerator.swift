@@ -31,8 +31,8 @@ struct VariableType {
 *  - kStructType: Struct type
 */
 public struct ModelType {
-    static let kClassType: String = "Class"
-    static let kStructType: String = "Struct"
+    static let kClassType: String = "class"
+    static let kStructType: String = "struct"
 }
 
 /// Model generator responsible for creation of models based on the JSON, needs to be initalized with all properties before proceeding.
@@ -106,6 +106,7 @@ public class ModelGenerator {
         var initalizers: String = ""
         var encoders: String = ""
         var decoders: String = ""
+        var description: String = ""
 
         /// Create a classname in Sentence case and removing unwanted stuff.
         let className = buildClassName(className, prefix: self.prefix!, isSubModule: isSubModule)
@@ -138,12 +139,13 @@ public class ModelGenerator {
                             declarations = declarations.stringByAppendingFormat(variableDeclarationBuilder(variableName, type: "[\(subClassName)]"))
                             initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForObjectArray(variableName, className: subClassName, key: stringConstantName))
                             decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: "[\(subClassName)]"))
-
+                            description = description.stringByAppendingFormat("%@\n", descriptionForObjectArray(variableName, key: stringConstantName))
                         } else {
                             // If it is anything other than an object, it should be a primitive type hence deal with it accordingly.
                             declarations = declarations.stringByAppendingFormat(variableDeclarationBuilder(variableName, type: "[\(subClassType)]"))
                             initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForPrimitiveVariableArray(variableName, key: stringConstantName, type: subClassType))
                             decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: "[\(subClassType)]"))
+                            description = description.stringByAppendingFormat("%@\n", descriptionForPrimitiveVariableArray(variableName, key: stringConstantName))
                         }
                         // TODO: We should also consider a third case where the type is an [AnyObject] to achive complete redundancy handling.
 
@@ -162,13 +164,14 @@ public class ModelGenerator {
                     declarations = declarations.stringByAppendingFormat(variableDeclarationBuilder(variableName, type: subClassName))
                     initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForObject(variableName, className: subClassName, key: stringConstantName))
                     decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: subClassName))
+                    description = description.stringByAppendingFormat("%@\n", descriptionForObjectVariableArray(variableName, key: stringConstantName))
 
                 } else {
                     // If it is a primitive then simply create initalizers, declarations and decoders.
                     declarations = declarations.stringByAppendingFormat(variableDeclarationBuilder(variableName, type: variableType))
                     initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForVariable(variableName, type: variableType, key: stringConstantName))
                     decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: variableType))
-
+                    description = description.stringByAppendingFormat("%@\n", descriptionForVariable(variableName, key: stringConstantName))
                 }
 
             }
@@ -186,6 +189,7 @@ public class ModelGenerator {
             content = content.stringByReplacingOccurrencesOfString("{INITALIZER}", withString: initalizers)
             content = content.stringByReplacingOccurrencesOfString("{ENCODERS}", withString: encoders)
             content = content.stringByReplacingOccurrencesOfString("{DECODERS}", withString: decoders)
+            content = content.stringByReplacingOccurrencesOfString("{DESC}", withString: description)
 
             if authorName != nil {
                 content = content.stringByReplacingOccurrencesOfString("__NAME__", withString: authorName!)
@@ -229,8 +233,7 @@ public class ModelGenerator {
     - returns: A generated string representation of the variable name.
     */
     internal func variableNameBuilder(variableName: String) -> String {
-
-        let variableName = variableName.stringByReplacingOccurrencesOfString("_", withString: " ")
+        let variableName = replaceInternalKeywordsForVariableName(variableName).stringByReplacingOccurrencesOfString("_", withString: " ")
         var finalVariableName: String = ""
         for (index, element) in variableName.componentsSeparatedByString(" ").enumerate() {
             var component: String = element
@@ -356,10 +359,10 @@ public class ModelGenerator {
     }
 
     /**
-    Encoder for a variable.
+    Initalizer for an primitive kind of elements array variable.
     - parameter variableName: Variable name.
     - parameter key:          Key against which the value is stored.
-    - returns: A single line encoder of the variable.
+    - returns: A single line declaration of the variable which is an array of primitive kind.
     */
     internal func initalizerForPrimitiveVariableArray(variableName: String, key: String, var type: String) -> String {
         type = typeToSwiftType(type)
@@ -389,6 +392,64 @@ public class ModelGenerator {
             return "\t\tself.\(variableName) = aDecoder.decodeBoolForKey(\(key))"
         }
         return "\t\tself.\(variableName) = aDecoder.decodeObjectForKey(\(key)) as? \(type)"
+    }
+
+    /**
+    Initialization of the variable "if let value = json[{key}].{type} { variableName = value }"
+    - parameter variableName: Variable name.
+    - parameter type:         Type of the variable.
+    - parameter key:          Key against which the value is stored.
+
+    - returns: A single line declaration of the variable.
+    */
+    internal func initalize(variableName: String, var type: String, key: String) -> String {
+        type = typeToSwiftType(type)
+        return "\t\tif let value = json[\(key)].\(type) {\n\t\t\t\(variableName) = value\n\t\t}"
+    }
+
+    /**
+    Description of the variable if {variableName} != nil { dictionary.updateValue({variableName}!, forKey: {key})
+    }
+    - parameter variableName: Variable name.
+    - parameter type:         Type of the variable.
+    - parameter key:          Key against which the value is stored.
+
+    - returns: A single line description printer of the variable.
+    */
+    internal func descriptionForVariable(variableName: String, key: String) -> String {
+        return "\t\tif \(variableName) != nil {\n\t\t\tdictionary.updateValue(\(variableName)!, forKey: \(key))\n\t\t}"
+    }
+
+    /**
+    Description for an Object kind of an array variable. if {variableName}?.count > 0 { var temp: [AnyObject] = [] for item in {variableName}! { temp.append(item.dictionaryRepresentation()) } dictionary.updateValue(temp, forKey: {key}) }
+    }
+    - parameter variableName: Variable name.
+    - parameter className:    Name of the Class of the object.
+    - parameter key:          Key against which the value is stored.
+    - returns: A single line declaration of the variable which is an array of object.
+    */
+    internal func descriptionForObjectArray(variableName: String, key: String) -> String {
+        return  "\t\tif \(variableName)?.count > 0 {\n\t\t\tvar temp: [AnyObject] = []\n\t\t\tfor item in \(variableName)! {\n\t\t\t\ttemp.append(item.dictionaryRepresentation())\n\t\t\t}\n\t\t\tdictionary.updateValue(temp, forKey: \(key))\n\t\t}"
+    }
+
+    /**
+    Description for an Object kind of a primitive variable. if {variableName}?.count > 0 { dictionary.updateValue({variableName}!, forKey: {key})
+    - parameter variableName: Variable name.
+    - parameter key:          Key against which the value is stored.
+    - returns: A single line declaration of the variable which is an array of primitive kind.
+    */
+    internal func descriptionForPrimitiveVariableArray(variableName: String, key: String) -> String {
+        return "\t\tif \(variableName)?.count > 0 {\n\t\t\tdictionary.updateValue(\(variableName)!, forKey: \(key))\n\t\t}"
+    }
+
+    /**
+    Description for an Object kind of AnyObject. if {variableName}?.count > 0 { dictionary.updateValue({variableName}!.dictionaryRepresentation(), forKey: {key})
+    - parameter variableName: Variable name.
+    - parameter key:          Key against which the value is stored.
+    - returns: A single line declaration of the variable which is an array of primitive kind.
+    */
+    internal func descriptionForObjectVariableArray(variableName: String, key: String) -> String {
+        return "\t\tif \(variableName) != nil {\n\t\t\tdictionary.updateValue(\(variableName)!.dictionaryRepresentation(), forKey: \(key))\n\t\t}"
     }
 
     /**
@@ -454,6 +515,26 @@ public class ModelGenerator {
         }
         
         return type
+    }
+
+
+    /**
+    Cross checks the list of internal variables against the current variables and repalces them based on the mapping.
+
+    - parameter currentName: Current name of the variable.
+
+    - returns: New name for the variable.
+    */
+    internal func replaceInternalKeywordsForVariableName(currentName: String) -> String {
+
+        let currentReservedName = ["id":"internalIdentifier","description":"descriptionValue"]
+        for (key, value) in currentReservedName {
+            if key == currentName {
+                return value
+            }
+        }
+        return currentName
+
     }
     
 }
