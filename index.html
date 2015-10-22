@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>SwiftyJSONAccelerator by insanoid</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>SwiftyJSONAccelerator</h1>
+        <p>JSON to Swift Model Object Generation Simplified</p>
+
+        <p class="view"><a href="https://github.com/insanoid/SwiftyJSONAccelerator">View the Project on GitHub <small>insanoid/SwiftyJSONAccelerator</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/insanoid/SwiftyJSONAccelerator/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/insanoid/SwiftyJSONAccelerator/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/insanoid/SwiftyJSONAccelerator">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="swiftyjsonaccelerator" class="anchor" href="#swiftyjsonaccelerator" aria-hidden="true"><span class="octicon octicon-link"></span></a>SwiftyJSONAccelerator</h1>
+
+<p><strong>(Currenty v0.0.1-Alpha)</strong></p>
+
+<p><img src="https://raw.githubusercontent.com/insanoid/SwiftyJSONAccelerator/master/SwiftyJSONAccelerator/Assets.xcassets/AppIcon.appiconset/Icon_32x32%402x.png" alt="Logo"></p>
+
+<p>A swift model generator like the Objective-C <a href="http://nerdery.com/json-accelerator">JSONAccelerator</a>. Formats and generates models for the given JSON and also breaks them into files making it easy to manage and share between several models. it relies on <a href="https://github.com/SwiftyJSON/SwiftyJSON">SwiftyJSON</a> and requires you to include it in your project.</p>
+
+<p>Currently, the pattern is very similar to its Objective-C counterpart. It generates classes with following properties.</p>
+
+<ul>
+<li>Initalize with <code>JSON</code> (SwiftyJSON based)</li>
+<li>Initalize with <code>AnyObject</code>
+</li>
+<li>
+<code>NSCoding</code> compliant (Can be Archived using <code>NSKeyedArchiver</code>)</li>
+<li>Convert to <code>NSDictionary</code>
+</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/insanoid/SwiftyJSONAccelerator/master/preview.png" alt="Preview"></p>
+
+<p><em>Simple configurable interface for generation of file</em></p>
+
+<p><img src="https://raw.githubusercontent.com/insanoid/SwiftyJSONAccelerator/master/preview_ii.png" alt="Preview"></p>
+
+<p><em>Files are generated individually making it more easy to use.</em></p>
+
+<h2>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO</h2>
+
+<ul>
+<li>Instead of taking a single element consider merging all the elements and decide what to do as a while.</li>
+<li>Should also consider the case where the type is an <code>[[AnyObject],[AnyObject]...]</code> while handling arrays.</li>
+<li>Handle blank array a bit better.</li>
+<li>Better User Interface and icon.</li>
+<li>Generate both <code>struct</code> and <code>class</code>.</li>
+<li>Support for generation of models that do not need SwiftyJSON.</li>
+<li>Add tests and integrate with Travis CI.</li>
+</ul>
+
+<hr>
+
+<p>This is one of my very first Swift projects, since I am used to developing models from JSON based APIs in Objective-C and there was no free tool to do this in Swift I created this (with ample inspiration from <a href="https://github.com/swiftjson/SwiftJson">SwiftJSON</a> and<a href="http://nerdery.com/json-accelerator">JSONAccelerator</a>). Any suggestions regarding code quality of the app, generated code's quaility, swift improvements and pull requests are all higly welcome.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/insanoid">insanoid</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
