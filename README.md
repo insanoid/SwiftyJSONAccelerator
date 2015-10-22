@@ -12,10 +12,13 @@ Currently, the pattern is very similar to its Objective-C counterpart. It genera
 - Convert to `NSDictionary`
 	 
 ![Preview](https://raw.githubusercontent.com/insanoid/SwiftyJSONAccelerator/master/preview.png)
-(Simple configurable interface for generation of file)
+
+*Simple configurable interface for generation of file*
+
 
 ![Preview](https://raw.githubusercontent.com/insanoid/SwiftyJSONAccelerator/master/preview_ii.png)
-(Files are generated individually making it more easy to use)
+
+*Files are generated individually making it more easy to use.*
 
 ## TODO
 
