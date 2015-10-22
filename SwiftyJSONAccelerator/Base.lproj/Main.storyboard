@@ -670,11 +670,11 @@
             <objects>
                 <viewController title="SwiftyJSONAccelerator" id="XfG-lQ-9wD" customClass="SJEditorViewController" customModule="SwiftyJSONAccelerator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="593" height="554"/>
+                        <rect key="frame" x="0.0" y="0.0" width="717" height="599"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AwX-MF-DMD">
-                                <rect key="frame" x="377" y="97" width="212" height="36"/>
+                                <rect key="frame" x="501" y="97" width="212" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="Fsx-eV-1MY"/>
                                 </constraints>
@@ -688,22 +688,22 @@
                                 </connections>
                             </button>
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gmg-Tp-PPn">
-                                <rect key="frame" x="0.0" y="136" width="593" height="418"/>
+                                <rect key="frame" x="0.0" y="136" width="717" height="463"/>
                                 <clipView key="contentView" id="V7d-R1-cDN">
-                                    <rect key="frame" x="1" y="1" width="591" height="416"/>
+                                    <rect key="frame" x="1" y="1" width="715" height="461"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="fWl-7Q-Cq6" customClass="SJTextView" customModule="SwiftyJSONAccelerator" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="591" height="416"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="715" height="461"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <animations/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="591" height="416"/>
-                                            <size key="maxSize" width="593" height="10000000"/>
+                                            <size key="minSize" width="715" height="461"/>
+                                            <size key="maxSize" width="715" height="10000000"/>
                                             <color key="insertionPointColor" name="controlLightHighlightColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="591" height="416"/>
-                                            <size key="maxSize" width="593" height="10000000"/>
+                                            <size key="minSize" width="715" height="461"/>
+                                            <size key="maxSize" width="715" height="10000000"/>
                                         </textView>
                                     </subviews>
                                     <animations/>
@@ -716,7 +716,7 @@
                                     <animations/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="9fh-RH-upi">
-                                    <rect key="frame" x="576" y="1" width="16" height="416"/>
+                                    <rect key="frame" x="700" y="1" width="16" height="461"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                 </scroller>
@@ -731,7 +731,7 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="failure" id="CKF-pW-DBY"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GbJ-FJ-Uuc">
-                                <rect key="frame" x="41" y="103" width="336" height="26"/>
+                                <rect key="frame" x="41" y="103" width="460" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="WGF-kR-SB9"/>
                                 </constraints>
@@ -743,7 +743,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aJ1-yn-Pl7">
-                                <rect key="frame" x="13" y="77" width="568" height="22"/>
+                                <rect key="frame" x="13" y="77" width="692" height="22"/>
                                 <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="BaseClass" placeholderString="Base Class Name" bezelStyle="round" id="vuP-t4-ep6">
                                     <font key="font" metaFont="system"/>
@@ -752,7 +752,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b3c-Wz-v36">
-                                <rect key="frame" x="13" y="53" width="568" height="22"/>
+                                <rect key="frame" x="13" y="53" width="692" height="22"/>
                                 <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Class Prefix (For example, NS)" bezelStyle="round" id="N8s-m9-cf7">
                                     <font key="font" metaFont="system"/>
@@ -761,7 +761,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sNu-7Z-F06">
-                                <rect key="frame" x="13" y="29" width="568" height="22"/>
+                                <rect key="frame" x="13" y="29" width="692" height="22"/>
                                 <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Company name" bezelStyle="round" id="76e-Gm-0jI">
                                     <font key="font" metaFont="system"/>
@@ -770,7 +770,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mJg-3P-2Aw">
-                                <rect key="frame" x="13" y="5" width="568" height="22"/>
+                                <rect key="frame" x="13" y="5" width="692" height="22"/>
                                 <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Author name" bezelStyle="round" id="jUe-0u-QLL">
                                     <font key="font" metaFont="system"/>
@@ -820,7 +820,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="89.5" y="614"/>
+            <point key="canvasLocation" x="151.5" y="636.5"/>
         </scene>
     </scenes>
     <resources>

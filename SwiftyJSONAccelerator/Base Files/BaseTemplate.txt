@@ -7,7 +7,7 @@
 
 import Foundation
 
-public {OBJECT_KIND} {OBJECT_NAME} {
+public {OBJECT_KIND} {OBJECT_NAME}: NSObject, NSCoding {
 
 	// MARK: Declaration for string constants to be used to decode and also serialize.
 {STRING_CONSTANT_BLOCK}
@@ -23,7 +23,7 @@ public {OBJECT_KIND} {OBJECT_NAME} {
     
     - returns: An initalized instance of the class.
     */
-    convenience init(object: AnyObject) {
+    convenience public init(object: AnyObject) {
         self.init(json: JSON(object))
     }
 
@@ -34,7 +34,7 @@ public {OBJECT_KIND} {OBJECT_NAME} {
     
     - returns: An initalized instance of the class.
     */
-    init(json: JSON) {
+    public init(json: JSON) {
 
 {INITALIZER}
 
@@ -45,7 +45,7 @@ public {OBJECT_KIND} {OBJECT_NAME} {
 {DECODERS}
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
+    public func encodeWithCoder(aCoder: NSCoder) {
 {ENCODERS}
     }
 

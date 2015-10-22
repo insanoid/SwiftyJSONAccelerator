@@ -10,7 +10,7 @@ import Cocoa
 
 /// View for the processing of the content and generation of the files.
 class SJEditorViewController: NSViewController, NSTextViewDelegate {
-    
+
     // MARK: Outlet files.
     @IBOutlet var textView: SJTextView?
     @IBOutlet var messageLabel: NSTextField?
@@ -19,7 +19,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     @IBOutlet var prefixClassTextField: NSTextField?
     @IBOutlet var companyNameTextField: NSTextField?
     @IBOutlet var authorNameTextField: NSTextField?
-    
+
     // MARK: View methods
     override func loadView() {
         super.loadView()
@@ -29,7 +29,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         resetErrorImage()
         authorNameTextField?.stringValue = NSFullUserName()
     }
-    
+
     override var representedObject: AnyObject? {
         didSet {
             // Update the view, if already loaded.
@@ -40,22 +40,22 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         if validateAndFormat(true) {
             generateModel()
         }
-        
+
     }
-    
+
     /**
     Validates and updates the textview.
-    
+
     - parameter pretty: If the JSON is to be pretty printed.
-    
+
     - returns: if the format was valid.
     */
     func validateAndFormat(pretty: Bool) -> Bool {
-        
+
         if textView?.string?.characters.count == 0 {
             return false
         }
-        
+
         textView!.updateFormat()
         if let (valid, error): (Bool, NSError?) = JSONHelper.isStringValidJSON(textView?.string) {
             if valid {
@@ -73,12 +73,12 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         }
         return false
     }
-    
+
     /**
     Actual function that generates the model.
     */
     func generateModel() {
-        
+
         // The base class field is blank, cannot proceed without it. Possibly can have a default value in the future.
         if  baseClassTextField?.stringValue.characters.count <= 0 {
             let alert:NSAlert = NSAlert()
@@ -86,19 +86,19 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
             alert.runModal()
             return
         }
-        
+
         let filePath: String? = openFile()
-        
+
         // No file path was selected, go back!
         if filePath == nil {
             return
         }
-        
+
         let object: AnyObject? = JSONHelper.convertToObject(textView?.string).1
-        
+
         // Checks for validity of the content, else can cause crashes.
         if object != nil {
-            let generator: ModelGenerator = ModelGenerator.init(baseContent: JSON(object!), prefix:  prefixClassTextField?.stringValue, baseClassName: (baseClassTextField?.stringValue)!, authorName: authorNameTextField?.stringValue, companyName: companyNameTextField?.stringValue, type: "class", filePath:  filePath!)
+            let generator: ModelGenerator = ModelGenerator.init(baseContent: JSON(object!), prefix:  prefixClassTextField?.stringValue, baseClassName: (baseClassTextField?.stringValue)!, authorName: authorNameTextField?.stringValue, companyName: companyNameTextField?.stringValue, type: ModelType.kClassType, filePath:  filePath!)
             generator.generate()
         } else {
             let alert:NSAlert = NSAlert()
@@ -106,16 +106,16 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
             alert.runModal()
         }
     }
-    
+
     // MARK: Internal Methods
-    
+
     /**
     Get the line number, column and the character for the position in the given string.
-    
+
     - parameters:
     - string: The JSON string that is in the textview.
     - position: the location where the error is.
-    
+
     - returns:
     - character: the string that was causing the issue.
     - line: the linenumber where the error was.
@@ -141,10 +141,10 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         }
         return ("", 0,0)
     }
-    
+
     /**
     Handle Error message that is provided by the JSON helper and extract the message and showing them accordingly.
-    
+
     - parameters:
     - error: NSError that was provided.
     */
@@ -152,12 +152,12 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         if let _ = error!.userInfo["debugDescription"] as? String? {
             let message: String = error!.userInfo["NSDebugDescription"]! as! String
             let numbers: [String] = message.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)
-            
+
             var validNumbers:[Int] = []
             for number in numbers where (Int(number) != nil) {
                 validNumbers.append(Int(number)!)
             }
-            
+
             if validNumbers.count == 1 {
                 let index:Int = validNumbers[0]
                 let errorPosition: (character: String, line: Int, column:Int) = characterRowAndLineAt((textView?.string)!, position: index)
@@ -168,9 +168,9 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
             }
         }
     }
-    
+
     ///MARK: Resetting and showing error messages
-    
+
     /**
     Reset the whole error view with no image and message.
     */
@@ -178,7 +178,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         errorImageView?.image = nil
         messageLabel?.stringValue = ""
     }
-    
+
     /**
     Show that the JSON is fine with proper icon.
     */
@@ -186,10 +186,10 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         errorImageView?.image = NSImage.init(named: "success")
         messageLabel?.stringValue = "Valid JSON!"
     }
-    
+
     /**
     Show the invalid JSON error with proper error and message.
-    
+
     - parameters:
     - message: Error message that is to be shown.
     */
@@ -197,21 +197,21 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         errorImageView?.image = NSImage.init(named: "failure")
         messageLabel?.stringValue = message
     }
-    
+
     //MARK: TextView Delegate
     func textDidChange(notification: NSNotification) {
         validateAndFormat(false)
     }
-    
+
     //MARK: Internal Methods
-    
+
     /**
     Open the file selector to select a location to save the generated files.
-    
+
     - returns: Return a valid path or nil.
     */
     func openFile() -> String? {
-        
+
         let fileDialog: NSOpenPanel = NSOpenPanel()
         fileDialog.canChooseFiles = false
         fileDialog.canChooseDirectories = true
