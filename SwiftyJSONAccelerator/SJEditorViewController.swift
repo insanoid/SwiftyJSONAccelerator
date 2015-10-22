@@ -21,15 +21,13 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     @IBOutlet var authorNameTextField: NSTextField?
     
     // MARK: View methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override func loadView() {
+        super.loadView()
         textView!.delegate = self
         textView!.updateFormat()
         textView!.lnv_setUpLineNumberView()
         resetErrorImage()
         authorNameTextField?.stringValue = NSFullUserName()
-        
     }
     
     override var representedObject: AnyObject? {

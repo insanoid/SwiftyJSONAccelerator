@@ -44,7 +44,7 @@ public class ModelGenerator {
     */
     public func generate() {
         
-        let name: String = generateModelForClass(baseContent, className: baseClassName)
+        let name: String = generateModelForClass(baseContent, className: baseClassName, isSubModule: false)
         
         // Notify user that the files are generated!
         let notification: NSUserNotification = NSUserNotification()
@@ -65,7 +65,7 @@ public class ModelGenerator {
     
     - returns: Returns the final name of the class.
     */
-    internal func generateModelForClass(parsedJSONObject: JSON, className: String) -> String {
+    internal func generateModelForClass(parsedJSONObject: JSON, className: String, isSubModule: Bool) -> String {
         
         var declarations: String = ""
         var stringConstants: String = ""
@@ -73,7 +73,7 @@ public class ModelGenerator {
         var encoders: String = ""
         var decoders: String = ""
         
-        let className = buildClassName(className, prefix: self.prefix!)
+        let className = buildClassName(className, prefix: self.prefix!, isSubModule: isSubModule)
         if let object = parsedJSONObject.dictionary {
             for (key, subJson) in object {
                 
@@ -88,10 +88,19 @@ public class ModelGenerator {
                     
                     // If the array has objects, then take the first one and proces it to generate a model.
                     if subJson.arrayValue.count > 0 {
-                        let subClassName = generateModelForClass(subJson.arrayValue[0], className: variableName)
-                        declarations = declarations.stringByAppendingFormat(variableDeclarationBuilder(variableName, type: "[\(subClassName)]"))
-                        initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForObjectArray(variableName, className: subClassName, key: stringConstantName))
-                        decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: "[\(subClassName)]"))
+                        let subClassType = checkType(subJson.arrayValue[0])
+                        
+                        if subClassType == VariableType.kObjectType {
+                            let subClassName = generateModelForClass(subJson.arrayValue[0], className: variableName, isSubModule:true)
+                            declarations = declarations.stringByAppendingFormat(variableDeclarationBuilder(variableName, type: "[\(subClassName)]"))
+                            initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForObjectArray(variableName, className: subClassName, key: stringConstantName))
+                            decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: "[\(subClassName)]"))
+                        } else {
+                            declarations = declarations.stringByAppendingFormat(variableDeclarationBuilder(variableName, type: "[\(subClassType)]"))
+                            initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForVariableArray(variableName, key: stringConstantName, type: subClassType))
+                            decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: "[\(subClassType)]"))
+                        }
+                        
                     } else {
                         // if nothing is there make it a blank array.
                         declarations = declarations.stringByAppendingFormat(variableDeclarationBuilder(variableName, type: variableType))
@@ -101,7 +110,7 @@ public class ModelGenerator {
                     
                 } else if variableType == VariableType.kObjectType {
                     
-                    let subClassName = generateModelForClass(subJson, className: variableName)
+                    let subClassName = generateModelForClass(subJson, className: variableName, isSubModule:true)
                     declarations = declarations.stringByAppendingFormat(variableDeclarationBuilder(variableName, type: subClassName))
                     initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForObject(variableName, className: subClassName, key: stringConstantName))
                     decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: subClassName))
@@ -154,8 +163,10 @@ public class ModelGenerator {
     
     - returns: A generated string representing the name of the class in the model.
     */
-    internal func buildClassName(className: String, prefix: String)  -> String {
-        var classNameCleaned = variableNameBuilder(className)
+    internal func buildClassName(className: String, prefix: String, isSubModule: Bool)  -> String {
+        
+        // If it is a submodule it is already formatted no need to camelcase it.
+        var classNameCleaned = isSubModule ? className : variableNameBuilder(className)
         classNameCleaned.replaceRange(classNameCleaned.startIndex...classNameCleaned.startIndex, with: String(classNameCleaned[classNameCleaned.startIndex]).uppercaseString)
         return prefix.stringByAppendingString(classNameCleaned)
     }
@@ -226,11 +237,7 @@ public class ModelGenerator {
     
     
     internal func initalizerForVariable(variableName: String, var type: String, key: String) -> String {
-        if type == VariableType.kNumberType {
-            type = "number"
-        } else {
-            type.replaceRange(type.startIndex...type.startIndex, with: String(type[type.startIndex]).lowercaseString)
-        }
+        type = typeToSwiftType(type)
         return "\t\tif let value = json[\(key)].\(type) {\n\t\t\t\(variableName) = value\n\t\t}"
     }
     
@@ -245,12 +252,17 @@ public class ModelGenerator {
     internal func initalizerForObjectArray(variableName: String, className: String, key: String) -> String {
         return  "\t\t\(variableName) = []\n\t\tif let items = json[\(key)].array {\n\t\t\tfor item in items {\n\t\t\t\t\(variableName)?.append(\(className)(json: item))\n\t\t\t}\n\t\t}\n"
     }
+
+    internal func initalizerForVariableArray(variableName: String, key: String, var type: String) -> String {
+        type = typeToSwiftType(type)
+        return  "\t\t\(variableName) = []\n\t\tif let items = json[\(key)].array {\n\t\t\tfor item in items {\n\t\t\t\tif let value = item.\(type) {\n\t\t\t\t\(variableName)?.append(value)\n\t\t\t\t}\n\t\t\t}\n\t\t}\n"
+    }
     
     internal func encoderForVariable(variableName: String, key: String, type: String) -> String {
         if type == VariableType.kBoolType {
             return "\t\taCoder.encodeBool(\(variableName), forKey: \(key))"
         }
-         return "\t\taCoder.encodeObject(\(variableName), forKey: \(key))"
+        return "\t\taCoder.encodeObject(\(variableName), forKey: \(key))"
     }
     
     internal func decoderForVariable(variableName: String, key: String, type: String) -> String {
@@ -304,15 +316,21 @@ public class ModelGenerator {
         }
     }
     
-    /*
-    required init(coder aDecoder: NSCoder) {
-    self.bottlesArray = aDecoder.decodeObjectForKey("bottleArray") as NSMutableArray
-    }
+    /**
+    Generates a swift variable type from the given VariableType.
     
-    func encodeWithCoder(aCoder: NSCoder) {
-    aCoder.encodeObject(bottlesArray, forKey: "bottleArray")
+    - parameter type: VariableType
+    
+    - returns: swift variable type.
+    */
+    internal func typeToSwiftType(var type: String) -> String {
+        if type == VariableType.kNumberType {
+            type = "number"
+        } else {
+            type.replaceRange(type.startIndex...type.startIndex, with: String(type[type.startIndex]).lowercaseString)
+        }
+        
+        return type
     }
-*/
-
     
 }
