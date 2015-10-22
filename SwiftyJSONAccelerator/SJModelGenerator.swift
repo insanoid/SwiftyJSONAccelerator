@@ -499,7 +499,6 @@ public class ModelGenerator {
         } catch {
             print(filename)
         }
-        NSKeyedUnarchiver
     }
     
     /**
