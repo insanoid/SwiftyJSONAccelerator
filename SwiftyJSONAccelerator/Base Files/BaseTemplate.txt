@@ -39,4 +39,14 @@ public {OBJECT_KIND} {OBJECT_NAME} {
 {INITALIZER}
 
     }
+
+    // MARK: NSCoding Protocol
+    required public init(coder aDecoder: NSCoder) {
+{DECODERS}
+    }
+
+    func encodeWithCoder(aCoder: NSCoder) {
+{ENCODERS}
+    }
+
 }

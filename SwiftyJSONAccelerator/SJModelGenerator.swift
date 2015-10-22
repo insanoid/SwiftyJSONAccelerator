@@ -70,6 +70,8 @@ public class ModelGenerator {
         var declarations: String = ""
         var stringConstants: String = ""
         var initalizers: String = ""
+        var encoders: String = ""
+        var decoders: String = ""
         
         let className = buildClassName(className, prefix: self.prefix!)
         if let object = parsedJSONObject.dictionary {
@@ -80,6 +82,7 @@ public class ModelGenerator {
                 let variableType: String = checkType(subJson)
                 
                 stringConstants = stringConstants.stringByAppendingFormat(stringConstantDeclrationBuilder(stringConstantName, key: key))
+                encoders = encoders.stringByAppendingFormat("%@\n", encoderForVariable(variableName, key: stringConstantName, type: variableType))
                 
                 if variableType == VariableType.kArrayType {
                     
@@ -87,23 +90,27 @@ public class ModelGenerator {
                     if subJson.arrayValue.count > 0 {
                         let subClassName = generateModelForClass(subJson.arrayValue[0], className: variableName)
                         declarations = declarations.stringByAppendingFormat(variableDeclarationBuilder(variableName, type: "[\(subClassName)]"))
-                        initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForObjectArray(variableName, className: subClassName, key: key))
+                        initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForObjectArray(variableName, className: subClassName, key: stringConstantName))
+                        decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: "[\(subClassName)]"))
                     } else {
                         // if nothing is there make it a blank array.
                         declarations = declarations.stringByAppendingFormat(variableDeclarationBuilder(variableName, type: variableType))
-                        initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForEmptyArray(variableName, key: key))
+                        initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForEmptyArray(variableName, key: stringConstantName))
+                        
                     }
                     
                 } else if variableType == VariableType.kObjectType {
                     
                     let subClassName = generateModelForClass(subJson, className: variableName)
                     declarations = declarations.stringByAppendingFormat(variableDeclarationBuilder(variableName, type: subClassName))
-                    initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForObject(variableName, className: subClassName, key: key))
+                    initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForObject(variableName, className: subClassName, key: stringConstantName))
+                    decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: subClassName))
                     
                 } else {
                     
                     declarations = declarations.stringByAppendingFormat(variableDeclarationBuilder(variableName, type: variableType))
-                    initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForVariable(variableName, type: variableType, key: key))
+                    initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForVariable(variableName, type: variableType, key: stringConstantName))
+                    decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: variableType))
                     
                 }
                 
@@ -126,6 +133,8 @@ public class ModelGenerator {
             content = content.stringByReplacingOccurrencesOfString("{STRING_CONSTANT_BLOCK}", withString: stringConstants)
             content = content.stringByReplacingOccurrencesOfString("{PROPERTIES}", withString: declarations)
             content = content.stringByReplacingOccurrencesOfString("{INITALIZER}", withString: initalizers)
+            content = content.stringByReplacingOccurrencesOfString("{ENCODERS}", withString: encoders)
+            content = content.stringByReplacingOccurrencesOfString("{DECODERS}", withString: decoders)
             
             writeToFile(className, content: content, path: filePath)
             
@@ -217,20 +226,38 @@ public class ModelGenerator {
     
     
     internal func initalizerForVariable(variableName: String, var type: String, key: String) -> String {
-        type.replaceRange(type.startIndex...type.startIndex, with: String(type[type.startIndex]).lowercaseString)
-        return "\t\tif let value = json[\"\(key)\"].\(type) {\n\t\t\t\(variableName) = value\n\t\t}"
+        if type == VariableType.kNumberType {
+            type = "number"
+        } else {
+            type.replaceRange(type.startIndex...type.startIndex, with: String(type[type.startIndex]).lowercaseString)
+        }
+        return "\t\tif let value = json[\(key)].\(type) {\n\t\t\t\(variableName) = value\n\t\t}"
     }
     
     internal func initalizerForObject(variableName: String, className: String, key: String) -> String {
-        return  "\t\t\(variableName) = \(className)(json: json[\"\(key)\"])"
+        return  "\t\t\(variableName) = \(className)(json: json[\(key)])"
     }
     
     internal func initalizerForEmptyArray(variableName: String, key: String) -> String {
-        return "\t\tif let value = json[\"\(key)\"].array {\n\t\t\t\(variableName) = value\n\t\t}"
+        return "\t\tif let value = json[\(key)].array {\n\t\t\t\(variableName) = value\n\t\t}"
     }
     
     internal func initalizerForObjectArray(variableName: String, className: String, key: String) -> String {
-        return  "\t\t\(variableName) = []\n\t\tif let items = json[\"\(key)\"].array {\n\t\t\tfor item in items {\n\t\t\t\t\(variableName)?.append(\(className)(json: item))\n\t\t\t}\n\t\t}\n"
+        return  "\t\t\(variableName) = []\n\t\tif let items = json[\(key)].array {\n\t\t\tfor item in items {\n\t\t\t\t\(variableName)?.append(\(className)(json: item))\n\t\t\t}\n\t\t}\n"
+    }
+    
+    internal func encoderForVariable(variableName: String, key: String, type: String) -> String {
+        if type == VariableType.kBoolType {
+            return "\t\taCoder.encodeBool(\(variableName), forKey: \(key))"
+        }
+         return "\t\taCoder.encodeObject(\(variableName), forKey: \(key))"
+    }
+    
+    internal func decoderForVariable(variableName: String, key: String, type: String) -> String {
+        if type == VariableType.kBoolType {
+            return "\t\tself.\(variableName) = aDecoder.decodeBoolForKey(\(key))"
+        }
+        return "\t\tself.\(variableName) = aDecoder.decodeObjectForKey(\(key)) as? \(type)"
     }
     
     internal func todayDateString() -> String {
@@ -277,5 +304,15 @@ public class ModelGenerator {
         }
     }
     
+    /*
+    required init(coder aDecoder: NSCoder) {
+    self.bottlesArray = aDecoder.decodeObjectForKey("bottleArray") as NSMutableArray
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+    aCoder.encodeObject(bottlesArray, forKey: "bottleArray")
+    }
+*/
+
     
 }
