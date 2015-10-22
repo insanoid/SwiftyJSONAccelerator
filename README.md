@@ -2,6 +2,8 @@
 
 **(Alpha v0.0.1)**
 
+![Logo](https://raw.githubusercontent.com/insanoid/SwiftyJSONAccelerator/master/SwiftyJSONAccelerator/Assets.xcassets/AppIcon.appiconset/Icon_32x32%402x.png)
+
 A swift model generator like the Objective-C [JSONAccelerator](http://nerdery.com/json-accelerator). Formats and generates models for the given JSON and also breaks them into files making it easy to manage and share between several models. it relies on [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) and requires you to include it in your project.
 
 Currently, the pattern is very similar to its Objective-C counterpart. It generates classes with following properties.
@@ -25,9 +27,10 @@ Currently, the pattern is very similar to its Objective-C counterpart. It genera
 - Instead of taking a single element consider merging all the elements and decide what to do as a while.
 - Should also consider the case where the type is an `[[AnyObject],[AnyObject]...]` while handling arrays.
 - Handle blank array a bit better.
-- Better User Interface
+- Better User Interface and icon.
 - Generate both `struct` and `class`.
 - Support for generation of models that do not need SwiftyJSON.
+- Add tests and integrate with Travis CI.
 
 ---
 
