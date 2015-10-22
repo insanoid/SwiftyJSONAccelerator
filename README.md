@@ -1,6 +1,6 @@
 # SwiftyJSONAccelerator
 
-**(Alpha v0.0.1)**
+[Download the .app (v0.0.1)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v0.0.1/SwiftyJSONAccelerator.zip)
 
 ![Logo](https://raw.githubusercontent.com/insanoid/SwiftyJSONAccelerator/master/SwiftyJSONAccelerator/Assets.xcassets/AppIcon.appiconset/Icon_32x32%402x.png)
 
