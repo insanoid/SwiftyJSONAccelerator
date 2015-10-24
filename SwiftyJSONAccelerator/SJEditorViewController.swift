@@ -19,6 +19,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     @IBOutlet var prefixClassTextField: NSTextField?
     @IBOutlet var companyNameTextField: NSTextField?
     @IBOutlet var authorNameTextField: NSTextField?
+    @IBOutlet var includeSwiftyCheckbox: NSButton?
 
     // MARK: View methods
     override func loadView() {
@@ -99,7 +100,8 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         // Checks for validity of the content, else can cause crashes.
         if object != nil {
 
-            let generator: ModelGenerator = ModelGenerator.init(baseContent: JSON(object!), prefix:  prefixClassTextField?.stringValue, baseClassName: (baseClassTextField?.stringValue)!, authorName: authorNameTextField?.stringValue, companyName: companyNameTextField?.stringValue, type: ModelType.kClassType, filePath:  filePath!)
+            let swiftyState = self.includeSwiftyCheckbox?.state == 1 ? true : false
+            let generator: ModelGenerator = ModelGenerator.init(baseContent: JSON(object!), prefix:  prefixClassTextField?.stringValue, baseClassName: (baseClassTextField?.stringValue)!, authorName: authorNameTextField?.stringValue, companyName: companyNameTextField?.stringValue, type: ModelType.kClassType, filePath:  filePath!, includeSwiftyJSON: swiftyState)
             generator.generate()
         } else {
             let alert:NSAlert = NSAlert()
