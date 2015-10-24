@@ -1,6 +1,6 @@
 # SwiftyJSONAccelerator
 
-**(Alpha v0.0.1)**
+**(Alpha v0.0.2)**
 
 ![Logo](https://raw.githubusercontent.com/insanoid/SwiftyJSONAccelerator/master/SwiftyJSONAccelerator/Assets.xcassets/AppIcon.appiconset/Icon_32x32%402x.png)
 
@@ -24,13 +24,12 @@ Currently, the pattern is very similar to its Objective-C counterpart. It genera
 
 ## TODO
 
-- Instead of taking a single element consider merging all the elements and decide what to do as a while.
-- Should also consider the case where the type is an `[[AnyObject],[AnyObject]...]` while handling arrays.
 - Handle blank array a bit better.
 - Better User Interface and icon.
 - Generate both `struct` and `class`.
 - Support for generation of models that do not need SwiftyJSON.
 - Add tests and integrate with Travis CI.
+- Create a Xcode plugin and a command line executor.
 
 ---
 

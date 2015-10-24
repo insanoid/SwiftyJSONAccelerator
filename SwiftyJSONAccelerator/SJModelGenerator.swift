@@ -136,7 +136,6 @@ public class ModelGenerator {
                     // If the array has objects, then take the first one and proces it to generate a model.
                     if jsonValue.arrayValue.count > 0 {
 
-                        // TODO: Instead of taking a single element consider merging all the elements and decide what to do as a while.
                         let subClassType = checkType(jsonValue.arrayValue[0])
 
                         // If the type is an object, generate a new model and also create appropriate initalizers, declarations and decoders.
@@ -153,7 +152,6 @@ public class ModelGenerator {
                             decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: "[\(subClassType)]"))
                             description = description.stringByAppendingFormat("%@\n", descriptionForPrimitiveVariableArray(variableName, key: stringConstantName))
                         }
-                        // TODO: We should also consider a third case where the type is an [AnyObject] to achive complete redundancy handling.
 
                     } else {
 
@@ -214,7 +212,6 @@ public class ModelGenerator {
 
         }  else if let object = parsedJSONObject.array {
             // Incase the first object was NOT a dictionary.
-            // TODO: Instead of taking a single element consider merging all the elements and decide what to do as a while.
             let subClassType = checkType(object[0])
 
             // If the type is an object then make it the base class and generate stuff.
