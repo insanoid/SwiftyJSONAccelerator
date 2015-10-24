@@ -527,7 +527,7 @@ public class ModelGenerator {
     */
     internal func replaceInternalKeywordsForVariableName(currentName: String) -> String {
 
-        let currentReservedName = ["id":"internalIdentifier","description":"descriptionValue"]
+        let currentReservedName = ["id":"internalIdentifier","description":"descriptionValue","_id":"internalIdentifier"]
         for (key, value) in currentReservedName {
             if key == currentName {
                 return value
