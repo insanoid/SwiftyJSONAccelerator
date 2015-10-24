@@ -18,9 +18,7 @@ public {OBJECT_KIND} {OBJECT_NAME}: NSObject, NSCoding {
 	// MARK: Initalizers
     /**
     Initates the class based on the object
-    
     - parameter object: The object of either Dictionary or Array kind that was passed.
-    
     - returns: An initalized instance of the class.
     */
     convenience public init(object: AnyObject) {
@@ -29,9 +27,7 @@ public {OBJECT_KIND} {OBJECT_NAME}: NSObject, NSCoding {
 
     /**
     Initates the class based on the JSON that was passed.
-    
     - parameter json: JSON object from SwiftyJSON.
-    
     - returns: An initalized instance of the class.
     */
     public init(json: JSON) {
@@ -40,7 +36,6 @@ public {OBJECT_KIND} {OBJECT_NAME}: NSObject, NSCoding {
 
     /**
     Generates description of the object in the form of a NSDictionary.
-
     - returns: A Key value pair containing all valid values in the object.
     */
     public func dictionaryRepresentation() -> [String : AnyObject ] {
