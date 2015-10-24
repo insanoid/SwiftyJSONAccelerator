@@ -141,7 +141,7 @@ public class ModelGenerator {
 
                         // If the type is an object, generate a new model and also create appropriate initalizers, declarations and decoders.
                         if subClassType == VariableType.kObjectType {
-                            let subClassName = generateModelForClass(jsonValue.arrayValue[0], className: variableName, isSubModule:true)
+                            let subClassName = generateModelForClass(mergeArrayToSingleObject(jsonValue.arrayValue), className: variableName, isSubModule:true)
                             declarations = declarations.stringByAppendingFormat(variableDeclarationBuilder(variableName, type: "[\(subClassName)]"))
                             initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForObjectArray(variableName, className: subClassName, key: stringConstantName))
                             decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: "[\(subClassName)]"))
@@ -219,9 +219,10 @@ public class ModelGenerator {
 
             // If the type is an object then make it the base class and generate stuff.
             if subClassType == VariableType.kObjectType {
-                self.generateModelForClass(object[0], className: className, isSubModule: false)
+                return self.generateModelForClass(mergeArrayToSingleObject(object), className: className, isSubModule: false)
+            } else {
+                return ""
             }
-            return ""
         }
 
         return className
@@ -322,10 +323,10 @@ public class ModelGenerator {
 
         if let _ = js.string {
             type = VariableType.kStringType
-        } else if let _ = js.number {
-            type = VariableType.kNumberType
         } else if let _ = js.bool {
             type = VariableType.kBoolType
+        } else if let _ = js.number {
+            type = VariableType.kNumberType
         } else if let _ = js.array {
             type = VariableType.kArrayType
         }
@@ -548,7 +549,7 @@ public class ModelGenerator {
     */
     internal func replaceInternalKeywordsForVariableName(currentName: String) -> String {
 
-        let currentReservedName = ["id":"internalIdentifier","description":"descriptionValue","_id":"internalIdentifier"]
+        let currentReservedName = ["id" : "internalIdentifier", "description" : "descriptionValue","_id" : "internalIdentifier","class" : "classProperty", "struct" : "structProperty", "internal" : "internalProperty"]
         for (key, value) in currentReservedName {
             if key == currentName {
                 return value
@@ -556,6 +557,22 @@ public class ModelGenerator {
         }
         return currentName
 
+    }
+
+    internal func mergeArrayToSingleObject(items: [JSON]) -> JSON {
+        var finalObject: JSON = JSON([ : ])
+        for item in items {
+            for (key, jsonValue) in item {
+                if finalObject[key] == nil {
+                    finalObject[key] = jsonValue
+                } else if let newValue = jsonValue.dictionary {
+                    finalObject[key] = mergeArrayToSingleObject([JSON(newValue), finalObject[key]])
+                } else if let newValue = jsonValue.array {
+                     finalObject[key] = mergeArrayToSingleObject(newValue +  finalObject[key].arrayValue)
+                }
+            }
+        }
+        return finalObject
     }
     
 }
