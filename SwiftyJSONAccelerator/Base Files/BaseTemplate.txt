@@ -5,8 +5,7 @@
 //  Copyright (c) __MyCompanyName__. All rights reserved.
 //
 
-import Foundation
-import SwiftyJSON
+import Foundation{INCLUDE_SWIFTY}
 
 public {OBJECT_KIND} {OBJECT_NAME}: NSObject, NSCoding {
 

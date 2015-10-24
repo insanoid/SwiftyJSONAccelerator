@@ -46,6 +46,7 @@ public class ModelGenerator {
     var type: String
     var filePath: String
     var baseClassName: String
+    var includeSwiftyJSON: Bool
 
 
     /**
@@ -58,10 +59,11 @@ public class ModelGenerator {
     - parameter companyName:   Name of the company, for use in the header documentation of the file.
     - parameter type:          Type of the model that has to be generated, Struct or Class.
     - parameter filePath:      Filepath where the generated model has to be saved.
+    - parameter includeSwiftyJSON:  Boolean indicating if the header should have SwiftyJSON
 
     - returns: A ModelGenerator instance.
     */
-    init(baseContent: JSON, prefix: String?, baseClassName: String, authorName: String?, companyName: String?, type: String, filePath: String) {
+    init(baseContent: JSON, prefix: String?, baseClassName: String, authorName: String?, companyName: String?, type: String, filePath: String, includeSwiftyJSON: Bool) {
         self.authorName = authorName
         self.baseContent = baseContent
         self.prefix = prefix
@@ -70,6 +72,7 @@ public class ModelGenerator {
         self.type = type
         self.filePath = filePath
         self.baseClassName = baseClassName
+        self.includeSwiftyJSON = includeSwiftyJSON
     }
 
     /**
@@ -198,6 +201,12 @@ public class ModelGenerator {
             }
             if companyName != nil {
                 content = content.stringByReplacingOccurrencesOfString("__MyCompanyName__", withString: companyName!)
+            }
+
+            if includeSwiftyJSON {
+                content = content.stringByReplacingOccurrencesOfString("{INCLUDE_SWIFTY}", withString: "\nimport SwiftyJSON")
+            } else {
+                content = content.stringByReplacingOccurrencesOfString("{INCLUDE_SWIFTY}", withString: "")
             }
 
             // Write everything to the file at the path.

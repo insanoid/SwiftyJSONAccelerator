@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9341A14A1BD6E5FE0048CE2C /* SJModelGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A1491BD6E5FE0048CE2C /* SJModelGenerator.swift */; settings = {ASSET_TAGS = (); }; };
-		9341A14C1BD6E6300048CE2C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A14B1BD6E6300048CE2C /* SwiftyJSON.swift */; settings = {ASSET_TAGS = (); }; };
-		9341A14F1BD6E7290048CE2C /* BaseTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9341A14E1BD6E7290048CE2C /* BaseTemplate.txt */; settings = {ASSET_TAGS = (); }; };
-		9341A1521BD6E9EC0048CE2C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A14B1BD6E6300048CE2C /* SwiftyJSON.swift */; settings = {ASSET_TAGS = (); }; };
-		9361FD141BD18558001ED533 /* LineNumberRulerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9361FD131BD18558001ED533 /* LineNumberRulerView.swift */; settings = {ASSET_TAGS = (); }; };
-		9362F8661BD07DBA0001372E /* JSONHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9362F8651BD07DBA0001372E /* JSONHelperTests.swift */; settings = {ASSET_TAGS = (); }; };
-		93CDE7721BD1A00B00B5B234 /* SJTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CDE7711BD1A00B00B5B234 /* SJTextView.swift */; settings = {ASSET_TAGS = (); }; };
+		9341A14A1BD6E5FE0048CE2C /* SJModelGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A1491BD6E5FE0048CE2C /* SJModelGenerator.swift */; };
+		9341A14C1BD6E6300048CE2C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A14B1BD6E6300048CE2C /* SwiftyJSON.swift */; };
+		9341A14F1BD6E7290048CE2C /* BaseTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9341A14E1BD6E7290048CE2C /* BaseTemplate.txt */; };
+		9341A1521BD6E9EC0048CE2C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A14B1BD6E6300048CE2C /* SwiftyJSON.swift */; };
+		9361FD141BD18558001ED533 /* LineNumberRulerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9361FD131BD18558001ED533 /* LineNumberRulerView.swift */; };
+		9362F8661BD07DBA0001372E /* JSONHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9362F8651BD07DBA0001372E /* JSONHelperTests.swift */; };
+		93CDE7721BD1A00B00B5B234 /* SJTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CDE7711BD1A00B00B5B234 /* SJTextView.swift */; };
 		93F174431BD0707D007E7DFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F174421BD0707D007E7DFC /* AppDelegate.swift */; };
 		93F174451BD0707D007E7DFC /* SJEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F174441BD0707D007E7DFC /* SJEditorViewController.swift */; };
 		93F174471BD0707D007E7DFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93F174461BD0707D007E7DFC /* Assets.xcassets */; };
 		93F1744A1BD0707D007E7DFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93F174481BD0707D007E7DFC /* Main.storyboard */; };
 		93F174551BD0707D007E7DFC /* SwiftyJSONAcceleratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F174541BD0707D007E7DFC /* SwiftyJSONAcceleratorTests.swift */; };
-		93F174601BD070AA007E7DFC /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1745F1BD070AA007E7DFC /* JSONHelper.swift */; settings = {ASSET_TAGS = (); }; };
+		93F174601BD070AA007E7DFC /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1745F1BD070AA007E7DFC /* JSONHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +86,25 @@
 			name = "External Libraries";
 			sourceTree = "<group>";
 		};
+		93A1264E1BDB8B04002A3B11 /* Model Generation */ = {
+			isa = PBXGroup;
+			children = (
+				93F1745F1BD070AA007E7DFC /* JSONHelper.swift */,
+				9341A1491BD6E5FE0048CE2C /* SJModelGenerator.swift */,
+			);
+			name = "Model Generation";
+			sourceTree = "<group>";
+		};
+		93A1264F1BDB8B14002A3B11 /* Application Interface */ = {
+			isa = PBXGroup;
+			children = (
+				93F174421BD0707D007E7DFC /* AppDelegate.swift */,
+				93F174441BD0707D007E7DFC /* SJEditorViewController.swift */,
+				93CDE7711BD1A00B00B5B234 /* SJTextView.swift */,
+			);
+			name = "Application Interface";
+			sourceTree = "<group>";
+		};
 		93F174361BD0707D007E7DFC = {
 			isa = PBXGroup;
 			children = (
@@ -108,12 +127,9 @@
 			isa = PBXGroup;
 			children = (
 				9362D3BC1BD8398A00B927D6 /* External Libraries */,
+				93A1264E1BDB8B04002A3B11 /* Model Generation */,
 				9341A14D1BD6E6EF0048CE2C /* Base Files */,
-				93F174421BD0707D007E7DFC /* AppDelegate.swift */,
-				93F174441BD0707D007E7DFC /* SJEditorViewController.swift */,
-				93F1745F1BD070AA007E7DFC /* JSONHelper.swift */,
-				93CDE7711BD1A00B00B5B234 /* SJTextView.swift */,
-				9341A1491BD6E5FE0048CE2C /* SJModelGenerator.swift */,
+				93A1264F1BDB8B14002A3B11 /* Application Interface */,
 				93F174461BD0707D007E7DFC /* Assets.xcassets */,
 				93F174481BD0707D007E7DFC /* Main.storyboard */,
 				93F1744B1BD0707D007E7DFC /* Info.plist */,
