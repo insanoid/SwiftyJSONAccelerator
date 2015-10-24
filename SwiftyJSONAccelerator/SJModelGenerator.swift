@@ -83,9 +83,12 @@ public class ModelGenerator {
         // Notify user that the files are generated!
         let notification: NSUserNotification = NSUserNotification()
         notification.title = "SwiftyJSONAccelerator"
-        notification.subtitle = "Completed - \(name).swift"
+        if name.characters.count > 0 {
+            notification.subtitle = "Completed - \(name).swift"
+        } else {
+            notification.subtitle = "No files were generated, cannot model arrays inside arrays."
+        }
         NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notification)
-
     }
 
     //MARK: Internal methods
@@ -176,7 +179,6 @@ public class ModelGenerator {
 
             }
 
-
             // Get an instance of the template.
             var content: String = templateContent()
 
@@ -201,6 +203,16 @@ public class ModelGenerator {
             // Write everything to the file at the path.
             writeToFile(className, content: content, path: filePath)
 
+        }  else if let object = parsedJSONObject.array {
+            // Incase the first object was NOT a dictionary.
+            // TODO: Instead of taking a single element consider merging all the elements and decide what to do as a while.
+            let subClassType = checkType(object[0])
+
+            // If the type is an object then make it the base class and generate stuff.
+            if subClassType == VariableType.kObjectType {
+                self.generateModelForClass(object[0], className: className, isSubModule: false)
+            }
+            return ""
         }
 
         return className
