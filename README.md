@@ -2,6 +2,8 @@
 
 **(Alpha v0.0.2)**
 
+[Download the .app (v0.0.1)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v0.0.1/SwiftyJSONAccelerator.zip)
+
 ![Logo](https://raw.githubusercontent.com/insanoid/SwiftyJSONAccelerator/master/SwiftyJSONAccelerator/Assets.xcassets/AppIcon.appiconset/Icon_32x32%402x.png)
 
 A swift model generator like the Objective-C [JSONAccelerator](http://nerdery.com/json-accelerator). Formats and generates models for the given JSON and also breaks them into files making it easy to manage and share between several models. it relies on [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) and requires you to include it in your project.
