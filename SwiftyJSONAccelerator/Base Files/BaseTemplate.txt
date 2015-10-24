@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 public {OBJECT_KIND} {OBJECT_NAME}: NSObject, NSCoding {
 
