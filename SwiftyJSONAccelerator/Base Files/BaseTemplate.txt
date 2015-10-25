@@ -9,50 +9,43 @@ import Foundation{INCLUDE_SWIFTY}
 
 public {OBJECT_KIND} {OBJECT_NAME}: NSObject, NSCoding {
 
-	// MARK: Declaration for string constants to be used to decode and also serialize.
-{STRING_CONSTANT_BLOCK}
+        // MARK: Declaration for string constants to be used to decode and also serialize.
+    {STRING_CONSTANT_BLOCK}
 
-	// MARK: Properties
-{PROPERTIES}
+        // MARK: Properties
+    {PROPERTIES}
 
-	// MARK: Initalizers
-    /**
-    Initates the class based on the object
-    - parameter object: The object of either Dictionary or Array kind that was passed.
-    - returns: An initalized instance of the class.
-    */
-    convenience public init(object: AnyObject) {
-        self.init(json: JSON(object))
-    }
+        // MARK: Initalizers
+        /**
+        Initates the class based on the object
+        - parameter object: The object of either Dictionary or Array kind that was passed.
+        - returns: An initalized instance of the class.
+        */
+        convenience public init(object: AnyObject) {
+            self.init(json: JSON(object))
+        }
 
-    /**
-    Initates the class based on the JSON that was passed.
-    - parameter json: JSON object from SwiftyJSON.
-    - returns: An initalized instance of the class.
-    */
-    public init(json: JSON) {
-{INITALIZER}
-    }
+        /**
+        Initates the class based on the JSON that was passed.
+        - parameter json: JSON object from SwiftyJSON.
+        - returns: An initalized instance of the class.
+        */
+        public init(json: JSON) {
+    {INITALIZER}
+        }
 
-    /**
-    Generates description of the object in the form of a NSDictionary.
-    - returns: A Key value pair containing all valid values in the object.
-    */
-    public func dictionaryRepresentation() -> [String : AnyObject ] {
+        /**
+        Generates description of the object in the form of a NSDictionary.
+        - returns: A Key value pair containing all valid values in the object.
+        */
+        public func dictionaryRepresentation() -> [String : AnyObject ] {
 
-    var dictionary: [String : AnyObject ] = [ : ]
-{DESC}
+        var dictionary: [String : AnyObject ] = [ : ]
+    {DESC}
 
-    return dictionary
-    }
+        return dictionary
+        }
 
-    // MARK: NSCoding Protocol
-    required public init(coder aDecoder: NSCoder) {
-{DECODERS}
-    }
-
-    public func encodeWithCoder(aCoder: NSCoder) {
-{ENCODERS}
-    }
+    {NSCODING_SUPPORT}
 
 }

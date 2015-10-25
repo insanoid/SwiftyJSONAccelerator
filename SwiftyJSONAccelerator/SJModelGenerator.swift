@@ -50,6 +50,7 @@ public class ModelGenerator {
     var filePath: String
     var baseClassName: String
     var includeSwiftyJSON: Bool
+    var supportNSCoding: Bool
 
 
     /**
@@ -66,7 +67,7 @@ public class ModelGenerator {
 
      - returns: A ModelGenerator instance.
      */
-    init(baseContent: JSON, prefix: String?, baseClassName: String, authorName: String?, companyName: String?, type: String, filePath: String, includeSwiftyJSON: Bool) {
+    init(baseContent: JSON, prefix: String?, baseClassName: String, authorName: String?, companyName: String?, type: String, filePath: String, includeSwiftyJSON: Bool, supportNSCoding: Bool) {
         self.authorName = authorName
         self.baseContent = baseContent
         self.prefix = prefix
@@ -76,6 +77,7 @@ public class ModelGenerator {
         self.filePath = filePath
         self.baseClassName = baseClassName
         self.includeSwiftyJSON = includeSwiftyJSON
+        self.supportNSCoding = supportNSCoding
     }
 
     /**
@@ -193,8 +195,19 @@ public class ModelGenerator {
             content = content.stringByReplacingOccurrencesOfString("{STRING_CONSTANT_BLOCK}", withString: stringConstants)
             content = content.stringByReplacingOccurrencesOfString("{PROPERTIES}", withString: declarations)
             content = content.stringByReplacingOccurrencesOfString("{INITALIZER}", withString: initalizers)
-            content = content.stringByReplacingOccurrencesOfString("{ENCODERS}", withString: encoders)
-            content = content.stringByReplacingOccurrencesOfString("{DECODERS}", withString: decoders)
+            
+            if self.supportNSCoding
+            {
+                content = content.stringByReplacingOccurrencesOfString("{NSCODING_SUPPORT}", withString: "\t// MARK: NSCoding Protocol\n\trequired public init(coder aDecoder: NSCoder) {\n\t{DECODERS}\n\t}\n\n\tpublic func encodeWithCoder(aCoder: NSCoder) {\n{ENCODERS}\n\t}")
+
+                content = content.stringByReplacingOccurrencesOfString("{ENCODERS}", withString: encoders)
+                content = content.stringByReplacingOccurrencesOfString("{DECODERS}", withString: decoders)
+            }
+            else
+            {
+                content = content.stringByReplacingOccurrencesOfString("{NSCODING_SUPPORT}", withString: "")
+            }
+
             content = content.stringByReplacingOccurrencesOfString("{DESC}", withString: description)
 
             if authorName != nil {

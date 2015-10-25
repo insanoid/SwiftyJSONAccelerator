@@ -20,6 +20,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     @IBOutlet var companyNameTextField: NSTextField?
     @IBOutlet var authorNameTextField: NSTextField?
     @IBOutlet var includeSwiftyCheckbox: NSButton?
+    @IBOutlet var supportNSCodingCheckbox: NSButton!
 
     // MARK: View methods
     override func loadView() {
@@ -101,7 +102,9 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         if object != nil {
 
             let swiftyState = self.includeSwiftyCheckbox?.state == 1 ? true : false
-            let generator: ModelGenerator = ModelGenerator.init(baseContent: JSON(object!), prefix:  prefixClassTextField?.stringValue, baseClassName: (baseClassTextField?.stringValue)!, authorName: authorNameTextField?.stringValue, companyName: companyNameTextField?.stringValue, type: ModelType.kClassType, filePath:  filePath!, includeSwiftyJSON: swiftyState)
+            let nscodingState = self.supportNSCodingCheckbox?.state == 1 ? true : false
+
+            let generator: ModelGenerator = ModelGenerator.init(baseContent: JSON(object!), prefix:  prefixClassTextField?.stringValue, baseClassName: (baseClassTextField?.stringValue)!, authorName: authorNameTextField?.stringValue, companyName: companyNameTextField?.stringValue, type: ModelType.kClassType, filePath:  filePath!, includeSwiftyJSON: swiftyState, supportNSCoding: nscodingState)
             generator.generate()
         } else {
             let alert:NSAlert = NSAlert()
