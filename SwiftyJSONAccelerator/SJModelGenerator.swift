@@ -390,7 +390,7 @@ public class ModelGenerator {
      */
     internal func initalizerForVariable(variableName: String, var type: String, key: String) -> String {
         type = typeToSwiftType(type)
-        return "\t\tif let tempValue = json[\(key)].\(type) {\n\t\t\t\(variableName) = tempValue\n\t\t}"
+        return "\t\t\(variableName) = json[\(key)].\(type)\n"
     }
 
     /**
@@ -401,7 +401,7 @@ public class ModelGenerator {
      - returns: A single line declaration of the variable.
      */
     internal func initalizerForObject(variableName: String, className: String, key: String) -> String {
-        return  "\t\t\(variableName) = \(className)(json: json[\(key)])"
+        return  "\t\t\(variableName) = \(className)(json: json[\(key)])\n"
     }
 
     /**
@@ -411,7 +411,7 @@ public class ModelGenerator {
      - returns: A single line declaration of the variable.
      */
     internal func initalizerForEmptyArray(variableName: String, key: String) -> String {
-        return "\t\tif let tempValue = json[\(key)].array {\n\t\t\t\(variableName) = tempValue\n\t\t}"
+        return "\t\tif let tempValue = json[\(key)].array {\n\t\t\t\(variableName) = tempValue\n\t\t} else {\n\t\t\t\(variableName) = nil\n\t\t}\n"
     }
 
     /**
@@ -422,7 +422,7 @@ public class ModelGenerator {
      - returns: A single line declaration of the variable which is an array of object.
      */
     internal func initalizerForObjectArray(variableName: String, className: String, key: String) -> String {
-        return  "\t\t\(variableName) = []\n\t\tif let items = json[\(key)].array {\n\t\t\tfor item in items {\n\t\t\t\t\(variableName)?.append(\(className)(json: item))\n\t\t\t}\n\t\t}\n"
+        return  "\t\t\(variableName) = []\n\t\tif let items = json[\(key)].array {\n\t\t\tfor item in items {\n\t\t\t\t\(variableName)?.append(\(className)(json: item))\n\t\t\t}\n\t\t} else {\n\t\t\t\(variableName) = nil\n\t\t}\n"
     }
 
     /**
@@ -433,7 +433,7 @@ public class ModelGenerator {
      */
     internal func initalizerForPrimitiveVariableArray(variableName: String, key: String, var type: String) -> String {
         type = typeToSwiftType(type)
-        return  "\t\t\(variableName) = []\n\t\tif let items = json[\(key)].array {\n\t\t\tfor item in items {\n\t\t\t\tif let tempValue = item.\(type) {\n\t\t\t\t\(variableName)?.append(tempValue)\n\t\t\t\t}\n\t\t\t}\n\t\t}\n"
+        return  "\t\t\(variableName) = []\n\t\tif let items = json[\(key)].array {\n\t\t\tfor item in items {\n\t\t\t\tif let tempValue = item.\(type) {\n\t\t\t\t\(variableName)?.append(tempValue)\n\t\t\t\t}\n\t\t\t}\n\t\t} else {\n\t\t\t\(variableName) = nil\n\t\t}\n"
     }
 
     /**
@@ -471,7 +471,7 @@ public class ModelGenerator {
      */
     internal func initalize(variableName: String, var type: String, key: String) -> String {
         type = typeToSwiftType(type)
-        return "\t\tif let tempValue = json[\(key)].\(type) {\n\t\t\t\(variableName) = tempValue\n\t\t}"
+        return "\t\t\(variableName) = json[\(key)].\(type)\n"
     }
 
     /**
