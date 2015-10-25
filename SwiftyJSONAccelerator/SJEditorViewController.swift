@@ -12,14 +12,14 @@ import Cocoa
 class SJEditorViewController: NSViewController, NSTextViewDelegate {
 
     // MARK: Outlet files.
-    @IBOutlet var textView: SJTextView?
-    @IBOutlet var messageLabel: NSTextField?
-    @IBOutlet var errorImageView: NSImageView?
-    @IBOutlet var baseClassTextField: NSTextField?
-    @IBOutlet var prefixClassTextField: NSTextField?
-    @IBOutlet var companyNameTextField: NSTextField?
-    @IBOutlet var authorNameTextField: NSTextField?
-    @IBOutlet var includeSwiftyCheckbox: NSButton?
+    @IBOutlet var textView: SJTextView!
+    @IBOutlet var messageLabel: NSTextField!
+    @IBOutlet var errorImageView: NSImageView!
+    @IBOutlet var baseClassTextField: NSTextField!
+    @IBOutlet var prefixClassTextField: NSTextField!
+    @IBOutlet var companyNameTextField: NSTextField!
+    @IBOutlet var authorNameTextField: NSTextField!
+    @IBOutlet var includeSwiftyCheckbox: NSButton!
     @IBOutlet var supportNSCodingCheckbox: NSButton!
     @IBOutlet var supportSwiftyJSONCheckbox: NSButton!
     @IBOutlet var supportObjectMapperCheckbox: NSButton!
@@ -112,7 +112,18 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
             let objectMapperState = self.includeObjectMapperCheckbox?.state == 1 ? true : false
             let supportObjectMapperState = self.supportObjectMapperCheckbox?.state == 1 ? true : false
 
-            let generator: ModelGenerator = ModelGenerator.init(baseContent: JSON(object!), prefix:  prefixClassTextField?.stringValue, baseClassName: (baseClassTextField?.stringValue)!, authorName: authorNameTextField?.stringValue, companyName: companyNameTextField?.stringValue, type: ModelType.kClassType, filePath:  filePath!, supportSwiftyJSON: supportSwiftyState, includeSwiftyJSON: swiftyState, supportObjectMapper: supportObjectMapperState, includeObjectMapper: objectMapperState, supportNSCoding: nscodingState)
+            let generator: ModelGenerator = ModelGenerator.init(baseContent: JSON(object!), baseClassName: baseClassTextField.stringValue, filePath: filePath!)
+
+            generator.prefix = prefixClassTextField.stringValue
+            generator.authorName = authorNameTextField.stringValue
+            generator.companyName = companyNameTextField.stringValue
+            generator.type = ModelType.kClassType
+            generator.supportSwiftyJSON = supportSwiftyState
+            generator.includeSwiftyJSON = swiftyState
+            generator.supportObjectMapper = supportObjectMapperState
+            generator.includeObjectMapper = objectMapperState
+            generator.supportNSCoding = nscodingState
+
             generator.generate()
         } else {
             let alert:NSAlert = NSAlert()

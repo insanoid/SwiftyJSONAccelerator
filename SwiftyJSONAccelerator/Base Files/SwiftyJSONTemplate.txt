@@ -1,3 +1,4 @@
+    // MARK: SwiftyJSON Initalizers
     /**
     Initates the class based on the object
     - parameter object: The object of either Dictionary or Array kind that was passed.

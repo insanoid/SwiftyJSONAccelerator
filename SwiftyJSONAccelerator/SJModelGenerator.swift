@@ -45,21 +45,19 @@ public struct ModelType {
 public class ModelGenerator {
 
     //MARK: Variables
+    var filePath: String
+    var baseClassName: String
+    var baseContent: JSON
+
     var authorName: String?
     var companyName: String?
     var prefix: String?
-    var baseContent: JSON
-    var type: String
-    var filePath: String
-    var baseClassName: String
-
-    var supportSwiftyJSON: Bool
-    var includeSwiftyJSON: Bool
-
-    var supportObjectMapper: Bool
-    var includeObjectMapper: Bool
-
-    var supportNSCoding: Bool
+    var type: String?
+    var supportSwiftyJSON: Bool?
+    var includeSwiftyJSON: Bool?
+    var supportObjectMapper: Bool?
+    var includeObjectMapper: Bool?
+    var supportNSCoding: Bool?
 
 
     //MARK: Public Methods
@@ -67,30 +65,16 @@ public class ModelGenerator {
      Initalize the model generator with various settings.
 
      - parameter baseContent:   Base JSON that has to be converted into model.
-     - parameter prefix:        Prefix for the class.
      - parameter baseClassName: Name of the base class.
-     - parameter authorName:    Name of the author, for use in the header documentation of the file.
-     - parameter companyName:   Name of the company, for use in the header documentation of the file.
-     - parameter type:          Type of the model that has to be generated, Struct or Class.
      - parameter filePath:      Filepath where the generated model has to be saved.
-     - parameter includeSwiftyJSON:  Boolean indicating if the header should have SwiftyJSON
 
      - returns: A ModelGenerator instance.
      */
-    init(baseContent: JSON, prefix: String?, baseClassName: String, authorName: String?, companyName: String?, type: String, filePath: String, supportSwiftyJSON: Bool, includeSwiftyJSON: Bool, supportObjectMapper: Bool, includeObjectMapper: Bool, supportNSCoding: Bool) {
-        self.authorName = authorName
+    init(baseContent: JSON, baseClassName: String, filePath: String) {
         self.baseContent = baseContent
-        self.prefix = prefix
-        self.authorName = authorName != nil ? authorName : NSFullUserName()
-        self.companyName = companyName
-        self.type = type
         self.filePath = filePath
         self.baseClassName = baseClassName
-        self.supportSwiftyJSON = supportSwiftyJSON
-        self.includeSwiftyJSON = includeSwiftyJSON
-        self.supportNSCoding = supportNSCoding
-        self.supportObjectMapper = supportObjectMapper
-        self.includeObjectMapper = includeObjectMapper
+        self.authorName = NSFullUserName()
     }
 
     /**
@@ -209,11 +193,11 @@ public class ModelGenerator {
             // Replace all the generated properties in the appropriated placeholders in the template.
             content = content.stringByReplacingOccurrencesOfString("{OBJECT_NAME}", withString: className)
             content = content.stringByReplacingOccurrencesOfString("{DATE}", withString: todayDateString())
-            content = content.stringByReplacingOccurrencesOfString("{OBJECT_KIND}", withString: type)
+            content = content.stringByReplacingOccurrencesOfString("{OBJECT_KIND}", withString: type!)
             content = content.stringByReplacingOccurrencesOfString("{STRING_CONSTANT_BLOCK}", withString: stringConstants)
             content = content.stringByReplacingOccurrencesOfString("{PROPERTIES}", withString: declarations)
 
-            if self.supportNSCoding {
+            if self.supportNSCoding! {
                 if let nscodingBase = try? String(contentsOfFile: NSBundle.mainBundle().pathForResource("NSCodingTemplate", ofType: "txt")!) {
                     content = content.stringByReplacingOccurrencesOfString("{NSCODING_PROTOCOL_SUPPORT}", withString: ", NSCoding")
                     content = content.stringByReplacingOccurrencesOfString("{NSCODING_SUPPORT}", withString: nscodingBase)
@@ -231,13 +215,13 @@ public class ModelGenerator {
                 content = content.stringByReplacingOccurrencesOfString("{NSCODING_SUPPORT}", withString: "")
             }
 
-            if self.supportSwiftyJSON {
+            if self.supportSwiftyJSON! {
                 if let swiftyBase = try? String(contentsOfFile: NSBundle.mainBundle().pathForResource("SwiftyJSONTemplate", ofType: "txt")!) {
                     content = content.stringByReplacingOccurrencesOfString("{SWIFTY_JSON_SUPPORT}", withString: swiftyBase)
 
                     content = content.stringByReplacingOccurrencesOfString("{INITALIZER}", withString: initalizers)
 
-                    if includeSwiftyJSON {
+                    if includeSwiftyJSON! {
                         content = content.stringByReplacingOccurrencesOfString("{INCLUDE_SWIFTY}", withString: "\nimport SwiftyJSON")
                     } else {
                         content = content.stringByReplacingOccurrencesOfString("{INCLUDE_SWIFTY}", withString: "")
@@ -253,7 +237,7 @@ public class ModelGenerator {
                 content = content.stringByReplacingOccurrencesOfString("{INCLUDE_SWIFTY}", withString: "")
             }
 
-            if self.supportObjectMapper {
+            if self.supportObjectMapper! {
                 if let objectMapperBase = try? String(contentsOfFile: NSBundle.mainBundle().pathForResource("ObjectMapperTemplate", ofType: "txt")!) {
                     content = content.stringByReplacingOccurrencesOfString("{OBJECT_MAPPER_SUPPORT}", withString: objectMapperBase)
 
@@ -261,7 +245,7 @@ public class ModelGenerator {
 
                     objectBaseClass = "Mappable"
 
-                    if includeObjectMapper {
+                    if includeObjectMapper! {
                         content = content.stringByReplacingOccurrencesOfString("{INCLUDE_OBJECT_MAPPER}", withString: "\nimport ObjectMapper")
                     } else {
                         content = content.stringByReplacingOccurrencesOfString("{INCLUDE_OBJECT_MAPPER}", withString: "")

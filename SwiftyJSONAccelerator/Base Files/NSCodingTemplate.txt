@@ -1,4 +1,5 @@
-// MARK: NSCoding Protocol
+
+    // MARK: NSCoding Protocol
     required public init(coder aDecoder: NSCoder) {
 {DECODERS}
     }
