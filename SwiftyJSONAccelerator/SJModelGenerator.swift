@@ -62,14 +62,14 @@ public class ModelGenerator {
 
     //MARK: Public Methods
     /**
-     Initalize the model generator with various settings.
+    Initalize the model generator with various settings.
 
-     - parameter baseContent:   Base JSON that has to be converted into model.
-     - parameter baseClassName: Name of the base class.
-     - parameter filePath:      Filepath where the generated model has to be saved.
+    - parameter baseContent:   Base JSON that has to be converted into model.
+    - parameter baseClassName: Name of the base class.
+    - parameter filePath:      Filepath where the generated model has to be saved.
 
-     - returns: A ModelGenerator instance.
-     */
+    - returns: A ModelGenerator instance.
+    */
     init(baseContent: JSON, baseClassName: String, filePath: String) {
         self.baseContent = baseContent
         self.filePath = filePath
@@ -326,7 +326,10 @@ public class ModelGenerator {
             var component: String = element
             if index != 0 {
                 component.replaceRange(component.startIndex...component.startIndex, with: String(component[component.startIndex]).uppercaseString)
+            } else {
+                component.replaceRange(component.startIndex...component.startIndex, with: String(component[component.startIndex]).lowercaseString)
             }
+
             finalVariableName.appendContentsOf(component)
         }
         return finalVariableName
