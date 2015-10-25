@@ -12,7 +12,10 @@ import Cocoa
 /**
  *  Internal Structure for storing the types of variables.
  *  - kStringType
- *  - kNumberType
+ *  - kIntNumberType
+ *  - kFloatNumberType
+ *  - kDoubleNumberType
+ *  - kCGFloatNumberType
  *  - kBoolType
  *  - kArrayType
  *  - kObjectType
