@@ -214,11 +214,19 @@ public class ModelGenerator {
             
             if self.supportNSCoding
             {
-                content = content.stringByReplacingOccurrencesOfString("{NSCODING_PROTOCOL_SUPPORT}", withString: ", NSCoding")
-                content = content.stringByReplacingOccurrencesOfString("{NSCODING_SUPPORT}", withString: "\t// MARK: NSCoding Protocol\n\trequired public init(coder aDecoder: NSCoder) {\n\t{DECODERS}\n\t}\n\n\tpublic func encodeWithCoder(aCoder: NSCoder) {\n{ENCODERS}\n\t}")
+                if let nscodingBase = try? String(contentsOfFile: NSBundle.mainBundle().pathForResource("NSCodingTemplate", ofType: "txt")!)
+                {
+                    content = content.stringByReplacingOccurrencesOfString("{NSCODING_PROTOCOL_SUPPORT}", withString: ", NSCoding")
+                    content = content.stringByReplacingOccurrencesOfString("{NSCODING_SUPPORT}", withString: nscodingBase)
 
-                content = content.stringByReplacingOccurrencesOfString("{ENCODERS}", withString: encoders)
-                content = content.stringByReplacingOccurrencesOfString("{DECODERS}", withString: decoders)
+                    content = content.stringByReplacingOccurrencesOfString("{ENCODERS}", withString: encoders)
+                    content = content.stringByReplacingOccurrencesOfString("{DECODERS}", withString: decoders)
+                }
+                else
+                {
+                    content = content.stringByReplacingOccurrencesOfString("{NSCODING_PROTOCOL_SUPPORT}", withString: "")
+                    content = content.stringByReplacingOccurrencesOfString("{NSCODING_SUPPORT}", withString: "")
+                }
             }
             else
             {
