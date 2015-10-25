@@ -1,8 +1,8 @@
-    // MARK: NSCoding Protocol
+// MARK: NSCoding Protocol
     required public init(coder aDecoder: NSCoder) {
-        {DECODERS}
+{DECODERS}
     }
 
     public func encodeWithCoder(aCoder: NSCoder) {
-        {ENCODERS}
+{ENCODERS}
     }
