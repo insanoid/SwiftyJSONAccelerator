@@ -49,12 +49,12 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     }
 
     /**
-    Validates and updates the textview.
+     Validates and updates the textview.
 
-    - parameter pretty: If the JSON is to be pretty printed.
+     - parameter pretty: If the JSON is to be pretty printed.
 
-    - returns: if the format was valid.
-    */
+     - returns: if the format was valid.
+     */
     func validateAndFormat(pretty: Bool) -> Bool {
 
         if textView?.string?.characters.count == 0 {
@@ -80,8 +80,8 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     }
 
     /**
-    Actual function that generates the model.
-    */
+     Actual function that generates the model.
+     */
     func generateModel() {
 
         // The base class field is blank, cannot proceed without it. Possibly can have a default value in the future.
@@ -106,9 +106,9 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
 
             let swiftyState = self.includeSwiftyCheckbox?.state == 1 ? true : false
             let supportSwiftyState = self.supportSwiftyJSONCheckbox?.state == 1 ? true : false
-            
+
             let nscodingState = self.supportNSCodingCheckbox?.state == 1 ? true : false
-            
+
             let objectMapperState = self.includeObjectMapperCheckbox?.state == 1 ? true : false
             let supportObjectMapperState = self.supportObjectMapperCheckbox?.state == 1 ? true : false
 
@@ -122,7 +122,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     }
 
     @IBAction func recalcEnabledBoxes(sender: AnyObject) {
-        
+
         let supportSwiftyState = self.supportSwiftyJSONCheckbox?.state == 1 ? true : false
         let supportObjectMapperState = self.supportObjectMapperCheckbox?.state == 1 ? true : false
 
@@ -132,7 +132,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         else {
             self.includeSwiftyCheckbox?.enabled = false
         }
-        
+
         if supportObjectMapperState {
             self.includeObjectMapperCheckbox?.enabled = true
         }
@@ -140,7 +140,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
             self.includeObjectMapperCheckbox?.enabled = false
         }
     }
-    
+
     // MARK: Internal Methods
 
     /**
@@ -177,11 +177,11 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     }
 
     /**
-    Handle Error message that is provided by the JSON helper and extract the message and showing them accordingly.
+     Handle Error message that is provided by the JSON helper and extract the message and showing them accordingly.
 
-    - parameters:
-    - error: NSError that was provided.
-    */
+     - parameters:
+     - error: NSError that was provided.
+     */
     func handleError(error: NSError?) {
         if let _ = error!.userInfo["debugDescription"] as? String? {
             let message: String = error!.userInfo["NSDebugDescription"]! as! String
@@ -214,19 +214,19 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     }
 
     /**
-    Show that the JSON is fine with proper icon.
-    */
+     Show that the JSON is fine with proper icon.
+     */
     func correctJSONMessage() {
         errorImageView?.image = NSImage.init(named: "success")
         messageLabel?.stringValue = "Valid JSON!"
     }
 
     /**
-    Show the invalid JSON error with proper error and message.
+     Show the invalid JSON error with proper error and message.
 
-    - parameters:
-    - message: Error message that is to be shown.
-    */
+     - parameters:
+     - message: Error message that is to be shown.
+     */
     func invalidJSONError(message: String) {
         errorImageView?.image = NSImage.init(named: "failure")
         messageLabel?.stringValue = message
