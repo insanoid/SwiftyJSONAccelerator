@@ -12,14 +12,20 @@ import Cocoa
 /**
  *  Internal Structure for storing the types of variables.
  *  - kStringType
- *  - kNumberType
+ *  - kIntNumberType
+ *  - kFloatNumberType
+ *  - kDoubleNumberType
+ *  - kCGFloatNumberType
  *  - kBoolType
  *  - kArrayType
  *  - kObjectType
  */
 struct VariableType {
     static let kStringType: String = "String"
-    static let kNumberType = "NSNumber"
+    static let kIntNumberType = "Int"
+    static let kFloatNumberType = "Float"
+    static let kDoubleNumberType = "Double"
+    static let kCGFloatNumberType = "CGFloat"
     static let kBoolType = "Bool"
     static let kArrayType = "[]"
     static let kObjectType = "{OBJ}"
@@ -46,7 +52,14 @@ public class ModelGenerator {
     var type: String
     var filePath: String
     var baseClassName: String
+    
+    var supportSwiftyJSON: Bool
     var includeSwiftyJSON: Bool
+    
+    var supportObjectMapper: Bool
+    var includeObjectMapper: Bool
+    
+    var supportNSCoding: Bool
 
 
     /**
@@ -63,7 +76,7 @@ public class ModelGenerator {
 
      - returns: A ModelGenerator instance.
      */
-    init(baseContent: JSON, prefix: String?, baseClassName: String, authorName: String?, companyName: String?, type: String, filePath: String, includeSwiftyJSON: Bool) {
+    init(baseContent: JSON, prefix: String?, baseClassName: String, authorName: String?, companyName: String?, type: String, filePath: String, supportSwiftyJSON: Bool, includeSwiftyJSON: Bool, supportObjectMapper: Bool, includeObjectMapper: Bool, supportNSCoding: Bool) {
         self.authorName = authorName
         self.baseContent = baseContent
         self.prefix = prefix
@@ -72,7 +85,11 @@ public class ModelGenerator {
         self.type = type
         self.filePath = filePath
         self.baseClassName = baseClassName
+        self.supportSwiftyJSON = supportSwiftyJSON
         self.includeSwiftyJSON = includeSwiftyJSON
+        self.supportNSCoding = supportNSCoding
+        self.supportObjectMapper = supportObjectMapper
+        self.includeObjectMapper = includeObjectMapper
     }
 
     /**
@@ -113,6 +130,9 @@ public class ModelGenerator {
         var encoders: String = ""
         var decoders: String = ""
         var description: String = ""
+        var objectMapperMappings: String = ""
+        
+        var objectBaseClass = "NSObject"
 
         /// Create a classname in Sentence case and removing unwanted stuff.
         let className = buildClassName(className, prefix: self.prefix!, isSubModule: isSubModule)
@@ -178,6 +198,8 @@ public class ModelGenerator {
                     description = description.stringByAppendingFormat("%@\n", descriptionForVariable(variableName, key: stringConstantName))
                 }
 
+                //ObjectMapper is generic for all
+                objectMapperMappings = objectMapperMappings.stringByAppendingFormat("%@\n", mappingForObjectMapper(variableName, key:stringConstantName))
             }
 
             // Get an instance of the template.
@@ -189,9 +211,72 @@ public class ModelGenerator {
             content = content.stringByReplacingOccurrencesOfString("{OBJECT_KIND}", withString: type)
             content = content.stringByReplacingOccurrencesOfString("{STRING_CONSTANT_BLOCK}", withString: stringConstants)
             content = content.stringByReplacingOccurrencesOfString("{PROPERTIES}", withString: declarations)
-            content = content.stringByReplacingOccurrencesOfString("{INITALIZER}", withString: initalizers)
-            content = content.stringByReplacingOccurrencesOfString("{ENCODERS}", withString: encoders)
-            content = content.stringByReplacingOccurrencesOfString("{DECODERS}", withString: decoders)
+            
+            if self.supportNSCoding {
+                if let nscodingBase = try? String(contentsOfFile: NSBundle.mainBundle().pathForResource("NSCodingTemplate", ofType: "txt")!) {
+                    content = content.stringByReplacingOccurrencesOfString("{NSCODING_PROTOCOL_SUPPORT}", withString: ", NSCoding")
+                    content = content.stringByReplacingOccurrencesOfString("{NSCODING_SUPPORT}", withString: nscodingBase)
+
+                    content = content.stringByReplacingOccurrencesOfString("{ENCODERS}", withString: encoders)
+                    content = content.stringByReplacingOccurrencesOfString("{DECODERS}", withString: decoders)
+                }
+                else {
+                    content = content.stringByReplacingOccurrencesOfString("{NSCODING_PROTOCOL_SUPPORT}", withString: "")
+                    content = content.stringByReplacingOccurrencesOfString("{NSCODING_SUPPORT}", withString: "")
+                }
+            }
+            else {
+                content = content.stringByReplacingOccurrencesOfString("{NSCODING_PROTOCOL_SUPPORT}", withString: "")
+                content = content.stringByReplacingOccurrencesOfString("{NSCODING_SUPPORT}", withString: "")
+            }
+            
+            if self.supportSwiftyJSON {
+                if let swiftyBase = try? String(contentsOfFile: NSBundle.mainBundle().pathForResource("SwiftyJSONTemplate", ofType: "txt")!) {
+                    content = content.stringByReplacingOccurrencesOfString("{SWIFTY_JSON_SUPPORT}", withString: swiftyBase)
+
+                    content = content.stringByReplacingOccurrencesOfString("{INITALIZER}", withString: initalizers)
+
+                    if includeSwiftyJSON {
+                        content = content.stringByReplacingOccurrencesOfString("{INCLUDE_SWIFTY}", withString: "\nimport SwiftyJSON")
+                    } else {
+                        content = content.stringByReplacingOccurrencesOfString("{INCLUDE_SWIFTY}", withString: "")
+                    }
+                }
+                else {
+                    content = content.stringByReplacingOccurrencesOfString("{SWIFTY_JSON_SUPPORT}", withString: "")
+                    content = content.stringByReplacingOccurrencesOfString("{INCLUDE_SWIFTY}", withString: "")
+                }
+            }
+            else {
+                content = content.stringByReplacingOccurrencesOfString("{SWIFTY_JSON_SUPPORT}", withString: "")
+                content = content.stringByReplacingOccurrencesOfString("{INCLUDE_SWIFTY}", withString: "")
+            }
+            
+            if self.supportObjectMapper {
+                if let objectMapperBase = try? String(contentsOfFile: NSBundle.mainBundle().pathForResource("ObjectMapperTemplate", ofType: "txt")!) {
+                    content = content.stringByReplacingOccurrencesOfString("{OBJECT_MAPPER_SUPPORT}", withString: objectMapperBase)
+                    
+                    content = content.stringByReplacingOccurrencesOfString("{OBJECT_MAPPER_INITIALIZER}", withString: objectMapperMappings)
+                    
+                    objectBaseClass = "Mappable"
+                    
+                    if includeObjectMapper {
+                        content = content.stringByReplacingOccurrencesOfString("{INCLUDE_OBJECT_MAPPER}", withString: "\nimport ObjectMapper")
+                    } else {
+                        content = content.stringByReplacingOccurrencesOfString("{INCLUDE_OBJECT_MAPPER}", withString: "")
+                    }
+                }
+                else {
+                    content = content.stringByReplacingOccurrencesOfString("{OBJECT_MAPPER_SUPPORT}", withString: "")
+                    content = content.stringByReplacingOccurrencesOfString("{INCLUDE_OBJECT_MAPPER}", withString: "")
+                }
+            }
+            else
+            {
+                content = content.stringByReplacingOccurrencesOfString("{OBJECT_MAPPER_SUPPORT}", withString: "")
+                content = content.stringByReplacingOccurrencesOfString("{INCLUDE_OBJECT_MAPPER}", withString: "")
+            }
+
             content = content.stringByReplacingOccurrencesOfString("{DESC}", withString: description)
 
             if authorName != nil {
@@ -201,11 +286,9 @@ public class ModelGenerator {
                 content = content.stringByReplacingOccurrencesOfString("__MyCompanyName__", withString: companyName!)
             }
 
-            if includeSwiftyJSON {
-                content = content.stringByReplacingOccurrencesOfString("{INCLUDE_SWIFTY}", withString: "\nimport SwiftyJSON")
-            } else {
-                content = content.stringByReplacingOccurrencesOfString("{INCLUDE_SWIFTY}", withString: "")
-            }
+            content = content.stringByReplacingOccurrencesOfString("{OBJECT_BASE_CLASS}", withString: objectBaseClass)
+            
+
 
             // Write everything to the file at the path.
             writeToFile(className, content: content, path: filePath)
@@ -301,6 +384,9 @@ public class ModelGenerator {
      - returns: A generated string for declaring the variable.
      */
     internal func variableDeclarationBuilder(variableName: String, type: String) -> String {
+        
+        //We can be smarter about numbers. Rather than toss all numbers to NSNumber, we'll detect the internal type and use a simplified version of that.
+        
         return "\tpublic var \(variableName): \(type)?\n"
     }
 
@@ -322,8 +408,50 @@ public class ModelGenerator {
             type = VariableType.kStringType
         } else if let _ = js.bool {
             type = VariableType.kBoolType
-        } else if let _ = js.number {
-            type = VariableType.kNumberType
+        } else if let validNumber = js.number {
+            
+            //Smarter number type detection. Rather than use generic NSNumber, we can use a specific type. These are grouped into the common Swift number types.
+            let numberRef = CFNumberGetType(validNumber as CFNumberRef)
+            
+            switch numberRef {
+                
+            case .SInt8Type:
+                fallthrough
+            case .SInt16Type:
+                fallthrough
+            case .SInt32Type:
+                fallthrough
+            case .SInt64Type:
+                fallthrough
+            case .CharType:
+                fallthrough
+            case .ShortType:
+                fallthrough
+            case .IntType:
+                fallthrough
+            case .LongType:
+                fallthrough
+            case .LongLongType:
+                fallthrough
+            case .CFIndexType:
+                fallthrough
+            case .NSIntegerType:
+                type = VariableType.kIntNumberType
+                
+            case .Float32Type:
+                fallthrough
+            case.Float64Type:
+                fallthrough
+            case .FloatType:
+                type = VariableType.kFloatNumberType
+                
+            case .DoubleType:
+                type = VariableType.kDoubleNumberType
+                
+            case .CGFloatType:
+                type = VariableType.kCGFloatNumberType
+            }
+            
         } else if let _ = js.array {
             type = VariableType.kArrayType
         }
@@ -331,7 +459,17 @@ public class ModelGenerator {
         return type
     }
 
-
+    /**
+     A mapping for the variable for use with ObjectMapper
+     - parameter variableName: Variable name.
+     - parameter key:          Key against which the value is stored.
+     
+     - returns: A single line mapping for the variable
+     */
+    internal func mappingForObjectMapper(variableName: String, key: String) -> String {
+        return "\t\t\(variableName) <- map[\"\(key)\"]\n"
+    }
+    
     /**
      Initialization of the variable "if let value = json[{key}].{type} { variableName = value }"
      - parameter variableName: Variable name.
@@ -342,7 +480,7 @@ public class ModelGenerator {
      */
     internal func initalizerForVariable(variableName: String, var type: String, key: String) -> String {
         type = typeToSwiftType(type)
-        return "\t\tif let tempValue = json[\(key)].\(type) {\n\t\t\t\(variableName) = tempValue\n\t\t}"
+        return "\t\t\(variableName) = json[\(key)].\(type)\n"
     }
 
     /**
@@ -353,7 +491,7 @@ public class ModelGenerator {
      - returns: A single line declaration of the variable.
      */
     internal func initalizerForObject(variableName: String, className: String, key: String) -> String {
-        return  "\t\t\(variableName) = \(className)(json: json[\(key)])"
+        return  "\t\t\(variableName) = \(className)(json: json[\(key)])\n"
     }
 
     /**
@@ -363,7 +501,7 @@ public class ModelGenerator {
      - returns: A single line declaration of the variable.
      */
     internal func initalizerForEmptyArray(variableName: String, key: String) -> String {
-        return "\t\tif let tempValue = json[\(key)].array {\n\t\t\t\(variableName) = tempValue\n\t\t}"
+        return "\t\tif let tempValue = json[\(key)].array {\n\t\t\t\(variableName) = tempValue\n\t\t} else {\n\t\t\t\(variableName) = nil\n\t\t}\n"
     }
 
     /**
@@ -374,7 +512,7 @@ public class ModelGenerator {
      - returns: A single line declaration of the variable which is an array of object.
      */
     internal func initalizerForObjectArray(variableName: String, className: String, key: String) -> String {
-        return  "\t\t\(variableName) = []\n\t\tif let items = json[\(key)].array {\n\t\t\tfor item in items {\n\t\t\t\t\(variableName)?.append(\(className)(json: item))\n\t\t\t}\n\t\t}\n"
+        return  "\t\t\(variableName) = []\n\t\tif let items = json[\(key)].array {\n\t\t\tfor item in items {\n\t\t\t\t\(variableName)?.append(\(className)(json: item))\n\t\t\t}\n\t\t} else {\n\t\t\t\(variableName) = nil\n\t\t}\n"
     }
 
     /**
@@ -385,7 +523,7 @@ public class ModelGenerator {
      */
     internal func initalizerForPrimitiveVariableArray(variableName: String, key: String, var type: String) -> String {
         type = typeToSwiftType(type)
-        return  "\t\t\(variableName) = []\n\t\tif let items = json[\(key)].array {\n\t\t\tfor item in items {\n\t\t\t\tif let tempValue = item.\(type) {\n\t\t\t\t\(variableName)?.append(tempValue)\n\t\t\t\t}\n\t\t\t}\n\t\t}\n"
+        return  "\t\t\(variableName) = []\n\t\tif let items = json[\(key)].array {\n\t\t\tfor item in items {\n\t\t\t\tif let tempValue = item.\(type) {\n\t\t\t\t\(variableName)?.append(tempValue)\n\t\t\t\t}\n\t\t\t}\n\t\t} else {\n\t\t\t\(variableName) = nil\n\t\t}\n"
     }
 
     /**
@@ -423,7 +561,7 @@ public class ModelGenerator {
      */
     internal func initalize(variableName: String, var type: String, key: String) -> String {
         type = typeToSwiftType(type)
-        return "\t\tif let tempValue = json[\(key)].\(type) {\n\t\t\t\(variableName) = tempValue\n\t\t}"
+        return "\t\t\(variableName) = json[\(key)].\(type)\n"
     }
 
     /**
@@ -527,7 +665,10 @@ public class ModelGenerator {
      - returns: swift variable type.
      */
     internal func typeToSwiftType(var type: String) -> String {
-        if type == VariableType.kNumberType {
+        
+        let isNumber = (type == VariableType.kIntNumberType || type == VariableType.kFloatNumberType || type == VariableType.kCGFloatNumberType || type == VariableType.kDoubleNumberType)
+        
+        if isNumber {
             type = "number"
         } else {
             type.replaceRange(type.startIndex...type.startIndex, with: String(type[type.startIndex]).lowercaseString)

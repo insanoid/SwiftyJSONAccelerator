@@ -20,6 +20,9 @@
 		93F1744A1BD0707D007E7DFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93F174481BD0707D007E7DFC /* Main.storyboard */; };
 		93F174551BD0707D007E7DFC /* SwiftyJSONAcceleratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F174541BD0707D007E7DFC /* SwiftyJSONAcceleratorTests.swift */; };
 		93F174601BD070AA007E7DFC /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1745F1BD070AA007E7DFC /* JSONHelper.swift */; };
+		C667011B1BDCABCE009BA254 /* SwiftyJSONTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = C667011A1BDCABCE009BA254 /* SwiftyJSONTemplate.txt */; };
+		C667011D1BDCAF23009BA254 /* ObjectMapperTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = C667011C1BDCAF23009BA254 /* ObjectMapperTemplate.txt */; };
+		C667011F1BDCBE1F009BA254 /* NSCodingTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = C667011E1BDCBE1F009BA254 /* NSCodingTemplate.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		93F174541BD0707D007E7DFC /* SwiftyJSONAcceleratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSONAcceleratorTests.swift; sourceTree = "<group>"; };
 		93F174561BD0707D007E7DFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93F1745F1BD070AA007E7DFC /* JSONHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
+		C667011A1BDCABCE009BA254 /* SwiftyJSONTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftyJSONTemplate.txt; sourceTree = "<group>"; };
+		C667011C1BDCAF23009BA254 /* ObjectMapperTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ObjectMapperTemplate.txt; sourceTree = "<group>"; };
+		C667011E1BDCBE1F009BA254 /* NSCodingTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NSCodingTemplate.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +79,9 @@
 			isa = PBXGroup;
 			children = (
 				9341A14E1BD6E7290048CE2C /* BaseTemplate.txt */,
+				C667011A1BDCABCE009BA254 /* SwiftyJSONTemplate.txt */,
+				C667011C1BDCAF23009BA254 /* ObjectMapperTemplate.txt */,
+				C667011E1BDCBE1F009BA254 /* NSCodingTemplate.txt */,
 			);
 			path = "Base Files";
 			sourceTree = "<group>";
@@ -228,7 +237,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C667011B1BDCABCE009BA254 /* SwiftyJSONTemplate.txt in Resources */,
+				C667011F1BDCBE1F009BA254 /* NSCodingTemplate.txt in Resources */,
 				93F174471BD0707D007E7DFC /* Assets.xcassets in Resources */,
+				C667011D1BDCAF23009BA254 /* ObjectMapperTemplate.txt in Resources */,
 				9341A14F1BD6E7290048CE2C /* BaseTemplate.txt in Resources */,
 				93F1744A1BD0707D007E7DFC /* Main.storyboard in Resources */,
 			);
