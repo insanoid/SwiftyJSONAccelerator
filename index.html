@@ -31,23 +31,30 @@
         <h1>
 <a id="swiftyjsonaccelerator" class="anchor" href="#swiftyjsonaccelerator" aria-hidden="true"><span class="octicon octicon-link"></span></a>SwiftyJSONAccelerator</h1>
 
-<p><strong>(Alpha v0.0.2)</strong></p>
+<p><strong>(Alpha v0.0.3)</strong></p>
 
-<p><a href="https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v0.0.2/SwiftyJSONAccelerator.zip">Download the .app (v0.0.2)</a></p>
+<p><a href="https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v0.0.3/SwiftyJSONAccelertor.zip">Download the .app (v0.0.3)</a></p>
 
 <p><img src="https://raw.githubusercontent.com/insanoid/SwiftyJSONAccelerator/master/SwiftyJSONAccelerator/Assets.xcassets/AppIcon.appiconset/Icon_32x32%402x.png" alt="Logo"></p>
 
-<p>A swift model generator like the Objective-C <a href="http://nerdery.com/json-accelerator">JSONAccelerator</a>. Formats and generates models for the given JSON and also breaks them into files making it easy to manage and share between several models. it relies on <a href="https://github.com/SwiftyJSON/SwiftyJSON">SwiftyJSON</a> and requires you to include it in your project.</p>
+<p>A swift model generator like the Objective-C <a href="http://nerdery.com/json-accelerator">JSONAccelerator</a>. Formats and generates models for the given JSON and also breaks them into files making it easy to manage and share between several models.</p>
+
+<p>The models that are generated depend on JSON object mapping libraries, currently the model can be generated to depend on any of the below mentioned mapping libraries:</p>
+
+<ul>
+<li><a href="https://github.com/SwiftyJSON/SwiftyJSON">SwiftyJSON</a></li>
+<li>
+<a href="https://github.com/Hearst-DD/ObjectMapper">Hearst-DD/ObjectMapper</a> (Contributed by: <a href="https://github.com/brendan09">brendan09</a>)</li>
+</ul>
 
 <p>Currently, the pattern is very similar to its Objective-C counterpart. It generates classes with following properties.</p>
 
 <ul>
-<li>Initalize with <code>JSON</code> (SwiftyJSON based)</li>
+<li>Initalize with <code>JSON</code> (SwiftyJSON or ObjectMapper)</li>
 <li>Initalize with <code>AnyObject</code>
 </li>
-<li>
-<code>NSCoding</code> compliant (Can be Archived using <code>NSKeyedArchiver</code>)</li>
-<li>Convert to <code>NSDictionary</code>
+<li>Optional <code>NSCoding</code> compliance.</li>
+<li>Convert object to <code>NSDictionary</code>
 </li>
 </ul>
 
@@ -57,7 +64,7 @@
 
 <p><img src="https://raw.githubusercontent.com/insanoid/SwiftyJSONAccelerator/master/preview_ii.png" alt="Preview"></p>
 
-<p><em>Files are generated individually making it more easy to use.</em></p>
+<p><em>Each class in the JSON is generated as a file.</em></p>
 
 <h2>
 <a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO</h2>
@@ -66,14 +73,14 @@
 <li>Handle blank array a bit better.</li>
 <li>Better User Interface and icon.</li>
 <li>Generate both <code>struct</code> and <code>class</code>.</li>
-<li>Support for generation of models that do not need SwiftyJSON.</li>
+<li>Support for further JSON object modelling libraries.</li>
 <li>Add tests and integrate with Travis CI.</li>
 <li>Create a Xcode plugin and a command line executor.</li>
 </ul>
 
 <hr>
 
-<p>This is one of my very first Swift projects, since I am used to developing models from JSON based APIs in Objective-C and there was no free tool to do this in Swift I created this (with ample inspiration from <a href="https://github.com/swiftjson/SwiftJson">SwiftJSON</a> and<a href="http://nerdery.com/json-accelerator">JSONAccelerator</a>). Any suggestions regarding code quality of the app, generated code's quaility, swift improvements and pull requests are all higly welcome.</p>
+<p>This is one of my very first Swift projects, since I am used to developing models from JSON based APIs in Objective-C and there was no free tool to do this in Swift I created this (with ample inspiration from <a href="https://github.com/swiftjson/SwiftJson">SwiftJSON</a> and <a href="http://nerdery.com/json-accelerator">JSONAccelerator</a>). Any suggestions regarding code quality of the app, generated code's quaility, Swift related improvements and pull requests are all very welcome.</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/insanoid">insanoid</a></p>
