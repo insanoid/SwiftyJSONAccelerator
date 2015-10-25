@@ -212,32 +212,26 @@ public class ModelGenerator {
             content = content.stringByReplacingOccurrencesOfString("{STRING_CONSTANT_BLOCK}", withString: stringConstants)
             content = content.stringByReplacingOccurrencesOfString("{PROPERTIES}", withString: declarations)
             
-            if self.supportNSCoding
-            {
-                if let nscodingBase = try? String(contentsOfFile: NSBundle.mainBundle().pathForResource("NSCodingTemplate", ofType: "txt")!)
-                {
+            if self.supportNSCoding {
+                if let nscodingBase = try? String(contentsOfFile: NSBundle.mainBundle().pathForResource("NSCodingTemplate", ofType: "txt")!) {
                     content = content.stringByReplacingOccurrencesOfString("{NSCODING_PROTOCOL_SUPPORT}", withString: ", NSCoding")
                     content = content.stringByReplacingOccurrencesOfString("{NSCODING_SUPPORT}", withString: nscodingBase)
 
                     content = content.stringByReplacingOccurrencesOfString("{ENCODERS}", withString: encoders)
                     content = content.stringByReplacingOccurrencesOfString("{DECODERS}", withString: decoders)
                 }
-                else
-                {
+                else {
                     content = content.stringByReplacingOccurrencesOfString("{NSCODING_PROTOCOL_SUPPORT}", withString: "")
                     content = content.stringByReplacingOccurrencesOfString("{NSCODING_SUPPORT}", withString: "")
                 }
             }
-            else
-            {
+            else {
                 content = content.stringByReplacingOccurrencesOfString("{NSCODING_PROTOCOL_SUPPORT}", withString: "")
                 content = content.stringByReplacingOccurrencesOfString("{NSCODING_SUPPORT}", withString: "")
             }
             
-            if self.supportSwiftyJSON
-            {
-                if let swiftyBase = try? String(contentsOfFile: NSBundle.mainBundle().pathForResource("SwiftyJSONTemplate", ofType: "txt")!)
-                {
+            if self.supportSwiftyJSON {
+                if let swiftyBase = try? String(contentsOfFile: NSBundle.mainBundle().pathForResource("SwiftyJSONTemplate", ofType: "txt")!) {
                     content = content.stringByReplacingOccurrencesOfString("{SWIFTY_JSON_SUPPORT}", withString: swiftyBase)
 
                     content = content.stringByReplacingOccurrencesOfString("{INITALIZER}", withString: initalizers)
@@ -248,22 +242,18 @@ public class ModelGenerator {
                         content = content.stringByReplacingOccurrencesOfString("{INCLUDE_SWIFTY}", withString: "")
                     }
                 }
-                else
-                {
+                else {
                     content = content.stringByReplacingOccurrencesOfString("{SWIFTY_JSON_SUPPORT}", withString: "")
                     content = content.stringByReplacingOccurrencesOfString("{INCLUDE_SWIFTY}", withString: "")
                 }
             }
-            else
-            {
+            else {
                 content = content.stringByReplacingOccurrencesOfString("{SWIFTY_JSON_SUPPORT}", withString: "")
                 content = content.stringByReplacingOccurrencesOfString("{INCLUDE_SWIFTY}", withString: "")
             }
             
-            if self.supportObjectMapper
-            {
-                if let objectMapperBase = try? String(contentsOfFile: NSBundle.mainBundle().pathForResource("ObjectMapperTemplate", ofType: "txt")!)
-                {
+            if self.supportObjectMapper {
+                if let objectMapperBase = try? String(contentsOfFile: NSBundle.mainBundle().pathForResource("ObjectMapperTemplate", ofType: "txt")!) {
                     content = content.stringByReplacingOccurrencesOfString("{OBJECT_MAPPER_SUPPORT}", withString: objectMapperBase)
                     
                     content = content.stringByReplacingOccurrencesOfString("{OBJECT_MAPPER_INITIALIZER}", withString: objectMapperMappings)
@@ -276,8 +266,7 @@ public class ModelGenerator {
                         content = content.stringByReplacingOccurrencesOfString("{INCLUDE_OBJECT_MAPPER}", withString: "")
                     }
                 }
-                else
-                {
+                else {
                     content = content.stringByReplacingOccurrencesOfString("{OBJECT_MAPPER_SUPPORT}", withString: "")
                     content = content.stringByReplacingOccurrencesOfString("{INCLUDE_OBJECT_MAPPER}", withString: "")
                 }

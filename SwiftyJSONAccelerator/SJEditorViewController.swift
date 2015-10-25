@@ -126,21 +126,17 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         let supportSwiftyState = self.supportSwiftyJSONCheckbox?.state == 1 ? true : false
         let supportObjectMapperState = self.supportObjectMapperCheckbox?.state == 1 ? true : false
 
-        if supportSwiftyState
-        {
+        if supportSwiftyState {
             self.includeSwiftyCheckbox?.enabled = true
         }
-        else
-        {
+        else {
             self.includeSwiftyCheckbox?.enabled = false
         }
         
-        if supportObjectMapperState
-        {
+        if supportObjectMapperState {
             self.includeObjectMapperCheckbox?.enabled = true
         }
-        else
-        {
+        else {
             self.includeObjectMapperCheckbox?.enabled = false
         }
     }
