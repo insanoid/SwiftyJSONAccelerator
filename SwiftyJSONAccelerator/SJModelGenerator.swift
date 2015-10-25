@@ -49,7 +49,13 @@ public class ModelGenerator {
     var type: String
     var filePath: String
     var baseClassName: String
+    
+    var supportSwiftyJSON: Bool
     var includeSwiftyJSON: Bool
+    
+    var supportObjectMapper: Bool
+    var includeObjectMapper: Bool
+    
     var supportNSCoding: Bool
 
 
@@ -67,7 +73,7 @@ public class ModelGenerator {
 
      - returns: A ModelGenerator instance.
      */
-    init(baseContent: JSON, prefix: String?, baseClassName: String, authorName: String?, companyName: String?, type: String, filePath: String, includeSwiftyJSON: Bool, supportNSCoding: Bool) {
+    init(baseContent: JSON, prefix: String?, baseClassName: String, authorName: String?, companyName: String?, type: String, filePath: String, supportSwiftyJSON: Bool, includeSwiftyJSON: Bool, supportObjectMapper: Bool, includeObjectMapper: Bool, supportNSCoding: Bool) {
         self.authorName = authorName
         self.baseContent = baseContent
         self.prefix = prefix
@@ -76,8 +82,11 @@ public class ModelGenerator {
         self.type = type
         self.filePath = filePath
         self.baseClassName = baseClassName
+        self.supportSwiftyJSON = supportSwiftyJSON
         self.includeSwiftyJSON = includeSwiftyJSON
         self.supportNSCoding = supportNSCoding
+        self.supportObjectMapper = supportObjectMapper
+        self.includeObjectMapper = includeObjectMapper
     }
 
     /**
@@ -118,6 +127,9 @@ public class ModelGenerator {
         var encoders: String = ""
         var decoders: String = ""
         var description: String = ""
+        var objectMapperMappings: String = ""
+        
+        var objectBaseClass = "NSObject"
 
         /// Create a classname in Sentence case and removing unwanted stuff.
         let className = buildClassName(className, prefix: self.prefix!, isSubModule: isSubModule)
@@ -183,6 +195,8 @@ public class ModelGenerator {
                     description = description.stringByAppendingFormat("%@\n", descriptionForVariable(variableName, key: stringConstantName))
                 }
 
+                //ObjectMapper is generic for all
+                objectMapperMappings = objectMapperMappings.stringByAppendingFormat("%@\n", mappingForObjectMapper(variableName, key:stringConstantName))
             }
 
             // Get an instance of the template.
@@ -194,10 +208,10 @@ public class ModelGenerator {
             content = content.stringByReplacingOccurrencesOfString("{OBJECT_KIND}", withString: type)
             content = content.stringByReplacingOccurrencesOfString("{STRING_CONSTANT_BLOCK}", withString: stringConstants)
             content = content.stringByReplacingOccurrencesOfString("{PROPERTIES}", withString: declarations)
-            content = content.stringByReplacingOccurrencesOfString("{INITALIZER}", withString: initalizers)
             
             if self.supportNSCoding
             {
+                content = content.stringByReplacingOccurrencesOfString("{NSCODING_PROTOCOL_SUPPORT}", withString: ", NSCoding")
                 content = content.stringByReplacingOccurrencesOfString("{NSCODING_SUPPORT}", withString: "\t// MARK: NSCoding Protocol\n\trequired public init(coder aDecoder: NSCoder) {\n\t{DECODERS}\n\t}\n\n\tpublic func encodeWithCoder(aCoder: NSCoder) {\n{ENCODERS}\n\t}")
 
                 content = content.stringByReplacingOccurrencesOfString("{ENCODERS}", withString: encoders)
@@ -205,7 +219,62 @@ public class ModelGenerator {
             }
             else
             {
+                content = content.stringByReplacingOccurrencesOfString("{NSCODING_PROTOCOL_SUPPORT}", withString: "")
                 content = content.stringByReplacingOccurrencesOfString("{NSCODING_SUPPORT}", withString: "")
+            }
+            
+            if self.supportSwiftyJSON
+            {
+                if let swiftyBase = try? String(contentsOfFile: NSBundle.mainBundle().pathForResource("SwiftyJSONTemplate", ofType: "txt")!)
+                {
+                    content = content.stringByReplacingOccurrencesOfString("{SWIFTY_JSON_SUPPORT}", withString: swiftyBase)
+
+                    content = content.stringByReplacingOccurrencesOfString("{INITALIZER}", withString: initalizers)
+
+                    if includeSwiftyJSON {
+                        content = content.stringByReplacingOccurrencesOfString("{INCLUDE_SWIFTY}", withString: "\nimport SwiftyJSON")
+                    } else {
+                        content = content.stringByReplacingOccurrencesOfString("{INCLUDE_SWIFTY}", withString: "")
+                    }
+                }
+                else
+                {
+                    content = content.stringByReplacingOccurrencesOfString("{SWIFTY_JSON_SUPPORT}", withString: "")
+                    content = content.stringByReplacingOccurrencesOfString("{INCLUDE_SWIFTY}", withString: "")
+                }
+            }
+            else
+            {
+                content = content.stringByReplacingOccurrencesOfString("{SWIFTY_JSON_SUPPORT}", withString: "")
+                content = content.stringByReplacingOccurrencesOfString("{INCLUDE_SWIFTY}", withString: "")
+            }
+            
+            if self.supportObjectMapper
+            {
+                if let objectMapperBase = try? String(contentsOfFile: NSBundle.mainBundle().pathForResource("ObjectMapperTemplate", ofType: "txt")!)
+                {
+                    content = content.stringByReplacingOccurrencesOfString("{OBJECT_MAPPER_SUPPORT}", withString: objectMapperBase)
+                    
+                    content = content.stringByReplacingOccurrencesOfString("{OBJECT_MAPPER_INITIALIZER}", withString: objectMapperMappings)
+                    
+                    objectBaseClass = "Mappable"
+                    
+                    if includeObjectMapper {
+                        content = content.stringByReplacingOccurrencesOfString("{INCLUDE_OBJECT_MAPPER}", withString: "\nimport ObjectMapper")
+                    } else {
+                        content = content.stringByReplacingOccurrencesOfString("{INCLUDE_OBJECT_MAPPER}", withString: "")
+                    }
+                }
+                else
+                {
+                    content = content.stringByReplacingOccurrencesOfString("{OBJECT_MAPPER_SUPPORT}", withString: "")
+                    content = content.stringByReplacingOccurrencesOfString("{INCLUDE_OBJECT_MAPPER}", withString: "")
+                }
+            }
+            else
+            {
+                content = content.stringByReplacingOccurrencesOfString("{OBJECT_MAPPER_SUPPORT}", withString: "")
+                content = content.stringByReplacingOccurrencesOfString("{INCLUDE_OBJECT_MAPPER}", withString: "")
             }
 
             content = content.stringByReplacingOccurrencesOfString("{DESC}", withString: description)
@@ -217,11 +286,9 @@ public class ModelGenerator {
                 content = content.stringByReplacingOccurrencesOfString("__MyCompanyName__", withString: companyName!)
             }
 
-            if includeSwiftyJSON {
-                content = content.stringByReplacingOccurrencesOfString("{INCLUDE_SWIFTY}", withString: "\nimport SwiftyJSON")
-            } else {
-                content = content.stringByReplacingOccurrencesOfString("{INCLUDE_SWIFTY}", withString: "")
-            }
+            content = content.stringByReplacingOccurrencesOfString("{OBJECT_BASE_CLASS}", withString: objectBaseClass)
+            
+
 
             // Write everything to the file at the path.
             writeToFile(className, content: content, path: filePath)
@@ -392,7 +459,17 @@ public class ModelGenerator {
         return type
     }
 
-
+    /**
+     A mapping for the variable for use with ObjectMapper
+     - parameter variableName: Variable name.
+     - parameter key:          Key against which the value is stored.
+     
+     - returns: A single line mapping for the variable
+     */
+    internal func mappingForObjectMapper(variableName: String, key: String) -> String {
+        return "\t\t\(variableName) <- map[\"\(key)\"]\n"
+    }
+    
     /**
      Initialization of the variable "if let value = json[{key}].{type} { variableName = value }"
      - parameter variableName: Variable name.

@@ -5,9 +5,9 @@
 //  Copyright (c) __MyCompanyName__. All rights reserved.
 //
 
-import Foundation{INCLUDE_SWIFTY}
+import Foundation{INCLUDE_SWIFTY}{INCLUDE_OBJECT_MAPPER}
 
-public {OBJECT_KIND} {OBJECT_NAME}: NSObject, NSCoding {
+public {OBJECT_KIND} {OBJECT_NAME}: {OBJECT_BASE_CLASS}{NSCODING_PROTOCOL_SUPPORT} {
 
         // MARK: Declaration for string constants to be used to decode and also serialize.
     {STRING_CONSTANT_BLOCK}
@@ -16,23 +16,9 @@ public {OBJECT_KIND} {OBJECT_NAME}: NSObject, NSCoding {
     {PROPERTIES}
 
         // MARK: Initalizers
-        /**
-        Initates the class based on the object
-        - parameter object: The object of either Dictionary or Array kind that was passed.
-        - returns: An initalized instance of the class.
-        */
-        convenience public init(object: AnyObject) {
-            self.init(json: JSON(object))
-        }
+{SWIFTY_JSON_SUPPORT}
 
-        /**
-        Initates the class based on the JSON that was passed.
-        - parameter json: JSON object from SwiftyJSON.
-        - returns: An initalized instance of the class.
-        */
-        public init(json: JSON) {
-    {INITALIZER}
-        }
+{OBJECT_MAPPER_SUPPORT}
 
         /**
         Generates description of the object in the form of a NSDictionary.
@@ -40,10 +26,10 @@ public {OBJECT_KIND} {OBJECT_NAME}: NSObject, NSCoding {
         */
         public func dictionaryRepresentation() -> [String : AnyObject ] {
 
-        var dictionary: [String : AnyObject ] = [ : ]
-    {DESC}
+            var dictionary: [String : AnyObject ] = [ : ]
+        {DESC}
 
-        return dictionary
+            return dictionary
         }
 
     {NSCODING_SUPPORT}
