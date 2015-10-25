@@ -19,7 +19,10 @@ import Cocoa
  */
 struct VariableType {
     static let kStringType: String = "String"
-    static let kNumberType = "NSNumber"
+    static let kIntNumberType = "Int"
+    static let kFloatNumberType = "Float"
+    static let kDoubleNumberType = "Double"
+    static let kCGFloatNumberType = "CGFloat"
     static let kBoolType = "Bool"
     static let kArrayType = "[]"
     static let kObjectType = "{OBJ}"
@@ -301,6 +304,9 @@ public class ModelGenerator {
      - returns: A generated string for declaring the variable.
      */
     internal func variableDeclarationBuilder(variableName: String, type: String) -> String {
+        
+        //We can be smarter about numbers. Rather than toss all numbers to NSNumber, we'll detect the internal type and use a simplified version of that.
+        
         return "\tpublic var \(variableName): \(type)?\n"
     }
 
@@ -322,8 +328,50 @@ public class ModelGenerator {
             type = VariableType.kStringType
         } else if let _ = js.bool {
             type = VariableType.kBoolType
-        } else if let _ = js.number {
-            type = VariableType.kNumberType
+        } else if let validNumber = js.number {
+            
+            //Smarter number type detection. Rather than use generic NSNumber, we can use a specific type. These are grouped into the common Swift number types.
+            let numberRef = CFNumberGetType(validNumber as CFNumberRef)
+            
+            switch numberRef {
+                
+            case .SInt8Type:
+                fallthrough
+            case .SInt16Type:
+                fallthrough
+            case .SInt32Type:
+                fallthrough
+            case .SInt64Type:
+                fallthrough
+            case .CharType:
+                fallthrough
+            case .ShortType:
+                fallthrough
+            case .IntType:
+                fallthrough
+            case .LongType:
+                fallthrough
+            case .LongLongType:
+                fallthrough
+            case .CFIndexType:
+                fallthrough
+            case .NSIntegerType:
+                type = VariableType.kIntNumberType
+                
+            case .Float32Type:
+                fallthrough
+            case.Float64Type:
+                fallthrough
+            case .FloatType:
+                type = VariableType.kFloatNumberType
+                
+            case .DoubleType:
+                type = VariableType.kDoubleNumberType
+                
+            case .CGFloatType:
+                type = VariableType.kCGFloatNumberType
+            }
+            
         } else if let _ = js.array {
             type = VariableType.kArrayType
         }
@@ -527,7 +575,10 @@ public class ModelGenerator {
      - returns: swift variable type.
      */
     internal func typeToSwiftType(var type: String) -> String {
-        if type == VariableType.kNumberType {
+        
+        let isNumber = (type == VariableType.kIntNumberType || type == VariableType.kFloatNumberType || type == VariableType.kCGFloatNumberType || type == VariableType.kDoubleNumberType)
+        
+        if isNumber {
             type = "number"
         } else {
             type.replaceRange(type.startIndex...type.startIndex, with: String(type[type.startIndex]).lowercaseString)
