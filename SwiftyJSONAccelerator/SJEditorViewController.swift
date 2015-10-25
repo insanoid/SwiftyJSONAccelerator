@@ -20,6 +20,10 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     @IBOutlet var companyNameTextField: NSTextField?
     @IBOutlet var authorNameTextField: NSTextField?
     @IBOutlet var includeSwiftyCheckbox: NSButton?
+    @IBOutlet var supportNSCodingCheckbox: NSButton!
+    @IBOutlet var supportSwiftyJSONCheckbox: NSButton!
+    @IBOutlet var supportObjectMapperCheckbox: NSButton!
+    @IBOutlet var includeObjectMapperCheckbox: NSButton!
 
     // MARK: View methods
     override func loadView() {
@@ -101,7 +105,14 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         if object != nil {
 
             let swiftyState = self.includeSwiftyCheckbox?.state == 1 ? true : false
-            let generator: ModelGenerator = ModelGenerator.init(baseContent: JSON(object!), prefix:  prefixClassTextField?.stringValue, baseClassName: (baseClassTextField?.stringValue)!, authorName: authorNameTextField?.stringValue, companyName: companyNameTextField?.stringValue, type: ModelType.kClassType, filePath:  filePath!, includeSwiftyJSON: swiftyState)
+            let supportSwiftyState = self.supportSwiftyJSONCheckbox?.state == 1 ? true : false
+            
+            let nscodingState = self.supportNSCodingCheckbox?.state == 1 ? true : false
+            
+            let objectMapperState = self.includeObjectMapperCheckbox?.state == 1 ? true : false
+            let supportObjectMapperState = self.supportObjectMapperCheckbox?.state == 1 ? true : false
+
+            let generator: ModelGenerator = ModelGenerator.init(baseContent: JSON(object!), prefix:  prefixClassTextField?.stringValue, baseClassName: (baseClassTextField?.stringValue)!, authorName: authorNameTextField?.stringValue, companyName: companyNameTextField?.stringValue, type: ModelType.kClassType, filePath:  filePath!, supportSwiftyJSON: supportSwiftyState, includeSwiftyJSON: swiftyState, supportObjectMapper: supportObjectMapperState, includeObjectMapper: objectMapperState, supportNSCoding: nscodingState)
             generator.generate()
         } else {
             let alert:NSAlert = NSAlert()
@@ -110,6 +121,26 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         }
     }
 
+    @IBAction func recalcEnabledBoxes(sender: AnyObject) {
+        
+        let supportSwiftyState = self.supportSwiftyJSONCheckbox?.state == 1 ? true : false
+        let supportObjectMapperState = self.supportObjectMapperCheckbox?.state == 1 ? true : false
+
+        if supportSwiftyState {
+            self.includeSwiftyCheckbox?.enabled = true
+        }
+        else {
+            self.includeSwiftyCheckbox?.enabled = false
+        }
+        
+        if supportObjectMapperState {
+            self.includeObjectMapperCheckbox?.enabled = true
+        }
+        else {
+            self.includeObjectMapperCheckbox?.enabled = false
+        }
+    }
+    
     // MARK: Internal Methods
 
     /**
