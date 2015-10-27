@@ -320,8 +320,9 @@ public class ModelGenerator {
      - returns: A generated string representation of the variable name.
      */
     internal func variableNameBuilder(variableName: String) -> String {
-        let variableName = replaceInternalKeywordsForVariableName(variableName).stringByReplacingOccurrencesOfString("_", withString: " ")
-        var finalVariableName: String = ""
+        var variableName = replaceInternalKeywordsForVariableName(variableName).stringByReplacingOccurrencesOfString("_", withString: " ")
+		variableName = variableName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+		var finalVariableName: String = ""
         for (index, element) in variableName.componentsSeparatedByString(" ").enumerate() {
             var component: String = element
             if index != 0 {
