@@ -15,7 +15,6 @@ import Cocoa
  *  - kIntNumberType
  *  - kFloatNumberType
  *  - kDoubleNumberType
- *  - kCGFloatNumberType
  *  - kBoolType
  *  - kArrayType
  *  - kObjectType
@@ -25,7 +24,6 @@ struct VariableType {
     static let kIntNumberType = "Int"
     static let kFloatNumberType = "Float"
     static let kDoubleNumberType = "Double"
-    static let kCGFloatNumberType = "CGFloat"
     static let kBoolType = "Bool"
     static let kArrayType = "[]"
     static let kObjectType = "{OBJ}"
@@ -180,7 +178,7 @@ public class ModelGenerator {
                     declarations = declarations.stringByAppendingFormat(variableDeclarationBuilder(variableName, type: variableType))
                     initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForVariable(variableName, type: variableType, key: stringConstantName))
                     decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: variableType))
-                    description = description.stringByAppendingFormat("%@\n", descriptionForVariable(variableName, key: stringConstantName))
+                    description = description.stringByAppendingFormat("%@\n", descriptionForVariable(variableName, key: stringConstantName, type: variableType))
                 }
 
                 //ObjectMapper is generic for all
@@ -321,8 +319,8 @@ public class ModelGenerator {
      */
     internal func variableNameBuilder(variableName: String) -> String {
         var variableName = replaceInternalKeywordsForVariableName(variableName).stringByReplacingOccurrencesOfString("_", withString: " ")
-		variableName = variableName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-		var finalVariableName: String = ""
+        variableName = variableName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        var finalVariableName: String = ""
         for (index, element) in variableName.componentsSeparatedByString(" ").enumerate() {
             var component: String = element
             if index != 0 {
@@ -373,6 +371,10 @@ public class ModelGenerator {
      - returns: A generated string for declaring the variable.
      */
     internal func variableDeclarationBuilder(variableName: String, type: String) -> String {
+        if type == VariableType.kBoolType {
+            return "\tpublic var \(variableName): \(type) = false\n"
+        }
+
         return "\tpublic var \(variableName): \(type)?\n"
     }
 
@@ -390,16 +392,19 @@ public class ModelGenerator {
 
     //MARK: SwiftyJSON Initalizer
     /**
-    Initialization of the variable "if let value = json[{key}].{type} { variableName = value }" for use with SwiftyJSON
+    Initialization of the variable "if variableName = json[{key}].{type}" for use with SwiftyJSON
     - parameter variableName: Variable name.
     - parameter type:         Type of the variable.
     - parameter key:          Key against which the value is stored.
 
     - returns: A single line declaration of the variable.
     */
-    internal func initalizerForVariable(variableName: String, var type: String, key: String) -> String {
-        type = typeToSwiftType(type)
-        return "\t\t\(variableName) = json[\(key)].\(type)"
+    internal func initalizerForVariable(variableName: String, type: String, key: String) -> String {
+        let variableType = typeToSwiftType(type)
+        if type == VariableType.kBoolType {
+            return "\t\t\(variableName) = json[\(key)].\(variableType)Value"
+        }
+        return "\t\t\(variableName) = json[\(key)].\(variableType)"
     }
 
     /**
@@ -481,7 +486,10 @@ public class ModelGenerator {
 
     - returns: A single line description printer of the variable.
     */
-    internal func descriptionForVariable(variableName: String, key: String) -> String {
+    internal func descriptionForVariable(variableName: String, key: String, type: String) -> String {
+        if type == VariableType.kBoolType {
+            return "\t\tdictionary.updateValue(\(variableName), forKey: \(key))"
+        }
         return "\t\tif \(variableName) != nil {\n\t\t\tdictionary.updateValue(\(variableName)!, forKey: \(key))\n\t\t}"
     }
 
@@ -569,14 +577,13 @@ public class ModelGenerator {
                 fallthrough
             case.Float64Type:
                 fallthrough
+            case .CGFloatType:
+                fallthrough
             case .FloatType:
                 type = VariableType.kFloatNumberType
 
             case .DoubleType:
                 type = VariableType.kDoubleNumberType
-
-            case .CGFloatType:
-                type = VariableType.kCGFloatNumberType
             }
 
         } else if let _ = js.array {
@@ -642,15 +649,7 @@ public class ModelGenerator {
      - returns: swift variable type.
      */
     internal func typeToSwiftType(var type: String) -> String {
-
-        let isNumber = (type == VariableType.kIntNumberType || type == VariableType.kFloatNumberType || type == VariableType.kCGFloatNumberType || type == VariableType.kDoubleNumberType)
-
-        if isNumber {
-            type = "number"
-        } else {
-            type.replaceRange(type.startIndex...type.startIndex, with: String(type[type.startIndex]).lowercaseString)
-        }
-
+        type.replaceRange(type.startIndex...type.startIndex, with: String(type[type.startIndex]).lowercaseString)
         return type
     }
 
