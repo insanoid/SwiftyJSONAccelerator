@@ -600,7 +600,7 @@ public class ModelGenerator {
      */
     internal func todayDateString() -> String {
         let formatter = NSDateFormatter.init()
-        formatter.dateFormat = "dd/MM/yyyy"
+        formatter.dateStyle = .ShortStyle
         return formatter.stringFromDate(NSDate.init())
     }
 
