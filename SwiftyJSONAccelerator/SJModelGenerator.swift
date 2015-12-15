@@ -595,12 +595,12 @@ public class ModelGenerator {
 
     /**
      Generates the string for today's date.
-
-     - returns: A string date in dd/MM/yyyy.
+     
+     - returns: A string date in dd/MM/yyyy or MM/dd/yyyy based on the locale settings of the Mac.
      */
     internal func todayDateString() -> String {
         let formatter = NSDateFormatter.init()
-        formatter.dateFormat = "dd/MM/yyyy"
+        formatter.dateStyle = .ShortStyle
         return formatter.stringFromDate(NSDate.init())
     }
 
