@@ -372,10 +372,10 @@ public class ModelGenerator {
      */
     internal func variableDeclarationBuilder(variableName: String, type: String) -> String {
         if type == VariableType.kBoolType {
-            return "\tpublic var \(variableName): \(type) = false\n"
+            return "\tvar \(variableName): \(type) = false\n"
         }
 
-        return "\tpublic var \(variableName): \(type)?\n"
+        return "\tvar \(variableName): \(type)?\n"
     }
 
     //MARK: ObjectMapper Initalizer
