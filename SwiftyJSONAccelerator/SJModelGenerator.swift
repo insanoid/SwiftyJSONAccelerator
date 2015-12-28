@@ -386,7 +386,9 @@ public class ModelGenerator {
 
     - returns: A single line mapping for the variable
     */
-    internal func mappingForObjectMapper(variableName: String, key: String) -> String {
+    internal func mappingForObjectMapper(variableName: String, var key: String) -> String {
+        key = key.stringByReplacingOccurrencesOfString("\"", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+
         return "\t\t\(variableName) <- map[\(key)]"
     }
 
