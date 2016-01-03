@@ -241,7 +241,7 @@ public class ModelGenerator {
 
                     content = content.stringByReplacingOccurrencesOfString("{OBJECT_MAPPER_INITIALIZER}", withString: objectMapperMappings)
 
-                    objectBaseClass = "Mappable"
+                    objectBaseClass = "NSObject, Mappable"
 
                     if includeObjectMapper! {
                         content = content.stringByReplacingOccurrencesOfString("{INCLUDE_OBJECT_MAPPER}", withString: "\nimport ObjectMapper")
