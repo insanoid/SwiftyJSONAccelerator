@@ -130,8 +130,6 @@ public class ModelGenerator {
                 let stringConstantName: String = variableNameKeyBuilder(className, variableName: variableName)
                 let variableType: String = checkType(jsonValue)
 
-                variables.append((variableName, variableType))
-
                 // The key declaration and the encoder is same for all kinds of objects.
                 stringConstants = stringConstants.stringByAppendingFormat(stringConstantDeclrationBuilder(stringConstantName, key: key))
                 encoders = encoders.stringByAppendingFormat("%@\n", encoderForVariable(variableName, key: stringConstantName, type: variableType))
@@ -152,12 +150,14 @@ public class ModelGenerator {
                             initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForObjectArray(variableName, className: subClassName, key: stringConstantName))
                             decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: "[\(subClassName)]"))
                             description = description.stringByAppendingFormat("%@\n", descriptionForObjectArray(variableName, key: stringConstantName))
+                            variables.append((variableName, subClassName))
                         } else {
                             // If it is anything other than an object, it should be a primitive type hence deal with it accordingly.
                             declarations = declarations.stringByAppendingFormat(variableDeclarationBuilder(variableName, type: "[\(subClassType)]"))
                             initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForPrimitiveVariableArray(variableName, key: stringConstantName, type: subClassType))
                             decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: "[\(subClassType)]"))
                             description = description.stringByAppendingFormat("%@\n", descriptionForPrimitiveVariableArray(variableName, key: stringConstantName))
+                            variables.append((variableName, subClassType))
                         }
 
                     } else {
@@ -176,6 +176,7 @@ public class ModelGenerator {
                     initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForObject(variableName, className: subClassName, key: stringConstantName))
                     decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: subClassName))
                     description = description.stringByAppendingFormat("%@\n", descriptionForObjectVariableArray(variableName, key: stringConstantName))
+                    variables.append((variableName, subClassName))
 
                 } else {
                     // If it is a primitive then simply create initalizers, declarations and decoders.
@@ -183,6 +184,7 @@ public class ModelGenerator {
                     initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForVariable(variableName, type: variableType, key: stringConstantName))
                     decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: variableType))
                     description = description.stringByAppendingFormat("%@\n", descriptionForVariable(variableName, key: stringConstantName, type: variableType))
+                    variables.append((variableName, variableType))
                 }
 
                 //ObjectMapper is generic for all
@@ -391,7 +393,7 @@ public class ModelGenerator {
             paramList.appendContentsOf("\(variable.0): \(variable.1), ")
             body.appendContentsOf("\t\tself.\(variable.0) = \(variable.0)\n")
         }
-        paramList = paramList.substringToIndex(paramList.endIndex.predecessor())
+        paramList = paramList.substringToIndex(paramList.endIndex.predecessor().predecessor())
 
         return "\tinit(\(paramList)) {\n\(body)\t}\n"
     }
