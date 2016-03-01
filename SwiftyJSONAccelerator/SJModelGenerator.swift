@@ -150,14 +150,14 @@ public class ModelGenerator {
                             initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForObjectArray(variableName, className: subClassName, key: stringConstantName))
                             decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: "[\(subClassName)]"))
                             description = description.stringByAppendingFormat("%@\n", descriptionForObjectArray(variableName, key: stringConstantName))
-                            variables.append((variableName, subClassName))
+                            variables.append((variableName, "[\(subClassName)]"))
                         } else {
                             // If it is anything other than an object, it should be a primitive type hence deal with it accordingly.
                             declarations = declarations.stringByAppendingFormat(variableDeclarationBuilder(variableName, type: "[\(subClassType)]"))
                             initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForPrimitiveVariableArray(variableName, key: stringConstantName, type: subClassType))
                             decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: "[\(subClassType)]"))
                             description = description.stringByAppendingFormat("%@\n", descriptionForPrimitiveVariableArray(variableName, key: stringConstantName))
-                            variables.append((variableName, subClassType))
+                            variables.append((variableName, "[\(subClassType)]"))
                         }
 
                     } else {
