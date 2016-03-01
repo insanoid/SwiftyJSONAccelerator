@@ -122,6 +122,8 @@ public class ModelGenerator {
 
         if let object = parsedJSONObject.dictionary {
 
+            var variables: [(String, String)] = []
+
             for (key, jsonValue) in object {
 
                 let variableName: String = variableNameBuilder(key)
@@ -148,12 +150,14 @@ public class ModelGenerator {
                             initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForObjectArray(variableName, className: subClassName, key: stringConstantName))
                             decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: "[\(subClassName)]"))
                             description = description.stringByAppendingFormat("%@\n", descriptionForObjectArray(variableName, key: stringConstantName))
+                            variables.append((variableName, "[\(subClassName)]"))
                         } else {
                             // If it is anything other than an object, it should be a primitive type hence deal with it accordingly.
                             declarations = declarations.stringByAppendingFormat(variableDeclarationBuilder(variableName, type: "[\(subClassType)]"))
                             initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForPrimitiveVariableArray(variableName, key: stringConstantName, type: subClassType))
                             decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: "[\(subClassType)]"))
                             description = description.stringByAppendingFormat("%@\n", descriptionForPrimitiveVariableArray(variableName, key: stringConstantName))
+                            variables.append((variableName, "[\(subClassType)]"))
                         }
 
                     } else {
@@ -172,6 +176,7 @@ public class ModelGenerator {
                     initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForObject(variableName, className: subClassName, key: stringConstantName))
                     decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: subClassName))
                     description = description.stringByAppendingFormat("%@\n", descriptionForObjectVariableArray(variableName, key: stringConstantName))
+                    variables.append((variableName, subClassName))
 
                 } else {
                     // If it is a primitive then simply create initalizers, declarations and decoders.
@@ -179,11 +184,14 @@ public class ModelGenerator {
                     initalizers = initalizers.stringByAppendingFormat("%@\n", initalizerForVariable(variableName, type: variableType, key: stringConstantName))
                     decoders = decoders.stringByAppendingFormat("%@\n", decoderForVariable(variableName,key: stringConstantName, type: variableType))
                     description = description.stringByAppendingFormat("%@\n", descriptionForVariable(variableName, key: stringConstantName, type: variableType))
+                    variables.append((variableName, variableType))
                 }
 
                 //ObjectMapper is generic for all
                 objectMapperMappings = objectMapperMappings.stringByAppendingFormat("%@\n", mappingForObjectMapper(variableName, key:stringConstantName))
             }
+
+            let constructor = self.constructorDeclarationBuilder(variables)
 
             // Get an instance of the template.
             var content: String = templateContent()
@@ -194,6 +202,7 @@ public class ModelGenerator {
             content = content.stringByReplacingOccurrencesOfString("{OBJECT_KIND}", withString: type!)
             content = content.stringByReplacingOccurrencesOfString("{STRING_CONSTANT_BLOCK}", withString: stringConstants)
             content = content.stringByReplacingOccurrencesOfString("{PROPERTIES}", withString: declarations)
+            content = content.stringByReplacingOccurrencesOfString("{CONSTRUCTOR}", withString: constructor)
 
             if self.supportNSCoding! {
                 if let nscodingBase = try? String(contentsOfFile: NSBundle.mainBundle().pathForResource("NSCodingTemplate", ofType: "txt")!) {
@@ -322,7 +331,7 @@ public class ModelGenerator {
         variableName = variableName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         var finalVariableName: String = ""
         for (index, element) in variableName.componentsSeparatedByString(" ").enumerate() {
-            var component: String = element
+            var component: String = element.lowercaseString
             if index != 0 {
                 component.replaceRange(component.startIndex...component.startIndex, with: String(component[component.startIndex]).uppercaseString)
             } else {
@@ -332,7 +341,6 @@ public class ModelGenerator {
             finalVariableName.appendContentsOf(component)
         }
         return finalVariableName
-
     }
 
     /**
@@ -372,10 +380,22 @@ public class ModelGenerator {
      */
     internal func variableDeclarationBuilder(variableName: String, type: String) -> String {
         if type == VariableType.kBoolType {
-            return "\tpublic var \(variableName): \(type) = false\n"
+            return "\tpublic let \(variableName): \(type) = false\n"
         }
 
-        return "\tpublic var \(variableName): \(type)?\n"
+        return "\tpublic let \(variableName): \(type)?\n"
+    }
+
+    internal func constructorDeclarationBuilder(variableList: [(String, String)]) -> String {
+        var paramList: String = ""
+        var body = ""
+        for variable in variableList {
+            paramList.appendContentsOf("\(variable.0): \(variable.1), ")
+            body.appendContentsOf("\t\tself.\(variable.0) = \(variable.0)\n")
+        }
+        paramList = paramList.substringToIndex(paramList.endIndex.predecessor().predecessor())
+
+        return "\tinit(\(paramList)) {\n\(body)\t}\n"
     }
 
     //MARK: ObjectMapper Initalizer
