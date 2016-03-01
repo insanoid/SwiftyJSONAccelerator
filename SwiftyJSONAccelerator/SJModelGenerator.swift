@@ -122,11 +122,15 @@ public class ModelGenerator {
 
         if let object = parsedJSONObject.dictionary {
 
+            var variables: [(String, String)] = []
+
             for (key, jsonValue) in object {
 
                 let variableName: String = variableNameBuilder(key)
                 let stringConstantName: String = variableNameKeyBuilder(className, variableName: variableName)
                 let variableType: String = checkType(jsonValue)
+
+                variables.append((variableName, variableType))
 
                 // The key declaration and the encoder is same for all kinds of objects.
                 stringConstants = stringConstants.stringByAppendingFormat(stringConstantDeclrationBuilder(stringConstantName, key: key))
@@ -185,6 +189,8 @@ public class ModelGenerator {
                 objectMapperMappings = objectMapperMappings.stringByAppendingFormat("%@\n", mappingForObjectMapper(variableName, key:stringConstantName))
             }
 
+            let constructor = self.constructorDeclarationBuilder(variables)
+
             // Get an instance of the template.
             var content: String = templateContent()
 
@@ -194,6 +200,7 @@ public class ModelGenerator {
             content = content.stringByReplacingOccurrencesOfString("{OBJECT_KIND}", withString: type!)
             content = content.stringByReplacingOccurrencesOfString("{STRING_CONSTANT_BLOCK}", withString: stringConstants)
             content = content.stringByReplacingOccurrencesOfString("{PROPERTIES}", withString: declarations)
+            content = content.stringByReplacingOccurrencesOfString("{CONSTRUCTOR}", withString: constructor)
 
             if self.supportNSCoding! {
                 if let nscodingBase = try? String(contentsOfFile: NSBundle.mainBundle().pathForResource("NSCodingTemplate", ofType: "txt")!) {
@@ -322,7 +329,7 @@ public class ModelGenerator {
         variableName = variableName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         var finalVariableName: String = ""
         for (index, element) in variableName.componentsSeparatedByString(" ").enumerate() {
-            var component: String = element
+            var component: String = element.lowercaseString
             if index != 0 {
                 component.replaceRange(component.startIndex...component.startIndex, with: String(component[component.startIndex]).uppercaseString)
             } else {
@@ -332,7 +339,6 @@ public class ModelGenerator {
             finalVariableName.appendContentsOf(component)
         }
         return finalVariableName
-
     }
 
     /**
@@ -372,10 +378,22 @@ public class ModelGenerator {
      */
     internal func variableDeclarationBuilder(variableName: String, type: String) -> String {
         if type == VariableType.kBoolType {
-            return "\tpublic var \(variableName): \(type) = false\n"
+            return "\tpublic let \(variableName): \(type) = false\n"
         }
 
-        return "\tpublic var \(variableName): \(type)?\n"
+        return "\tpublic let \(variableName): \(type)?\n"
+    }
+
+    internal func constructorDeclarationBuilder(variableList: [(String, String)]) -> String {
+        var paramList: String = ""
+        var body = ""
+        for variable in variableList {
+            paramList.appendContentsOf("\(variable.0): \(variable.1), ")
+            body.appendContentsOf("\t\tself.\(variable.0) = \(variable.0)\n")
+        }
+        paramList = paramList.substringToIndex(paramList.endIndex.predecessor())
+
+        return "\tinit(\(paramList)) {\n\(body)\t}\n"
     }
 
     //MARK: ObjectMapper Initalizer
