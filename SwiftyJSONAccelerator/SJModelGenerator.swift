@@ -387,7 +387,7 @@ public class ModelGenerator {
     - returns: A single line mapping for the variable
     */
     internal func mappingForObjectMapper(variableName: String, key: String) -> String {
-        return "\t\t\(variableName) <- map[\"\(key)\"]"
+        return "\t\t\(variableName) <- map[\(key)]"
     }
 
     //MARK: SwiftyJSON Initalizer
