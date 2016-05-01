@@ -197,7 +197,7 @@ public class ModelGenerator {
 
             if self.supportNSCoding! {
                 if let nscodingBase = try? String(contentsOfFile: NSBundle.mainBundle().pathForResource("NSCodingTemplate", ofType: "txt")!) {
-                    content = content.stringByReplacingOccurrencesOfString("{NSCODING_PROTOCOL_SUPPORT}", withString: ", NSCoding, NSObject")
+                    content = content.stringByReplacingOccurrencesOfString("{NSCODING_PROTOCOL_SUPPORT}", withString: ", NSCoding")
                     content = content.stringByReplacingOccurrencesOfString("{NSCODING_SUPPORT}", withString: nscodingBase)
 
                     content = content.stringByReplacingOccurrencesOfString("{ENCODERS}", withString: encoders)
