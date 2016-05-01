@@ -9,7 +9,7 @@ import Foundation{INCLUDE_SWIFTY}{INCLUDE_OBJECT_MAPPER}
 
 public {OBJECT_KIND} {OBJECT_NAME}: {OBJECT_BASE_CLASS}{NSCODING_PROTOCOL_SUPPORT} {
 
-    // MARK: Declaration for string constants to be used to decode and also serialize.
+    // MARK: Declaration for string constants to be used to decode and also serialise.
 {STRING_CONSTANT_BLOCK}
 
     // MARK: Properties
