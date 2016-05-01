@@ -53,9 +53,8 @@ extension NSTextView {
         }
 
         postsFrameChangedNotifications = true
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "lnv_framDidChange:", name: NSViewFrameDidChangeNotification, object: self)
-
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "lnv_textDidChange:", name: NSTextDidChangeNotification, object: self)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NSTextView.lnv_framDidChange(_:)), name: NSViewFrameDidChangeNotification, object: self)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NSTextView.lnv_textDidChange(_:)), name: NSTextDidChangeNotification, object: self)
     }
 
     func lnv_framDidChange(notification: NSNotification) {
@@ -141,12 +140,12 @@ class LineNumberRulerView: NSRulerView {
                         }
 
                         // Move to next glyph line
-                        glyphLineCount++
+                        glyphLineCount += 1
                         glyphIndexForGlyphLine = NSMaxRange(effectiveRange)
                     }
 
                     glyphIndexForStringLine = NSMaxRange(glyphRangeForStringLine)
-                    lineNumber++
+                    lineNumber += 1
                 }
 
                 // Draw line number for the extra line at the end of the text

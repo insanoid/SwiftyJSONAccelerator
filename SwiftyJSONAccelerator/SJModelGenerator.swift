@@ -318,7 +318,7 @@ public class ModelGenerator {
      - returns: A generated string representation of the variable name.
      */
     internal func variableNameBuilder(variableName: String) -> String {
-        var variableName = replaceInternalKeywordsForVariableName(variableName).stringByReplacingOccurrencesOfString("_", withString: " ")
+        var variableName = replaceSeperatorsWithSpace(replaceInternalKeywordsForVariableName(variableName))
         variableName = variableName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         var finalVariableName: String = ""
         for (index, element) in variableName.componentsSeparatedByString(" ").enumerate() {
@@ -336,6 +336,13 @@ public class ModelGenerator {
     }
 
     /**
+     Replaces the seperator characters between words with space.
+     */
+    internal func replaceSeperatorsWithSpace(variableName: String) -> String {
+        return variableName.stringByReplacingOccurrencesOfString("_", withString: " ").stringByReplacingOccurrencesOfString("-", withString: " ")
+    }
+
+    /**
      Generate a variable name to store the key of the variable in the JSON for later use (generating JSON file, encoding and decoding). the format is k{ClassName}{VariableName}Key.
 
      - parameter className:    Name of the class where this variable is.  (Already formatted)
@@ -343,9 +350,10 @@ public class ModelGenerator {
 
      - returns: A generated string that can be used to store the key of the variable in the JSON.
      */
-    internal func variableNameKeyBuilder(className: String, var variableName: String) -> String {
-        variableName.replaceRange(variableName.startIndex...variableName.startIndex, with: String(variableName[variableName.startIndex]).uppercaseString)
-        return "k\(className)\(variableName)Key"
+    internal func variableNameKeyBuilder(className: String, variableName: String) -> String {
+        var _variableName = variableName
+        _variableName.replaceRange(variableName.startIndex...variableName.startIndex, with: String(variableName[variableName.startIndex]).uppercaseString)
+        return "k\(className)\(_variableName)Key"
     }
 
     /**
@@ -445,9 +453,9 @@ public class ModelGenerator {
      - parameter key:          Key against which the value is stored.
      - returns: A single line declaration of the variable which is an array of primitive kind.
      */
-    internal func initalizerForPrimitiveVariableArray(variableName: String, key: String, var type: String) -> String {
-        type = typeToSwiftType(type)
-        return  "\t\t\(variableName) = []\n\t\tif let items = json[\(key)].array {\n\t\t\tfor item in items {\n\t\t\t\tif let tempValue = item.\(type) {\n\t\t\t\t\(variableName)?.append(tempValue)\n\t\t\t\t}\n\t\t\t}\n\t\t} else {\n\t\t\t\(variableName) = nil\n\t\t}"
+    internal func initalizerForPrimitiveVariableArray(variableName: String, key: String, type: String) -> String {
+        let _type = typeToSwiftType(type)
+        return  "\t\t\(variableName) = []\n\t\tif let items = json[\(key)].array {\n\t\t\tfor item in items {\n\t\t\t\tif let tempValue = item.\(_type) {\n\t\t\t\t\(variableName)?.append(tempValue)\n\t\t\t\t}\n\t\t\t}\n\t\t} else {\n\t\t\t\(variableName) = nil\n\t\t}"
     }
 
     //MARK: Encoders and Decoder Generators
@@ -648,9 +656,10 @@ public class ModelGenerator {
      - parameter type: VariableType
      - returns: swift variable type.
      */
-    internal func typeToSwiftType(var type: String) -> String {
-        type.replaceRange(type.startIndex...type.startIndex, with: String(type[type.startIndex]).lowercaseString)
-        return type
+    internal func typeToSwiftType(type: String) -> String {
+        var _type = type
+        _type.replaceRange(type.startIndex...type.startIndex, with: String(type[type.startIndex]).lowercaseString)
+        return _type
     }
 
 
