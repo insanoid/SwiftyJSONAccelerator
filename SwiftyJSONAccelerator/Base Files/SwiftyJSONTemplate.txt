@@ -1,17 +1,17 @@
-    // MARK: SwiftyJSON Initialisers
+    // MARK: SwiftyJSON Initalizers
     /**
-    Initiates the class based on the object
+    Initates the class based on the object
     - parameter object: The object of either Dictionary or Array kind that was passed.
-    - returns: An initialised instance of the class.
+    - returns: An initalized instance of the class.
     */
     convenience public init(object: AnyObject) {
         self.init(json: JSON(object))
     }
 
     /**
-    Initiates the class based on the JSON that was passed.
+    Initates the class based on the JSON that was passed.
     - parameter json: JSON object from SwiftyJSON.
-    - returns: An initialised instance of the class.
+    - returns: An initalized instance of the class.
     */
     public init(json: JSON) {
 {INITALIZER}
