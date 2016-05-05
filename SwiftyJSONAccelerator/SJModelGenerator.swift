@@ -343,8 +343,9 @@ public class ModelGenerator {
 
      - returns: A generated string that can be used to store the key of the variable in the JSON.
      */
-    internal func variableNameKeyBuilder(className: String, var variableName: String) -> String {
-        variableName.replaceRange(variableName.startIndex...variableName.startIndex, with: String(variableName[variableName.startIndex]).uppercaseString)
+    internal func variableNameKeyBuilder(className: String, variableName: String) -> String {
+        var varName = variableName
+        varName.replaceRange(variableName.startIndex...variableName.startIndex, with: String(variableName[variableName.startIndex]).uppercaseString)
         return "k\(className)\(variableName)Key"
     }
 
@@ -445,8 +446,8 @@ public class ModelGenerator {
      - parameter key:          Key against which the value is stored.
      - returns: A single line declaration of the variable which is an array of primitive kind.
      */
-    internal func initalizerForPrimitiveVariableArray(variableName: String, key: String, var type: String) -> String {
-        type = typeToSwiftType(type)
+    internal func initalizerForPrimitiveVariableArray(variableName: String, key: String, type: String) -> String {
+        let type = typeToSwiftType(type)
         return  "\t\t\(variableName) = []\n\t\tif let items = json[\(key)].array {\n\t\t\tfor item in items {\n\t\t\t\tif let tempValue = item.\(type) {\n\t\t\t\t\(variableName)?.append(tempValue)\n\t\t\t\t}\n\t\t\t}\n\t\t} else {\n\t\t\t\(variableName) = nil\n\t\t}"
     }
 
@@ -648,7 +649,8 @@ public class ModelGenerator {
      - parameter type: VariableType
      - returns: swift variable type.
      */
-    internal func typeToSwiftType(var type: String) -> String {
+    internal func typeToSwiftType( type: String) -> String {
+        var type = type
         type.replaceRange(type.startIndex...type.startIndex, with: String(type[type.startIndex]).lowercaseString)
         return type
     }
