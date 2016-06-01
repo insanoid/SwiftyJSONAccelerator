@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -678,7 +678,6 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="Fsx-eV-1MY"/>
                                 </constraints>
-                                <animations/>
                                 <buttonCell key="cell" type="push" title="Generate Models" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lfq-UD-8WD">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -696,29 +695,24 @@
                                         <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="fWl-7Q-Cq6" customClass="SJTextView" customModule="SwiftyJSONAccelerator" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="715" height="461"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <animations/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="715" height="461"/>
+                                            <size key="minSize" width="700" height="461"/>
                                             <size key="maxSize" width="717" height="10000000"/>
                                             <color key="insertionPointColor" name="controlLightHighlightColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="715" height="461"/>
+                                            <size key="minSize" width="700" height="461"/>
                                             <size key="maxSize" width="717" height="10000000"/>
                                         </textView>
                                     </subviews>
-                                    <animations/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </clipView>
-                                <animations/>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="JkI-yr-4gs">
                                     <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="9fh-RH-upi">
-                                    <rect key="frame" x="700" y="1" width="16" height="461"/>
+                                    <rect key="frame" x="701" y="1" width="15" height="461"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
                                 </scroller>
                             </scrollView>
                             <imageView translatesAutoresizingMaskIntoConstraints="NO" id="PJA-AP-s5I">
@@ -727,7 +721,6 @@
                                     <constraint firstAttribute="height" constant="20" id="48s-vB-xta"/>
                                     <constraint firstAttribute="width" constant="20" id="t6S-fb-bjE"/>
                                 </constraints>
-                                <animations/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="failure" id="CKF-pW-DBY"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GbJ-FJ-Uuc">
@@ -735,7 +728,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="WGF-kR-SB9"/>
                                 </constraints>
-                                <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="j5n-yT-9hg">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -744,7 +736,6 @@
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aJ1-yn-Pl7">
                                 <rect key="frame" x="13" y="184" width="692" height="22"/>
-                                <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="BaseClass" placeholderString="Base Class Name" bezelStyle="round" id="vuP-t4-ep6">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -753,7 +744,6 @@
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b3c-Wz-v36">
                                 <rect key="frame" x="13" y="160" width="692" height="22"/>
-                                <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Class Prefix (For example, NS)" bezelStyle="round" id="N8s-m9-cf7">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -762,7 +752,6 @@
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sNu-7Z-F06">
                                 <rect key="frame" x="13" y="136" width="692" height="22"/>
-                                <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Company name" bezelStyle="round" id="76e-Gm-0jI">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -771,7 +760,6 @@
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mJg-3P-2Aw">
                                 <rect key="frame" x="13" y="112" width="692" height="22"/>
-                                <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Author name" bezelStyle="round" id="jUe-0u-QLL">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -780,7 +768,6 @@
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="uZa-9r-6Xo">
                                 <rect key="frame" x="41" y="48" width="265" height="18"/>
-                                <animations/>
                                 <buttonCell key="cell" type="check" title="Add &quot;import SwiftyJSON&quot; in the models." bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="tJK-cs-wrm">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -788,7 +775,6 @@
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="cd4-4Z-P4h">
                                 <rect key="frame" x="13" y="68" width="240" height="18"/>
-                                <animations/>
                                 <buttonCell key="cell" type="check" title="Support importing from SwiftyJSON" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="JTr-D4-Ydb">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -799,7 +785,6 @@
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="or1-PD-m0L">
                                 <rect key="frame" x="13" y="88" width="265" height="18"/>
-                                <animations/>
                                 <buttonCell key="cell" type="check" title="Support NSCoding" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="YUy-wn-qL0">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -807,7 +792,6 @@
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="DfN-HB-jLF">
                                 <rect key="frame" x="41" y="8" width="280" height="18"/>
-                                <animations/>
                                 <buttonCell key="cell" type="check" title="Add &quot;import ObjectMapper&quot; in the models." bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="LOO-Pz-Jiw">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -815,7 +799,6 @@
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Cqf-Zq-qhb">
                                 <rect key="frame" x="13" y="28" width="230" height="18"/>
-                                <animations/>
                                 <buttonCell key="cell" type="check" title="Support Hearst-DD/ObjectMapper" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="vuk-4k-MY7">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -863,7 +846,6 @@
                             <constraint firstItem="b3c-Wz-v36" firstAttribute="top" secondItem="aJ1-yn-Pl7" secondAttribute="bottom" constant="2" id="jIg-Xp-GaU"/>
                             <constraint firstItem="mJg-3P-2Aw" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="13" id="n4f-7b-FZR"/>
                         </constraints>
-                        <animations/>
                     </view>
                     <connections>
                         <outlet property="authorNameTextField" destination="mJg-3P-2Aw" id="qjd-9O-kYI"/>
