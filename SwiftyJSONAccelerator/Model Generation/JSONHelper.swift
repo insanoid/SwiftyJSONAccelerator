@@ -88,4 +88,25 @@ public class JSONHelper {
         }
     }
 
+    /**
+     Reduces an array of JSON to a single JSON with all possible keys.
+
+     - returns: Reduced JSON with the common key/value pairs.
+     */
+    class func reduce(items: [JSON]) -> JSON {
+
+        return items.reduce([:]) { (source, item) -> JSON in
+            var finalObject: JSON = source
+            for (key, jsonValue) in item {
+                if let newValue = jsonValue.dictionary {
+                    finalObject[key] = reduce([JSON(newValue), finalObject[key]])
+                } else if let newValue = jsonValue.array {
+                    finalObject[key] = JSON([reduce(newValue + finalObject[key].arrayValue)])
+                } else {
+                    finalObject[key] = jsonValue
+                }
+            }
+            return finalObject
+        }
+    }
 }

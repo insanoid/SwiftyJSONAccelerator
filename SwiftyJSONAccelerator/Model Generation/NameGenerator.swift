@@ -73,4 +73,10 @@ struct NameGenerator {
         return currentName
     }
 
+    // MARK: -
+
+    static func variableKey(className: String, _ variableName: String) -> String {
+        var _variableName = variableName
+        return "k\(className)\(_variableName.uppercaseFirst())Key"
+    }
 }

@@ -112,19 +112,19 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
             let objectMapperState = self.includeObjectMapperCheckbox?.state == 1 ? true : false
             let supportObjectMapperState = self.supportObjectMapperCheckbox?.state == 1 ? true : false
 
-            let generator: ModelGenerator = ModelGenerator.init(baseContent: JSON(object!), baseClassName: baseClassTextField.stringValue, filePath: filePath!)
-
-            generator.prefix = prefixClassTextField.stringValue
-            generator.authorName = authorNameTextField.stringValue
-            generator.companyName = companyNameTextField.stringValue
-            generator.type = ModelType.kClassType
-            generator.supportSwiftyJSON = supportSwiftyState
-            generator.includeSwiftyJSON = swiftyState
-            generator.supportObjectMapper = supportObjectMapperState
-            generator.includeObjectMapper = objectMapperState
-            generator.supportNSCoding = nscodingState
-
-            generator.generate()
+//            let generator: ModelGenerator = ModelGenerator.init(baseContent: JSON(object!), baseClassName: baseClassTextField.stringValue, filePath: filePath!)
+//
+//            generator.prefix = prefixClassTextField.stringValue
+//            generator.authorName = authorNameTextField.stringValue
+//            generator.companyName = companyNameTextField.stringValue
+//            generator.type = ModelType.kClassType
+//            generator.supportSwiftyJSON = supportSwiftyState
+//            generator.includeSwiftyJSON = swiftyState
+//            generator.supportObjectMapper = supportObjectMapperState
+//            generator.includeObjectMapper = objectMapperState
+//            generator.supportNSCoding = nscodingState
+//
+//            generator.generate()
         } else {
             let alert:NSAlert = NSAlert()
             alert.messageText = "Unable to save the file check the content."
