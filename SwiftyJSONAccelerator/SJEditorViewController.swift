@@ -170,16 +170,16 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         var lineNumber = 0
         var characterPosition = 0
         for line in string.componentsSeparatedByString("\n") {
-            lineNumber++
+            lineNumber += 1
             var columnNumber = 0
             for column in line.characters {
-                characterPosition++
-                columnNumber++
+                characterPosition += 1
+                columnNumber += 1
                 if characterPosition == position {
                     return (String(column), lineNumber, columnNumber )
                 }
             }
-            characterPosition++
+            characterPosition += 1
             if characterPosition == position {
                 return ("\n", lineNumber, columnNumber+1 )
             }
