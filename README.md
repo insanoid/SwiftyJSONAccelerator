@@ -1,8 +1,8 @@
 # SwiftyJSONAccelerator
 
-**(Alpha v0.0.5)**
+**(Alpha v0.0.6)**
 
-[Download the .app (v0.0.5)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v0.0.5/SwiftyJSONAccelerator.zip)
+[Download the .app (v0.0.5)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v0.0.6/SwiftyJSONAccelerator.zip)
 
 ![Logo](https://raw.githubusercontent.com/insanoid/SwiftyJSONAccelerator/master/SwiftyJSONAccelerator/Assets.xcassets/AppIcon.appiconset/Icon_32x32%402x.png)
 
@@ -39,5 +39,4 @@ Currently, the pattern is very similar to its Objective-C counterpart. It genera
 - Create a Xcode plugin and a command line executor.
 
 ---
-
-This is one of my very first Swift projects, since I am used to developing models from JSON based APIs in Objective-C and there was no free tool to do this in Swift I created this (with ample inspiration from [SwiftJSON](https://github.com/swiftjson/SwiftJson) and [JSONAccelerator](http://nerdery.com/json-accelerator)). Any suggestions regarding code quality of the app, generated code's quaility, Swift related improvements and pull requests are all very welcome.
+Any suggestions regarding code quality of the app, generated code's quaility, Swift related improvements and pull requests are all very welcome.
