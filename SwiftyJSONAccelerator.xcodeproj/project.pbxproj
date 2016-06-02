@@ -13,6 +13,7 @@
 		9341A1521BD6E9EC0048CE2C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A14B1BD6E6300048CE2C /* SwiftyJSON.swift */; };
 		9361FD141BD18558001ED533 /* LineNumberRulerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9361FD131BD18558001ED533 /* LineNumberRulerView.swift */; };
 		9362F8661BD07DBA0001372E /* JSONHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9362F8651BD07DBA0001372E /* JSONHelperTests.swift */; };
+		9395707B1D008A860039453D /* ModelFileComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9395707A1D008A860039453D /* ModelFileComponent.swift */; };
 		93CDE7721BD1A00B00B5B234 /* SJTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CDE7711BD1A00B00B5B234 /* SJTextView.swift */; };
 		93E91B0D1CFF2DFF00ECA2A6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E91B0C1CFF2DFF00ECA2A6 /* Constants.swift */; };
 		93F1592C1CFF826900175636 /* ModelGenerationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1592B1CFF826900175636 /* ModelGenerationConfiguration.swift */; };
@@ -51,6 +52,7 @@
 		9341A14E1BD6E7290048CE2C /* BaseTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BaseTemplate.txt; sourceTree = "<group>"; };
 		9361FD131BD18558001ED533 /* LineNumberRulerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineNumberRulerView.swift; sourceTree = "<group>"; };
 		9362F8651BD07DBA0001372E /* JSONHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHelperTests.swift; sourceTree = "<group>"; };
+		9395707A1D008A860039453D /* ModelFileComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFileComponent.swift; sourceTree = "<group>"; };
 		93CDE7711BD1A00B00B5B234 /* SJTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJTextView.swift; sourceTree = "<group>"; };
 		93E91B0C1CFF2DFF00ECA2A6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Constants.swift; sourceTree = "<group>"; };
 		93F1592B1CFF826900175636 /* ModelGenerationConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelGenerationConfiguration.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				93F1592D1CFF830400175636 /* ModelMappingLibraryResult.swift */,
 				93F1593D1CFF969900175636 /* SwiftyJSONModelFile.swift */,
 				93F1593F1CFF96E700175636 /* ObjectMapperModelFile.swift */,
+				9395707A1D008A860039453D /* ModelFileComponent.swift */,
 			);
 			name = Models;
 			path = "Model Generation/Models";
@@ -321,6 +324,7 @@
 				9361FD141BD18558001ED533 /* LineNumberRulerView.swift in Sources */,
 				9341A14C1BD6E6300048CE2C /* SwiftyJSON.swift in Sources */,
 				93F159301CFF832100175636 /* ModelFile.swift in Sources */,
+				9395707B1D008A860039453D /* ModelFileComponent.swift in Sources */,
 				93F159361CFF83A800175636 /* String+Helpers.swift in Sources */,
 				93F1592E1CFF830400175636 /* ModelMappingLibraryResult.swift in Sources */,
 				93F174431BD0707D007E7DFC /* AppDelegate.swift in Sources */,

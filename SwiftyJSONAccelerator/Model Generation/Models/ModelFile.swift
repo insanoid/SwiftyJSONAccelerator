@@ -14,16 +14,11 @@ import Foundation
 protocol ModelFile {
 
     /// Filename for the model.
-    var fileName: String { get set }
-    var type: ConstructType { get set }
-    var declarations: [String] { get }
-    var stringConstants: [String] { get }
-    var initialisers: [String] { get }
-    var encoders: [String] { get }
-    var decoders: [String] { get }
-    var description: [String] { get }
+    var fileName: String { get }
+    var type: ConstructType { get }
+    var component: ModelComponent { get }
 
-    init(fileName: String, _ configuration: ModelGenerationConfiguration)
+    mutating func setInfo(fileName: String, _ configuration: ModelGenerationConfiguration)
 
     func addStringConstant(constantName: String, _ value: String)
     func addEncoder(name: String, _ type: String, _ constantName: String)
@@ -34,14 +29,30 @@ protocol ModelFile {
     func addDeclaration(name: String, _ type: String, _ constantName: String)
 
     func addBasicInfo(name: String, _ type: String, _ constantName: String)
-    /*
-     currentModel.addInitialiser(variableName, name!, stringConstantName)
-     currentModel.addDescription(variableName, name!, stringConstantName)
-     currentModel.addDecoder(variableName, name!, stringConstantName)
-     currentModel.addDescription(variableName, name!, stringConstantName)
-     * */
+    func addPrimitiveArrayInfo(name: String, _ type: String, _ constantName: String)
+    func addObjectArrayInfo(name: String, _ type: String, _ constantName: String)
+    func addEmptyArray(name: String, _ type: String, _ constantName: String)
+    func addEmptyArrayInfo(name: String, _ type: String, _ constantName: String)
 
     func generateModel() -> String
     func moduleName() -> String
 
+}
+
+struct ModelComponent {
+    var declarations: [String]
+    var stringConstants: [String]
+    var initialisers: [String]
+    var encoders: [String]
+    var decoders: [String]
+    var description: [String]
+
+    init() {
+        declarations = []
+        stringConstants = []
+        initialisers = []
+        encoders = []
+        decoders = []
+        description = []
+    }
 }

@@ -50,7 +50,7 @@ public struct ModelGenerator {
     func generateModelForJSON(object: JSON, _ defaultClassName: String, _ isTopLevelObject: Bool) -> [ModelFile] {
 
         let className = NameGenerator.fixClassName(defaultClassName, self.configuration.prefix, isTopLevelObject)
-        let modelFiles: [ModelFile] = []
+        var modelFiles: [ModelFile] = []
 
         // Incase the object was NOT a dictionary. (this would only happen in case of the top level
         // object, since internal objects are handled within the function and do not pass an array here)
@@ -61,15 +61,22 @@ public struct ModelGenerator {
             if subClassType == .Object {
                 return self.generateModelForJSON(JSONHelper.reduce(rootObject), className, isTopLevelObject)
             }
-        } else if let rootObject = object.dictionary {
+        }
+
+        if let rootObject = object.dictionary {
+
+            // A model file to store the current model.
             var currentModel: ModelFile
             switch configuration.modelMappingLibrary {
             case .ObjectMapper:
                 currentModel = ObjectMapperModelFile()
-            case .ObjectMapper:
+            case .SwiftyJSON:
                 currentModel = SwiftyJSONModelFile()
             }
+
             for (key, value) in rootObject {
+
+                /// basic information, name, type and the constant to store the key.
                 let variableName = NameGenerator.fixVariableName(key)
                 let variableType = value.detailedValueType()
                 let stringConstantName = NameGenerator.variableKey(className, variableName)
@@ -78,25 +85,22 @@ public struct ModelGenerator {
                     currentModel.addStringConstant(stringConstantName, key)
                     currentModel.addEncoder(variableName, variableType.rawValue, stringConstantName)
                 }
-
                 switch variableType {
                 case .Array:
                     if value.arrayValue.count <= 0 {
-                        // TODO: Empty Array
+                        currentModel.addEmptyArrayInfo(variableName, VariableType.Array.rawValue, stringConstantName)
                     } else {
-
-                        var subClassType = value.arrayValue.first!.detailedValueType()
+                        let subClassType = value.arrayValue.first!.detailedValueType()
                         if subClassType == .Object {
                             let models = generateModelForJSON(JSONHelper.reduce(value.arrayValue), variableName, false)
+                            modelFiles = modelFiles + models
                             let model = models.first
-                            subClassType = model?.fileName
-                            currentModel.addBasicInfo(variableName, "[\(subClassType)]", stringConstantName)
+                            let classname = model?.fileName
+                            currentModel.addObjectArrayInfo(variableName, classname!, stringConstantName)
                         } else {
-                            currentModel.addBasicInfo(variableName, "[\(subClassType)]", stringConstantName)
+                            currentModel.addPrimitiveArrayInfo(variableName, subClassType.rawValue, stringConstantName)
                         }
-
                     }
-
                     break;
                 case .Object:
                     let models = generateModelForJSON(value, variableName, false)
@@ -108,6 +112,8 @@ public struct ModelGenerator {
                 }
 
             }
+
+            modelFiles = [currentModel] + modelFiles
         }
 
         // at the end we return the collection of files.

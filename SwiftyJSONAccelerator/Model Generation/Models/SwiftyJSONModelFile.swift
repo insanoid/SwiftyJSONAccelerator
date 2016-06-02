@@ -10,4 +10,28 @@ import Foundation
 
 struct SwiftyJSONModelFile: ModelFile {
 
+    /// Filename for the model.
+    var fileName: String
+    var type: ConstructType
+    var component: ModelComponent
+
+    init() {
+        self.fileName = ""
+        type = ConstructType.StructType
+        component = ModelComponent.init()
+    }
+
+    mutating func setInfo(fileName: String, _ configuration: ModelGenerationConfiguration) {
+        self.fileName = fileName
+        type = configuration.constructType
+    }
+
+    func generateModel() -> String {
+        return ""
+
+    }
+    func moduleName() -> String {
+        return "SwiftyJSON"
+    }
+
 }
