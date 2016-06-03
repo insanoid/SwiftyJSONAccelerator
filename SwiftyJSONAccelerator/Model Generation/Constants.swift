@@ -20,13 +20,13 @@ import Foundation
  - Object:       Object.
  */
 enum VariableType: String {
-    case String = "String"
-    case Int = "Int"
-    case Float = "Float"
-    case Double = "Double"
-    case Bool = "Bool"
-    case Array = "[]"
-    case Object = "{OBJ}"
+  case String = "String"
+  case Int = "Int"
+  case Float = "Float"
+  case Double = "Double"
+  case Bool = "Bool"
+  case Array = "[]"
+  case Object = "{OBJ}"
 }
 
 /**
@@ -36,8 +36,8 @@ enum VariableType: String {
  - StructType: Model with construct type struct.
  */
 enum ConstructType: String {
-    case ClassType = "class"
-    case StructType = "struct"
+  case ClassType = "class"
+  case StructType = "struct"
 }
 
 /**
@@ -47,6 +47,6 @@ enum ConstructType: String {
  - ObjectMapper: ObjectMapper - https://github.com/Hearst-DD/ObjectMapper
  */
 enum JSONMappingLibrary: String {
-    case SwiftyJSON = "SwiftyJSON"
-    case ObjectMapper = "ObjectMapper"
+  case SwiftyJSON = "SwiftyJSON"
+  case ObjectMapper = "ObjectMapper"
 }

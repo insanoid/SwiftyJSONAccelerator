@@ -7,14 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9341A14A1BD6E5FE0048CE2C /* SJModelGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A1491BD6E5FE0048CE2C /* SJModelGenerator.swift */; };
-		9341A14C1BD6E6300048CE2C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A14B1BD6E6300048CE2C /* SwiftyJSON.swift */; };
+		7981ABD599919B662249D96E /* Pods_SwiftyJSONAccelerator_SwiftyJSONAcceleratorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032C98D050F4150DA57C4025 /* Pods_SwiftyJSONAccelerator_SwiftyJSONAcceleratorTests.framework */; };
+		8D9644E2C9488A67C392529B /* Pods_SwiftyJSONAccelerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5AF74A4BC63E5BEAD3FB03 /* Pods_SwiftyJSONAccelerator.framework */; };
+		9341A14A1BD6E5FE0048CE2C /* ModelGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A1491BD6E5FE0048CE2C /* ModelGenerator.swift */; };
 		9341A14F1BD6E7290048CE2C /* BaseTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9341A14E1BD6E7290048CE2C /* BaseTemplate.txt */; };
-		9341A1521BD6E9EC0048CE2C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A14B1BD6E6300048CE2C /* SwiftyJSON.swift */; };
 		9361FD141BD18558001ED533 /* LineNumberRulerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9361FD131BD18558001ED533 /* LineNumberRulerView.swift */; };
 		9362F8661BD07DBA0001372E /* JSONHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9362F8651BD07DBA0001372E /* JSONHelperTests.swift */; };
 		9395707B1D008A860039453D /* ModelFileComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9395707A1D008A860039453D /* ModelFileComponent.swift */; };
 		93CDE7721BD1A00B00B5B234 /* SJTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CDE7711BD1A00B00B5B234 /* SJTextView.swift */; };
+		93D850D81D00D2030023D573 /* ModelGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A1491BD6E5FE0048CE2C /* ModelGenerator.swift */; };
+		93D850D91D00D2070023D573 /* NameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F159391CFF853C00175636 /* NameGenerator.swift */; };
+		93D850DB1D00D2EA0023D573 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F174421BD0707D007E7DFC /* AppDelegate.swift */; };
+		93D850DC1D00D2ED0023D573 /* SJEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F174441BD0707D007E7DFC /* SJEditorViewController.swift */; };
+		93D850DE1D00D2F00023D573 /* SJTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CDE7711BD1A00B00B5B234 /* SJTextView.swift */; };
+		93D850E01D00D2F60023D573 /* BaseTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9341A14E1BD6E7290048CE2C /* BaseTemplate.txt */; };
+		93D850E11D00D2F60023D573 /* NSCodingTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = C667011E1BDCBE1F009BA254 /* NSCodingTemplate.txt */; };
+		93D850E21D00D2F60023D573 /* ObjectMapperTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = C667011C1BDCAF23009BA254 /* ObjectMapperTemplate.txt */; };
+		93D850E31D00D2F60023D573 /* SwiftyJSONTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = C667011A1BDCABCE009BA254 /* SwiftyJSONTemplate.txt */; };
+		93D850E41D00D2FC0023D573 /* LineNumberRulerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9361FD131BD18558001ED533 /* LineNumberRulerView.swift */; };
+		93D850E61D00D3020023D573 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E91B0C1CFF2DFF00ECA2A6 /* Constants.swift */; };
+		93D850E71D00D3020023D573 /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1745F1BD070AA007E7DFC /* JSONHelper.swift */; };
+		93D850E81D00D3020023D573 /* JSON+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F159371CFF842D00175636 /* JSON+Helper.swift */; };
+		93D850E91D00D3020023D573 /* String+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F159351CFF83A800175636 /* String+Helpers.swift */; };
+		93D850EB1D00D3070023D573 /* ModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1592F1CFF832100175636 /* ModelFile.swift */; };
+		93D850EC1D00D3070023D573 /* ModelGenerationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1592B1CFF826900175636 /* ModelGenerationConfiguration.swift */; };
+		93D850ED1D00D3070023D573 /* ModelMappingLibraryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1592D1CFF830400175636 /* ModelMappingLibraryResult.swift */; };
+		93D850EE1D00D3070023D573 /* SwiftyJSONModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1593D1CFF969900175636 /* SwiftyJSONModelFile.swift */; };
+		93D850EF1D00D3070023D573 /* ObjectMapperModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1593F1CFF96E700175636 /* ObjectMapperModelFile.swift */; };
+		93D850F01D00D3070023D573 /* ModelFileComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9395707A1D008A860039453D /* ModelFileComponent.swift */; };
+		93D850F71D00D7C80023D573 /* TestJSONFile.json in Resources */ = {isa = PBXBuildFile; fileRef = 93D850F61D00D7C80023D573 /* TestJSONFile.json */; };
 		93E91B0D1CFF2DFF00ECA2A6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E91B0C1CFF2DFF00ECA2A6 /* Constants.swift */; };
 		93F1592C1CFF826900175636 /* ModelGenerationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1592B1CFF826900175636 /* ModelGenerationConfiguration.swift */; };
 		93F1592E1CFF830400175636 /* ModelMappingLibraryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1592D1CFF830400175636 /* ModelMappingLibraryResult.swift */; };
@@ -22,7 +43,7 @@
 		93F159361CFF83A800175636 /* String+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F159351CFF83A800175636 /* String+Helpers.swift */; };
 		93F159381CFF842D00175636 /* JSON+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F159371CFF842D00175636 /* JSON+Helper.swift */; };
 		93F1593A1CFF853C00175636 /* NameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F159391CFF853C00175636 /* NameGenerator.swift */; };
-		93F1593C1CFF920500175636 /* SJModelGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1593B1CFF920500175636 /* SJModelGeneratorTests.swift */; };
+		93F1593C1CFF920500175636 /* ModelGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1593B1CFF920500175636 /* ModelGeneratorTests.swift */; };
 		93F1593E1CFF969900175636 /* SwiftyJSONModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1593D1CFF969900175636 /* SwiftyJSONModelFile.swift */; };
 		93F159401CFF96E700175636 /* ObjectMapperModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1593F1CFF96E700175636 /* ObjectMapperModelFile.swift */; };
 		93F174431BD0707D007E7DFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F174421BD0707D007E7DFC /* AppDelegate.swift */; };
@@ -47,13 +68,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9341A1491BD6E5FE0048CE2C /* SJModelGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJModelGenerator.swift; sourceTree = "<group>"; };
-		9341A14B1BD6E6300048CE2C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		032C98D050F4150DA57C4025 /* Pods_SwiftyJSONAccelerator_SwiftyJSONAcceleratorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyJSONAccelerator_SwiftyJSONAcceleratorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B5AF74A4BC63E5BEAD3FB03 /* Pods_SwiftyJSONAccelerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyJSONAccelerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		673C9A475FD99A8A409AEE17 /* Pods-SwiftyJSONAccelerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyJSONAccelerator.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyJSONAccelerator/Pods-SwiftyJSONAccelerator.release.xcconfig"; sourceTree = "<group>"; };
+		9341A1491BD6E5FE0048CE2C /* ModelGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelGenerator.swift; sourceTree = "<group>"; };
 		9341A14E1BD6E7290048CE2C /* BaseTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BaseTemplate.txt; sourceTree = "<group>"; };
 		9361FD131BD18558001ED533 /* LineNumberRulerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineNumberRulerView.swift; sourceTree = "<group>"; };
 		9362F8651BD07DBA0001372E /* JSONHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHelperTests.swift; sourceTree = "<group>"; };
 		9395707A1D008A860039453D /* ModelFileComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFileComponent.swift; sourceTree = "<group>"; };
 		93CDE7711BD1A00B00B5B234 /* SJTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJTextView.swift; sourceTree = "<group>"; };
+		93D850F61D00D7C80023D573 /* TestJSONFile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestJSONFile.json; sourceTree = "<group>"; };
 		93E91B0C1CFF2DFF00ECA2A6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Constants.swift; sourceTree = "<group>"; };
 		93F1592B1CFF826900175636 /* ModelGenerationConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelGenerationConfiguration.swift; sourceTree = "<group>"; };
 		93F1592D1CFF830400175636 /* ModelMappingLibraryResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelMappingLibraryResult.swift; sourceTree = "<group>"; };
@@ -61,7 +85,7 @@
 		93F159351CFF83A800175636 /* String+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Helpers.swift"; sourceTree = "<group>"; };
 		93F159371CFF842D00175636 /* JSON+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Helper.swift"; sourceTree = "<group>"; };
 		93F159391CFF853C00175636 /* NameGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameGenerator.swift; sourceTree = "<group>"; };
-		93F1593B1CFF920500175636 /* SJModelGeneratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJModelGeneratorTests.swift; sourceTree = "<group>"; };
+		93F1593B1CFF920500175636 /* ModelGeneratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelGeneratorTests.swift; sourceTree = "<group>"; };
 		93F1593D1CFF969900175636 /* SwiftyJSONModelFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSONModelFile.swift; sourceTree = "<group>"; };
 		93F1593F1CFF96E700175636 /* ObjectMapperModelFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectMapperModelFile.swift; sourceTree = "<group>"; };
 		93F1743F1BD0707D007E7DFC /* SwiftyJSONAccelerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyJSONAccelerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,9 +98,12 @@
 		93F174541BD0707D007E7DFC /* SwiftyJSONAcceleratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSONAcceleratorTests.swift; sourceTree = "<group>"; };
 		93F174561BD0707D007E7DFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93F1745F1BD070AA007E7DFC /* JSONHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONHelper.swift; path = ../JSONHelper.swift; sourceTree = "<group>"; };
+		A3C456185972C84766AF95A2 /* Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests/Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.release.xcconfig"; sourceTree = "<group>"; };
+		BF2B430ABDD27895AF260C34 /* Pods-SwiftyJSONAccelerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyJSONAccelerator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyJSONAccelerator/Pods-SwiftyJSONAccelerator.debug.xcconfig"; sourceTree = "<group>"; };
 		C667011A1BDCABCE009BA254 /* SwiftyJSONTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftyJSONTemplate.txt; sourceTree = "<group>"; };
 		C667011C1BDCAF23009BA254 /* ObjectMapperTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ObjectMapperTemplate.txt; sourceTree = "<group>"; };
 		C667011E1BDCBE1F009BA254 /* NSCodingTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NSCodingTemplate.txt; sourceTree = "<group>"; };
+		EA6CC00BF2D74B72280DABA9 /* Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests/Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D9644E2C9488A67C392529B /* Pods_SwiftyJSONAccelerator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7981ABD599919B662249D96E /* Pods_SwiftyJSONAccelerator_SwiftyJSONAcceleratorTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				9361FD131BD18558001ED533 /* LineNumberRulerView.swift */,
-				9341A14B1BD6E6300048CE2C /* SwiftyJSON.swift */,
 			);
 			name = External;
 			path = "External Libraries";
@@ -123,7 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				93F159391CFF853C00175636 /* NameGenerator.swift */,
-				9341A1491BD6E5FE0048CE2C /* SJModelGenerator.swift */,
+				9341A1491BD6E5FE0048CE2C /* ModelGenerator.swift */,
 			);
 			path = "Model Generation";
 			sourceTree = "<group>";
@@ -139,14 +167,22 @@
 			path = "Application Interface";
 			sourceTree = "<group>";
 		};
+		93CC54171D01012D00B82ED5 /* Model Generation Libs */ = {
+			isa = PBXGroup;
+			children = (
+				93F1593D1CFF969900175636 /* SwiftyJSONModelFile.swift */,
+				93F1593F1CFF96E700175636 /* ObjectMapperModelFile.swift */,
+			);
+			name = "Model Generation Libs";
+			sourceTree = "<group>";
+		};
 		93F159311CFF835100175636 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				93F1592F1CFF832100175636 /* ModelFile.swift */,
 				93F1592B1CFF826900175636 /* ModelGenerationConfiguration.swift */,
 				93F1592D1CFF830400175636 /* ModelMappingLibraryResult.swift */,
-				93F1593D1CFF969900175636 /* SwiftyJSONModelFile.swift */,
-				93F1593F1CFF96E700175636 /* ObjectMapperModelFile.swift */,
+				93CC54171D01012D00B82ED5 /* Model Generation Libs */,
 				9395707A1D008A860039453D /* ModelFileComponent.swift */,
 			);
 			name = Models;
@@ -171,6 +207,8 @@
 				93F174401BD0707D007E7DFC /* Products */,
 				93F174411BD0707D007E7DFC /* SwiftyJSONAccelerator */,
 				93F174531BD0707D007E7DFC /* SwiftyJSONAcceleratorTests */,
+				CC8555B16DF4EA1A820C7332 /* Pods */,
+				C5C27882A6F5CFB95CF0B239 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -205,9 +243,30 @@
 				93F174561BD0707D007E7DFC /* Info.plist */,
 				9362F8651BD07DBA0001372E /* JSONHelperTests.swift */,
 				93F174541BD0707D007E7DFC /* SwiftyJSONAcceleratorTests.swift */,
-				93F1593B1CFF920500175636 /* SJModelGeneratorTests.swift */,
+				93F1593B1CFF920500175636 /* ModelGeneratorTests.swift */,
+				93D850F61D00D7C80023D573 /* TestJSONFile.json */,
 			);
 			path = SwiftyJSONAcceleratorTests;
+			sourceTree = "<group>";
+		};
+		C5C27882A6F5CFB95CF0B239 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4B5AF74A4BC63E5BEAD3FB03 /* Pods_SwiftyJSONAccelerator.framework */,
+				032C98D050F4150DA57C4025 /* Pods_SwiftyJSONAccelerator_SwiftyJSONAcceleratorTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CC8555B16DF4EA1A820C7332 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BF2B430ABDD27895AF260C34 /* Pods-SwiftyJSONAccelerator.debug.xcconfig */,
+				673C9A475FD99A8A409AEE17 /* Pods-SwiftyJSONAccelerator.release.xcconfig */,
+				EA6CC00BF2D74B72280DABA9 /* Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.debug.xcconfig */,
+				A3C456185972C84766AF95A2 /* Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,9 +276,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 93F174591BD0707D007E7DFC /* Build configuration list for PBXNativeTarget "SwiftyJSONAccelerator" */;
 			buildPhases = (
+				71E822603385253AD01BB9C3 /* [CP] Check Pods Manifest.lock */,
 				93F1743B1BD0707D007E7DFC /* Sources */,
 				93F1743C1BD0707D007E7DFC /* Frameworks */,
 				93F1743D1BD0707D007E7DFC /* Resources */,
+				8C32B5D570E7327EBE896DAB /* [CP] Embed Pods Frameworks */,
+				A0F9793B3B75DC1541E1C37F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -234,9 +296,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 93F1745C1BD0707D007E7DFC /* Build configuration list for PBXNativeTarget "SwiftyJSONAcceleratorTests" */;
 			buildPhases = (
+				F3B329287CCBE4494BFBF8B2 /* [CP] Check Pods Manifest.lock */,
 				93F1744C1BD0707D007E7DFC /* Sources */,
 				93F1744D1BD0707D007E7DFC /* Frameworks */,
 				93F1744E1BD0707D007E7DFC /* Resources */,
+				4E211CB4CE9D3FB7AB89139A /* [CP] Embed Pods Frameworks */,
+				890FBA8BA500C8EA384B1ABA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -304,10 +369,108 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93D850E31D00D2F60023D573 /* SwiftyJSONTemplate.txt in Resources */,
+				93D850F71D00D7C80023D573 /* TestJSONFile.json in Resources */,
+				93D850E01D00D2F60023D573 /* BaseTemplate.txt in Resources */,
+				93D850E21D00D2F60023D573 /* ObjectMapperTemplate.txt in Resources */,
+				93D850E11D00D2F60023D573 /* NSCodingTemplate.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4E211CB4CE9D3FB7AB89139A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests/Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		71E822603385253AD01BB9C3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		890FBA8BA500C8EA384B1ABA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests/Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8C32B5D570E7327EBE896DAB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyJSONAccelerator/Pods-SwiftyJSONAccelerator-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A0F9793B3B75DC1541E1C37F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyJSONAccelerator/Pods-SwiftyJSONAccelerator-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F3B329287CCBE4494BFBF8B2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		93F1743B1BD0707D007E7DFC /* Sources */ = {
@@ -317,12 +480,11 @@
 				93F1592C1CFF826900175636 /* ModelGenerationConfiguration.swift in Sources */,
 				93CDE7721BD1A00B00B5B234 /* SJTextView.swift in Sources */,
 				93F174601BD070AA007E7DFC /* JSONHelper.swift in Sources */,
-				9341A14A1BD6E5FE0048CE2C /* SJModelGenerator.swift in Sources */,
+				9341A14A1BD6E5FE0048CE2C /* ModelGenerator.swift in Sources */,
 				93F1593A1CFF853C00175636 /* NameGenerator.swift in Sources */,
 				93F174451BD0707D007E7DFC /* SJEditorViewController.swift in Sources */,
 				93F1593E1CFF969900175636 /* SwiftyJSONModelFile.swift in Sources */,
 				9361FD141BD18558001ED533 /* LineNumberRulerView.swift in Sources */,
-				9341A14C1BD6E6300048CE2C /* SwiftyJSON.swift in Sources */,
 				93F159301CFF832100175636 /* ModelFile.swift in Sources */,
 				9395707B1D008A860039453D /* ModelFileComponent.swift in Sources */,
 				93F159361CFF83A800175636 /* String+Helpers.swift in Sources */,
@@ -338,10 +500,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93D850D91D00D2070023D573 /* NameGenerator.swift in Sources */,
+				93D850E61D00D3020023D573 /* Constants.swift in Sources */,
 				93F174551BD0707D007E7DFC /* SwiftyJSONAcceleratorTests.swift in Sources */,
+				93D850F01D00D3070023D573 /* ModelFileComponent.swift in Sources */,
+				93D850EB1D00D3070023D573 /* ModelFile.swift in Sources */,
+				93D850E41D00D2FC0023D573 /* LineNumberRulerView.swift in Sources */,
+				93D850EF1D00D3070023D573 /* ObjectMapperModelFile.swift in Sources */,
+				93D850DC1D00D2ED0023D573 /* SJEditorViewController.swift in Sources */,
+				93D850D81D00D2030023D573 /* ModelGenerator.swift in Sources */,
+				93D850E91D00D3020023D573 /* String+Helpers.swift in Sources */,
+				93D850ED1D00D3070023D573 /* ModelMappingLibraryResult.swift in Sources */,
 				9362F8661BD07DBA0001372E /* JSONHelperTests.swift in Sources */,
-				93F1593C1CFF920500175636 /* SJModelGeneratorTests.swift in Sources */,
-				9341A1521BD6E9EC0048CE2C /* SwiftyJSON.swift in Sources */,
+				93D850DE1D00D2F00023D573 /* SJTextView.swift in Sources */,
+				93D850EC1D00D3070023D573 /* ModelGenerationConfiguration.swift in Sources */,
+				93D850DB1D00D2EA0023D573 /* AppDelegate.swift in Sources */,
+				93D850EE1D00D3070023D573 /* SwiftyJSONModelFile.swift in Sources */,
+				93D850E71D00D3020023D573 /* JSONHelper.swift in Sources */,
+				93F1593C1CFF920500175636 /* ModelGeneratorTests.swift in Sources */,
+				93D850E81D00D3020023D573 /* JSON+Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +627,7 @@
 		};
 		93F1745A1BD0707D007E7DFC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF2B430ABDD27895AF260C34 /* Pods-SwiftyJSONAccelerator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -463,6 +641,7 @@
 		};
 		93F1745B1BD0707D007E7DFC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 673C9A475FD99A8A409AEE17 /* Pods-SwiftyJSONAccelerator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -476,6 +655,7 @@
 		};
 		93F1745D1BD0707D007E7DFC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA6CC00BF2D74B72280DABA9 /* Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -489,6 +669,7 @@
 		};
 		93F1745E1BD0707D007E7DFC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3C456185972C84766AF95A2 /* Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
