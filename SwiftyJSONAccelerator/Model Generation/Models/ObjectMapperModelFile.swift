@@ -34,4 +34,17 @@ struct ObjectMapperModelFile: ModelFile {
     return "ObjectMapper"
   }
 
+  // MARK: - Generator methods.
+  mutating func addStringConstant(constantName: String, _ value: String) {
+    component.stringConstants.append(self.genStringConstant(constantName, value))
+  }
+
+  mutating func addEncoder(name: String, _ type: String, _ constantName: String) {
+    component.encoders.append(genEncoder(name, type, constantName))
+  }
+
+  mutating func addBasicInfo(name: String, _ type: String, _ constantName: String) {
+    component.initialisers.append("\(name) <- map[\(constantName)]")
+  }
+
 }

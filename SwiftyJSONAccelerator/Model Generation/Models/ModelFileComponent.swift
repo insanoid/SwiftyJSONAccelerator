@@ -10,12 +10,6 @@ import Foundation
 
 extension ModelFile {
 
-  func addStringConstant(constantName: String, _ value: String) {
-
-  }
-  func addEncoder(name: String, _ type: String, _ constantName: String) {
-
-  }
   func addDecoder(name: String, _ type: String, _ constantName: String) {
 
   }
@@ -44,4 +38,30 @@ extension ModelFile {
   func addEmptyArrayInfo(name: String, _ type: String, _ constantName: String) {
 
   }
+
+  func genStringConstant(constantName: String, _ value: String) -> String {
+    return "internal let \(constantName): String = \"\(value)\""
+  }
+
+  func genEncoder(name: String, _ type: String, _ constantName: String) -> String {
+    if type == VariableType.Bool.rawValue {
+      return "aCoder.encodeBool(\(name), forKey: \(constantName))"
+    }
+    return "aCoder.encodeObject(\(name), forKey: \(constantName))"
+  }
+
+  func genDescriptionForPrimitive(name: String, _ type: String, _ constantName: String) -> String {
+    if type == VariableType.Bool.rawValue {
+      return "dictionary.updateValue(\(name), forKey: \(constantName))"
+    }
+    return "if let value = \(name) { dictionary.updateValue(value, forKey: \(constantName) }"
+  }
+
+  func descriptionForObjectVariableArray(name: String, _ type: String, _ constantName: String) -> String {
+    if type == VariableType.Bool.rawValue {
+      return "dictionary.updateValue(\(name), forKey: \(constantName))"
+    }
+    return "if let value = \(name) { dictionary.updateValue(value, forKey: \(constantName) }"
+  }
+
 }

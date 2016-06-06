@@ -20,8 +20,8 @@ protocol ModelFile {
 
   mutating func setInfo(fileName: String, _ configuration: ModelGenerationConfiguration)
 
-  func addStringConstant(constantName: String, _ value: String)
-  func addEncoder(name: String, _ type: String, _ constantName: String)
+  mutating func addStringConstant(constantName: String, _ value: String)
+  mutating func addEncoder(name: String, _ type: String, _ constantName: String)
 
   func addDecoder(name: String, _ type: String, _ constantName: String)
   func addInitialiser(name: String, _ type: String, _ constantName: String)
