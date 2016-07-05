@@ -56,7 +56,7 @@ extension String {
    */
   mutating func appendPrefix(prefix: String?) {
     if let _prefix = prefix {
-      appendContentsOf(_prefix)
+      self = _prefix + self
     }
   }
 }

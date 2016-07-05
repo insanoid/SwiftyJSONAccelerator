@@ -46,7 +46,7 @@ struct NameGenerator {
     _variableName.trim()
 
     var finalVariableName = ""
-    for (index, var element) in variableName.componentsSeparatedByString(" ").enumerate() {
+    for (index, var element) in _variableName.componentsSeparatedByString(" ").enumerate() {
       index == 0 ? element.lowerCaseFirst() : element.uppercaseFirst()
       finalVariableName.appendContentsOf(element)
     }
@@ -82,6 +82,7 @@ struct NameGenerator {
 
   static func variableKey(className: String, _ variableName: String) -> String {
     var _variableName = variableName
-    return "k\(className)\(_variableName.uppercaseFirst())Key"
+    _variableName.uppercaseFirst()
+    return "k\(className)\(_variableName)Key"
   }
 }

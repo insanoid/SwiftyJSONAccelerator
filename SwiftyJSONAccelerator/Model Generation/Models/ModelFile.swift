@@ -28,9 +28,9 @@ protocol ModelFile {
   func addDescription(name: String, _ type: String, _ constantName: String)
   func addDeclaration(name: String, _ type: String, _ constantName: String)
 
-  func addBasicInfo(name: String, _ type: String, _ constantName: String)
-  func addPrimitiveArrayInfo(name: String, _ type: String, _ constantName: String)
-  func addObjectArrayInfo(name: String, _ type: String, _ constantName: String)
+  mutating func addBasicInfo(name: String, _ type: String, _ constantName: String)
+  mutating func addPrimitiveArrayInfo(name: String, _ type: String, _ constantName: String)
+  mutating func addObjectArrayInfo(name: String, _ type: String, _ constantName: String)
   func addEmptyArray(name: String, _ type: String, _ constantName: String)
   func addEmptyArrayInfo(name: String, _ type: String, _ constantName: String)
 
@@ -54,5 +54,12 @@ struct ModelComponent {
     encoders = []
     decoders = []
     description = []
+  }
+}
+
+extension ModelFile {
+  internal func description() {
+    print("--------->>" + fileName)
+    print(component.stringConstants.joinWithSeparator("\n"))
   }
 }

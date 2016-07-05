@@ -13,7 +13,8 @@
 		9341A14F1BD6E7290048CE2C /* BaseTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9341A14E1BD6E7290048CE2C /* BaseTemplate.txt */; };
 		9361FD141BD18558001ED533 /* LineNumberRulerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9361FD131BD18558001ED533 /* LineNumberRulerView.swift */; };
 		9362F8661BD07DBA0001372E /* JSONHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9362F8651BD07DBA0001372E /* JSONHelperTests.swift */; };
-		9395707B1D008A860039453D /* ModelFileComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9395707A1D008A860039453D /* ModelFileComponent.swift */; };
+		9380E5941D2C6D12003F77B1 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380E5931D2C6D12003F77B1 /* StringTests.swift */; };
+		9395707B1D008A860039453D /* DefaultModelFileComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9395707A1D008A860039453D /* DefaultModelFileComponent.swift */; };
 		93CDE7721BD1A00B00B5B234 /* SJTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CDE7711BD1A00B00B5B234 /* SJTextView.swift */; };
 		93D850D81D00D2030023D573 /* ModelGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A1491BD6E5FE0048CE2C /* ModelGenerator.swift */; };
 		93D850D91D00D2070023D573 /* NameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F159391CFF853C00175636 /* NameGenerator.swift */; };
@@ -34,7 +35,7 @@
 		93D850ED1D00D3070023D573 /* ModelMappingLibraryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1592D1CFF830400175636 /* ModelMappingLibraryResult.swift */; };
 		93D850EE1D00D3070023D573 /* SwiftyJSONModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1593D1CFF969900175636 /* SwiftyJSONModelFile.swift */; };
 		93D850EF1D00D3070023D573 /* ObjectMapperModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1593F1CFF96E700175636 /* ObjectMapperModelFile.swift */; };
-		93D850F01D00D3070023D573 /* ModelFileComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9395707A1D008A860039453D /* ModelFileComponent.swift */; };
+		93D850F01D00D3070023D573 /* DefaultModelFileComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9395707A1D008A860039453D /* DefaultModelFileComponent.swift */; };
 		93D850F71D00D7C80023D573 /* TestJSONFile.json in Resources */ = {isa = PBXBuildFile; fileRef = 93D850F61D00D7C80023D573 /* TestJSONFile.json */; };
 		93E91B0D1CFF2DFF00ECA2A6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E91B0C1CFF2DFF00ECA2A6 /* Constants.swift */; };
 		93F1592C1CFF826900175636 /* ModelGenerationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1592B1CFF826900175636 /* ModelGenerationConfiguration.swift */; };
@@ -75,7 +76,8 @@
 		9341A14E1BD6E7290048CE2C /* BaseTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BaseTemplate.txt; sourceTree = "<group>"; };
 		9361FD131BD18558001ED533 /* LineNumberRulerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineNumberRulerView.swift; sourceTree = "<group>"; };
 		9362F8651BD07DBA0001372E /* JSONHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHelperTests.swift; sourceTree = "<group>"; };
-		9395707A1D008A860039453D /* ModelFileComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFileComponent.swift; sourceTree = "<group>"; };
+		9380E5931D2C6D12003F77B1 /* StringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
+		9395707A1D008A860039453D /* DefaultModelFileComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultModelFileComponent.swift; sourceTree = "<group>"; };
 		93CDE7711BD1A00B00B5B234 /* SJTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJTextView.swift; sourceTree = "<group>"; };
 		93D850F61D00D7C80023D573 /* TestJSONFile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestJSONFile.json; sourceTree = "<group>"; };
 		93E91B0C1CFF2DFF00ECA2A6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Constants.swift; sourceTree = "<group>"; };
@@ -183,7 +185,7 @@
 				93F1592B1CFF826900175636 /* ModelGenerationConfiguration.swift */,
 				93F1592D1CFF830400175636 /* ModelMappingLibraryResult.swift */,
 				93CC54171D01012D00B82ED5 /* Model Generation Libs */,
-				9395707A1D008A860039453D /* ModelFileComponent.swift */,
+				9395707A1D008A860039453D /* DefaultModelFileComponent.swift */,
 			);
 			name = Models;
 			path = "Model Generation/Models";
@@ -245,6 +247,7 @@
 				93F174541BD0707D007E7DFC /* SwiftyJSONAcceleratorTests.swift */,
 				93F1593B1CFF920500175636 /* ModelGeneratorTests.swift */,
 				93D850F61D00D7C80023D573 /* TestJSONFile.json */,
+				9380E5931D2C6D12003F77B1 /* StringTests.swift */,
 			);
 			path = SwiftyJSONAcceleratorTests;
 			sourceTree = "<group>";
@@ -486,7 +489,7 @@
 				93F1593E1CFF969900175636 /* SwiftyJSONModelFile.swift in Sources */,
 				9361FD141BD18558001ED533 /* LineNumberRulerView.swift in Sources */,
 				93F159301CFF832100175636 /* ModelFile.swift in Sources */,
-				9395707B1D008A860039453D /* ModelFileComponent.swift in Sources */,
+				9395707B1D008A860039453D /* DefaultModelFileComponent.swift in Sources */,
 				93F159361CFF83A800175636 /* String+Helpers.swift in Sources */,
 				93F1592E1CFF830400175636 /* ModelMappingLibraryResult.swift in Sources */,
 				93F174431BD0707D007E7DFC /* AppDelegate.swift in Sources */,
@@ -503,9 +506,10 @@
 				93D850D91D00D2070023D573 /* NameGenerator.swift in Sources */,
 				93D850E61D00D3020023D573 /* Constants.swift in Sources */,
 				93F174551BD0707D007E7DFC /* SwiftyJSONAcceleratorTests.swift in Sources */,
-				93D850F01D00D3070023D573 /* ModelFileComponent.swift in Sources */,
+				93D850F01D00D3070023D573 /* DefaultModelFileComponent.swift in Sources */,
 				93D850EB1D00D3070023D573 /* ModelFile.swift in Sources */,
 				93D850E41D00D2FC0023D573 /* LineNumberRulerView.swift in Sources */,
+				9380E5941D2C6D12003F77B1 /* StringTests.swift in Sources */,
 				93D850EF1D00D3070023D573 /* ObjectMapperModelFile.swift in Sources */,
 				93D850DC1D00D2ED0023D573 /* SJEditorViewController.swift in Sources */,
 				93D850D81D00D2030023D573 /* ModelGenerator.swift in Sources */,

@@ -67,23 +67,14 @@ public struct ModelGenerator {
     if let rootObject = object.dictionary {
 
       // A model file to store the current model.
-      var currentModel: ModelFile
-      switch configuration.modelMappingLibrary {
-      case .ObjectMapper:
-        currentModel = ObjectMapperModelFile()
-      case .SwiftyJSON:
-        currentModel = SwiftyJSONModelFile()
-      }
+      var currentModel = self.initaliseModelFileFor(configuration.modelMappingLibrary)
+      currentModel.fileName = className
 
       for (key, value) in rootObject {
-
         /// basic information, name, type and the constant to store the key.
         let variableName = NameGenerator.fixVariableName(key)
         let variableType = value.detailedValueType()
         let stringConstantName = NameGenerator.variableKey(className, variableName)
-
-        currentModel.fileName = variableName
-
         currentModel.addStringConstant(stringConstantName, key)
         currentModel.addEncoder(variableName, variableType.rawValue, stringConstantName)
 
@@ -109,6 +100,7 @@ public struct ModelGenerator {
           let model = models.first
           let typeName = model?.fileName
           currentModel.addBasicInfo(variableName, typeName!, stringConstantName)
+          modelFiles = modelFiles + models
         default:
           currentModel.addBasicInfo(variableName, variableType.rawValue, stringConstantName)
         }
@@ -121,6 +113,73 @@ public struct ModelGenerator {
     // at the end we return the collection of files.
     return modelFiles
   }
+
+//  func generateModelForJSON(object: JSON, _ defaultClassName: String, _ isTopLevelObject: Bool) -> [ModelFile] {
+//
+//    let className = NameGenerator.fixClassName(defaultClassName, self.configuration.prefix, isTopLevelObject)
+//    var modelFiles: [ModelFile] = []
+//
+//    // Incase the object was NOT a dictionary. (this would only happen in case of the top level
+//    // object, since internal objects are handled within the function and do not pass an array here)
+//    if let rootObject = object.array, let firstObject = rootObject.first {
+//      let subClassType = firstObject.detailedValueType()
+//      // If the type of the first item is an object then make it the base class and generate
+//      // stuff. However, currently it does not make a base file to handle the array.
+//      if subClassType == .Object {
+//        return self.generateModelForJSON(JSONHelper.reduce(rootObject), className, isTopLevelObject)
+//      }
+//    }
+//
+//    if let rootObject = object.dictionary {
+//
+//      // A model file to store the current model.
+//      var currentModel = self.initaliseModelFileFor(configuration.modelMappingLibrary)
+//
+//      for (key, value) in rootObject {
+//        /// basic information, name, type and the constant to store the key.
+//        let variableName = NameGenerator.fixVariableName(key)
+//        let variableType = value.detailedValueType()
+//        let stringConstantName = NameGenerator.variableKey(className, variableName)
+//
+//        currentModel.fileName = variableName
+//
+//        currentModel.addStringConstant(stringConstantName, key)
+//        currentModel.addEncoder(variableName, variableType.rawValue, stringConstantName)
+//
+//        switch variableType {
+//        case .Array:
+//          if value.arrayValue.count <= 0 {
+//            currentModel.addEmptyArrayInfo(variableName, VariableType.Array.rawValue, stringConstantName)
+//          } else {
+//            let subClassType = value.arrayValue.first!.detailedValueType()
+//            if subClassType == .Object {
+//              let models = generateModelForJSON(JSONHelper.reduce(value.arrayValue), variableName, false)
+//              modelFiles = modelFiles + models
+//              let model = models.first
+//              let classname = model?.fileName
+//              currentModel.addObjectArrayInfo(variableName, classname!, stringConstantName)
+//            } else {
+//              currentModel.addPrimitiveArrayInfo(variableName, subClassType.rawValue, stringConstantName)
+//            }
+//          }
+//          break
+//        case .Object:
+//          let models = generateModelForJSON(value, variableName, false)
+//          let model = models.first
+//          let typeName = model?.fileName
+//          currentModel.addBasicInfo(variableName, typeName!, stringConstantName)
+//        default:
+//          currentModel.addBasicInfo(variableName, variableType.rawValue, stringConstantName)
+//        }
+//
+//      }
+//
+//      modelFiles = [currentModel] + modelFiles
+//    }
+//
+//    // at the end we return the collection of files.
+//    return modelFiles
+//  }
 
   /**
    Generates the notification message for the model files returned.
@@ -138,4 +197,14 @@ public struct ModelGenerator {
     }
     NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notification)
   }
+
+  func initaliseModelFileFor (modelMappingLibrary: JSONMappingLibrary) -> ModelFile {
+    switch configuration.modelMappingLibrary {
+    case .ObjectMapper:
+      return ObjectMapperModelFile()
+    case .SwiftyJSON:
+      return SwiftyJSONModelFile()
+    }
+  }
+
 }

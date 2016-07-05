@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ObjectMapperModelFile: ModelFile {
+struct ObjectMapperModelFile: ModelFile, DefaultModelFileComponent {
 
   /// Filename for the model.
   var fileName: String
@@ -45,6 +45,32 @@ struct ObjectMapperModelFile: ModelFile {
 
   mutating func addBasicInfo(name: String, _ type: String, _ constantName: String) {
     component.initialisers.append("\(name) <- map[\(constantName)]")
+  }
+
+  func addDecoder(name: String, _ type: String, _ constantName: String) {
+
+  }
+  func addInitialiser(name: String, _ type: String, _ constantName: String) {
+
+  }
+  func addDescription(name: String, _ type: String, _ constantName: String) {
+
+  }
+  func addDeclaration(name: String, _ type: String, _ constantName: String) {
+
+  }
+
+  func addEmptyArray(name: String, _ type: String, _ constantName: String) {
+
+  }
+  func addEmptyArrayInfo(name: String, _ type: String, _ constantName: String) {
+
+  }
+
+  mutating func addObjectArrayInfo(name: String, _ type: String, _ constantName: String) {
+  }
+
+  mutating func addPrimitiveArrayInfo(name: String, _ type: String, _ constantName: String) {
   }
 
 }
