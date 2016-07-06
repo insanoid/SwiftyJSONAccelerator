@@ -10,11 +10,11 @@ import Foundation
 
 struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
 
-  /// Filename for the model.
   var fileName: String
   var type: ConstructType
   var component: ModelComponent
 
+  // MARK: - Initialisers.
   init() {
     self.fileName = ""
     type = ConstructType.StructType
@@ -36,22 +36,30 @@ struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
     return "SwiftyJSON"
   }
 
+  // MARK: - Add Information
+  // MARK: - Add Basic Information
   mutating func addBasicInfo(name: String, _ type: String, _ constantName: String) {
-    component.description.append(genDescriptionForPrimitive(name, type, constantName))
-    component.declarations.append(genVariableDeclaration(name, type, false))
     component.initialisers.append(genInitializerForVariable(name, type, constantName))
+    component.declarations.append(genVariableDeclaration(name, type, false))
+    component.description.append(genDescriptionForPrimitive(name, type, constantName))
+  }
+
+  mutating func addObjectInfo(name: String, _ type: String, _ constantName: String) {
+    component.initialisers.append(genInitializerForObject(name, type, constantName))
+    component.declarations.append(genVariableDeclaration(name, type, false))
+    component.description.append(genDescriptionForObject(name, constantName))
   }
 
   mutating func addObjectArrayInfo(name: String, _ type: String, _ constantName: String) {
-    component.description.append(genDescriptionForObjectArray(name, constantName))
-    component.declarations.append(genVariableDeclaration(name, type, true))
     component.initialisers.append(genInitializerForObjectArray(name, type, constantName))
+    component.declarations.append(genVariableDeclaration(name, type, true))
+    component.description.append(genDescriptionForObjectArray(name, constantName))
   }
 
   mutating func addPrimitiveArrayInfo(name: String, _ type: String, _ constantName: String) {
-    component.description.append(genDescriptionForPrimitiveArray(name, constantName))
-    component.declarations.append(genVariableDeclaration(name, type, true))
     component.initialisers.append(genInitializerForPrimitiveArray(name, type, constantName))
+    component.declarations.append(genVariableDeclaration(name, type, true))
+    component.description.append(genDescriptionForPrimitiveArray(name, constantName))
   }
 
   // MARK: - Generator methods.
@@ -63,6 +71,7 @@ struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
     component.encoders.append(genEncoder(name, type, constantName))
   }
 
+  // MARK: - Customised methods for SWiftyJSON
   // MARK: - Initialisers
   func genInitializerForVariable(name: String, _ type: String, _ constantName: String) -> String {
     var variableType = type
@@ -87,6 +96,7 @@ struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
     return "if let items = json[\(constantName)].array { \(name) = items.map { $0.\(type) } }"
   }
 
+  // MARK: - Decoders
   func addDecoder(name: String, _ type: String, _ constantName: String) {
 
   }

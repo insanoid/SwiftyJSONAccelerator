@@ -19,9 +19,4 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     shouldPresentNotification notification: NSUserNotification) -> Bool {
       return true
   }
-
-  func applicationWillTerminate(aNotification: NSNotification) {
-    // Insert code here to tear down your application
-  }
-
 }

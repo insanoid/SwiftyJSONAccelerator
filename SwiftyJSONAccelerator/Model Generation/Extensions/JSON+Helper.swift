@@ -42,10 +42,9 @@ extension JSON {
       case .Float32Type,
           .Float64Type,
           .FloatType,
-          .CGFloatType:
+          .CGFloatType,
+          .DoubleType:
           return VariableType.Float
-      case .DoubleType:
-        return VariableType.Double
       }
     default:
       return VariableType.Object

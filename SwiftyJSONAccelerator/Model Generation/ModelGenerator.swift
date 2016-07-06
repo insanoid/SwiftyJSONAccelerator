@@ -60,7 +60,9 @@ public struct ModelGenerator {
       // If the type of the first item is an object then make it the base class and generate
       // stuff. However, currently it does not make a base file to handle the array.
       if subClassType == .Object {
-        return self.generateModelForJSON(JSONHelper.reduce(rootObject), className, isTopLevelObject)
+        return self.generateModelForJSON(JSONHelper.reduce(rootObject), defaultClassName, isTopLevelObject)
+      } else {
+        return []
       }
     }
 
@@ -99,7 +101,7 @@ public struct ModelGenerator {
           let models = generateModelForJSON(value, variableName, false)
           let model = models.first
           let typeName = model?.fileName
-          currentModel.addBasicInfo(variableName, typeName!, stringConstantName)
+          currentModel.addObjectInfo(variableName, typeName!, stringConstantName)
           modelFiles = modelFiles + models
         default:
           currentModel.addBasicInfo(variableName, variableType.rawValue, stringConstantName)

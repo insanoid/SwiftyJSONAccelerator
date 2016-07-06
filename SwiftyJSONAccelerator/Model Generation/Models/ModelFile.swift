@@ -29,6 +29,7 @@ protocol ModelFile {
   func addDeclaration(name: String, _ type: String, _ constantName: String)
 
   mutating func addBasicInfo(name: String, _ type: String, _ constantName: String)
+  mutating func addObjectInfo(name: String, _ type: String, _ constantName: String)
   mutating func addPrimitiveArrayInfo(name: String, _ type: String, _ constantName: String)
   mutating func addObjectArrayInfo(name: String, _ type: String, _ constantName: String)
   func addEmptyArray(name: String, _ type: String, _ constantName: String)

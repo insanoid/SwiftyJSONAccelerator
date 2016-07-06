@@ -73,4 +73,8 @@ struct ObjectMapperModelFile: ModelFile, DefaultModelFileComponent {
   mutating func addPrimitiveArrayInfo(name: String, _ type: String, _ constantName: String) {
   }
 
+  mutating func addObjectInfo(name: String, _ type: String, _ constantName: String) {
+
+  }
+
 }
