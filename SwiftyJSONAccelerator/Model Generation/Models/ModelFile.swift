@@ -15,27 +15,40 @@ protocol ModelFile {
 
   /// Filename for the model.
   var fileName: String { get set }
+
+  /// Type of the the object, if a structure or a class.
   var type: ConstructType { get }
+
+  /// Storage for various components of the model, it is used to store the intermediate data.
   var component: ModelComponent { get }
 
+  /**
+   Set the basic information for the given model file.
+
+   - parameter fileName:      Name of the model file.
+   - parameter configuration: Configuration for the model file.
+   */
   mutating func setInfo(fileName: String, _ configuration: ModelGenerationConfiguration)
 
-  mutating func addStringConstant(constantName: String, _ value: String)
-  mutating func addEncoder(name: String, _ type: String, _ constantName: String)
+  /**
+   Generate various required components for the given property.
 
-  func addDecoder(name: String, _ type: String, _ constantName: String)
-  func addInitialiser(name: String, _ type: String, _ constantName: String)
-  func addDescription(name: String, _ type: String, _ constantName: String)
-  func addDeclaration(name: String, _ type: String, _ constantName: String)
+   - parameter property: Property for which components are to be generated.
+   */
+  mutating func generateAndAddComponentsFor(property: PropertyComponent)
 
-  mutating func addBasicInfo(name: String, _ type: String, _ constantName: String)
-  mutating func addObjectInfo(name: String, _ type: String, _ constantName: String)
-  mutating func addPrimitiveArrayInfo(name: String, _ type: String, _ constantName: String)
-  mutating func addObjectArrayInfo(name: String, _ type: String, _ constantName: String)
-  func addEmptyArray(name: String, _ type: String, _ constantName: String)
-  func addEmptyArrayInfo(name: String, _ type: String, _ constantName: String)
+  /**
+   Generate the final model.
 
+   - returns: String representation for the model.
+   */
   func generateModel() -> String
+
+  /**
+   Name of the module/model type.
+
+   - returns: String representing the name of the model type.
+   */
   func moduleName() -> String
 
 }
@@ -58,9 +71,24 @@ struct ModelComponent {
   }
 }
 
+struct PropertyComponent {
+  var name: String
+  var type: String
+  var constantName: String
+  var key: String
+  var propertyType: PropertyType
+
+  init(_ name: String, _ type: String, _ constantName: String, _ key: String, _ propertyType: PropertyType) {
+    self.name = name
+    self.type = type
+    self.constantName = constantName
+    self.key = key
+    self.propertyType = propertyType
+  }
+}
+
 extension ModelFile {
   internal func description() {
-    print("--------->>" + fileName)
     print(component.stringConstants.joinWithSeparator("\n"))
   }
 }

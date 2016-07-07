@@ -136,4 +136,12 @@ extension DefaultModelFileComponent {
     return "aCoder.encodeObject(\(name), forKey: \(constantName))"
   }
 
+  func genDencoder(name: String, _ type: String, _ constantName: String, _ isArray: Bool) -> String {
+    let finalConstantName = isArray ? "[\(constantName)]" : constantName
+    if type == VariableType.Bool.rawValue {
+      return "self.\(name) = aDecoder.decodeBoolForKey(\(finalConstantName))"
+    }
+    return "self.\(name) = aDecoder.decodeObjectForKey(\(finalConstantName)) as? \(type)"
+  }
+
 }

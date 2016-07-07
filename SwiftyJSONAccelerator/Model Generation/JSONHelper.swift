@@ -101,7 +101,7 @@ public class JSONHelper {
       for (key, jsonValue) in item {
         if let newValue = jsonValue.dictionary {
           finalObject[key] = reduce([JSON(newValue), finalObject[key]])
-        } else if let newValue = jsonValue.array {
+        } else if let newValue = jsonValue.array where newValue.first != nil && (newValue.first!.dictionary != nil || newValue.first!.array != nil) {
           finalObject[key] = JSON([reduce(newValue + finalObject[key].arrayValue)])
         } else {
           finalObject[key] = jsonValue

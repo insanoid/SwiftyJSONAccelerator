@@ -36,39 +36,47 @@ struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
     return "SwiftyJSON"
   }
 
-  // MARK: - Add Information
-  // MARK: - Add Basic Information
-  mutating func addBasicInfo(name: String, _ type: String, _ constantName: String) {
-    component.initialisers.append(genInitializerForVariable(name, type, constantName))
-    component.declarations.append(genVariableDeclaration(name, type, false))
-    component.description.append(genDescriptionForPrimitive(name, type, constantName))
-  }
-
-  mutating func addObjectInfo(name: String, _ type: String, _ constantName: String) {
-    component.initialisers.append(genInitializerForObject(name, type, constantName))
-    component.declarations.append(genVariableDeclaration(name, type, false))
-    component.description.append(genDescriptionForObject(name, constantName))
-  }
-
-  mutating func addObjectArrayInfo(name: String, _ type: String, _ constantName: String) {
-    component.initialisers.append(genInitializerForObjectArray(name, type, constantName))
-    component.declarations.append(genVariableDeclaration(name, type, true))
-    component.description.append(genDescriptionForObjectArray(name, constantName))
-  }
-
-  mutating func addPrimitiveArrayInfo(name: String, _ type: String, _ constantName: String) {
-    component.initialisers.append(genInitializerForPrimitiveArray(name, type, constantName))
-    component.declarations.append(genVariableDeclaration(name, type, true))
-    component.description.append(genDescriptionForPrimitiveArray(name, constantName))
-  }
-
-  // MARK: - Generator methods.
-  mutating func addStringConstant(constantName: String, _ value: String) {
-    component.stringConstants.append(genStringConstant(constantName, value))
-  }
-
-  mutating func addEncoder(name: String, _ type: String, _ constantName: String) {
-    component.encoders.append(genEncoder(name, type, constantName))
+  mutating func generateAndAddComponentsFor(property: PropertyComponent) {
+    switch property.propertyType {
+    case .ValueType:
+      component.stringConstants.append(genStringConstant(property.constantName, property.key))
+      component.initialisers.append(genInitializerForVariable(property.name, property.type, property.constantName))
+      component.declarations.append(genVariableDeclaration(property.name, property.type, false))
+      component.description.append(genDescriptionForPrimitive(property.name, property.type, property.constantName))
+      component.decoders.append(genDencoder(property.name, property.type, property.constantName, false))
+      component.encoders.append(genEncoder(property.name, property.type, property.constantName))
+    case .ValueTypeArray:
+      component.stringConstants.append(genStringConstant(property.constantName, property.key))
+      component.initialisers.append(genInitializerForPrimitiveArray(property.name, property.type, property.constantName))
+      component.declarations.append(genVariableDeclaration(property.name, property.type, true))
+      component.description.append(genDescriptionForPrimitiveArray(property.name, property.constantName))
+      component.decoders.append(genDencoder(property.name, property.type, property.constantName, true))
+      component.encoders.append(genEncoder(property.name, property.type, property.constantName))
+    case .ObjectType:
+      component.stringConstants.append(genStringConstant(property.constantName, property.key))
+      component.initialisers.append(genInitializerForObject(property.name, property.type, property.constantName))
+      component.declarations.append(genVariableDeclaration(property.name, property.type, false))
+      component.description.append(genDescriptionForObject(property.name, property.constantName))
+      component.decoders.append(genDencoder(property.name, property.type, property.constantName, false))
+      component.encoders.append(genEncoder(property.name, property.type, property.constantName))
+    case .ObjectTypeArray:
+      component.stringConstants.append(genStringConstant(property.constantName, property.key))
+      component.initialisers.append(genInitializerForObjectArray(property.name, property.type, property.constantName))
+      component.declarations.append(genVariableDeclaration(property.name, property.type, true))
+      component.description.append(genDescriptionForObjectArray(property.name, property.constantName))
+      component.decoders.append(genDencoder(property.name, property.type, property.constantName, true))
+      component.encoders.append(genEncoder(property.name, property.type, property.constantName))
+    case .EmptyArray:
+      component.stringConstants.append(genStringConstant(property.constantName, property.key))
+      component.initialisers.append(genInitializerForPrimitiveArray(property.name, "object", property.constantName))
+      component.declarations.append(genVariableDeclaration(property.name, "AnyObject", true))
+      component.description.append(genDescriptionForPrimitiveArray(property.name, property.constantName))
+      component.decoders.append(genDencoder(property.name, "AnyObject", property.constantName, true))
+      component.encoders.append(genEncoder(property.name, "AnyObject", property.constantName))
+    case .NullType:
+      // Currently we do not deal with null values.
+      break
+    }
   }
 
   // MARK: - Customised methods for SWiftyJSON
@@ -94,27 +102,6 @@ struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
     var variableType = type
     variableType.lowerCaseFirst()
     return "if let items = json[\(constantName)].array { \(name) = items.map { $0.\(type) } }"
-  }
-
-  // MARK: - Decoders
-  func addDecoder(name: String, _ type: String, _ constantName: String) {
-
-  }
-  func addInitialiser(name: String, _ type: String, _ constantName: String) {
-
-  }
-  func addDescription(name: String, _ type: String, _ constantName: String) {
-
-  }
-  func addDeclaration(name: String, _ type: String, _ constantName: String) {
-
-  }
-
-  func addEmptyArray(name: String, _ type: String, _ constantName: String) {
-
-  }
-  func addEmptyArrayInfo(name: String, _ type: String, _ constantName: String) {
-
   }
 
 }

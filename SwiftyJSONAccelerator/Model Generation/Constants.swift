@@ -27,6 +27,7 @@ enum VariableType: String {
   case Bool = "Bool"
   case Array = "[]"
   case Object = "{OBJ}"
+  case Null = "AnyObject"
 }
 
 /**
@@ -47,6 +48,25 @@ enum ConstructType: String {
  - ObjectMapper: ObjectMapper - https://github.com/Hearst-DD/ObjectMapper
  */
 enum JSONMappingLibrary: String {
-  case SwiftyJSON = "SwiftyJSON"
-  case ObjectMapper = "ObjectMapper"
+  case SwiftyJSON
+  case ObjectMapper
+}
+
+/**
+ Types of property.
+
+ - Value:       Value type like String, Integer, Float etc.
+ - ValueArray:  Array of Value
+ - Object:      Object type
+ - ObjectArray: Array of object
+ - EmptyArray:  An empty array
+ - Null:        Null value
+ */
+enum PropertyType: String {
+  case ValueType
+  case ValueTypeArray
+  case ObjectType
+  case ObjectTypeArray
+  case EmptyArray
+  case NullType
 }

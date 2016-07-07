@@ -46,6 +46,8 @@ extension JSON {
           .DoubleType:
           return VariableType.Float
       }
+    case .Null:
+      return VariableType.Null
     default:
       return VariableType.Object
     }
