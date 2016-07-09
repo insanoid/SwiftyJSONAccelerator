@@ -2,7 +2,8 @@ language: swift
 osx_image: xcode7.3
 before_install: rvm use $RVM_RUBY_VERSION
 install:
-  - bundle install --without=documentation --path ../travis_bundle_dir
+  - bundle install
+  - gem install cocoapods
   - pod install
   - ./install_swiftlint.sh
 script:
