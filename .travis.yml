@@ -1,4 +1,10 @@
 language: objective-c
+cache:
+  - bundler
+  - cocoapods
+  - slather
+  - synx
+  - xcpretty
 osx_image: xcode7.3
 xcode_workspace: SwiftyJSONAccelerator.xcworkspace
 xcode_scheme: SwiftyJSONAccelerator
@@ -8,9 +14,12 @@ install:
   - bundle install
   - gem install cocoapods
   - ./install_swiftlint.sh
+before_script:
+  - rm -rf Pods
+  - bundle install
+  - bundle exec pod install
 script:
-  - make build
-  - make ci_tests
+  - make citests
   - swiftlint
 after_success:
   - slather

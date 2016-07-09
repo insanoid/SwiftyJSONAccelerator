@@ -8,8 +8,8 @@ synxify:
 build:
 	xcodebuild ONLY_ACTIVE_ARCH=NO -workspace $(WORKSPACE) -scheme $(SCHEME) -configuration Debug clean build | tee xcodebuild.log | xcpretty
 
-ci_test:
-		xcodebuild ONLY_ACTIVE_ARCH=NO -workspace $(WORKSPACE) -scheme $(SCHEME) test | tee xcodebuild.log | xcpretty -s
+citest:
+	xcodebuild ONLY_ACTIVE_ARCH=NO -workspace $(WORKSPACE) -scheme $(SCHEME) test | tee xcodebuild.log | xcpretty -s
 
 test:
 	rm -rf build

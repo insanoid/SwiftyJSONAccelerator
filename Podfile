@@ -4,7 +4,7 @@ inhibit_all_warnings!
 
 
 target 'SwiftyJSONAccelerator' do
-  pod 'SwiftyJSON', '~> 2.3'
+  pod 'SwiftyJSON'
 end
 
 target 'SwiftyJSONAcceleratorTests' do
