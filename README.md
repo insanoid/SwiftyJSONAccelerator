@@ -1,5 +1,5 @@
 # SwiftyJSONAccelerator
-[![Build Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=issues%2F28-fix-code-base)](https://travis-ci.org/insanoid/SwiftyJSONAccelerator) [![codecov](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator/branch/issues%2F28-fix-code-base.svg)](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator)
+[![Build Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=issues%2F28-fix-code-base)](https://travis-ci.org/insanoid/SwiftyJSONAccelerator) [![codecov](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator/branch/master/graph/badge.svg)]
 
 **(Alpha v0.0.6)**
 
