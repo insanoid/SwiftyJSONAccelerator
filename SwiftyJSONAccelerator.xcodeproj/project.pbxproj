@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7981ABD599919B662249D96E /* Pods_SwiftyJSONAccelerator_SwiftyJSONAcceleratorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032C98D050F4150DA57C4025 /* Pods_SwiftyJSONAccelerator_SwiftyJSONAcceleratorTests.framework */; };
+		7F02AAC4C81E97885ABE8FDD /* Pods_SwiftyJSONAcceleratorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9FAE3CF88221944648B60FE /* Pods_SwiftyJSONAcceleratorTests.framework */; };
 		8D9644E2C9488A67C392529B /* Pods_SwiftyJSONAccelerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5AF74A4BC63E5BEAD3FB03 /* Pods_SwiftyJSONAccelerator.framework */; };
 		930462AD1D3106A400FE61A6 /* FileGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930462AC1D3106A400FE61A6 /* FileGenerator.swift */; };
 		930462B01D310F6900FE61A6 /* ModelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930462AF1D310F6900FE61A6 /* ModelComponent.swift */; };
@@ -73,6 +74,7 @@
 
 /* Begin PBXFileReference section */
 		032C98D050F4150DA57C4025 /* Pods_SwiftyJSONAccelerator_SwiftyJSONAcceleratorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyJSONAccelerator_SwiftyJSONAcceleratorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D6E431207DB3FD1A9136E82 /* Pods-SwiftyJSONAcceleratorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyJSONAcceleratorTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyJSONAcceleratorTests/Pods-SwiftyJSONAcceleratorTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4B5AF74A4BC63E5BEAD3FB03 /* Pods_SwiftyJSONAccelerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyJSONAccelerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		673C9A475FD99A8A409AEE17 /* Pods-SwiftyJSONAccelerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyJSONAccelerator.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyJSONAccelerator/Pods-SwiftyJSONAccelerator.release.xcconfig"; sourceTree = "<group>"; };
 		930462AC1D3106A400FE61A6 /* FileGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileGenerator.swift; sourceTree = "<group>"; };
@@ -105,10 +107,12 @@
 		93F174561BD0707D007E7DFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93F1745F1BD070AA007E7DFC /* JSONHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
 		A3C456185972C84766AF95A2 /* Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests/Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.release.xcconfig"; sourceTree = "<group>"; };
+		B68F86E6B63CA2730100D4BC /* Pods-SwiftyJSONAcceleratorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyJSONAcceleratorTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyJSONAcceleratorTests/Pods-SwiftyJSONAcceleratorTests.release.xcconfig"; sourceTree = "<group>"; };
 		BF2B430ABDD27895AF260C34 /* Pods-SwiftyJSONAccelerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyJSONAccelerator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyJSONAccelerator/Pods-SwiftyJSONAccelerator.debug.xcconfig"; sourceTree = "<group>"; };
 		C667011A1BDCABCE009BA254 /* SwiftyJSONTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftyJSONTemplate.txt; sourceTree = "<group>"; };
 		C667011C1BDCAF23009BA254 /* ObjectMapperTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ObjectMapperTemplate.txt; sourceTree = "<group>"; };
 		C667011E1BDCBE1F009BA254 /* NSCodingTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NSCodingTemplate.txt; sourceTree = "<group>"; };
+		C9FAE3CF88221944648B60FE /* Pods_SwiftyJSONAcceleratorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyJSONAcceleratorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA6CC00BF2D74B72280DABA9 /* Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests/Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7981ABD599919B662249D96E /* Pods_SwiftyJSONAccelerator_SwiftyJSONAcceleratorTests.framework in Frameworks */,
+				7F02AAC4C81E97885ABE8FDD /* Pods_SwiftyJSONAcceleratorTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +294,7 @@
 			children = (
 				4B5AF74A4BC63E5BEAD3FB03 /* Pods_SwiftyJSONAccelerator.framework */,
 				032C98D050F4150DA57C4025 /* Pods_SwiftyJSONAccelerator_SwiftyJSONAcceleratorTests.framework */,
+				C9FAE3CF88221944648B60FE /* Pods_SwiftyJSONAcceleratorTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -300,6 +306,8 @@
 				673C9A475FD99A8A409AEE17 /* Pods-SwiftyJSONAccelerator.release.xcconfig */,
 				EA6CC00BF2D74B72280DABA9 /* Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.debug.xcconfig */,
 				A3C456185972C84766AF95A2 /* Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.release.xcconfig */,
+				0D6E431207DB3FD1A9136E82 /* Pods-SwiftyJSONAcceleratorTests.debug.xcconfig */,
+				B68F86E6B63CA2730100D4BC /* Pods-SwiftyJSONAcceleratorTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -428,7 +436,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests/Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyJSONAcceleratorTests/Pods-SwiftyJSONAcceleratorTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		71E822603385253AD01BB9C3 /* [CP] Check Pods Manifest.lock */ = {
@@ -458,7 +466,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests/Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyJSONAcceleratorTests/Pods-SwiftyJSONAcceleratorTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8C32B5D570E7327EBE896DAB /* [CP] Embed Pods Frameworks */ = {
@@ -709,7 +717,7 @@
 		};
 		93F1745D1BD0707D007E7DFC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EA6CC00BF2D74B72280DABA9 /* Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.debug.xcconfig */;
+			baseConfigurationReference = 0D6E431207DB3FD1A9136E82 /* Pods-SwiftyJSONAcceleratorTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -723,7 +731,7 @@
 		};
 		93F1745E1BD0707D007E7DFC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A3C456185972C84766AF95A2 /* Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.release.xcconfig */;
+			baseConfigurationReference = B68F86E6B63CA2730100D4BC /* Pods-SwiftyJSONAcceleratorTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
