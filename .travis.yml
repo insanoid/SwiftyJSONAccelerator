@@ -19,7 +19,7 @@ before_script:
   - bundle install
   - bundle exec pod install
 script:
-  - make citests
+  - xcodebuild -workspace SwiftyJSONAccelerator.xcworkspace -scheme "SwiftyJSONAccelerator" test | tee xcodebuild.log | xcpretty -s
   - swiftlint
 after_success:
   - slather
