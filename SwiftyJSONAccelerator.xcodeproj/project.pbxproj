@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		7981ABD599919B662249D96E /* Pods_SwiftyJSONAccelerator_SwiftyJSONAcceleratorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032C98D050F4150DA57C4025 /* Pods_SwiftyJSONAccelerator_SwiftyJSONAcceleratorTests.framework */; };
 		8D9644E2C9488A67C392529B /* Pods_SwiftyJSONAccelerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5AF74A4BC63E5BEAD3FB03 /* Pods_SwiftyJSONAccelerator.framework */; };
+		930462AD1D3106A400FE61A6 /* FileGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930462AC1D3106A400FE61A6 /* FileGenerator.swift */; };
+		930462B01D310F6900FE61A6 /* ModelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930462AF1D310F6900FE61A6 /* ModelComponent.swift */; };
+		930462B21D310FF200FE61A6 /* PropertyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930462B11D310FF200FE61A6 /* PropertyComponent.swift */; };
+		930462B51D31131800FE61A6 /* PropertyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930462B11D310FF200FE61A6 /* PropertyComponent.swift */; };
+		930462B61D31133B00FE61A6 /* FileGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930462AC1D3106A400FE61A6 /* FileGenerator.swift */; };
+		930462B71D31134900FE61A6 /* ModelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930462AF1D310F6900FE61A6 /* ModelComponent.swift */; };
 		9341A14A1BD6E5FE0048CE2C /* ModelGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A1491BD6E5FE0048CE2C /* ModelGenerator.swift */; };
 		9341A14F1BD6E7290048CE2C /* BaseTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9341A14E1BD6E7290048CE2C /* BaseTemplate.txt */; };
 		9361FD141BD18558001ED533 /* LineNumberRulerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9361FD131BD18558001ED533 /* LineNumberRulerView.swift */; };
@@ -28,21 +34,19 @@
 		93D850E41D00D2FC0023D573 /* LineNumberRulerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9361FD131BD18558001ED533 /* LineNumberRulerView.swift */; };
 		93D850E61D00D3020023D573 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E91B0C1CFF2DFF00ECA2A6 /* Constants.swift */; };
 		93D850E71D00D3020023D573 /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1745F1BD070AA007E7DFC /* JSONHelper.swift */; };
-		93D850E81D00D3020023D573 /* JSON+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F159371CFF842D00175636 /* JSON+Helper.swift */; };
+		93D850E81D00D3020023D573 /* JSON+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F159371CFF842D00175636 /* JSON+Helpers.swift */; };
 		93D850E91D00D3020023D573 /* String+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F159351CFF83A800175636 /* String+Helpers.swift */; };
 		93D850EB1D00D3070023D573 /* ModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1592F1CFF832100175636 /* ModelFile.swift */; };
 		93D850EC1D00D3070023D573 /* ModelGenerationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1592B1CFF826900175636 /* ModelGenerationConfiguration.swift */; };
-		93D850ED1D00D3070023D573 /* ModelMappingLibraryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1592D1CFF830400175636 /* ModelMappingLibraryResult.swift */; };
 		93D850EE1D00D3070023D573 /* SwiftyJSONModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1593D1CFF969900175636 /* SwiftyJSONModelFile.swift */; };
 		93D850EF1D00D3070023D573 /* ObjectMapperModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1593F1CFF96E700175636 /* ObjectMapperModelFile.swift */; };
 		93D850F01D00D3070023D573 /* DefaultModelFileComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9395707A1D008A860039453D /* DefaultModelFileComponent.swift */; };
 		93D850F71D00D7C80023D573 /* TestJSONFile.json in Resources */ = {isa = PBXBuildFile; fileRef = 93D850F61D00D7C80023D573 /* TestJSONFile.json */; };
 		93E91B0D1CFF2DFF00ECA2A6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E91B0C1CFF2DFF00ECA2A6 /* Constants.swift */; };
 		93F1592C1CFF826900175636 /* ModelGenerationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1592B1CFF826900175636 /* ModelGenerationConfiguration.swift */; };
-		93F1592E1CFF830400175636 /* ModelMappingLibraryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1592D1CFF830400175636 /* ModelMappingLibraryResult.swift */; };
 		93F159301CFF832100175636 /* ModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1592F1CFF832100175636 /* ModelFile.swift */; };
 		93F159361CFF83A800175636 /* String+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F159351CFF83A800175636 /* String+Helpers.swift */; };
-		93F159381CFF842D00175636 /* JSON+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F159371CFF842D00175636 /* JSON+Helper.swift */; };
+		93F159381CFF842D00175636 /* JSON+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F159371CFF842D00175636 /* JSON+Helpers.swift */; };
 		93F1593A1CFF853C00175636 /* NameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F159391CFF853C00175636 /* NameGenerator.swift */; };
 		93F1593C1CFF920500175636 /* ModelGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1593B1CFF920500175636 /* ModelGeneratorTests.swift */; };
 		93F1593E1CFF969900175636 /* SwiftyJSONModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1593D1CFF969900175636 /* SwiftyJSONModelFile.swift */; };
@@ -51,7 +55,6 @@
 		93F174451BD0707D007E7DFC /* SJEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F174441BD0707D007E7DFC /* SJEditorViewController.swift */; };
 		93F174471BD0707D007E7DFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93F174461BD0707D007E7DFC /* Assets.xcassets */; };
 		93F1744A1BD0707D007E7DFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93F174481BD0707D007E7DFC /* Main.storyboard */; };
-		93F174551BD0707D007E7DFC /* SwiftyJSONAcceleratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F174541BD0707D007E7DFC /* SwiftyJSONAcceleratorTests.swift */; };
 		93F174601BD070AA007E7DFC /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1745F1BD070AA007E7DFC /* JSONHelper.swift */; };
 		C667011B1BDCABCE009BA254 /* SwiftyJSONTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = C667011A1BDCABCE009BA254 /* SwiftyJSONTemplate.txt */; };
 		C667011D1BDCAF23009BA254 /* ObjectMapperTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = C667011C1BDCAF23009BA254 /* ObjectMapperTemplate.txt */; };
@@ -72,6 +75,9 @@
 		032C98D050F4150DA57C4025 /* Pods_SwiftyJSONAccelerator_SwiftyJSONAcceleratorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyJSONAccelerator_SwiftyJSONAcceleratorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B5AF74A4BC63E5BEAD3FB03 /* Pods_SwiftyJSONAccelerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyJSONAccelerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		673C9A475FD99A8A409AEE17 /* Pods-SwiftyJSONAccelerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyJSONAccelerator.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyJSONAccelerator/Pods-SwiftyJSONAccelerator.release.xcconfig"; sourceTree = "<group>"; };
+		930462AC1D3106A400FE61A6 /* FileGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileGenerator.swift; sourceTree = "<group>"; };
+		930462AF1D310F6900FE61A6 /* ModelComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelComponent.swift; sourceTree = "<group>"; };
+		930462B11D310FF200FE61A6 /* PropertyComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyComponent.swift; sourceTree = "<group>"; };
 		9341A1491BD6E5FE0048CE2C /* ModelGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelGenerator.swift; sourceTree = "<group>"; };
 		9341A14E1BD6E7290048CE2C /* BaseTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BaseTemplate.txt; sourceTree = "<group>"; };
 		9361FD131BD18558001ED533 /* LineNumberRulerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineNumberRulerView.swift; sourceTree = "<group>"; };
@@ -80,12 +86,11 @@
 		9395707A1D008A860039453D /* DefaultModelFileComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultModelFileComponent.swift; sourceTree = "<group>"; };
 		93CDE7711BD1A00B00B5B234 /* SJTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJTextView.swift; sourceTree = "<group>"; };
 		93D850F61D00D7C80023D573 /* TestJSONFile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestJSONFile.json; sourceTree = "<group>"; };
-		93E91B0C1CFF2DFF00ECA2A6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Constants.swift; sourceTree = "<group>"; };
+		93E91B0C1CFF2DFF00ECA2A6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		93F1592B1CFF826900175636 /* ModelGenerationConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelGenerationConfiguration.swift; sourceTree = "<group>"; };
-		93F1592D1CFF830400175636 /* ModelMappingLibraryResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelMappingLibraryResult.swift; sourceTree = "<group>"; };
 		93F1592F1CFF832100175636 /* ModelFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFile.swift; sourceTree = "<group>"; };
 		93F159351CFF83A800175636 /* String+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Helpers.swift"; sourceTree = "<group>"; };
-		93F159371CFF842D00175636 /* JSON+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Helper.swift"; sourceTree = "<group>"; };
+		93F159371CFF842D00175636 /* JSON+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Helpers.swift"; sourceTree = "<group>"; };
 		93F159391CFF853C00175636 /* NameGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameGenerator.swift; sourceTree = "<group>"; };
 		93F1593B1CFF920500175636 /* ModelGeneratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelGeneratorTests.swift; sourceTree = "<group>"; };
 		93F1593D1CFF969900175636 /* SwiftyJSONModelFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSONModelFile.swift; sourceTree = "<group>"; };
@@ -97,9 +102,8 @@
 		93F174491BD0707D007E7DFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		93F1744B1BD0707D007E7DFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93F174501BD0707D007E7DFC /* SwiftyJSONAccelerator.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyJSONAccelerator.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		93F174541BD0707D007E7DFC /* SwiftyJSONAcceleratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSONAcceleratorTests.swift; sourceTree = "<group>"; };
 		93F174561BD0707D007E7DFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		93F1745F1BD070AA007E7DFC /* JSONHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONHelper.swift; path = ../JSONHelper.swift; sourceTree = "<group>"; };
+		93F1745F1BD070AA007E7DFC /* JSONHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
 		A3C456185972C84766AF95A2 /* Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests/Pods-SwiftyJSONAccelerator-SwiftyJSONAcceleratorTests.release.xcconfig"; sourceTree = "<group>"; };
 		BF2B430ABDD27895AF260C34 /* Pods-SwiftyJSONAccelerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyJSONAccelerator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyJSONAccelerator/Pods-SwiftyJSONAccelerator.debug.xcconfig"; sourceTree = "<group>"; };
 		C667011A1BDCABCE009BA254 /* SwiftyJSONTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftyJSONTemplate.txt; sourceTree = "<group>"; };
@@ -128,6 +132,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		930462AE1D310CDD00FE61A6 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				93F174561BD0707D007E7DFC /* Info.plist */,
+				93D850F61D00D7C80023D573 /* TestJSONFile.json */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		930462B31D31121200FE61A6 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				93F174461BD0707D007E7DFC /* Assets.xcassets */,
+				93F1744B1BD0707D007E7DFC /* Info.plist */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		930462B41D31121D00FE61A6 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				93F174481BD0707D007E7DFC /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		930462B81D3115A800FE61A6 /* Application-Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				93F174421BD0707D007E7DFC /* AppDelegate.swift */,
+			);
+			path = "Application-Delegate";
+			sourceTree = "<group>";
+		};
 		9341A14D1BD6E6EF0048CE2C /* Templates */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,81 +174,75 @@
 				C667011C1BDCAF23009BA254 /* ObjectMapperTemplate.txt */,
 				C667011A1BDCABCE009BA254 /* SwiftyJSONTemplate.txt */,
 			);
-			name = Templates;
-			path = "Base Files";
+			path = Templates;
 			sourceTree = "<group>";
 		};
-		9362D3BC1BD8398A00B927D6 /* External */ = {
+		9362D3BC1BD8398A00B927D6 /* External-Libraries */ = {
 			isa = PBXGroup;
 			children = (
 				9361FD131BD18558001ED533 /* LineNumberRulerView.swift */,
 			);
-			name = External;
-			path = "External Libraries";
+			path = "External-Libraries";
 			sourceTree = "<group>";
 		};
-		93A1264E1BDB8B04002A3B11 /* Model Generation */ = {
+		93A1264E1BDB8B04002A3B11 /* Generators */ = {
 			isa = PBXGroup;
 			children = (
-				93F159391CFF853C00175636 /* NameGenerator.swift */,
+				930462AC1D3106A400FE61A6 /* FileGenerator.swift */,
 				9341A1491BD6E5FE0048CE2C /* ModelGenerator.swift */,
+				93F159391CFF853C00175636 /* NameGenerator.swift */,
 			);
-			path = "Model Generation";
+			path = Generators;
 			sourceTree = "<group>";
 		};
 		93A1264F1BDB8B14002A3B11 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				93F174421BD0707D007E7DFC /* AppDelegate.swift */,
 				93F174441BD0707D007E7DFC /* SJEditorViewController.swift */,
 				93CDE7711BD1A00B00B5B234 /* SJTextView.swift */,
 			);
-			name = UI;
-			path = "Application Interface";
+			path = UI;
 			sourceTree = "<group>";
 		};
-		93CC54171D01012D00B82ED5 /* Model Generation Libs */ = {
+		93CC54171D01012D00B82ED5 /* Library-Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				93F1593D1CFF969900175636 /* SwiftyJSONModelFile.swift */,
 				93F1593F1CFF96E700175636 /* ObjectMapperModelFile.swift */,
+				93F1593D1CFF969900175636 /* SwiftyJSONModelFile.swift */,
 			);
-			name = "Model Generation Libs";
+			path = "Library-Extensions";
 			sourceTree = "<group>";
 		};
-		93F159311CFF835100175636 /* Models */ = {
+		93F159311CFF835100175636 /* Models-Components */ = {
 			isa = PBXGroup;
 			children = (
+				9395707A1D008A860039453D /* DefaultModelFileComponent.swift */,
+				930462AF1D310F6900FE61A6 /* ModelComponent.swift */,
 				93F1592F1CFF832100175636 /* ModelFile.swift */,
 				93F1592B1CFF826900175636 /* ModelGenerationConfiguration.swift */,
-				93F1592D1CFF830400175636 /* ModelMappingLibraryResult.swift */,
-				93CC54171D01012D00B82ED5 /* Model Generation Libs */,
-				9395707A1D008A860039453D /* DefaultModelFileComponent.swift */,
+				930462B11D310FF200FE61A6 /* PropertyComponent.swift */,
 			);
-			name = Models;
-			path = "Model Generation/Models";
+			path = "Models-Components";
 			sourceTree = "<group>";
 		};
-		93F159341CFF837000175636 /* Extensions */ = {
+		93F159341CFF837000175636 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				93E91B0C1CFF2DFF00ECA2A6 /* Constants.swift */,
+				93F159371CFF842D00175636 /* JSON+Helpers.swift */,
 				93F1745F1BD070AA007E7DFC /* JSONHelper.swift */,
-				93F159371CFF842D00175636 /* JSON+Helper.swift */,
 				93F159351CFF83A800175636 /* String+Helpers.swift */,
 			);
-			name = Extensions;
-			path = "Model Generation/Extensions";
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		93F174361BD0707D007E7DFC = {
 			isa = PBXGroup;
 			children = (
+				C5C27882A6F5CFB95CF0B239 /* Frameworks */,
+				CC8555B16DF4EA1A820C7332 /* Pods */,
 				93F174401BD0707D007E7DFC /* Products */,
 				93F174411BD0707D007E7DFC /* SwiftyJSONAccelerator */,
 				93F174531BD0707D007E7DFC /* SwiftyJSONAcceleratorTests */,
-				CC8555B16DF4EA1A820C7332 /* Pods */,
-				C5C27882A6F5CFB95CF0B239 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -226,15 +258,17 @@
 		93F174411BD0707D007E7DFC /* SwiftyJSONAccelerator */ = {
 			isa = PBXGroup;
 			children = (
-				93A1264F1BDB8B14002A3B11 /* UI */,
+				930462B81D3115A800FE61A6 /* Application-Delegate */,
+				9362D3BC1BD8398A00B927D6 /* External-Libraries */,
+				93A1264E1BDB8B04002A3B11 /* Generators */,
+				93F159341CFF837000175636 /* Helpers */,
+				93CC54171D01012D00B82ED5 /* Library-Extensions */,
+				93F159311CFF835100175636 /* Models-Components */,
+				930462B41D31121D00FE61A6 /* Storyboard */,
+				930462B31D31121200FE61A6 /* Support */,
 				9341A14D1BD6E6EF0048CE2C /* Templates */,
-				9362D3BC1BD8398A00B927D6 /* External */,
-				93F159341CFF837000175636 /* Extensions */,
-				93F159311CFF835100175636 /* Models */,
-				93A1264E1BDB8B04002A3B11 /* Model Generation */,
-				93F174461BD0707D007E7DFC /* Assets.xcassets */,
-				93F1744B1BD0707D007E7DFC /* Info.plist */,
-				93F174481BD0707D007E7DFC /* Main.storyboard */,
+				93A1264F1BDB8B14002A3B11 /* UI */,
+				93E91B0C1CFF2DFF00ECA2A6 /* Constants.swift */,
 			);
 			path = SwiftyJSONAccelerator;
 			sourceTree = "<group>";
@@ -242,11 +276,9 @@
 		93F174531BD0707D007E7DFC /* SwiftyJSONAcceleratorTests */ = {
 			isa = PBXGroup;
 			children = (
-				93F174561BD0707D007E7DFC /* Info.plist */,
+				930462AE1D310CDD00FE61A6 /* Support Files */,
 				9362F8651BD07DBA0001372E /* JSONHelperTests.swift */,
-				93F174541BD0707D007E7DFC /* SwiftyJSONAcceleratorTests.swift */,
 				93F1593B1CFF920500175636 /* ModelGeneratorTests.swift */,
-				93D850F61D00D7C80023D573 /* TestJSONFile.json */,
 				9380E5931D2C6D12003F77B1 /* StringTests.swift */,
 			);
 			path = SwiftyJSONAcceleratorTests;
@@ -285,6 +317,7 @@
 				93F1743D1BD0707D007E7DFC /* Resources */,
 				8C32B5D570E7327EBE896DAB /* [CP] Embed Pods Frameworks */,
 				A0F9793B3B75DC1541E1C37F /* [CP] Copy Pods Resources */,
+				930462B91D311F9100FE61A6 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -443,6 +476,20 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyJSONAccelerator/Pods-SwiftyJSONAccelerator-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		930462B91D311F9100FE61A6 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
 		A0F9793B3B75DC1541E1C37F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -484,17 +531,19 @@
 				93CDE7721BD1A00B00B5B234 /* SJTextView.swift in Sources */,
 				93F174601BD070AA007E7DFC /* JSONHelper.swift in Sources */,
 				9341A14A1BD6E5FE0048CE2C /* ModelGenerator.swift in Sources */,
+				930462B21D310FF200FE61A6 /* PropertyComponent.swift in Sources */,
 				93F1593A1CFF853C00175636 /* NameGenerator.swift in Sources */,
+				930462AD1D3106A400FE61A6 /* FileGenerator.swift in Sources */,
 				93F174451BD0707D007E7DFC /* SJEditorViewController.swift in Sources */,
 				93F1593E1CFF969900175636 /* SwiftyJSONModelFile.swift in Sources */,
 				9361FD141BD18558001ED533 /* LineNumberRulerView.swift in Sources */,
 				93F159301CFF832100175636 /* ModelFile.swift in Sources */,
 				9395707B1D008A860039453D /* DefaultModelFileComponent.swift in Sources */,
+				930462B01D310F6900FE61A6 /* ModelComponent.swift in Sources */,
 				93F159361CFF83A800175636 /* String+Helpers.swift in Sources */,
-				93F1592E1CFF830400175636 /* ModelMappingLibraryResult.swift in Sources */,
 				93F174431BD0707D007E7DFC /* AppDelegate.swift in Sources */,
 				93E91B0D1CFF2DFF00ECA2A6 /* Constants.swift in Sources */,
-				93F159381CFF842D00175636 /* JSON+Helper.swift in Sources */,
+				93F159381CFF842D00175636 /* JSON+Helpers.swift in Sources */,
 				93F159401CFF96E700175636 /* ObjectMapperModelFile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -504,8 +553,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				93D850D91D00D2070023D573 /* NameGenerator.swift in Sources */,
+				930462B61D31133B00FE61A6 /* FileGenerator.swift in Sources */,
 				93D850E61D00D3020023D573 /* Constants.swift in Sources */,
-				93F174551BD0707D007E7DFC /* SwiftyJSONAcceleratorTests.swift in Sources */,
 				93D850F01D00D3070023D573 /* DefaultModelFileComponent.swift in Sources */,
 				93D850EB1D00D3070023D573 /* ModelFile.swift in Sources */,
 				93D850E41D00D2FC0023D573 /* LineNumberRulerView.swift in Sources */,
@@ -514,15 +563,16 @@
 				93D850DC1D00D2ED0023D573 /* SJEditorViewController.swift in Sources */,
 				93D850D81D00D2030023D573 /* ModelGenerator.swift in Sources */,
 				93D850E91D00D3020023D573 /* String+Helpers.swift in Sources */,
-				93D850ED1D00D3070023D573 /* ModelMappingLibraryResult.swift in Sources */,
 				9362F8661BD07DBA0001372E /* JSONHelperTests.swift in Sources */,
 				93D850DE1D00D2F00023D573 /* SJTextView.swift in Sources */,
+				930462B51D31131800FE61A6 /* PropertyComponent.swift in Sources */,
 				93D850EC1D00D3070023D573 /* ModelGenerationConfiguration.swift in Sources */,
 				93D850DB1D00D2EA0023D573 /* AppDelegate.swift in Sources */,
 				93D850EE1D00D3070023D573 /* SwiftyJSONModelFile.swift in Sources */,
 				93D850E71D00D3020023D573 /* JSONHelper.swift in Sources */,
 				93F1593C1CFF920500175636 /* ModelGeneratorTests.swift in Sources */,
-				93D850E81D00D3020023D573 /* JSON+Helper.swift in Sources */,
+				93D850E81D00D3020023D573 /* JSON+Helpers.swift in Sources */,
+				930462B71D31134900FE61A6 /* ModelComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,7 +685,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = SwiftyJSONAccelerator/Info.plist;
+				INFOPLIST_FILE = SwiftyJSONAccelerator/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.karthik.SwiftyJSONAccelerator;
@@ -649,7 +699,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = SwiftyJSONAccelerator/Info.plist;
+				INFOPLIST_FILE = SwiftyJSONAccelerator/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.karthik.SwiftyJSONAccelerator;
@@ -663,7 +713,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = SwiftyJSONAcceleratorTests/Info.plist;
+				INFOPLIST_FILE = "SwiftyJSONAcceleratorTests/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.karthik.SwiftyJSONAcceleratorTests;
 				PRODUCT_NAME = SwiftyJSONAccelerator;
@@ -677,7 +727,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = SwiftyJSONAcceleratorTests/Info.plist;
+				INFOPLIST_FILE = "SwiftyJSONAcceleratorTests/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.karthik.SwiftyJSONAcceleratorTests;
 				PRODUCT_NAME = SwiftyJSONAccelerator;

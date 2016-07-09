@@ -1,4 +1,6 @@
 # SwiftyJSONAccelerator
+####Master branch build status:
+![travis-ci](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=releases/v1.0) [![codecov](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator/branch/releases\/v1.0/graph/badge.svg)](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator)
 
 **(Alpha v0.0.6)**
 
@@ -19,7 +21,7 @@ Currently, the pattern is very similar to its Objective-C counterpart. It genera
 - Initalize with `AnyObject`
 - Optional `NSCoding` compliance.
 - Convert object to `NSDictionary`
-	 
+
 ![Preview](https://raw.githubusercontent.com/insanoid/SwiftyJSONAccelerator/master/preview.png)
 
 *Simple configurable interface for generation of file*

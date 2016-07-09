@@ -1,0 +1,14 @@
+language: swift
+osx_image: xcode7.3
+before_install: rvm use $RVM_RUBY_VERSION
+install:
+  - bundle install --without=documentation --path ../travis_bundle_dir
+  - pod install
+  - ./install_swiftlint.sh
+script:
+  - make build
+  - make ci_tests
+  - swiftlint
+after_success:
+  - slather
+  - bash <(curl -s https://codecov.io/bash) -f build/slather/cobertura.xml

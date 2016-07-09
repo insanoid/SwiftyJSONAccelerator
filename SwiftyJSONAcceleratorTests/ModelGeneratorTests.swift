@@ -11,16 +11,24 @@ import XCTest
 import Nimble
 import SwiftyJSON
 
+/// Test cases for the model Generator.
 class ModelGeneratorTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
+    NSUserNotificationCenter.defaultUserNotificationCenter().removeAllDeliveredNotifications()
   }
 
   override func tearDown() {
+    NSUserNotificationCenter.defaultUserNotificationCenter().removeAllDeliveredNotifications()
     super.tearDown()
   }
 
+  /**
+   Generate a sample JSON class with all possible scenarioes.
+
+   - returns: A valid JSON.
+   */
   func testJSON() -> JSON {
     return JSON.init(
       ["value_one": "string value",
@@ -43,6 +51,13 @@ class ModelGeneratorTests: XCTestCase {
     ])
   }
 
+  /**
+   Default configuration for the tests.
+
+   - parameter library: Type of library to use.
+
+   - returns: Default configuration file.
+   */
   func defaultConfiguration(library: JSONMappingLibrary) -> ModelGenerationConfiguration {
     return ModelGenerationConfiguration.init(
       filePath: "/tmp/",
@@ -55,13 +70,37 @@ class ModelGeneratorTests: XCTestCase {
       supportNSCoding: true)
   }
 
+  /**
+   Test model file initialisation test.
+   */
   func testinitaliseModelFileFor() {
     let config = defaultConfiguration(.SwiftyJSON)
     let m = ModelGenerator.init(JSON.init([testJSON()]), config)
     expect(m.initaliseModelFileFor(.SwiftyJSON) is SwiftyJSONModelFile).to(equal(true))
     expect(m.initaliseModelFileFor(.SwiftyJSON) is ObjectMapperModelFile).to(equal(false))
+    expect(m.initaliseModelFileFor(.ObjectMapper) is SwiftyJSONModelFile).to(equal(false))
+    expect(m.initaliseModelFileFor(.ObjectMapper) is ObjectMapperModelFile).to(equal(true))
   }
 
+  /**
+   Test notifications to be generated for the given files.
+   */
+  func testNotifications() {
+    let config = defaultConfiguration(.SwiftyJSON)
+    let m = ModelGenerator.init(JSON.init([testJSON()]), config)
+    let files = m.generate()
+    let errorNotification = m.generateNotificationFor([])
+    expect(errorNotification.title).to(equal("SwiftyJSONAccelerator"))
+    expect(errorNotification.subtitle).to(equal("No files were generated, cannot model arrays inside arrays."))
+    let correctNotification = m.generateNotificationFor(files)
+    expect(correctNotification.title).to(equal("SwiftyJSONAccelerator"))
+    expect(correctNotification.subtitle).to(equal("Completed - ACBaseClass.swift"))
+
+  }
+
+  /**
+   Test for invalid JSON.
+   */
   func testSwiftyJSONForInvalidJSON() {
     let config = defaultConfiguration(.SwiftyJSON)
     let m = ModelGenerator.init(JSON.init(["hello!"]), config)
@@ -69,6 +108,9 @@ class ModelGeneratorTests: XCTestCase {
     expect(files.count).to(equal(0))
   }
 
+  /**
+   Generate files for JSON which is an array.
+   */
   func testSwiftyJSONModelWithRootAsArray() {
     let config = defaultConfiguration(.SwiftyJSON)
     let m = ModelGenerator.init(JSON.init([testJSON()]), config)
@@ -93,6 +135,9 @@ class ModelGeneratorTests: XCTestCase {
     expect(baseModelFile!.fileName).to(equal(baseClass))
   }
 
+  /**
+   Generate and test the files generated for SwiftyJSON value.
+   */
   func testSwiftyJSONModel() {
     let config = defaultConfiguration(.SwiftyJSON)
     let m = ModelGenerator.init(testJSON(), config)
@@ -203,11 +248,6 @@ class ModelGeneratorTests: XCTestCase {
     for decoder in decoders {
       expect(baseModelFile!.component.decoders.contains(decoder)).to(equal(true))
     }
-
-    for file in files {
-      print(file.description())
-    }
-
   }
 
 }

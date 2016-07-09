@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- *  Protocol for default file component generation.
+ *  Protocol for default file component generation. It is the fall back if the library does not want to customise the methods.
  */
 protocol DefaultModelFileComponent {
 
@@ -88,6 +88,29 @@ protocol DefaultModelFileComponent {
    */
   func genDescriptionForObjectArray(name: String, _ constantName: String) -> String
 
+  /**
+   Generate the encoder string for the given variable.
+
+   - parameter name:         Name of the object.
+   - parameter type:         Type of the object.
+   - parameter constantName: Constant name
+   - parameter isArray: Is this an array of the given type.
+
+   - returns:  Generated instance of the string for decoder.
+   */
+  func genEncoder(name: String, _ type: String, _ constantName: String) -> String
+
+  /**
+   Generate the decoder string for the given variable.
+
+   - parameter name:         Name of the object.
+   - parameter type:         Type of the object.
+   - parameter constantName: Constant name
+   - parameter isArray: Is this an array of the given type.
+
+   - returns:  Generated instance of the string for decoder.
+   */
+  func genDecoder(name: String, _ type: String, _ constantName: String, _ isArray: Bool) -> String
 }
 
 extension DefaultModelFileComponent {
@@ -136,7 +159,7 @@ extension DefaultModelFileComponent {
     return "aCoder.encodeObject(\(name), forKey: \(constantName))"
   }
 
-  func genDencoder(name: String, _ type: String, _ constantName: String, _ isArray: Bool) -> String {
+  func genDecoder(name: String, _ type: String, _ constantName: String, _ isArray: Bool) -> String {
     let finalConstantName = isArray ? "[\(constantName)]" : constantName
     if type == VariableType.Bool.rawValue {
       return "self.\(name) = aDecoder.decodeBoolForKey(\(finalConstantName))"

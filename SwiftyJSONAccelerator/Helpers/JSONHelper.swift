@@ -35,11 +35,9 @@ public class JSONHelper {
    */
   public class func convertToObject(jsonString: String?) -> (Bool, AnyObject?, NSError?) {
 
-    if jsonString == nil {
-      return (false, nil, nil)
-    }
+    guard let jsonValueString = jsonString else { return (false, nil, nil) }
 
-    let jsonData = jsonString!.dataUsingEncoding(NSUTF8StringEncoding)!
+    let jsonData = jsonValueString.dataUsingEncoding(NSUTF8StringEncoding)!
     do {
       let object = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.AllowFragments)
       return (true, object, nil)
@@ -59,10 +57,10 @@ public class JSONHelper {
   public class func prettyJSON(jsonString: String?) -> String? {
     let response = convertToObject(jsonString)
     if response.0 {
-      return prettyJSON(response.1)
-    } else {
-      return nil
+      return prettyJSON(object: response.1)
     }
+    return nil
+
   }
 
   /**
@@ -73,16 +71,14 @@ public class JSONHelper {
 
    - returns: String with JSON but well formatted.
    */
-  public class func prettyJSON(object: AnyObject?) -> String? {
+  public class func prettyJSON(object passedObject: AnyObject?) -> String? {
 
-    if object == nil {
-      return nil
-    }
+    guard let object = passedObject else { return nil }
 
     do {
-      let data: NSData = try NSJSONSerialization.dataWithJSONObject(object!, options: NSJSONWritingOptions.PrettyPrinted)
+      let data: NSData = try NSJSONSerialization.dataWithJSONObject(object, options: NSJSONWritingOptions.PrettyPrinted)
       return String.init(data: data, encoding: NSUTF8StringEncoding)
-    } catch _ as NSError {
+    } catch {
       return nil
     }
   }

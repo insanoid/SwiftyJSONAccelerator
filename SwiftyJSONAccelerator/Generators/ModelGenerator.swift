@@ -23,8 +23,6 @@ public struct ModelGenerator {
 
    - parameter baseContent:   Base content JSON that has to be used to generate the model.
    - parameter configuration: Configuration to generate the the model.
-
-   - returns: Instance of model generator.
    */
   init(_ baseContent: JSON, _ configuration: ModelGenerationConfiguration) {
     self.baseContent = baseContent
@@ -69,7 +67,7 @@ public struct ModelGenerator {
     if let rootObject = object.dictionary {
       // A model file to store the current model.
       var currentModel = self.initaliseModelFileFor(configuration.modelMappingLibrary)
-      currentModel.fileName = className
+      currentModel.setInfo(className, configuration)
 
       for (key, value) in rootObject {
         /// basic information, name, type and the constant to store the key.
@@ -119,8 +117,10 @@ public struct ModelGenerator {
    Generates the notification message for the model files returned.
 
    - parameter modelFiles: Array of model files that were generated.
+
+   - returns: Notification tht was generated.
    */
-  func notifyFileGeneration(modelFiles: [ModelFile]) {
+  func generateNotificationFor(modelFiles: [ModelFile]) -> NSUserNotification {
     let notification: NSUserNotification = NSUserNotification()
     notification.title = NSLocalizedString("SwiftyJSONAccelerator", comment: "")
     if modelFiles.count > 0 {
@@ -129,11 +129,18 @@ public struct ModelGenerator {
     } else {
       notification.subtitle = NSLocalizedString("No files were generated, cannot model arrays inside arrays.", comment: "")
     }
-    NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notification)
+    return notification
   }
 
+  /**
+   Initialise a ModelFile of a certain Library type based on the requirement.
+
+   - parameter modelMappingLibrary: Library the generated modal has to support.
+
+   - returns: A new model file of the required type.
+   */
   func initaliseModelFileFor(modelMappingLibrary: JSONMappingLibrary) -> ModelFile {
-    switch configuration.modelMappingLibrary {
+    switch modelMappingLibrary {
     case .ObjectMapper:
       return ObjectMapperModelFile()
     case .SwiftyJSON:

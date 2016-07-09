@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ *  A structure to store the various kinds of string name generation functions for classes and variables.
+ */
 struct NameGenerator {
 
   /**
@@ -78,8 +81,14 @@ struct NameGenerator {
     return currentName
   }
 
-  // MARK: -
+  /**
+   Generate the key for the given variable.
 
+   - parameter className:    Name of the class.
+   - parameter variableName: Name of the Varible.
+
+   - returns: The name for the key for the variable in the given class.
+   */
   static func variableKey(className: String, _ variableName: String) -> String {
     var _variableName = variableName
     _variableName.uppercaseFirst()

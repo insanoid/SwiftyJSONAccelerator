@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ *  Provides support for SwiftyJSON library.
+ */
 struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
 
   var fileName: String
@@ -43,35 +46,35 @@ struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
       component.initialisers.append(genInitializerForVariable(property.name, property.type, property.constantName))
       component.declarations.append(genVariableDeclaration(property.name, property.type, false))
       component.description.append(genDescriptionForPrimitive(property.name, property.type, property.constantName))
-      component.decoders.append(genDencoder(property.name, property.type, property.constantName, false))
+      component.decoders.append(genDecoder(property.name, property.type, property.constantName, false))
       component.encoders.append(genEncoder(property.name, property.type, property.constantName))
     case .ValueTypeArray:
       component.stringConstants.append(genStringConstant(property.constantName, property.key))
       component.initialisers.append(genInitializerForPrimitiveArray(property.name, property.type, property.constantName))
       component.declarations.append(genVariableDeclaration(property.name, property.type, true))
       component.description.append(genDescriptionForPrimitiveArray(property.name, property.constantName))
-      component.decoders.append(genDencoder(property.name, property.type, property.constantName, true))
+      component.decoders.append(genDecoder(property.name, property.type, property.constantName, true))
       component.encoders.append(genEncoder(property.name, property.type, property.constantName))
     case .ObjectType:
       component.stringConstants.append(genStringConstant(property.constantName, property.key))
       component.initialisers.append(genInitializerForObject(property.name, property.type, property.constantName))
       component.declarations.append(genVariableDeclaration(property.name, property.type, false))
       component.description.append(genDescriptionForObject(property.name, property.constantName))
-      component.decoders.append(genDencoder(property.name, property.type, property.constantName, false))
+      component.decoders.append(genDecoder(property.name, property.type, property.constantName, false))
       component.encoders.append(genEncoder(property.name, property.type, property.constantName))
     case .ObjectTypeArray:
       component.stringConstants.append(genStringConstant(property.constantName, property.key))
       component.initialisers.append(genInitializerForObjectArray(property.name, property.type, property.constantName))
       component.declarations.append(genVariableDeclaration(property.name, property.type, true))
       component.description.append(genDescriptionForObjectArray(property.name, property.constantName))
-      component.decoders.append(genDencoder(property.name, property.type, property.constantName, true))
+      component.decoders.append(genDecoder(property.name, property.type, property.constantName, true))
       component.encoders.append(genEncoder(property.name, property.type, property.constantName))
     case .EmptyArray:
       component.stringConstants.append(genStringConstant(property.constantName, property.key))
       component.initialisers.append(genInitializerForPrimitiveArray(property.name, "object", property.constantName))
       component.declarations.append(genVariableDeclaration(property.name, "AnyObject", true))
       component.description.append(genDescriptionForPrimitiveArray(property.name, property.constantName))
-      component.decoders.append(genDencoder(property.name, "AnyObject", property.constantName, true))
+      component.decoders.append(genDecoder(property.name, "AnyObject", property.constantName, true))
       component.encoders.append(genEncoder(property.name, "AnyObject", property.constantName))
     case .NullType:
       // Currently we do not deal with null values.

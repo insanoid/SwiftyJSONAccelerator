@@ -9,25 +9,51 @@
 import XCTest
 import Nimble
 
+/// Test basic corner cases for the JSONHelper.
 class JSONHelperTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    // Put setup code here. This method is called before the invocation of each test method in the class.
   }
 
   override func tearDown() {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     super.tearDown()
   }
 
   func testIsValidJSONString() {
-    var response = JSONHelper.isStringValidJSON("aaa")
+    var response = JSONHelper.isStringValidJSON("temp")
     expect(response.0).to(equal(false))
     expect(response.1).notTo(equal(nil))
 
-    response = JSONHelper.isStringValidJSON("{\"aaa\":\"some\"}")
+    response = JSONHelper.isStringValidJSON("{\"key\":\"value\"}")
     expect(response.0).to(equal(true))
     expect(response.1).to(beNil())
+  }
+
+  func testConvertToJSON() {
+    var response = JSONHelper.convertToObject("temp")
+    expect(response.0).to(equal(false))
+    expect(response.2).notTo(beNil())
+
+    response = JSONHelper.convertToObject("{\"key\":\"value\"}")
+    expect(response.0).to(equal(true))
+    expect(response.2).to(beNil())
+
+    response = JSONHelper.convertToObject(nil)
+    expect(response.0).to(equal(false))
+    expect(response.1).to(beNil())
+  }
+
+  func testPrettyJSON() {
+    var response = JSONHelper.prettyJSON("temp")
+    expect(response).to(beNil())
+    response = JSONHelper.prettyJSON("{\"key\":\"value\"}")
+    expect(response).to(equal("{\n  \"key\" : \"value\"\n}"))
+
+    response = JSONHelper.prettyJSON(object: nil)
+    expect(response).to(beNil())
+    response = JSONHelper.prettyJSON(object: ["key": "value"])
+    expect(response).to(equal("{\n  \"key\" : \"value\"\n}"))
+
   }
 }
