@@ -105,13 +105,13 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     // Checks for validity of the content, else can cause crashes.
     if object != nil {
 
-      let swiftyState = self.includeSwiftyCheckbox?.state == 1 ? true : false
-      let supportSwiftyState = self.supportSwiftyJSONCheckbox?.state == 1 ? true : false
-
-      let nscodingState = self.supportNSCodingCheckbox?.state == 1 ? true : false
-
-      let objectMapperState = self.includeObjectMapperCheckbox?.state == 1 ? true : false
-      let supportObjectMapperState = self.supportObjectMapperCheckbox?.state == 1 ? true : false
+//      let swiftyState = self.includeSwiftyCheckbox?.state == 1 ? true : false
+//      let supportSwiftyState = self.supportSwiftyJSONCheckbox?.state == 1 ? true : false
+//
+//      let nscodingState = self.supportNSCodingCheckbox?.state == 1 ? true : false
+//
+//      let objectMapperState = self.includeObjectMapperCheckbox?.state == 1 ? true : false
+//      let supportObjectMapperState = self.supportObjectMapperCheckbox?.state == 1 ? true : false
 
 //            let generator: ModelGenerator = ModelGenerator.init(baseContent: JSON(object!), baseClassName: baseClassTextField.stringValue, filePath: filePath!)
 //

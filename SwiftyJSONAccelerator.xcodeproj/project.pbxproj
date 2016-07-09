@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7981ABD599919B662249D96E /* Pods_SwiftyJSONAccelerator_SwiftyJSONAcceleratorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032C98D050F4150DA57C4025 /* Pods_SwiftyJSONAccelerator_SwiftyJSONAcceleratorTests.framework */; };
 		7F02AAC4C81E97885ABE8FDD /* Pods_SwiftyJSONAcceleratorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9FAE3CF88221944648B60FE /* Pods_SwiftyJSONAcceleratorTests.framework */; };
 		8D9644E2C9488A67C392529B /* Pods_SwiftyJSONAccelerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5AF74A4BC63E5BEAD3FB03 /* Pods_SwiftyJSONAccelerator.framework */; };
 		930462AD1D3106A400FE61A6 /* FileGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930462AC1D3106A400FE61A6 /* FileGenerator.swift */; };
@@ -129,7 +128,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7981ABD599919B662249D96E /* Pods_SwiftyJSONAccelerator_SwiftyJSONAcceleratorTests.framework in Frameworks */,
 				7F02AAC4C81E97885ABE8FDD /* Pods_SwiftyJSONAcceleratorTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -2,9 +2,6 @@ language: objective-c
 cache:
   - bundler
   - cocoapods
-  - slather
-  - synx
-  - xcpretty
 osx_image: xcode7.3
 xcode_workspace: SwiftyJSONAccelerator.xcworkspace
 xcode_scheme: SwiftyJSONAccelerator
