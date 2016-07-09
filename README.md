@@ -1,6 +1,5 @@
 # SwiftyJSONAccelerator
-####Master branch build status:
-![travis-ci](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=releases/v1.0) [![codecov](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator/branch/releases\/v1.0/graph/badge.svg)](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator)
+[![Build Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=issues%2F28-fix-code-base)](https://travis-ci.org/insanoid/SwiftyJSONAccelerator) [![codecov](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator/branch/issues%2F28-fix-code-base.svg)](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator)
 
 **(Alpha v0.0.6)**
 
