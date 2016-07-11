@@ -38,13 +38,6 @@ protocol ModelFile {
   mutating func generateAndAddComponentsFor(property: PropertyComponent)
 
   /**
-   Generate the final model.
-
-   - returns: String representation for the model.
-   */
-  func generateModel() -> String
-
-  /**
    Name of the module/model type.
 
    - returns: String representing the name of the model type.

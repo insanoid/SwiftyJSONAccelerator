@@ -142,6 +142,36 @@ class ModelGeneratorTests: XCTestCase {
     let config = defaultConfiguration(.SwiftyJSON)
     let m = ModelGenerator.init(testJSON(), config)
     let files = m.generate()
+    runCheckForBaseModel(files, config, runSwiftyJSONInitialiserCheckForBaseModel(_:))
+
+    for m in files {
+      let content = FileGenerator.generateFileContentWith(m, configuration: config)
+      let name = m.fileName
+      let path = "/Users/karthikeyaudupa/Desktop/tmp/sj/"
+      expect(FileGenerator.writeToFileWith(name, content: content, path: path)).to(equal(true))
+    }
+
+  }
+
+  /**
+   Generate and test the files generated for ObjectMapper value.
+   */
+  func testObjectMapperModel() {
+    let config = defaultConfiguration(.ObjectMapper)
+    let m = ModelGenerator.init(testJSON(), config)
+    let files = m.generate()
+    runCheckForBaseModel(files, config, runObjectMapperInitialiserCheckForBaseModel(_:))
+
+    for m in files {
+      let content = FileGenerator.generateFileContentWith(m, configuration: config)
+      let name = m.fileName
+      let path = "/Users/karthikeyaudupa/Desktop/tmp/om/"
+      expect(FileGenerator.writeToFileWith(name, content: content, path: path)).to(equal(true))
+    }
+
+  }
+
+  func runCheckForBaseModel(files: [ModelFile], _ config: ModelGenerationConfiguration, _ initialiserCheeck: (ModelFile -> Void)) {
 
     expect(files.count).to(equal(4))
 
@@ -177,22 +207,6 @@ class ModelGeneratorTests: XCTestCase {
       expect(baseModelFile!.component.stringConstants.contains(stringConstant)).to(equal(true))
     }
 
-    expect(baseModelFile!.component.initialisers.count).to(equal(8))
-    let initialisers = ["if let items = json[kACBaseClassValueSevenKey].array { valueSeven = items.map { ACValueSeven(json: $0) } }",
-      "valueTwo = json[kACBaseClassValueTwoKey].int",
-      "valueFour = json[kACBaseClassValueFourKey].float",
-      "if let items = json[kACBaseClassValueFiveKey].array { valueFive = items.map { $0.stringValue } }",
-      "valueSix = ACValueSix(json: json[kACBaseClassValueSixKey])",
-      "valueOne = json[kACBaseClassValueOneKey].string",
-      "valueThree = json[kACBaseClassValueThreeKey].boolValue",
-      "if let items = json[kACBaseClassValueEightKey].array { valueEight = items.map { $0.object} }"
-    ]
-    for initialiser in initialisers {
-      print(initialiser)
-      print(baseModelFile!.component.initialisers.contains(initialiser))
-      expect(baseModelFile!.component.initialisers.contains(initialiser)).to(equal(true))
-    }
-
     expect(baseModelFile!.component.declarations.count).to(equal(8))
     let declarations = [
       "public var valueSeven: [ACValueSeven]?",
@@ -224,7 +238,8 @@ class ModelGeneratorTests: XCTestCase {
     }
 
     expect(baseModelFile!.component.encoders.count).to(equal(8))
-    let encoders = ["aCoder.encodeObject(valueSeven, forKey: kACBaseClassValueSevenKey)",
+    let encoders = [
+      "aCoder.encodeObject(valueSeven, forKey: kACBaseClassValueSevenKey)",
       "aCoder.encodeObject(valueTwo, forKey: kACBaseClassValueTwoKey)",
       "aCoder.encodeObject(valueFour, forKey: kACBaseClassValueFourKey)",
       "aCoder.encodeObject(valueFive, forKey: kACBaseClassValueFiveKey)",
@@ -250,13 +265,39 @@ class ModelGeneratorTests: XCTestCase {
     for decoder in decoders {
       expect(baseModelFile!.component.decoders.contains(decoder)).to(equal(true))
     }
+  }
 
-    for m in files {
-      let content = FileGenerator.generateFileContentWith(m, configuration: config)
-      let name = m.fileName
-      let path = "/tmp"
-      expect(FileGenerator.writeToFileWith(name, content: content, path: path)).to(equal(true))
+  func runSwiftyJSONInitialiserCheckForBaseModel(baseModelFile: ModelFile) {
+    expect(baseModelFile.component.initialisers.count).to(equal(8))
+    let initialisers = [
+      "if let items = json[kACBaseClassValueSevenKey].array { valueSeven = items.map { ACValueSeven(json: $0) } }",
+      "valueTwo = json[kACBaseClassValueTwoKey].int",
+      "valueFour = json[kACBaseClassValueFourKey].float",
+      "if let items = json[kACBaseClassValueFiveKey].array { valueFive = items.map { $0.stringValue } }",
+      "valueSix = ACValueSix(json: json[kACBaseClassValueSixKey])",
+      "valueOne = json[kACBaseClassValueOneKey].string",
+      "valueThree = json[kACBaseClassValueThreeKey].boolValue",
+      "if let items = json[kACBaseClassValueEightKey].array { valueEight = items.map { $0.object} }"
+    ]
+    for initialiser in initialisers {
+      expect(baseModelFile.component.initialisers.contains(initialiser)).to(equal(true))
     }
   }
 
+  func runObjectMapperInitialiserCheckForBaseModel(baseModelFile: ModelFile) {
+    expect(baseModelFile.component.initialisers.count).to(equal(8))
+    let initialisers = [
+      "valueSeven <- map[kACBaseClassValueSevenKey]",
+      "valueTwo <- map[kACBaseClassValueTwoKey]",
+      "valueFour <- map[kACBaseClassValueFourKey]",
+      "valueFive <- map[kACBaseClassValueFiveKey]",
+      "valueSix <- map[kACBaseClassValueSixKey]",
+      "valueEight <- map[kACBaseClassValueEightKey]",
+      "valueOne <- map[kACBaseClassValueOneKey]",
+      "valueThree <- map[kACBaseClassValueThreeKey]"
+    ]
+    for initialiser in initialisers {
+      expect(baseModelFile.component.initialisers.contains(initialiser)).to(equal(true))
+    }
+  }
 }

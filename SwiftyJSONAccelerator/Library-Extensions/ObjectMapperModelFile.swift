@@ -26,10 +26,6 @@ struct ObjectMapperModelFile: ModelFile, DefaultModelFileComponent {
     type = configuration.constructType
   }
 
-  func generateModel() -> String {
-    return ""
-
-  }
   func moduleName() -> String {
     return "ObjectMapper"
   }
@@ -42,6 +38,55 @@ struct ObjectMapperModelFile: ModelFile, DefaultModelFileComponent {
     return "ObjectMapperTemplate"
   }
 
-  mutating func generateAndAddComponentsFor(property: PropertyComponent) { }
+  mutating func generateAndAddComponentsFor(property: PropertyComponent) {
+    switch property.propertyType {
+
+    case .ValueType:
+      component.declarations.append(genVariableDeclaration(property.name, property.type, false))
+      component.description.append(genDescriptionForPrimitive(property.name, property.type, property.constantName))
+      component.decoders.append(genDecoder(property.name, property.type, property.constantName, false))
+      component.encoders.append(genEncoder(property.name, property.type, property.constantName))
+      generateCommonComponentsFor(property)
+    case .ValueTypeArray:
+      component.description.append(genDescriptionForPrimitiveArray(property.name, property.constantName))
+      component.declarations.append(genVariableDeclaration(property.name, property.type, true))
+      component.decoders.append(genDecoder(property.name, property.type, property.constantName, true))
+      component.encoders.append(genEncoder(property.name, property.type, property.constantName))
+      generateCommonComponentsFor(property)
+    case .ObjectType:
+      component.description.append(genDescriptionForObject(property.name, property.constantName))
+      component.declarations.append(genVariableDeclaration(property.name, property.type, false))
+      component.decoders.append(genDecoder(property.name, property.type, property.constantName, false))
+      component.encoders.append(genEncoder(property.name, property.type, property.constantName))
+      generateCommonComponentsFor(property)
+    case .ObjectTypeArray:
+      component.declarations.append(genVariableDeclaration(property.name, property.type, true))
+      component.description.append(genDescriptionForObjectArray(property.name, property.constantName))
+      component.decoders.append(genDecoder(property.name, property.type, property.constantName, true))
+      component.encoders.append(genEncoder(property.name, property.type, property.constantName))
+      generateCommonComponentsFor(property)
+
+    case .EmptyArray:
+      component.declarations.append(genVariableDeclaration(property.name, "AnyObject", true))
+      component.description.append(genDescriptionForPrimitiveArray(property.name, property.constantName))
+      component.decoders.append(genDecoder(property.name, "AnyObject", property.constantName, true))
+      component.encoders.append(genEncoder(property.name, "AnyObject", property.constantName))
+      generateCommonComponentsFor(property)
+    case .NullType: break
+      // Currently we do not deal with null values.
+
+    }
+  }
+
+  private mutating func generateCommonComponentsFor(property: PropertyComponent) {
+    component.stringConstants.append(genStringConstant(property.constantName, property.key))
+    component.initialisers.append(genInitializerForVariable(property.name, property.constantName))
+  }
+
+  // MARK: - Customised methods for ObjectMapper
+  // MARK: - Initialisers
+  func genInitializerForVariable(name: String, _ constantName: String) -> String {
+    return "\(name) <- map[\(constantName)]"
+  }
 
 }

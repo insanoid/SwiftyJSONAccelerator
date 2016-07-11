@@ -29,12 +29,6 @@ struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
     type = configuration.constructType
   }
 
-  func generateModel() -> String {
-    var finalString = ""
-    finalString.appendContentsOf(component.stringConstants.joinWithSeparator("\n\t"))
-    return finalString
-
-  }
   func moduleName() -> String {
     return "SwiftyJSON"
   }

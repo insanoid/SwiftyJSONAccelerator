@@ -12,5 +12,5 @@
    - parameter map: A mapping from ObjectMapper
   */
   func mapping(map: Map) {
-{OBJECT_MAPPER_INITIALIZER}
+{INITALIZER}
   }
