@@ -181,13 +181,15 @@ class ModelGeneratorTests: XCTestCase {
     let initialisers = ["if let items = json[kACBaseClassValueSevenKey].array { valueSeven = items.map { ACValueSeven(json: $0) } }",
       "valueTwo = json[kACBaseClassValueTwoKey].int",
       "valueFour = json[kACBaseClassValueFourKey].float",
-      "if let items = json[kACBaseClassValueFiveKey].array { valueFive = items.map { $0.String } }",
+      "if let items = json[kACBaseClassValueFiveKey].array { valueFive = items.map { $0.stringValue } }",
       "valueSix = ACValueSix(json: json[kACBaseClassValueSixKey])",
       "valueOne = json[kACBaseClassValueOneKey].string",
       "valueThree = json[kACBaseClassValueThreeKey].boolValue",
-      "if let items = json[kACBaseClassValueEightKey].array { valueEight = items.map { $0.object } }"
+      "if let items = json[kACBaseClassValueEightKey].array { valueEight = items.map { $0.object} }"
     ]
     for initialiser in initialisers {
+      print(initialiser)
+      print(baseModelFile!.component.initialisers.contains(initialiser))
       expect(baseModelFile!.component.initialisers.contains(initialiser)).to(equal(true))
     }
 
@@ -236,17 +238,24 @@ class ModelGeneratorTests: XCTestCase {
 
     expect(baseModelFile!.component.decoders.count).to(equal(8))
     let decoders = [
-      "self.valueSeven = aDecoder.decodeObjectForKey([kACBaseClassValueSevenKey]) as? ACValueSeven",
+      "self.valueSeven = aDecoder.decodeObjectForKey(kACBaseClassValueSevenKey) as? [ACValueSeven]",
       "self.valueTwo = aDecoder.decodeObjectForKey(kACBaseClassValueTwoKey) as? Int",
       "self.valueFour = aDecoder.decodeObjectForKey(kACBaseClassValueFourKey) as? Float",
-      "self.valueFive = aDecoder.decodeObjectForKey([kACBaseClassValueFiveKey]) as? String",
+      "self.valueFive = aDecoder.decodeObjectForKey(kACBaseClassValueFiveKey) as? [String]",
       "self.valueSix = aDecoder.decodeObjectForKey(kACBaseClassValueSixKey) as? ACValueSix",
       "self.valueOne = aDecoder.decodeObjectForKey(kACBaseClassValueOneKey) as? String",
       "self.valueThree = aDecoder.decodeBoolForKey(kACBaseClassValueThreeKey)",
-      "self.valueEight = aDecoder.decodeObjectForKey([kACBaseClassValueEightKey]) as? AnyObject"
+      "self.valueEight = aDecoder.decodeObjectForKey(kACBaseClassValueEightKey) as? [AnyObject]"
     ]
     for decoder in decoders {
       expect(baseModelFile!.component.decoders.contains(decoder)).to(equal(true))
+    }
+
+    for m in files {
+      let content = FileGenerator.generateFileContentWith(m, configuration: config)
+      let name = m.fileName
+      let path = "/tmp"
+      expect(FileGenerator.writeToFileWith(name, content: content, path: path)).to(equal(true))
     }
   }
 

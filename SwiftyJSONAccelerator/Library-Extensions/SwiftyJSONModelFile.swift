@@ -39,6 +39,14 @@ struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
     return "SwiftyJSON"
   }
 
+  func baseElementName() -> String? {
+    return nil
+  }
+
+  func mainBodyFileName() -> String {
+    return "SwiftyJSONTemplate"
+  }
+
   mutating func generateAndAddComponentsFor(property: PropertyComponent) {
     switch property.propertyType {
     case .ValueType:
@@ -104,7 +112,11 @@ struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
   func genInitializerForPrimitiveArray(name: String, _ type: String, _ constantName: String) -> String {
     var variableType = type
     variableType.lowerCaseFirst()
-    return "if let items = json[\(constantName)].array { \(name) = items.map { $0.\(type) } }"
+    if type == "object" {
+      return "if let items = json[\(constantName)].array { \(name) = items.map { $0.\(variableType)} }"
+    } else {
+      return "if let items = json[\(constantName)].array { \(name) = items.map { $0.\(variableType)Value } }"
+    }
   }
 
 }

@@ -34,6 +34,14 @@ struct ObjectMapperModelFile: ModelFile, DefaultModelFileComponent {
     return "ObjectMapper"
   }
 
+  func baseElementName() -> String? {
+    return "Mappable"
+  }
+
+  func mainBodyFileName() -> String {
+    return "ObjectMapperTemplate"
+  }
+
   mutating func generateAndAddComponentsFor(property: PropertyComponent) { }
 
 }

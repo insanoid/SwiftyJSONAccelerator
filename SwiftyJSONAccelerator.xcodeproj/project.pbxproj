@@ -172,10 +172,9 @@
 		9341A14D1BD6E6EF0048CE2C /* Templates */ = {
 			isa = PBXGroup;
 			children = (
+				93F5F2141D344CCC00FEB9C9 /* Library-Extension-Templates */,
 				9341A14E1BD6E7290048CE2C /* BaseTemplate.txt */,
 				C667011E1BDCBE1F009BA254 /* NSCodingTemplate.txt */,
-				C667011C1BDCAF23009BA254 /* ObjectMapperTemplate.txt */,
-				C667011A1BDCABCE009BA254 /* SwiftyJSONTemplate.txt */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -285,6 +284,15 @@
 				9380E5931D2C6D12003F77B1 /* StringTests.swift */,
 			);
 			path = SwiftyJSONAcceleratorTests;
+			sourceTree = "<group>";
+		};
+		93F5F2141D344CCC00FEB9C9 /* Library-Extension-Templates */ = {
+			isa = PBXGroup;
+			children = (
+				C667011C1BDCAF23009BA254 /* ObjectMapperTemplate.txt */,
+				C667011A1BDCABCE009BA254 /* SwiftyJSONTemplate.txt */,
+			);
+			path = "Library-Extension-Templates";
 			sourceTree = "<group>";
 		};
 		C5C27882A6F5CFB95CF0B239 /* Frameworks */ = {

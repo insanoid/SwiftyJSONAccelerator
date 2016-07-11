@@ -160,11 +160,11 @@ extension DefaultModelFileComponent {
   }
 
   func genDecoder(name: String, _ type: String, _ constantName: String, _ isArray: Bool) -> String {
-    let finalConstantName = isArray ? "[\(constantName)]" : constantName
+    let finalTypeName = isArray ? "[\(type)]" : type
     if type == VariableType.Bool.rawValue {
-      return "self.\(name) = aDecoder.decodeBoolForKey(\(finalConstantName))"
+      return "self.\(name) = aDecoder.decodeBoolForKey(\(constantName))"
     }
-    return "self.\(name) = aDecoder.decodeObjectForKey(\(finalConstantName)) as? \(type)"
+    return "self.\(name) = aDecoder.decodeObjectForKey(\(constantName)) as? \(finalTypeName)"
   }
 
 }

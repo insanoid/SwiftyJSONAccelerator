@@ -51,4 +51,18 @@ protocol ModelFile {
    */
   func moduleName() -> String
 
+  /**
+   Name of the base element the structure has to extend from.
+
+   - returns: String representing the class from which it has to extended.
+   */
+  func baseElementName() -> String?
+
+  /**
+   The main file containing various module releted segments to be replaced.
+
+   - returns: Name of the JSON file (without extension)
+   */
+  func mainBodyFileName() -> String
+
 }
