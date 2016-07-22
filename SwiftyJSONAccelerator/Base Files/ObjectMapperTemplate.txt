@@ -11,6 +11,6 @@
     Map a JSON object to this class using ObjectMapper
     - parameter map: A mapping from ObjectMapper
     */
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
 {OBJECT_MAPPER_INITIALIZER}
     }
