@@ -4,6 +4,8 @@
 //  Created by __NAME__ on {DATE}
 //  Copyright (c) __MyCompanyName__. All rights reserved.
 //
+//  Generated File
+//  Do not modify directly.
 
 import Foundation{INCLUDE_SWIFTY}{INCLUDE_OBJECT_MAPPER}
 
