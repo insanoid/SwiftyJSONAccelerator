@@ -25,7 +25,7 @@ public {OBJECT_KIND} {OBJECT_NAME}: {OBJECT_BASE_CLASS}{NSCODING_PROTOCOL_SUPPOR
     */
     public func dictionaryRepresentation() -> [String : AnyObject ] {
 
-        var dictionary: [String : AnyObject ] = [ : ]
+    var dictionary = [String: AnyObject]()
 {DESC}
         return dictionary
     }

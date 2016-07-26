@@ -496,9 +496,9 @@ public class ModelGenerator {
     */
     internal func descriptionForVariable(variableName: String, key: String, type: String) -> String {
         if type == VariableType.kBoolType {
-            return "\t\tdictionary.updateValue(\(variableName), forKey: \(key))"
+            return "\t\tdictionary[\(key)] = \(variableName)\n"
         }
-        return "\t\tif \(variableName) != nil {\n\t\t\tdictionary.updateValue(\(variableName)!, forKey: \(key))\n\t\t}"
+        return "\t\tif let \(variableName) = \(variableName) {\n\t\t\tdictionary[\(key)] = \(variableName)\n\t\t}"
     }
 
     /**
@@ -510,7 +510,7 @@ public class ModelGenerator {
      - returns: A single line declaration of the variable which is an array of object.
      */
     internal func descriptionForObjectArray(variableName: String, key: String) -> String {
-        return  "\t\tif \(variableName)?.count > 0 {\n\t\t\tvar temp: [AnyObject] = []\n\t\t\tfor item in \(variableName)! {\n\t\t\t\ttemp.append(item.dictionaryRepresentation())\n\t\t\t}\n\t\t\tdictionary.updateValue(temp, forKey: \(key))\n\t\t}"
+        return  "\t\tif let \(variableName) = \(variableName) {\n\t\t\tvar temp = [AnyObject]()\n\t\t\tfor item in \(variableName) {\n\t\t\t\ttemp.append(item.dictionaryRepresentation())\n\t\t\t}\n\t\t\tdictionary[\(key)] = temp\n\t\t}"
     }
 
     /**
@@ -520,7 +520,7 @@ public class ModelGenerator {
      - returns: A single line declaration of the variable which is an array of primitive kind.
      */
     internal func descriptionForPrimitiveVariableArray(variableName: String, key: String) -> String {
-        return "\t\tif \(variableName)?.count > 0 {\n\t\t\tdictionary.updateValue(\(variableName)!, forKey: \(key))\n\t\t}"
+        return "\t\tif let \(variableName) = \(variableName) {\n\t\t\tdictionary[\(key)]=\(variableName)\n\t\t}"
     }
 
     /**
@@ -530,7 +530,7 @@ public class ModelGenerator {
      - returns: A single line declaration of the variable which is an array of primitive kind.
      */
     internal func descriptionForObjectVariableArray(variableName: String, key: String) -> String {
-        return "\t\tif \(variableName) != nil {\n\t\t\tdictionary.updateValue(\(variableName)!.dictionaryRepresentation(), forKey: \(key))\n\t\t}"
+        return "\t\tif let \(variableName) = \(variableName) {\n\t\t\tdictionary[\(key)] = \(variableName)\n\t\t}"
     }
 
     //MARK: Helper Methods
@@ -607,9 +607,9 @@ public class ModelGenerator {
      - returns: A string date in dd/MM/yyyy or MM/dd/yyyy based on the locale settings of the Mac.
      */
     internal func todayDateString() -> String {
-        let formatter = NSDateFormatter.init()
+        let formatter = NSDateFormatter()
         formatter.dateStyle = .ShortStyle
-        return formatter.stringFromDate(NSDate.init())
+        return formatter.stringFromDate(NSDate())
     }
 
     /**
@@ -624,7 +624,7 @@ public class ModelGenerator {
 
         do {
 
-            let content = try String.init(contentsOfFile: path!)
+            let content = try String(contentsOfFile: path!)
             return content
 
         } catch {
@@ -672,7 +672,7 @@ public class ModelGenerator {
      */
     internal func replaceInternalKeywordsForVariableName(currentName: String) -> String {
 
-        let currentReservedName = ["id" : "internalIdentifier", "description" : "descriptionValue","_id" : "internalIdentifier","class" : "classProperty", "struct" : "structProperty", "internal" : "internalProperty"]
+        let currentReservedName = ["id" : "internalIdentifier", "description" : "descriptionValue","_id" : "internalIdentifier","class" : "classProperty", "struct" : "structProperty", "internal" : "internalProperty", "default" : "defaultValue"]
         for (key, value) in currentReservedName {
             if key == currentName {
                 return value
