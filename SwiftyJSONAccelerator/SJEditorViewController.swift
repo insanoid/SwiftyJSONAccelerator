@@ -112,7 +112,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
             let objectMapperState = self.includeObjectMapperCheckbox?.state == 1 ? true : false
             let supportObjectMapperState = self.supportObjectMapperCheckbox?.state == 1 ? true : false
 
-            let generator: ModelGenerator = ModelGenerator.init(baseContent: JSON(object!), baseClassName: baseClassTextField.stringValue, filePath: filePath!)
+            let generator: ModelGenerator = ModelGenerator(baseContent: JSON(object!), baseClassName: baseClassTextField.stringValue, filePath: filePath!)
 
             generator.prefix = prefixClassTextField.stringValue
             generator.authorName = authorNameTextField.stringValue
