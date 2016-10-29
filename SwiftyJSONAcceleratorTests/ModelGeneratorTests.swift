@@ -216,7 +216,7 @@ class ModelGeneratorTests: XCTestCase {
       "public var valueSix: ACValueSix?",
       "public var valueOne: String?",
       "public var valueThree: Bool = false",
-      "public var valueEight: [AnyObject]?"
+      "public var valueEight: [Any]?"
     ]
     for declaration in declarations {
       expect(baseModelFile!.component.declarations.contains(declaration)).to(equal(true))
@@ -260,7 +260,7 @@ class ModelGeneratorTests: XCTestCase {
       "self.valueSix = aDecoder.decodeObject(forKey: kACBaseClassValueSixKey) as? ACValueSix",
       "self.valueOne = aDecoder.decodeObject(forKey: kACBaseClassValueOneKey) as? String",
       "self.valueThree = aDecoder.decodeBool(forKey: kACBaseClassValueThreeKey)",
-      "self.valueEight = aDecoder.decodeObject(forKey: kACBaseClassValueEightKey) as? [AnyObject]"
+      "self.valueEight = aDecoder.decodeObject(forKey: kACBaseClassValueEightKey) as? [Any]"
     ]
     for decoder in decoders {
       expect(baseModelFile!.component.decoders.contains(decoder)).to(equal(true))

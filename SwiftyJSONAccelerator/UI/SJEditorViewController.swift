@@ -7,6 +7,8 @@
 //
 
 import Cocoa
+import SwiftyJSON
+
 fileprivate func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
@@ -39,11 +41,10 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
   @IBOutlet var prefixClassTextField: NSTextField!
   @IBOutlet var companyNameTextField: NSTextField!
   @IBOutlet var authorNameTextField: NSTextField!
-  @IBOutlet var includeSwiftyCheckbox: NSButton!
-  @IBOutlet var supportNSCodingCheckbox: NSButton!
-  @IBOutlet var supportSwiftyJSONCheckbox: NSButton!
-  @IBOutlet var supportObjectMapperCheckbox: NSButton!
-  @IBOutlet var includeObjectMapperCheckbox: NSButton!
+  @IBOutlet var includeHeaderImportCheckbox: NSButton!
+  @IBOutlet var enableNSCodingSupportCheckbox: NSButton!
+  @IBOutlet var librarySelector: NSPopUpButton!
+  @IBOutlet var modelTypeSelectorSegment: NSSegmentedControl!
 
   // MARK: View methods
   override func loadView() {
@@ -89,7 +90,9 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         handleError(error)
         textView!.lnv_textDidChange(Notification.init(name: NSNotification.Name.NSTextDidChange, object: nil))
         return false
-      }
+      } else {
+        genericJSONError()
+    }
     return false
   }
 
@@ -101,13 +104,13 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     // The base class field is blank, cannot proceed without it.
     // Possibly can have a default value in the future.
     if baseClassTextField?.stringValue.characters.count <= 0 {
-      let alert: NSAlert = NSAlert()
+      let alert = NSAlert()
       alert.messageText = "Enter a base class name to continue."
       alert.runModal()
       return
     }
 
-    let filePath: String? = openFile()
+    let filePath = openFile()
 
     // No file path was selected, go back!
     if filePath == nil {
@@ -119,27 +122,28 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     // Checks for validity of the content, else can cause crashes.
     if object != nil {
 
-//      let swiftyState = self.includeSwiftyCheckbox?.state == 1 ? true : false
-//      let supportSwiftyState = self.supportSwiftyJSONCheckbox?.state == 1 ? true : false
-//
-//      let nscodingState = self.supportNSCodingCheckbox?.state == 1 ? true : false
-//
-//      let objectMapperState = self.includeObjectMapperCheckbox?.state == 1 ? true : false
-//      let supportObjectMapperState = self.supportObjectMapperCheckbox?.state == 1 ? true : false
-
-//            let generator: ModelGenerator = ModelGenerator.init(baseContent: JSON(object!), baseClassName: baseClassTextField.stringValue, filePath: filePath!)
-//
-//            generator.prefix = prefixClassTextField.stringValue
-//            generator.authorName = authorNameTextField.stringValue
-//            generator.companyName = companyNameTextField.stringValue
-//            generator.type = ModelType.kClassType
-//            generator.supportSwiftyJSON = supportSwiftyState
-//            generator.includeSwiftyJSON = swiftyState
-//            generator.supportObjectMapper = supportObjectMapperState
-//            generator.includeObjectMapper = objectMapperState
-//            generator.supportNSCoding = nscodingState
-//
-//            generator.generate()
+        let nsCodingState = self.enableNSCodingSupportCheckbox.state == 1 && (modelTypeSelectorSegment.selectedSegment == 1)
+        let constructType = self.modelTypeSelectorSegment.selectedSegment == 0 ? ConstructType.ClassType : ConstructType.StructType
+        let libraryType = self.librarySelector.indexOfSelectedItem == 0 ? JSONMappingLibrary.SwiftyJSON : JSONMappingLibrary.ObjectMapper
+        let configuration = ModelGenerationConfiguration.init(
+            filePath: filePath!.appending("/"),
+            baseClassName: baseClassTextField.stringValue,
+            authorName: authorNameTextField.stringValue,
+            companyName: companyNameTextField.stringValue,
+            prefix: prefixClassTextField.stringValue,
+            constructType: constructType,
+            modelMappingLibrary: libraryType,
+            supportNSCoding: nsCodingState)
+        let modelGenerator = ModelGenerator.init(JSON(object!), configuration)
+        let filesGenerated = modelGenerator.generate()
+        var successState = true
+        for file in filesGenerated {
+            let content = FileGenerator.generateFileContentWith(file, configuration: configuration)
+            let name = file.fileName
+            let path = configuration.filePath
+            successState = FileGenerator.writeToFileWith(name, content: content, path: path)
+        }
+        notify(completionState: successState, fileCount: filesGenerated.count)
     } else {
       let alert: NSAlert = NSAlert()
       alert.messageText = "Unable to save the file check the content."
@@ -148,23 +152,21 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
   }
 
   @IBAction func recalcEnabledBoxes(_ sender: AnyObject) {
-
-    let supportSwiftyState = self.supportSwiftyJSONCheckbox?.state == 1 ? true : false
-    let supportObjectMapperState = self.supportObjectMapperCheckbox?.state == 1 ? true : false
-
-    if supportSwiftyState {
-      self.includeSwiftyCheckbox?.isEnabled = true
-    } else {
-      self.includeSwiftyCheckbox?.isEnabled = false
-    }
-
-    if supportObjectMapperState {
-      self.includeObjectMapperCheckbox?.isEnabled = true
-    } else {
-      self.includeObjectMapperCheckbox?.isEnabled = false
-    }
+    self.enableNSCodingSupportCheckbox.isEnabled = (modelTypeSelectorSegment.selectedSegment == 1)
   }
 
+
+    func notify(completionState: Bool, fileCount: Int) {
+        let notification: NSUserNotification = NSUserNotification()
+        notification.title = "SwiftyJSONAccelerator"
+        if completionState && fileCount > 0 {
+            notification.subtitle = "Completed - \(fileCount) Generated."
+        } else {
+            notification.subtitle = "No files were generated, cannot model arrays inside arrays."
+        }
+        NSUserNotificationCenter.default.deliver(notification)
+    }
+    
   // MARK: Internal Methods
 
   /**
@@ -224,8 +226,17 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
       } else {
         invalidJSONError(message)
       }
+    } else {
+        genericJSONError()
     }
   }
+
+    /**
+     Shows a generic error about JSON in case the system is not able to figure out what is wrong.
+     */
+   func genericJSONError() {
+    invalidJSONError("The JSON seems to be invalid!")
+   }
 
   /// MARK: Resetting and showing error messages
 
@@ -258,7 +269,10 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
 
   // MARK: TextView Delegate
   func textDidChange(_ notification: Notification) {
-    validateAndFormat(false)
+    let isValid = validateAndFormat(false)
+    if isValid {
+        resetErrorImage()
+    }
   }
 
   // MARK: Internal Methods

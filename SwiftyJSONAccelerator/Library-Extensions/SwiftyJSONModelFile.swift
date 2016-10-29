@@ -74,10 +74,10 @@ struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
     case .EmptyArray:
       component.stringConstants.append(genStringConstant(property.constantName, property.key))
       component.initialisers.append(genInitializerForPrimitiveArray(property.name, "object", property.constantName))
-      component.declarations.append(genVariableDeclaration(property.name, "AnyObject", true))
+      component.declarations.append(genVariableDeclaration(property.name, "Any", true))
       component.description.append(genDescriptionForPrimitiveArray(property.name, property.constantName))
-      component.decoders.append(genDecoder(property.name, "AnyObject", property.constantName, true))
-      component.encoders.append(genEncoder(property.name, "AnyObject", property.constantName))
+      component.decoders.append(genDecoder(property.name, "Any", property.constantName, true))
+      component.encoders.append(genEncoder(property.name, "Any", property.constantName))
     case .NullType:
       // Currently we do not deal with null values.
       break

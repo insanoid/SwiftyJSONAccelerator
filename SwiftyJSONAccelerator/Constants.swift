@@ -27,7 +27,7 @@ enum VariableType: String {
   case Bool = "Bool"
   case Array = "[]"
   case Object = "{OBJ}"
-  case Null = "AnyObject"
+  case Null = "Any"
 }
 
 /**
