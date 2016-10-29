@@ -21,7 +21,7 @@ protocol DefaultModelFileComponent {
 
    - returns: Generated instance of the string for declaration.
    */
-  func genStringConstant(constantName: String, _ value: String) -> String
+  func genStringConstant(_ constantName: String, _ value: String) -> String
 
   /**
    Generate a basic declaration for a variable of any kind.
@@ -32,7 +32,7 @@ protocol DefaultModelFileComponent {
 
    - returns: Generated instance of the string for declaration.
    */
-  func genVariableDeclaration(name: String, _ type: String, _ isArray: Bool) -> String
+  func genVariableDeclaration(_ name: String, _ type: String, _ isArray: Bool) -> String
 
   /**
    Generate a basic declaration for a variable of simple value type of atomic nature.
@@ -42,7 +42,7 @@ protocol DefaultModelFileComponent {
 
    - returns: Generated instance of the string for declaration.
    */
-  func genPrimitiveVariableDeclaration(name: String, _ type: String) -> String
+  func genPrimitiveVariableDeclaration(_ name: String, _ type: String) -> String
 
   /**
    Description for the primitive type variable.
@@ -53,7 +53,7 @@ protocol DefaultModelFileComponent {
 
    - returns: Generated instance of the string for description.
    */
-  func genDescriptionForPrimitive(name: String, _ type: String, _ constantName: String) -> String
+  func genDescriptionForPrimitive(_ name: String, _ type: String, _ constantName: String) -> String
 
   /**
    Description for an array primitive type variable.
@@ -64,7 +64,7 @@ protocol DefaultModelFileComponent {
 
    - returns: Generated instance of the string for description.
    */
-  func genDescriptionForPrimitiveArray(name: String, _ constantName: String) -> String
+  func genDescriptionForPrimitiveArray(_ name: String, _ constantName: String) -> String
 
   /**
    Description for an object.
@@ -75,7 +75,7 @@ protocol DefaultModelFileComponent {
 
    - returns: Generated instance of the string for description.
    */
-  func genDescriptionForObject(name: String, _ constantName: String) -> String
+  func genDescriptionForObject(_ name: String, _ constantName: String) -> String
 
   /**
    Description for an array of a type of object.
@@ -86,7 +86,7 @@ protocol DefaultModelFileComponent {
 
    - returns: Generated instance of the string for description.
    */
-  func genDescriptionForObjectArray(name: String, _ constantName: String) -> String
+  func genDescriptionForObjectArray(_ name: String, _ constantName: String) -> String
 
   /**
    Generate the encoder string for the given variable.
@@ -98,7 +98,7 @@ protocol DefaultModelFileComponent {
 
    - returns:  Generated instance of the string for decoder.
    */
-  func genEncoder(name: String, _ type: String, _ constantName: String) -> String
+  func genEncoder(_ name: String, _ type: String, _ constantName: String) -> String
 
   /**
    Generate the decoder string for the given variable.
@@ -110,16 +110,16 @@ protocol DefaultModelFileComponent {
 
    - returns:  Generated instance of the string for decoder.
    */
-  func genDecoder(name: String, _ type: String, _ constantName: String, _ isArray: Bool) -> String
+  func genDecoder(_ name: String, _ type: String, _ constantName: String, _ isArray: Bool) -> String
 }
 
 extension DefaultModelFileComponent {
 
-  func genStringConstant(constantName: String, _ value: String) -> String {
+  func genStringConstant(_ constantName: String, _ value: String) -> String {
     return "private let \(constantName): String = \"\(value)\""
   }
 
-  func genVariableDeclaration(name: String, _ type: String, _ isArray: Bool) -> String {
+  func genVariableDeclaration(_ name: String, _ type: String, _ isArray: Bool) -> String {
     var _type = type
     if isArray {
       _type = "[\(type)]"
@@ -127,39 +127,39 @@ extension DefaultModelFileComponent {
     return genPrimitiveVariableDeclaration(name, _type)
   }
 
-  func genPrimitiveVariableDeclaration(name: String, _ type: String) -> String {
+  func genPrimitiveVariableDeclaration(_ name: String, _ type: String) -> String {
     if type == VariableType.Bool.rawValue {
       return "public var \(name): \(type) = false"
     }
     return "public var \(name): \(type)?"
   }
 
-  func genDescriptionForPrimitive(name: String, _ type: String, _ constantName: String) -> String {
+  func genDescriptionForPrimitive(_ name: String, _ type: String, _ constantName: String) -> String {
     if type == VariableType.Bool.rawValue {
       return "dictionary.updateValue(\(name), forKey: \(constantName))"
     }
     return "if let value = \(name) { dictionary.updateValue(value, forKey: \(constantName)) }"
   }
-  func genDescriptionForPrimitiveArray(name: String, _ constantName: String) -> String {
+  func genDescriptionForPrimitiveArray(_ name: String, _ constantName: String) -> String {
     return "if let value = \(name) { dictionary.updateValue(value, forKey: \(constantName)) }"
   }
 
-  func genDescriptionForObject(name: String, _ constantName: String) -> String {
+  func genDescriptionForObject(_ name: String, _ constantName: String) -> String {
     return "if let value = \(name) { dictionary.updateValue(value.dictionaryRepresentation(), forKey: \(constantName)) }"
   }
 
-  func genDescriptionForObjectArray(name: String, _ constantName: String) -> String {
+  func genDescriptionForObjectArray(_ name: String, _ constantName: String) -> String {
     return "if let value = \(name) { dictionary.updateValue(value.map { $0.dictionaryRepresentation() }, forKey: \(constantName)) }"
   }
 
-  func genEncoder(name: String, _ type: String, _ constantName: String) -> String {
+  func genEncoder(_ name: String, _ type: String, _ constantName: String) -> String {
     if type == VariableType.Bool.rawValue {
       return "aCoder.encodeBool(\(name), forKey: \(constantName))"
     }
     return "aCoder.encodeObject(\(name), forKey: \(constantName))"
   }
 
-  func genDecoder(name: String, _ type: String, _ constantName: String, _ isArray: Bool) -> String {
+  func genDecoder(_ name: String, _ type: String, _ constantName: String, _ isArray: Bool) -> String {
     let finalTypeName = isArray ? "[\(type)]" : type
     if type == VariableType.Bool.rawValue {
       return "self.\(name) = aDecoder.decodeBoolForKey(\(constantName))"

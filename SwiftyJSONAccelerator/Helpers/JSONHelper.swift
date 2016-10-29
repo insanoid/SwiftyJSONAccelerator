@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 
 /// Provides helpers to handle JSON content that user provides.
-public class JSONHelper {
+open class JSONHelper {
 
   /**
    Validates if the string that is provided can be converted into a valid JSON.
@@ -20,7 +20,7 @@ public class JSONHelper {
 
    - returns: Bool indicating if it is a JSON or NSError with the error about the validation.
    */
-  public class func isStringValidJSON(jsonString: String?) -> (Bool, NSError?) {
+  open class func isStringValidJSON(_ jsonString: String?) -> (Bool, NSError?) {
     let response = convertToObject(jsonString)
     return (response.0, response.2)
   }
@@ -33,14 +33,14 @@ public class JSONHelper {
 
    - returns: Bool indicating if the process was successful, Object if it worked else NSError.
    */
-  public class func convertToObject(jsonString: String?) -> (Bool, AnyObject?, NSError?) {
+  open class func convertToObject(_ jsonString: String?) -> (Bool, AnyObject?, NSError?) {
 
     guard let jsonValueString = jsonString else { return (false, nil, nil) }
 
-    let jsonData = jsonValueString.dataUsingEncoding(NSUTF8StringEncoding)!
+    let jsonData = jsonValueString.data(using: String.Encoding.utf8)!
     do {
-      let object = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.AllowFragments)
-      return (true, object, nil)
+      let object = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments)
+      return (true, object as AnyObject?, nil)
     } catch let error as NSError {
       return (false, nil, error)
     }
@@ -54,7 +54,7 @@ public class JSONHelper {
 
    - returns: String with JSON but well formatted.
    */
-  public class func prettyJSON(jsonString: String?) -> String? {
+  open class func prettyJSON(_ jsonString: String?) -> String? {
     let response = convertToObject(jsonString)
     if response.0 {
       return prettyJSON(object: response.1)
@@ -71,13 +71,13 @@ public class JSONHelper {
 
    - returns: String with JSON but well formatted.
    */
-  public class func prettyJSON(object passedObject: AnyObject?) -> String? {
+  open class func prettyJSON(object passedObject: AnyObject?) -> String? {
 
     guard let object = passedObject else { return nil }
 
     do {
-      let data: NSData = try NSJSONSerialization.dataWithJSONObject(object, options: NSJSONWritingOptions.PrettyPrinted)
-      return String.init(data: data, encoding: NSUTF8StringEncoding)
+      let data: Data = try JSONSerialization.data(withJSONObject: object, options: JSONSerialization.WritingOptions.prettyPrinted)
+      return String.init(data: data, encoding: String.Encoding.utf8)
     } catch {
       return nil
     }
@@ -90,14 +90,14 @@ public class JSONHelper {
 
    - returns: Reduced JSON with the common key/value pairs.
    */
-  class func reduce(items: [JSON]) -> JSON {
+  class func reduce(_ items: [JSON]) -> JSON {
 
     return items.reduce([:]) { (source, item) -> JSON in
       var finalObject: JSON = source
       for (key, jsonValue) in item {
         if let newValue = jsonValue.dictionary {
           finalObject[key] = reduce([JSON(newValue), finalObject[key]])
-        } else if let newValue = jsonValue.array where newValue.first != nil && (newValue.first!.dictionary != nil || newValue.first!.array != nil) {
+        } else if let newValue = jsonValue.array, newValue.first != nil && (newValue.first!.dictionary != nil || newValue.first!.array != nil) {
           finalObject[key] = JSON([reduce(newValue + finalObject[key].arrayValue)])
         } else {
           finalObject[key] = jsonValue

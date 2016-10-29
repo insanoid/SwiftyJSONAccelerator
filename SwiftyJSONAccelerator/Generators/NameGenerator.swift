@@ -23,7 +23,7 @@ struct NameGenerator {
 
    - returns: A generated string representing the name of the class in the model.
    */
-  static func fixClassName(className: String, _ prefix: String?, _ isTopLevelObject: Bool)
+  static func fixClassName(_ className: String, _ prefix: String?, _ isTopLevelObject: Bool)
     -> String {
 
       // If it is not a top level object, it is already formatted (since it is a property)
@@ -42,16 +42,16 @@ struct NameGenerator {
 
    - returns: A generated string representation of the variable name.
    */
-  static func fixVariableName(variableName: String) -> String {
+  static func fixVariableName(_ variableName: String) -> String {
 
     var _variableName = replaceKeywords(variableName)
     _variableName.replaceOccurrencesOfStringsWithString(["-", "_"], " ")
     _variableName.trim()
 
     var finalVariableName = ""
-    for (index, var element) in _variableName.componentsSeparatedByString(" ").enumerate() {
+    for (index, var element) in _variableName.components(separatedBy: " ").enumerated() {
       index == 0 ? element.lowerCaseFirst() : element.uppercaseFirst()
-      finalVariableName.appendContentsOf(element)
+      finalVariableName.append(element)
     }
     return finalVariableName
 
@@ -66,7 +66,7 @@ struct NameGenerator {
 
    - returns: New name for the variable.
    */
-  static func replaceKeywords(currentName: String) -> String {
+  static func replaceKeywords(_ currentName: String) -> String {
 
     let keywordsWithReplacements = ["id": "internalIdentifier",
       "description": "descriptionValue",
@@ -74,7 +74,8 @@ struct NameGenerator {
       "class": "classProperty",
       "struct": "structProperty",
       "enum": "enumProperty",
-      "internal": "internalProperty"]
+      "internal": "internalProperty",
+      "default": "defaultValue"]
     if let value = keywordsWithReplacements[currentName] {
       return value
     }
@@ -89,7 +90,7 @@ struct NameGenerator {
 
    - returns: The name for the key for the variable in the given class.
    */
-  static func variableKey(className: String, _ variableName: String) -> String {
+  static func variableKey(_ className: String, _ variableName: String) -> String {
     var _variableName = variableName
     _variableName.uppercaseFirst()
     return "k\(className)\(_variableName)Key"

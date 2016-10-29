@@ -28,14 +28,14 @@ protocol ModelFile {
    - parameter fileName:      Name of the model file.
    - parameter configuration: Configuration for the model file.
    */
-  mutating func setInfo(fileName: String, _ configuration: ModelGenerationConfiguration)
+  mutating func setInfo(_ fileName: String, _ configuration: ModelGenerationConfiguration)
 
   /**
    Generate various required components for the given property.
 
    - parameter property: Property for which components are to be generated.
    */
-  mutating func generateAndAddComponentsFor(property: PropertyComponent)
+  mutating func generateAndAddComponentsFor(_ property: PropertyComponent)
 
   /**
    Name of the module/model type.

@@ -21,7 +21,7 @@ struct ObjectMapperModelFile: ModelFile, DefaultModelFileComponent {
     component = ModelComponent.init()
   }
 
-  mutating func setInfo(fileName: String, _ configuration: ModelGenerationConfiguration) {
+  mutating func setInfo(_ fileName: String, _ configuration: ModelGenerationConfiguration) {
     self.fileName = fileName
     type = configuration.constructType
   }
@@ -38,7 +38,7 @@ struct ObjectMapperModelFile: ModelFile, DefaultModelFileComponent {
     return "ObjectMapperTemplate"
   }
 
-  mutating func generateAndAddComponentsFor(property: PropertyComponent) {
+  mutating func generateAndAddComponentsFor(_ property: PropertyComponent) {
     switch property.propertyType {
 
     case .ValueType:
@@ -78,14 +78,14 @@ struct ObjectMapperModelFile: ModelFile, DefaultModelFileComponent {
     }
   }
 
-  private mutating func generateCommonComponentsFor(property: PropertyComponent) {
+  fileprivate mutating func generateCommonComponentsFor(_ property: PropertyComponent) {
     component.stringConstants.append(genStringConstant(property.constantName, property.key))
     component.initialisers.append(genInitializerForVariable(property.name, property.constantName))
   }
 
   // MARK: - Customised methods for ObjectMapper
   // MARK: - Initialisers
-  func genInitializerForVariable(name: String, _ constantName: String) -> String {
+  func genInitializerForVariable(_ name: String, _ constantName: String) -> String {
     return "\(name) <- map[\(constantName)]"
   }
 

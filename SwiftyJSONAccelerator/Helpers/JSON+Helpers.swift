@@ -19,34 +19,34 @@ extension JSON {
    */
   func detailedValueType() -> VariableType {
     switch self.type {
-    case .String:
+    case .string:
       return VariableType.String
-    case .Bool:
+    case .bool:
       return VariableType.Bool
-    case .Array:
+    case .array:
       return VariableType.Array
-    case .Number:
-      switch CFNumberGetType(self.numberValue as CFNumberRef) {
-      case .SInt8Type,
-          .SInt16Type,
-          .SInt32Type,
-          .SInt64Type,
-          .CharType,
-          .ShortType,
-          .IntType,
-          .LongType,
-          .LongLongType,
-          .CFIndexType,
-          .NSIntegerType:
+    case .number:
+      switch CFNumberGetType(self.numberValue as CFNumber) {
+      case .sInt8Type,
+          .sInt16Type,
+          .sInt32Type,
+          .sInt64Type,
+          .charType,
+          .shortType,
+          .intType,
+          .longType,
+          .longLongType,
+          .cfIndexType,
+          .nsIntegerType:
           return VariableType.Int
-      case .Float32Type,
-          .Float64Type,
-          .FloatType,
-          .CGFloatType,
-          .DoubleType:
+      case .float32Type,
+          .float64Type,
+          .floatType,
+          .cgFloatType,
+          .doubleType:
           return VariableType.Float
       }
-    case .Null:
+    case .null:
       return VariableType.Null
     default:
       return VariableType.Object

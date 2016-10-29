@@ -20,14 +20,14 @@ extension String {
    Makes the first character upper case.
    */
   mutating func uppercaseFirst() {
-    self = first.uppercaseString + String(characters.dropFirst())
+    self = first.uppercased() + String(characters.dropFirst())
   }
 
   /**
    Makes the first character lowercase.
    */
   mutating func lowerCaseFirst() {
-    self = first.lowercaseString + String(characters.dropFirst())
+    self = first.lowercased() + String(characters.dropFirst())
   }
 
   /**
@@ -36,9 +36,9 @@ extension String {
    - parameter strings:           String to replace.
    - parameter replacementString: String to replace with.
    */
-  mutating func replaceOccurrencesOfStringsWithString(strings: [String], _ replacementString: String) {
+  mutating func replaceOccurrencesOfStringsWithString(_ strings: [String], _ replacementString: String) {
     for string in strings {
-      self = stringByReplacingOccurrencesOfString(string, withString: replacementString)
+      self = replacingOccurrences(of: string, with: replacementString)
     }
   }
 
@@ -46,7 +46,7 @@ extension String {
    Removes whitespace and newline at the ends.
    */
   mutating func trim() {
-    self = stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+    self = trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
   }
 
   /**
@@ -54,7 +54,7 @@ extension String {
 
    - parameter prefix: String to append.
    */
-  mutating func appendPrefix(prefix: String?) {
+  mutating func appendPrefix(_ prefix: String?) {
     if let _prefix = prefix {
       self = _prefix + self
     }

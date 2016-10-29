@@ -11,12 +11,12 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
 
-  func applicationDidFinishLaunching(aNotification: NSNotification) {
-    NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
+  func applicationDidFinishLaunching(_ aNotification: Notification) {
+    NSUserNotificationCenter.default.delegate = self
   }
 
-  func userNotificationCenter(center: NSUserNotificationCenter,
-    shouldPresentNotification notification: NSUserNotification) -> Bool {
+  func userNotificationCenter(_ center: NSUserNotificationCenter,
+    shouldPresent notification: NSUserNotification) -> Bool {
       return true
   }
 }

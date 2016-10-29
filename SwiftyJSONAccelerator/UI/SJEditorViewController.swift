@@ -7,6 +7,26 @@
 //
 
 import Cocoa
+fileprivate func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func <= <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l <= r
+  default:
+    return !(rhs < lhs)
+  }
+}
+
 
 /// View for the processing of the content and generation of the files.
 class SJEditorViewController: NSViewController, NSTextViewDelegate {
@@ -35,13 +55,8 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     authorNameTextField?.stringValue = NSFullUserName()
   }
 
-  override var representedObject: AnyObject? {
-    didSet {
-      // Update the view, if already loaded.
-    }
-  }
   // MARK: Actions
-  @IBAction func format(sender: AnyObject?) {
+  @IBAction func format(_ sender: AnyObject?) {
     if validateAndFormat(true) {
       generateModel()
     }
@@ -55,7 +70,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
 
    - returns: if the format was valid.
    */
-  func validateAndFormat(pretty: Bool) -> Bool {
+  func validateAndFormat(_ pretty: Bool) -> Bool {
 
     if textView?.string?.characters.count == 0 {
       return false
@@ -66,13 +81,13 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
       if valid {
         if pretty {
           textView?.string = JSONHelper.prettyJSON(textView?.string)!
-          textView!.lnv_textDidChange(NSNotification.init(name: NSTextDidChangeNotification, object: nil))
+          textView!.lnv_textDidChange(Notification.init(name: NSNotification.Name.NSTextDidChange, object: nil))
           return true
         }
         correctJSONMessage()
       } else if error != nil {
         handleError(error)
-        textView!.lnv_textDidChange(NSNotification.init(name: NSTextDidChangeNotification, object: nil))
+        textView!.lnv_textDidChange(Notification.init(name: NSNotification.Name.NSTextDidChange, object: nil))
         return false
       }
     }
@@ -133,21 +148,21 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     }
   }
 
-  @IBAction func recalcEnabledBoxes(sender: AnyObject) {
+  @IBAction func recalcEnabledBoxes(_ sender: AnyObject) {
 
     let supportSwiftyState = self.supportSwiftyJSONCheckbox?.state == 1 ? true : false
     let supportObjectMapperState = self.supportObjectMapperCheckbox?.state == 1 ? true : false
 
     if supportSwiftyState {
-      self.includeSwiftyCheckbox?.enabled = true
+      self.includeSwiftyCheckbox?.isEnabled = true
     } else {
-      self.includeSwiftyCheckbox?.enabled = false
+      self.includeSwiftyCheckbox?.isEnabled = false
     }
 
     if supportObjectMapperState {
-      self.includeObjectMapperCheckbox?.enabled = true
+      self.includeObjectMapperCheckbox?.isEnabled = true
     } else {
-      self.includeObjectMapperCheckbox?.enabled = false
+      self.includeObjectMapperCheckbox?.isEnabled = false
     }
   }
 
@@ -165,11 +180,11 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
    - line: the linenumber where the error was.
    - column: the column where the error was.
    */
-  func characterRowAndLineAt(string: String, position: Int)
+  func characterRowAndLineAt(_ string: String, position: Int)
     -> (character: String, line: Int, column: Int) {
       var lineNumber = 0
       var characterPosition = 0
-      for line in string.componentsSeparatedByString("\n") {
+      for line in string.components(separatedBy: "\n") {
         lineNumber += 1
         var columnNumber = 0
         for column in line.characters {
@@ -193,9 +208,9 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
    - parameters:
    - error: NSError that was provided.
    */
-  func handleError(error: NSError?) {
+  func handleError(_ error: NSError?) {
     if let message = error!.userInfo["debugDescription"] as? String {
-      let numbers: [String] = message.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)
+      let numbers: [String] = message.components(separatedBy: CharacterSet.decimalDigits.inverted)
 
       var validNumbers: [Int] = []
       for number in numbers where (Int(number) != nil) {
@@ -237,13 +252,13 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
    - parameters:
    - message: Error message that is to be shown.
    */
-  func invalidJSONError(message: String) {
+  func invalidJSONError(_ message: String) {
     errorImageView?.image = NSImage.init(named: "failure")
     messageLabel?.stringValue = message
   }
 
   // MARK: TextView Delegate
-  func textDidChange(notification: NSNotification) {
+  func textDidChange(_ notification: Notification) {
     validateAndFormat(false)
   }
 
@@ -260,7 +275,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     fileDialog.canChooseDirectories = true
     fileDialog.canCreateDirectories = true
     if fileDialog.runModal() == NSModalResponseOK {
-      return fileDialog.URL?.path
+      return fileDialog.url?.path
     }
     return nil
   }

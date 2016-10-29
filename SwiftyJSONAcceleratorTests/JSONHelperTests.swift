@@ -52,7 +52,7 @@ class JSONHelperTests: XCTestCase {
 
     response = JSONHelper.prettyJSON(object: nil)
     expect(response).to(beNil())
-    response = JSONHelper.prettyJSON(object: ["key": "value"])
+    response = JSONHelper.prettyJSON(object:  JSONHelper.convertToObject("{\"key\": \"value\"}") as AnyObject?)
     expect(response).to(equal("{\n  \"key\" : \"value\"\n}"))
 
   }

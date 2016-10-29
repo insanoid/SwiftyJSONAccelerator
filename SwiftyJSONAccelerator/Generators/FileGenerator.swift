@@ -17,10 +17,10 @@ struct FileGenerator {
 
    - returns: String containing the template.
    */
-  static func loadFileWith(filename: String) -> String {
+  static func loadFileWith(_ filename: String) -> String {
 
-    let bundle = NSBundle.mainBundle()
-    let path = bundle.pathForResource(filename, ofType: "txt")
+    let bundle = Bundle.main
+    let path = bundle.path(forResource: filename, ofType: "txt")
 
     do {
       let content = try String.init(contentsOfFile: path!)
@@ -30,20 +30,20 @@ struct FileGenerator {
     return ""
   }
 
-  static func generateFileContentWith(modelFile: ModelFile, configuration: ModelGenerationConfiguration) -> String {
+  static func generateFileContentWith(_ modelFile: ModelFile, configuration: ModelGenerationConfiguration) -> String {
 
     var content = loadFileWith("BaseTemplate")
-    content = content.stringByReplacingOccurrencesOfString("{OBJECT_NAME}", withString: modelFile.fileName)
-    content = content.stringByReplacingOccurrencesOfString("{DATE}", withString: todayDateString())
-    content = content.stringByReplacingOccurrencesOfString("{OBJECT_KIND}", withString: modelFile.type.rawValue)
-    content = content.stringByReplacingOccurrencesOfString("{JSON_PARSER_LIBRARY_BODY}", withString: loadFileWith(modelFile.mainBodyFileName()))
+    content = content.replacingOccurrences(of: "{OBJECT_NAME}", with: modelFile.fileName)
+    content = content.replacingOccurrences(of: "{DATE}", with: todayDateString())
+    content = content.replacingOccurrences(of: "{OBJECT_KIND}", with: modelFile.type.rawValue)
+    content = content.replacingOccurrences(of: "{JSON_PARSER_LIBRARY_BODY}", with: loadFileWith(modelFile.mainBodyFileName()))
     if let authorName = configuration.authorName {
-      content = content.stringByReplacingOccurrencesOfString("__NAME__", withString: authorName)
+      content = content.replacingOccurrences(of: "__NAME__", with: authorName)
     }
     if let companyName = configuration.companyName {
-      content = content.stringByReplacingOccurrencesOfString("__MyCompanyName__", withString: companyName)
+      content = content.replacingOccurrences(of: "__MyCompanyName__", with: companyName)
     }
-    content = content.stringByReplacingOccurrencesOfString("{INCLUDE_HEADER}", withString: "\nimport \(modelFile.moduleName())")
+    content = content.replacingOccurrences(of: "{INCLUDE_HEADER}", with: "\nimport \(modelFile.moduleName())")
 
     var classesExtendFrom: [String] = []
     if let extendFrom = modelFile.baseElementName() {
@@ -54,31 +54,31 @@ struct FileGenerator {
     }
 
     if classesExtendFrom.count > 0 {
-      content = content.stringByReplacingOccurrencesOfString("{EXTEND_FROM}", withString: classesExtendFrom.joinWithSeparator(", "))
-      content = content.stringByReplacingOccurrencesOfString("{EXTENDED_OBJECT_COLON}", withString: ": ")
+      content = content.replacingOccurrences(of: "{EXTEND_FROM}", with: classesExtendFrom.joined(separator: ", "))
+      content = content.replacingOccurrences(of: "{EXTENDED_OBJECT_COLON}", with: ": ")
     } else {
-      content = content.stringByReplacingOccurrencesOfString("{EXTEND_FROM}", withString: "")
-      content = content.stringByReplacingOccurrencesOfString("{EXTENDED_OBJECT_COLON}", withString: "")
+      content = content.replacingOccurrences(of: "{EXTEND_FROM}", with: "")
+      content = content.replacingOccurrences(of: "{EXTENDED_OBJECT_COLON}", with: "")
     }
 
-    let stringConstants = modelFile.component.stringConstants.map({ "  " + $0 }).joinWithSeparator("\n")
-    let declarations = modelFile.component.declarations.map({ "  " + $0 }).joinWithSeparator("\n")
-    let initialisers = modelFile.component.initialisers.map({ "    " + $0 }).joinWithSeparator("\n")
-    let description = modelFile.component.description.map({ "    " + $0 }).joinWithSeparator("\n")
+    let stringConstants = modelFile.component.stringConstants.map({ "  " + $0 }).joined(separator: "\n")
+    let declarations = modelFile.component.declarations.map({ "  " + $0 }).joined(separator: "\n")
+    let initialisers = modelFile.component.initialisers.map({ "    " + $0 }).joined(separator: "\n")
+    let description = modelFile.component.description.map({ "    " + $0 }).joined(separator: "\n")
 
-    content = content.stringByReplacingOccurrencesOfString("{STRING_CONSTANT}", withString: stringConstants)
-    content = content.stringByReplacingOccurrencesOfString("{DECLARATION}", withString: declarations)
-    content = content.stringByReplacingOccurrencesOfString("{INITALIZER}", withString: initialisers)
-    content = content.stringByReplacingOccurrencesOfString("{DESCRIPTION}", withString: description)
+    content = content.replacingOccurrences(of: "{STRING_CONSTANT}", with: stringConstants)
+    content = content.replacingOccurrences(of: "{DECLARATION}", with: declarations)
+    content = content.replacingOccurrences(of: "{INITALIZER}", with: initialisers)
+    content = content.replacingOccurrences(of: "{DESCRIPTION}", with: description)
 
     if configuration.supportNSCoding {
-      content = content.stringByReplacingOccurrencesOfString("{NSCODING_SUPPORT}", withString: loadFileWith("NSCodingTemplate"))
-      let encoders = modelFile.component.encoders.map({ "    " + $0 }).joinWithSeparator("\n")
-      let decoders = modelFile.component.decoders.map({ "    " + $0 }).joinWithSeparator("\n")
-      content = content.stringByReplacingOccurrencesOfString("{DECODERS}", withString: decoders)
-      content = content.stringByReplacingOccurrencesOfString("{ENCODERS}", withString: encoders)
+      content = content.replacingOccurrences(of: "{NSCODING_SUPPORT}", with: loadFileWith("NSCodingTemplate"))
+      let encoders = modelFile.component.encoders.map({ "    " + $0 }).joined(separator: "\n")
+      let decoders = modelFile.component.decoders.map({ "    " + $0 }).joined(separator: "\n")
+      content = content.replacingOccurrences(of: "{DECODERS}", with: decoders)
+      content = content.replacingOccurrences(of: "{ENCODERS}", with: encoders)
     } else {
-      content = content.stringByReplacingOccurrencesOfString("{NSCODING_SUPPORT}", withString: "")
+      content = content.replacingOccurrences(of: "{NSCODING_SUPPORT}", with: "")
     }
 
     return content
@@ -93,20 +93,20 @@ struct FileGenerator {
 
    - returns: Boolean indicating if the process was successful.
    */
-  static internal func writeToFileWith(name: String, content: String, path: String) -> Bool {
-    let filename = path.stringByAppendingFormat("/%@", (name.stringByAppendingString(".swift")))
+  static internal func writeToFileWith(_ name: String, content: String, path: String) -> Bool {
+    let filename = path.appendingFormat("/%@", (name + ".swift"))
     do {
-      try content.writeToFile(filename, atomically: true, encoding: NSUTF8StringEncoding)
+      try content.write(toFile: filename, atomically: true, encoding: String.Encoding.utf8)
       return true
     } catch {
       return false
     }
   }
 
-  static private func todayDateString() -> String {
-    let formatter = NSDateFormatter.init()
-    formatter.dateStyle = .ShortStyle
-    return formatter.stringFromDate(NSDate.init())
+  static fileprivate func todayDateString() -> String {
+    let formatter = DateFormatter.init()
+    formatter.dateStyle = .short
+    return formatter.string(from: Date.init())
   }
 
 }

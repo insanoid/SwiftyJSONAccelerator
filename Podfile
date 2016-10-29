@@ -9,7 +9,7 @@ end
 
 target 'SwiftyJSONAcceleratorTests' do
   pod 'SwiftyJSON'
-  pod 'Nimble', '~> 4.0.0'
+  pod 'Nimble'
 end
 
 post_install do |installer|

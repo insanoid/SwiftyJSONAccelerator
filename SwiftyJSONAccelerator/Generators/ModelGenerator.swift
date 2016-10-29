@@ -46,7 +46,7 @@ public struct ModelGenerator {
 
    - returns: Model files for the current object and sub objects.
    */
-  func generateModelForJSON(object: JSON, _ defaultClassName: String, _ isTopLevelObject: Bool) -> [ModelFile] {
+  func generateModelForJSON(_ object: JSON, _ defaultClassName: String, _ isTopLevelObject: Bool) -> [ModelFile] {
 
     let className = NameGenerator.fixClassName(defaultClassName, self.configuration.prefix, isTopLevelObject)
     var modelFiles: [ModelFile] = []
@@ -120,7 +120,7 @@ public struct ModelGenerator {
 
    - returns: Notification tht was generated.
    */
-  func generateNotificationFor(modelFiles: [ModelFile]) -> NSUserNotification {
+  func generateNotificationFor(_ modelFiles: [ModelFile]) -> NSUserNotification {
     let notification: NSUserNotification = NSUserNotification()
     notification.title = NSLocalizedString("SwiftyJSONAccelerator", comment: "")
     if modelFiles.count > 0 {
@@ -139,7 +139,7 @@ public struct ModelGenerator {
 
    - returns: A new model file of the required type.
    */
-  func initaliseModelFileFor(modelMappingLibrary: JSONMappingLibrary) -> ModelFile {
+  func initaliseModelFileFor(_ modelMappingLibrary: JSONMappingLibrary) -> ModelFile {
     switch modelMappingLibrary {
     case .ObjectMapper:
       return ObjectMapperModelFile()

@@ -4,6 +4,6 @@
 {DECODERS}
   }
 
-  public func encodeWithCoder(aCoder: NSCoder) {
+  public func encode(with aCoder: NSCoder) {
 {ENCODERS}
   }

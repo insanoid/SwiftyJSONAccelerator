@@ -24,7 +24,7 @@ struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
     component = ModelComponent.init()
   }
 
-  mutating func setInfo(fileName: String, _ configuration: ModelGenerationConfiguration) {
+  mutating func setInfo(_ fileName: String, _ configuration: ModelGenerationConfiguration) {
     self.fileName = fileName
     type = configuration.constructType
   }
@@ -41,7 +41,7 @@ struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
     return "SwiftyJSONTemplate"
   }
 
-  mutating func generateAndAddComponentsFor(property: PropertyComponent) {
+  mutating func generateAndAddComponentsFor(_ property: PropertyComponent) {
     switch property.propertyType {
     case .ValueType:
       component.stringConstants.append(genStringConstant(property.constantName, property.key))
@@ -86,7 +86,7 @@ struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
 
   // MARK: - Customised methods for SWiftyJSON
   // MARK: - Initialisers
-  func genInitializerForVariable(name: String, _ type: String, _ constantName: String) -> String {
+  func genInitializerForVariable(_ name: String, _ type: String, _ constantName: String) -> String {
     var variableType = type
     variableType.lowerCaseFirst()
     if type == VariableType.Bool.rawValue {
@@ -95,15 +95,15 @@ struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
     return "\(name) = json[\(constantName)].\(variableType)"
   }
 
-  func genInitializerForObject(name: String, _ type: String, _ constantName: String) -> String {
+  func genInitializerForObject(_ name: String, _ type: String, _ constantName: String) -> String {
     return "\(name) = \(type)(json: json[\(constantName)])"
   }
 
-  func genInitializerForObjectArray(name: String, _ type: String, _ constantName: String) -> String {
+  func genInitializerForObjectArray(_ name: String, _ type: String, _ constantName: String) -> String {
     return "if let items = json[\(constantName)].array { \(name) = items.map { \(type)(json: $0) } }"
   }
 
-  func genInitializerForPrimitiveArray(name: String, _ type: String, _ constantName: String) -> String {
+  func genInitializerForPrimitiveArray(_ name: String, _ type: String, _ constantName: String) -> String {
     var variableType = type
     variableType.lowerCaseFirst()
     if type == "object" {

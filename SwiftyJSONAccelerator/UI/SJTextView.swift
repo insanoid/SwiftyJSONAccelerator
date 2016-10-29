@@ -13,16 +13,16 @@ class SJTextView: NSTextView {
 
   override init(frame frameRect: NSRect, textContainer container: NSTextContainer?) {
     super.init(frame: frameRect, textContainer: container)
-    self.automaticQuoteSubstitutionEnabled = false
-    self.automaticDashSubstitutionEnabled = false
-    self.automaticTextReplacementEnabled = false
+    self.isAutomaticQuoteSubstitutionEnabled = false
+    self.isAutomaticDashSubstitutionEnabled = false
+    self.isAutomaticTextReplacementEnabled = false
   }
 
   required init?(coder: NSCoder) {
     super.init(coder: coder)
-    self.automaticQuoteSubstitutionEnabled = false
-    self.automaticDashSubstitutionEnabled = false
-    self.automaticTextReplacementEnabled = false
+    self.isAutomaticQuoteSubstitutionEnabled = false
+    self.isAutomaticDashSubstitutionEnabled = false
+    self.isAutomaticTextReplacementEnabled = false
   }
 
   override var readablePasteboardTypes: [String] {
@@ -33,10 +33,10 @@ class SJTextView: NSTextView {
 
   internal func updateFormat() {
     textStorage?.font = NSFont(name: "Menlo", size: 12)
-    self.textColor = NSColor.whiteColor()
+    self.textColor = NSColor.white
   }
 
-  override func paste(sender: AnyObject?) {
+  override func paste(_ sender: Any?) {
     super.paste(sender)
     updateFormat()
   }

@@ -16,11 +16,11 @@ class ModelGeneratorTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    NSUserNotificationCenter.defaultUserNotificationCenter().removeAllDeliveredNotifications()
+    NSUserNotificationCenter.default.removeAllDeliveredNotifications()
   }
 
   override func tearDown() {
-    NSUserNotificationCenter.defaultUserNotificationCenter().removeAllDeliveredNotifications()
+    NSUserNotificationCenter.default.removeAllDeliveredNotifications()
     super.tearDown()
   }
 
@@ -48,7 +48,7 @@ class ModelGeneratorTests: XCTestCase {
           ]
         ],
         "value_eight": []
-    ])
+      ])
   }
 
   /**
@@ -58,7 +58,7 @@ class ModelGeneratorTests: XCTestCase {
 
    - returns: Default configuration file.
    */
-  func defaultConfiguration(library: JSONMappingLibrary) -> ModelGenerationConfiguration {
+  func defaultConfiguration(_ library: JSONMappingLibrary) -> ModelGenerationConfiguration {
     return ModelGenerationConfiguration.init(
       filePath: "/tmp/",
       baseClassName: "BaseClass",
@@ -171,7 +171,7 @@ class ModelGeneratorTests: XCTestCase {
 
   }
 
-  func runCheckForBaseModel(files: [ModelFile], _ config: ModelGenerationConfiguration, _ initialiserCheeck: (ModelFile -> Void)) {
+  func runCheckForBaseModel(_ files: [ModelFile], _ config: ModelGenerationConfiguration, _ initialiserCheeck: ((ModelFile) -> Void)) {
 
     expect(files.count).to(equal(4))
 
@@ -267,7 +267,7 @@ class ModelGeneratorTests: XCTestCase {
     }
   }
 
-  func runSwiftyJSONInitialiserCheckForBaseModel(baseModelFile: ModelFile) {
+  func runSwiftyJSONInitialiserCheckForBaseModel(_ baseModelFile: ModelFile) {
     expect(baseModelFile.component.initialisers.count).to(equal(8))
     let initialisers = [
       "if let items = json[kACBaseClassValueSevenKey].array { valueSeven = items.map { ACValueSeven(json: $0) } }",
@@ -284,7 +284,7 @@ class ModelGeneratorTests: XCTestCase {
     }
   }
 
-  func runObjectMapperInitialiserCheckForBaseModel(baseModelFile: ModelFile) {
+  func runObjectMapperInitialiserCheckForBaseModel(_ baseModelFile: ModelFile) {
     expect(baseModelFile.component.initialisers.count).to(equal(8))
     let initialisers = [
       "valueSeven <- map[kACBaseClassValueSevenKey]",
