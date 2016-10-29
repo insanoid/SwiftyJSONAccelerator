@@ -1,0 +1,29 @@
+//
+//  {OBJECT_NAME}.swift
+//
+//  Created by __NAME__ on {DATE}
+//  Copyright (c) __MyCompanyName__. All rights reserved.
+//
+
+import Foundation{INCLUDE_HEADER}
+
+public {OBJECT_KIND} {OBJECT_NAME}{EXTENDED_OBJECT_COLON}{EXTEND_FROM} {
+
+  // MARK: Declaration for string constants to be used to decode and also serialize.
+{STRING_CONSTANT}
+
+  // MARK: Properties
+{DECLARATION}
+
+{JSON_PARSER_LIBRARY_BODY}
+  /**
+   Generates description of the object in the form of a NSDictionary.
+   - returns: A Key value pair containing all valid values in the object.
+  */
+  public func dictionaryRepresentation() -> [String: Any] {
+    var dictionary: [String: Any] = [:]
+{DESCRIPTION}
+    return dictionary
+  }
+{NSCODING_SUPPORT}
+}

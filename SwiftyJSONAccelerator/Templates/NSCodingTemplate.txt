@@ -1,0 +1,9 @@
+
+  // MARK: NSCoding Protocol
+  required public init(coder aDecoder: NSCoder) {
+{DECODERS}
+  }
+
+  public func encode(with aCoder: NSCoder) {
+{ENCODERS}
+  }

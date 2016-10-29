@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="XfG-lQ-9wD">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -647,24 +647,6 @@
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
-        <!--Window Controller-->
-        <scene sceneID="R2V-B0-nI4">
-            <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="SwiftyJSONAccelerator" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                    </window>
-                    <connections>
-                        <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
-                    </connections>
-                </windowController>
-                <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="75" y="250"/>
-        </scene>
         <!--SwiftyJSONAccelerator-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
@@ -674,11 +656,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AwX-MF-DMD">
-                                <rect key="frame" x="501" y="204" width="212" height="36"/>
+                                <rect key="frame" x="501" y="167" width="212" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="Fsx-eV-1MY"/>
                                 </constraints>
-                                <animations/>
                                 <buttonCell key="cell" type="push" title="Generate Models" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lfq-UD-8WD">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -688,54 +669,45 @@
                                 </connections>
                             </button>
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gmg-Tp-PPn">
-                                <rect key="frame" x="0.0" y="243" width="717" height="463"/>
+                                <rect key="frame" x="0.0" y="206" width="717" height="500"/>
                                 <clipView key="contentView" id="V7d-R1-cDN">
-                                    <rect key="frame" x="1" y="1" width="715" height="461"/>
+                                    <rect key="frame" x="1" y="1" width="715" height="498"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="fWl-7Q-Cq6" customClass="SJTextView" customModule="SwiftyJSONAccelerator" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="715" height="461"/>
+                                        <textView importsGraphics="NO" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="fWl-7Q-Cq6" customClass="SJTextView" customModule="SwiftyJSONAccelerator" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="715" height="498"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <animations/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="715" height="461"/>
+                                            <size key="minSize" width="715" height="498"/>
                                             <size key="maxSize" width="717" height="10000000"/>
                                             <color key="insertionPointColor" name="controlLightHighlightColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="715" height="461"/>
-                                            <size key="maxSize" width="717" height="10000000"/>
                                         </textView>
                                     </subviews>
-                                    <animations/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </clipView>
-                                <animations/>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="JkI-yr-4gs">
                                     <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="9fh-RH-upi">
-                                    <rect key="frame" x="700" y="1" width="16" height="461"/>
+                                    <rect key="frame" x="700" y="1" width="16" height="498"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
                                 </scroller>
                             </scrollView>
                             <imageView translatesAutoresizingMaskIntoConstraints="NO" id="PJA-AP-s5I">
-                                <rect key="frame" x="15" y="216" width="20" height="20"/>
+                                <rect key="frame" x="15" y="179" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="48s-vB-xta"/>
                                     <constraint firstAttribute="width" constant="20" id="t6S-fb-bjE"/>
                                 </constraints>
-                                <animations/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="failure" id="CKF-pW-DBY"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GbJ-FJ-Uuc">
-                                <rect key="frame" x="41" y="210" width="460" height="26"/>
+                                <rect key="frame" x="41" y="173" width="460" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="WGF-kR-SB9"/>
                                 </constraints>
-                                <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="j5n-yT-9hg">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -743,8 +715,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aJ1-yn-Pl7">
-                                <rect key="frame" x="13" y="184" width="692" height="22"/>
-                                <animations/>
+                                <rect key="frame" x="13" y="147" width="692" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="BaseClass" placeholderString="Base Class Name" bezelStyle="round" id="vuP-t4-ep6">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -752,8 +723,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b3c-Wz-v36">
-                                <rect key="frame" x="13" y="160" width="692" height="22"/>
-                                <animations/>
+                                <rect key="frame" x="13" y="123" width="692" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Class Prefix (For example, NS)" bezelStyle="round" id="N8s-m9-cf7">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -761,8 +731,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sNu-7Z-F06">
-                                <rect key="frame" x="13" y="136" width="692" height="22"/>
-                                <animations/>
+                                <rect key="frame" x="13" y="99" width="692" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Company name" bezelStyle="round" id="76e-Gm-0jI">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -770,89 +739,92 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mJg-3P-2Aw">
-                                <rect key="frame" x="13" y="112" width="692" height="22"/>
-                                <animations/>
+                                <rect key="frame" x="13" y="75" width="692" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Author name" bezelStyle="round" id="jUe-0u-QLL">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="uZa-9r-6Xo">
-                                <rect key="frame" x="41" y="48" width="265" height="18"/>
-                                <animations/>
-                                <buttonCell key="cell" type="check" title="Add &quot;import SwiftyJSON&quot; in the models." bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="tJK-cs-wrm">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="U3A-Rw-grw">
+                                <rect key="frame" x="13" y="65" width="692" height="5"/>
+                            </box>
+                            <popUpButton verticalHuggingPriority="750" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r5l-Lv-rfg">
+                                <rect key="frame" x="10" y="35" width="348" height="26"/>
+                                <popUpButtonCell key="cell" type="push" title="SwiftyJSON" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="0QP-u9-O6V" id="l4o-yX-zdG">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="cd4-4Z-P4h">
-                                <rect key="frame" x="13" y="68" width="240" height="18"/>
-                                <animations/>
-                                <buttonCell key="cell" type="check" title="Support importing from SwiftyJSON" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="JTr-D4-Ydb">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
+                                    <menu key="menu" autoenablesItems="NO" id="QJi-PT-im1">
+                                        <items>
+                                            <menuItem title="SwiftyJSON" state="on" hidden="YES" id="0QP-u9-O6V"/>
+                                            <menuItem title="ObjectMapper" id="FPc-o9-hXy"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
                                 <connections>
-                                    <action selector="recalcEnabledBoxes:" target="XfG-lQ-9wD" id="xJS-rQ-k1k"/>
+                                    <action selector="librarySwitchedWithSender:" target="XfG-lQ-9wD" id="bwM-P9-BEg"/>
                                 </connections>
-                            </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="or1-PD-m0L">
-                                <rect key="frame" x="13" y="88" width="265" height="18"/>
-                                <animations/>
-                                <buttonCell key="cell" type="check" title="Support NSCoding" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="YUy-wn-qL0">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            </popUpButton>
+                            <segmentedControl focusRingType="exterior" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZUC-Iy-7fC">
+                                <rect key="frame" x="363" y="35" width="342" height="25"/>
+                                <segmentedCell key="cell" borderStyle="border" focusRingType="exterior" alignment="left" style="texturedSquare" trackingMode="selectOne" id="eZh-id-Ord">
                                     <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="DfN-HB-jLF">
-                                <rect key="frame" x="41" y="8" width="280" height="18"/>
-                                <animations/>
-                                <buttonCell key="cell" type="check" title="Add &quot;import ObjectMapper&quot; in the models." bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="LOO-Pz-Jiw">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Cqf-Zq-qhb">
-                                <rect key="frame" x="13" y="28" width="230" height="18"/>
-                                <animations/>
-                                <buttonCell key="cell" type="check" title="Support Hearst-DD/ObjectMapper" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="vuk-4k-MY7">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
+                                    <segments>
+                                        <segment label="Struct" width="170"/>
+                                        <segment label="Class" width="169" selected="YES" tag="1"/>
+                                    </segments>
+                                </segmentedCell>
                                 <connections>
-                                    <action selector="recalcEnabledBoxes:" target="XfG-lQ-9wD" id="Vu8-i2-A3h"/>
+                                    <action selector="recalcEnabledBoxes:" target="XfG-lQ-9wD" id="QYq-Pd-v0C"/>
                                 </connections>
+                            </segmentedControl>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="LPu-t9-bJY">
+                                <rect key="frame" x="11" y="14" width="346" height="18"/>
+                                <buttonCell key="cell" type="check" title="Add Import Header Statement" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Uqu-ha-fNp">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="ZXf-O8-Z1c">
+                                <rect key="frame" x="363" y="14" width="346" height="18"/>
+                                <buttonCell key="cell" type="check" title="Support NSCoding" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="X76-Zb-p14">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="cd4-4Z-P4h" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="11Y-ht-hKx"/>
                             <constraint firstAttribute="trailing" secondItem="AwX-MF-DMD" secondAttribute="trailing" constant="10" id="1wF-Ly-8ue"/>
                             <constraint firstItem="aJ1-yn-Pl7" firstAttribute="leading" secondItem="mJg-3P-2Aw" secondAttribute="leading" id="35V-f8-AGH"/>
+                            <constraint firstItem="ZXf-O8-Z1c" firstAttribute="top" secondItem="LPu-t9-bJY" secondAttribute="top" id="78z-IK-99b"/>
                             <constraint firstItem="b3c-Wz-v36" firstAttribute="width" secondItem="mJg-3P-2Aw" secondAttribute="width" id="8wA-lO-d5e"/>
-                            <constraint firstAttribute="bottom" secondItem="DfN-HB-jLF" secondAttribute="bottom" constant="10" id="9BW-Yo-Auq"/>
                             <constraint firstItem="aJ1-yn-Pl7" firstAttribute="width" secondItem="mJg-3P-2Aw" secondAttribute="width" id="9m4-gy-MnL"/>
                             <constraint firstAttribute="trailing" secondItem="Gmg-Tp-PPn" secondAttribute="trailing" id="APF-Xg-5Am"/>
-                            <constraint firstItem="or1-PD-m0L" firstAttribute="top" secondItem="mJg-3P-2Aw" secondAttribute="bottom" constant="8" id="BEK-W3-IHq"/>
+                            <constraint firstItem="U3A-Rw-grw" firstAttribute="leading" secondItem="mJg-3P-2Aw" secondAttribute="leading" id="Avf-R5-mSy"/>
+                            <constraint firstItem="ZXf-O8-Z1c" firstAttribute="width" secondItem="ZUC-Iy-7fC" secondAttribute="width" id="Dai-9x-FG5"/>
                             <constraint firstItem="sNu-7Z-F06" firstAttribute="leading" secondItem="mJg-3P-2Aw" secondAttribute="leading" id="EKU-pL-FZ6"/>
-                            <constraint firstItem="uZa-9r-6Xo" firstAttribute="top" secondItem="cd4-4Z-P4h" secondAttribute="bottom" constant="6" id="FUN-ZO-xR8"/>
+                            <constraint firstItem="LPu-t9-bJY" firstAttribute="width" secondItem="r5l-Lv-rfg" secondAttribute="width" id="Edd-qg-wGx"/>
+                            <constraint firstItem="ZUC-Iy-7fC" firstAttribute="trailing" secondItem="U3A-Rw-grw" secondAttribute="trailing" id="FHj-IO-zG7"/>
                             <constraint firstItem="sNu-7Z-F06" firstAttribute="width" secondItem="mJg-3P-2Aw" secondAttribute="width" id="FdJ-wz-nzg"/>
-                            <constraint firstItem="cd4-4Z-P4h" firstAttribute="top" secondItem="or1-PD-m0L" secondAttribute="bottom" constant="6" id="HGb-5u-Za0"/>
+                            <constraint firstItem="ZXf-O8-Z1c" firstAttribute="leading" secondItem="LPu-t9-bJY" secondAttribute="trailing" constant="10" id="HcP-mh-cZW"/>
                             <constraint firstItem="GbJ-FJ-Uuc" firstAttribute="leading" secondItem="PJA-AP-s5I" secondAttribute="trailing" constant="8" id="HqW-6O-Fdl"/>
+                            <constraint firstItem="LPu-t9-bJY" firstAttribute="top" secondItem="r5l-Lv-rfg" secondAttribute="bottom" constant="8" id="ITE-cT-U10"/>
                             <constraint firstItem="GbJ-FJ-Uuc" firstAttribute="top" secondItem="PJA-AP-s5I" secondAttribute="top" id="IlE-F0-NZD"/>
-                            <constraint firstItem="DfN-HB-jLF" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="43" id="JO5-QU-smH"/>
                             <constraint firstItem="aJ1-yn-Pl7" firstAttribute="top" secondItem="AwX-MF-DMD" secondAttribute="bottom" constant="5" id="KM7-XP-CAY"/>
                             <constraint firstItem="Gmg-Tp-PPn" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="KPd-r3-s21"/>
-                            <constraint firstItem="or1-PD-m0L" firstAttribute="width" secondItem="uZa-9r-6Xo" secondAttribute="width" id="OdK-JX-tBs"/>
-                            <constraint firstItem="Cqf-Zq-qhb" firstAttribute="top" secondItem="uZa-9r-6Xo" secondAttribute="bottom" constant="6" id="OzW-Gj-CmR"/>
-                            <constraint firstItem="DfN-HB-jLF" firstAttribute="top" secondItem="Cqf-Zq-qhb" secondAttribute="bottom" constant="6" id="PVQ-Cl-zPa"/>
+                            <constraint firstAttribute="bottom" secondItem="ZXf-O8-Z1c" secondAttribute="bottom" constant="16" id="Klm-8m-iFi"/>
+                            <constraint firstItem="r5l-Lv-rfg" firstAttribute="leading" secondItem="U3A-Rw-grw" secondAttribute="leading" id="LxH-kq-I6f"/>
+                            <constraint firstItem="LPu-t9-bJY" firstAttribute="bottom" secondItem="ZXf-O8-Z1c" secondAttribute="bottom" id="O4W-2e-5be"/>
+                            <constraint firstItem="U3A-Rw-grw" firstAttribute="top" secondItem="mJg-3P-2Aw" secondAttribute="bottom" constant="7" id="ORY-sD-wV5"/>
+                            <constraint firstItem="U3A-Rw-grw" firstAttribute="width" secondItem="mJg-3P-2Aw" secondAttribute="width" id="Oat-h7-73K"/>
                             <constraint firstItem="b3c-Wz-v36" firstAttribute="leading" secondItem="mJg-3P-2Aw" secondAttribute="leading" id="Q9g-6W-fq3"/>
+                            <constraint firstItem="ZUC-Iy-7fC" firstAttribute="leading" secondItem="r5l-Lv-rfg" secondAttribute="trailing" constant="8" id="Sqy-bQ-L8D"/>
                             <constraint firstItem="sNu-7Z-F06" firstAttribute="top" secondItem="b3c-Wz-v36" secondAttribute="bottom" constant="2" id="Svz-9v-6zt"/>
-                            <constraint firstItem="Cqf-Zq-qhb" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="Ueo-v4-wjp"/>
+                            <constraint firstItem="LPu-t9-bJY" firstAttribute="leading" secondItem="r5l-Lv-rfg" secondAttribute="leading" id="VZA-sk-x8N"/>
+                            <constraint firstItem="ZUC-Iy-7fC" firstAttribute="top" secondItem="r5l-Lv-rfg" secondAttribute="top" id="XWe-CU-xq2"/>
+                            <constraint firstItem="ZUC-Iy-7fC" firstAttribute="width" secondItem="r5l-Lv-rfg" secondAttribute="width" id="ZA8-0k-S6v"/>
                             <constraint firstItem="PJA-AP-s5I" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="ZKf-XD-X3C"/>
-                            <constraint firstItem="uZa-9r-6Xo" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="43" id="ZT5-69-AWH"/>
                             <constraint firstItem="AwX-MF-DMD" firstAttribute="top" secondItem="Gmg-Tp-PPn" secondAttribute="bottom" constant="7" id="cHK-Sj-6ps"/>
-                            <constraint firstItem="or1-PD-m0L" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="dHR-Z7-0of"/>
                             <constraint firstItem="AwX-MF-DMD" firstAttribute="top" secondItem="PJA-AP-s5I" secondAttribute="top" id="ds3-Tk-TKg"/>
                             <constraint firstItem="aJ1-yn-Pl7" firstAttribute="top" secondItem="PJA-AP-s5I" secondAttribute="bottom" constant="10" id="gHI-A7-SyE"/>
                             <constraint firstItem="mJg-3P-2Aw" firstAttribute="top" secondItem="sNu-7Z-F06" secondAttribute="bottom" constant="2" id="h24-Ox-KU7"/>
@@ -861,22 +833,21 @@
                             <constraint firstItem="AwX-MF-DMD" firstAttribute="leading" secondItem="GbJ-FJ-Uuc" secondAttribute="trailing" constant="8" id="i7q-la-dYw"/>
                             <constraint firstItem="aJ1-yn-Pl7" firstAttribute="top" secondItem="GbJ-FJ-Uuc" secondAttribute="bottom" constant="4" id="iwL-1w-9za"/>
                             <constraint firstItem="b3c-Wz-v36" firstAttribute="top" secondItem="aJ1-yn-Pl7" secondAttribute="bottom" constant="2" id="jIg-Xp-GaU"/>
+                            <constraint firstItem="r5l-Lv-rfg" firstAttribute="top" secondItem="U3A-Rw-grw" secondAttribute="bottom" constant="8" id="k9u-qR-wGh"/>
                             <constraint firstItem="mJg-3P-2Aw" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="13" id="n4f-7b-FZR"/>
                         </constraints>
-                        <animations/>
                     </view>
                     <connections>
                         <outlet property="authorNameTextField" destination="mJg-3P-2Aw" id="qjd-9O-kYI"/>
                         <outlet property="baseClassTextField" destination="aJ1-yn-Pl7" id="22H-xr-iCp"/>
                         <outlet property="companyNameTextField" destination="sNu-7Z-F06" id="1lU-Ld-bFb"/>
+                        <outlet property="enableNSCodingSupportCheckbox" destination="ZXf-O8-Z1c" id="eCW-6U-iLt"/>
                         <outlet property="errorImageView" destination="PJA-AP-s5I" id="0nv-qV-54d"/>
-                        <outlet property="includeObjectMapperCheckbox" destination="DfN-HB-jLF" id="gsn-gy-cek"/>
-                        <outlet property="includeSwiftyCheckbox" destination="uZa-9r-6Xo" id="r84-Fc-xwG"/>
+                        <outlet property="includeHeaderImportCheckbox" destination="LPu-t9-bJY" id="yMW-hS-PxV"/>
+                        <outlet property="librarySelector" destination="r5l-Lv-rfg" id="378-dH-QjI"/>
                         <outlet property="messageLabel" destination="GbJ-FJ-Uuc" id="19Z-0L-YwW"/>
+                        <outlet property="modelTypeSelectorSegment" destination="ZUC-Iy-7fC" id="p0d-4X-4cG"/>
                         <outlet property="prefixClassTextField" destination="b3c-Wz-v36" id="3wr-bV-AAf"/>
-                        <outlet property="supportNSCodingCheckbox" destination="or1-PD-m0L" id="wyH-nh-iSo"/>
-                        <outlet property="supportObjectMapperCheckbox" destination="Cqf-Zq-qhb" id="Bxl-UD-iag"/>
-                        <outlet property="supportSwiftyJSONCheckbox" destination="cd4-4Z-P4h" id="JHq-HI-vYJ"/>
                         <outlet property="textView" destination="fWl-7Q-Cq6" id="1lh-CW-y1Y"/>
                     </connections>
                 </viewController>

@@ -1,0 +1,24 @@
+language: objective-c
+cache:
+  - bundler
+  - cocoapods
+osx_image: xcode8.0
+xcode_workspace: SwiftyJSONAccelerator.xcworkspace
+xcode_scheme: SwiftyJSONAccelerator
+xcode_sdk: macosx10.11
+podfile: Podfile
+install:
+  - bundle install
+  - gem install cocoapods
+  - ./install_swiftlint.sh
+before_script:
+  - rm -rf Pods
+  - rm -rf Podlock
+  - bundle install
+  - bundle exec pod install
+script:
+  - xcodebuild -workspace SwiftyJSONAccelerator.xcworkspace -schee "SwiftyJSONAccelerator" test | tee xcodebuild.log | xcpretty -s
+  - swiftlint
+after_success:
+  - slather
+  - bash <(curl -s https://codecov.io/bash) -f build/slather/cobertura.xml

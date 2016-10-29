@@ -1,0 +1,11 @@
+coverage_service: cobertura_xml
+xcodeproj: SwiftyJSONAccelerator.xcodeproj
+scheme: SwiftyJSONAccelerator
+output_directory: build/slather/
+workspace: SwiftyJSONAccelerator.xcworkspace
+ignore:
+  - SwiftyJSONAccelerator/External-Libraries/*
+  - SwiftyJSONAccelerator/Storyboard/*
+  - SwiftyJSONAccelerator/Application-Delegate/*
+  - SwiftyJSONAccelerator/UI/*
+  - Pods/*
