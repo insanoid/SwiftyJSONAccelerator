@@ -28,14 +28,24 @@
         </ul>
       </header>
       <section>
-        <h1>
+        <p><img src="https://raw.githubusercontent.com/insanoid/SwiftyJSONAccelerator/master/SwiftyJSONAccelerator/Support/Assets.xcassets/AppIcon.appiconset/Icon_32x32%402x.png" alt="Logo"></p>
+
+<h1>
 <a id="swiftyjsonaccelerator" class="anchor" href="#swiftyjsonaccelerator" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SwiftyJSONAccelerator</h1>
 
-<p><strong>(Alpha v0.0.6)</strong></p>
+<p><a href="https://travis-ci.org/insanoid/SwiftyJSONAccelerator"><img src="https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master" alt="Build
+Status"></a> <a href="https://codecov.io/gh/insanoid/SwiftyJSONAccelerator"><img src="https://codecov.io/gh/insanoid/SwiftyJSONAccelerator/branch/master/graph/badge.svg" alt="codecov"></a></p>
 
-<p><a href="https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v0.0.6/SwiftyJSONAccelerator.zip">Download the .app (v0.0.6)</a></p>
+<p><strong>Version v1.0.0 Released!</strong></p>
 
-<p><img src="https://raw.githubusercontent.com/insanoid/SwiftyJSONAccelerator/master/SwiftyJSONAccelerator/Assets.xcassets/AppIcon.appiconset/Icon_32x32%402x.png" alt="Logo"></p>
+<ul>
+<li>Now generates <strong>Swift 3</strong> and the software itself is upgraded to Swift 3.</li>
+<li>Unit tests and complete code coverage for file generation module.</li>
+<li>Modular code to make adding support for other JSON mapping libraries simple.</li>
+<li>Project upgraded with SwiftLint, Travis, CocoaPods etc.</li>
+</ul>
+
+<p><a href="https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v1.0.0/SwiftyJSONAccelerator.zip">Download the .app (v1.0.0)</a></p>
 
 <p>A swift model generator like the Objective-C <a href="http://nerdery.com/json-accelerator">JSONAccelerator</a>. Formats and generates models for the given JSON and also breaks them into files making it easy to manage and share between several models.</p>
 
@@ -43,44 +53,70 @@
 
 <ul>
 <li><a href="https://github.com/SwiftyJSON/SwiftyJSON">SwiftyJSON</a></li>
-<li>
-<a href="https://github.com/Hearst-DD/ObjectMapper">Hearst-DD/ObjectMapper</a> (Contributed by: <a href="https://github.com/brendan09">brendan09</a>)</li>
+<li><a href="https://github.com/Hearst-DD/ObjectMapper">Hearst-DD/ObjectMapper</a></li>
 </ul>
 
 <p>Currently, the pattern is very similar to its Objective-C counterpart. It generates classes with following properties.</p>
 
 <ul>
-<li>Initalize with <code>JSON</code> (SwiftyJSON or ObjectMapper)</li>
-<li>Initalize with <code>AnyObject</code>
+<li>Initalize with <code>JSON</code> (SwiftyJSON or ObjectMapper) or Initalize with <code>Any</code>
 </li>
 <li>Optional <code>NSCoding</code> compliance.</li>
-<li>Convert object to <code>NSDictionary</code>
-</li>
+<li>Convert object to <code>Dictionary</code> for description printing.</li>
 </ul>
 
-<p><img src="https://raw.githubusercontent.com/insanoid/SwiftyJSONAccelerator/master/preview.png" alt="Preview"></p>
-
-<p><em>Simple configurable interface for generation of file</em></p>
-
-<p><img src="https://raw.githubusercontent.com/insanoid/SwiftyJSONAccelerator/master/preview_ii.png" alt="Preview"></p>
-
-<p><em>Each class in the JSON is generated as a file.</em></p>
-
-<h2>
-<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>TODO</h2>
+<p><img src="https://github.com/insanoid/SwiftyJSONAccelerator/raw/master/preview.png" alt="Preview"></p>
 
 <ul>
-<li>Handle blank array a bit better.</li>
-<li>Better User Interface and icon.</li>
-<li>Generate both <code>struct</code> and <code>class</code>.</li>
-<li>Support for further JSON object modelling libraries.</li>
-<li>Add tests and integrate with Travis CI.</li>
-<li>Create a Xcode plugin and a command line executor.</li>
+<li>Simple configurable interface for generation of file.</li>
+<li>Each class in the JSON is generated as a file.</li>
 </ul>
+
+<h2>
+<a id="adding-new-libraries" class="anchor" href="#adding-new-libraries" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Adding New Libraries</h2>
 
 <hr>
 
-<p>Any suggestions regarding code quality of the app, generated code's quaility, Swift related improvements and pull requests are all very welcome.</p>
+<ul>
+<li>Add a new type in <code>JSONMappingLibrary</code> in <a href="SwiftyJSONAccelerator/Constants.swift">Constants.swift</a>.</li>
+<li>Follow the examples in <a href="SwiftyJSONAccelerator/Library-Extensions">Library-Extensions</a> and create a struct implementing<code>ModelFile</code>. Follow the other extensions for SwiftyJSON and ObjectMapper, they tell you what all you can replace based on your libraries specification.</li>
+<li>Do the necessary UI changes for the dropdown.</li>
+<li>Add tests for your library.</li>
+</ul>
+
+<h2>
+<a id="swift-2" class="anchor" href="#swift-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Swift 2?</h2>
+
+<hr>
+
+<p><a href="https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v0.0.6/SwiftyJSONAccelerator.zip">Download (v0.0.6)</a>, the older version of the project, please keep in mind it is <strong>no longer supported</strong>.</p>
+
+<h2>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Todo</h2>
+
+<hr>
+
+<p>There is a lot more to do, follow the <a href="https://github.com/insanoid/SwiftyJSONAccelerator/issues">issues section</a>, I usually try to follow up or keep the list updated with any new ideas which I plan to implement.</p>
+
+<ul>
+<li>Build a CLI, useful in integrated with mocks and API documentations.</li>
+<li>Creating a better UI for the application.</li>
+<li>Adding support for better libraries mentioned <a href="https://github.com/bwhiteley/JSONShootout">here</a>.</li>
+</ul>
+
+<h2>
+<a id="contributions-and-requests" class="anchor" href="#contributions-and-requests" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributions and Requests</h2>
+
+<hr>
+
+<p>Any suggestions regarding code quality of the app, generated code's quality, Swift related improvements and pull requests are all very welcome. Please make sure you submit the pull request to the next release branch and not the master branch.</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<hr>
+
+<p><a href="LICENSE">MIT License</a> / <a href="https://karthikeya.co.uk">Karthikeya Udupa</a></p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/insanoid">insanoid</a></p>
