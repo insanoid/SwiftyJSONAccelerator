@@ -154,17 +154,17 @@ extension DefaultModelFileComponent {
 
   func genEncoder(_ name: String, _ type: String, _ constantName: String) -> String {
     if type == VariableType.Bool.rawValue {
-      return "aCoder.encodeBool(\(name), forKey: \(constantName))"
+      return "aCoder.encode(\(name), forKey: \(constantName))"
     }
-    return "aCoder.encodeObject(\(name), forKey: \(constantName))"
+    return "aCoder.encode(\(name), forKey: \(constantName))"
   }
 
   func genDecoder(_ name: String, _ type: String, _ constantName: String, _ isArray: Bool) -> String {
     let finalTypeName = isArray ? "[\(type)]" : type
     if type == VariableType.Bool.rawValue {
-      return "self.\(name) = aDecoder.decodeBoolForKey(\(constantName))"
+      return "self.\(name) = aDecoder.decodeBool(forKey: \(constantName))"
     }
-    return "self.\(name) = aDecoder.decodeObjectForKey(\(constantName)) as? \(finalTypeName)"
+    return "self.\(name) = aDecoder.decodeObject(forKey: \(constantName)) as? \(finalTypeName)"
   }
 
 }

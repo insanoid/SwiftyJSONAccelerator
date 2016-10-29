@@ -239,28 +239,28 @@ class ModelGeneratorTests: XCTestCase {
 
     expect(baseModelFile!.component.encoders.count).to(equal(8))
     let encoders = [
-      "aCoder.encodeObject(valueSeven, forKey: kACBaseClassValueSevenKey)",
-      "aCoder.encodeObject(valueTwo, forKey: kACBaseClassValueTwoKey)",
-      "aCoder.encodeObject(valueFour, forKey: kACBaseClassValueFourKey)",
-      "aCoder.encodeObject(valueFive, forKey: kACBaseClassValueFiveKey)",
-      "aCoder.encodeObject(valueSix, forKey: kACBaseClassValueSixKey)",
-      "aCoder.encodeObject(valueOne, forKey: kACBaseClassValueOneKey)",
-      "aCoder.encodeBool(valueThree, forKey: kACBaseClassValueThreeKey)",
-      "aCoder.encodeObject(valueEight, forKey: kACBaseClassValueEightKey)"]
+      "aCoder.encode(valueSeven, forKey: kACBaseClassValueSevenKey)",
+      "aCoder.encode(valueTwo, forKey: kACBaseClassValueTwoKey)",
+      "aCoder.encode(valueFour, forKey: kACBaseClassValueFourKey)",
+      "aCoder.encode(valueFive, forKey: kACBaseClassValueFiveKey)",
+      "aCoder.encode(valueSix, forKey: kACBaseClassValueSixKey)",
+      "aCoder.encode(valueOne, forKey: kACBaseClassValueOneKey)",
+      "aCoder.encode(valueThree, forKey: kACBaseClassValueThreeKey)",
+      "aCoder.encode(valueEight, forKey: kACBaseClassValueEightKey)"]
     for encoder in encoders {
       expect(baseModelFile!.component.encoders.contains(encoder)).to(equal(true))
     }
 
     expect(baseModelFile!.component.decoders.count).to(equal(8))
     let decoders = [
-      "self.valueSeven = aDecoder.decodeObjectForKey(kACBaseClassValueSevenKey) as? [ACValueSeven]",
-      "self.valueTwo = aDecoder.decodeObjectForKey(kACBaseClassValueTwoKey) as? Int",
-      "self.valueFour = aDecoder.decodeObjectForKey(kACBaseClassValueFourKey) as? Float",
-      "self.valueFive = aDecoder.decodeObjectForKey(kACBaseClassValueFiveKey) as? [String]",
-      "self.valueSix = aDecoder.decodeObjectForKey(kACBaseClassValueSixKey) as? ACValueSix",
-      "self.valueOne = aDecoder.decodeObjectForKey(kACBaseClassValueOneKey) as? String",
-      "self.valueThree = aDecoder.decodeBoolForKey(kACBaseClassValueThreeKey)",
-      "self.valueEight = aDecoder.decodeObjectForKey(kACBaseClassValueEightKey) as? [AnyObject]"
+      "self.valueSeven = aDecoder.decodeObject(forKey: kACBaseClassValueSevenKey) as? [ACValueSeven]",
+      "self.valueTwo = aDecoder.decodeObject(forKey: kACBaseClassValueTwoKey) as? Int",
+      "self.valueFour = aDecoder.decodeObject(forKey: kACBaseClassValueFourKey) as? Float",
+      "self.valueFive = aDecoder.decodeObject(forKey: kACBaseClassValueFiveKey) as? [String]",
+      "self.valueSix = aDecoder.decodeObject(forKey: kACBaseClassValueSixKey) as? ACValueSix",
+      "self.valueOne = aDecoder.decodeObject(forKey: kACBaseClassValueOneKey) as? String",
+      "self.valueThree = aDecoder.decodeBool(forKey: kACBaseClassValueThreeKey)",
+      "self.valueEight = aDecoder.decodeObject(forKey: kACBaseClassValueEightKey) as? [AnyObject]"
     ]
     for decoder in decoders {
       expect(baseModelFile!.component.decoders.contains(decoder)).to(equal(true))

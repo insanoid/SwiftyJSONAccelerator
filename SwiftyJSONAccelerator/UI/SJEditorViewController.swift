@@ -77,7 +77,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     }
 
     textView!.updateFormat()
-    if let (valid, error): (Bool, NSError?) = JSONHelper.isStringValidJSON(textView?.string) {
+    let (valid, error): (Bool, NSError?) = JSONHelper.isStringValidJSON(textView?.string)
       if valid {
         if pretty {
           textView?.string = JSONHelper.prettyJSON(textView?.string)!
@@ -90,7 +90,6 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         textView!.lnv_textDidChange(Notification.init(name: NSNotification.Name.NSTextDidChange, object: nil))
         return false
       }
-    }
     return false
   }
 

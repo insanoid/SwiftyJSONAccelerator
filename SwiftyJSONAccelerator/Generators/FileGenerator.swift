@@ -49,7 +49,7 @@ struct FileGenerator {
     if let extendFrom = modelFile.baseElementName() {
       classesExtendFrom = [extendFrom]
     }
-    if configuration.supportNSCoding {
+    if configuration.supportNSCoding && configuration.constructType == .ClassType {
       classesExtendFrom = classesExtendFrom + ["NSCoding"]
     }
 
@@ -71,7 +71,11 @@ struct FileGenerator {
     content = content.replacingOccurrences(of: "{INITALIZER}", with: initialisers)
     content = content.replacingOccurrences(of: "{DESCRIPTION}", with: description)
 
-    if configuration.supportNSCoding {
+    if configuration.constructType == .StructType {
+      content = content.replacingOccurrences(of: " convenience", with: "")
+    }
+
+    if configuration.supportNSCoding && configuration.constructType == .ClassType {
       content = content.replacingOccurrences(of: "{NSCODING_SUPPORT}", with: loadFileWith("NSCodingTemplate"))
       let encoders = modelFile.component.encoders.map({ "    " + $0 }).joined(separator: "\n")
       let decoders = modelFile.component.decoders.map({ "    " + $0 }).joined(separator: "\n")
