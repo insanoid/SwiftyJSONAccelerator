@@ -76,7 +76,7 @@ open class JSONHelper {
     guard let object = passedObject else { return nil }
 
     do {
-      let data: Data = try JSONSerialization.data(withJSONObject: object, options: JSONSerialization.WritingOptions.prettyPrinted)
+      let data = try JSONSerialization.data(withJSONObject: object, options: JSONSerialization.WritingOptions.prettyPrinted)
       return String.init(data: data, encoding: String.Encoding.utf8)
     } catch {
       return nil
@@ -93,7 +93,7 @@ open class JSONHelper {
   class func reduce(_ items: [JSON]) -> JSON {
 
     return items.reduce([:]) { (source, item) -> JSON in
-      var finalObject: JSON = source
+      var finalObject = source
       for (key, jsonValue) in item {
         if let newValue = jsonValue.dictionary {
           finalObject[key] = reduce([JSON(newValue), finalObject[key]])

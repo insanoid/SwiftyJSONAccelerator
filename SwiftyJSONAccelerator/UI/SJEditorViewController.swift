@@ -157,7 +157,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
 
 
     func notify(completionState: Bool, fileCount: Int) {
-        let notification: NSUserNotification = NSUserNotification()
+        let notification = NSUserNotification()
         notification.title = "SwiftyJSONAccelerator"
         if completionState && fileCount > 0 {
             notification.subtitle = "Completed - \(fileCount) Generated."
@@ -211,7 +211,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
    */
   func handleError(_ error: NSError?) {
     if let message = error!.userInfo["debugDescription"] as? String {
-      let numbers: [String] = message.components(separatedBy: CharacterSet.decimalDigits.inverted)
+      let numbers = message.components(separatedBy: CharacterSet.decimalDigits.inverted)
 
       var validNumbers: [Int] = []
       for number in numbers where (Int(number) != nil) {
@@ -219,7 +219,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
       }
 
       if validNumbers.count == 1 {
-        let index: Int = validNumbers[0]
+        let index = validNumbers[0]
         let errorPosition: (character: String, line: Int, column: Int) = characterRowAndLineAt((textView?.string)!, position: index)
         let customErrorMessage = "Error at line number: \(errorPosition.line) column: \(errorPosition.column) at Character: \(errorPosition.character)."
         invalidJSONError(customErrorMessage)
@@ -290,7 +290,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
    - returns: Return a valid path or nil.
    */
   func openFile() -> String? {
-    let fileDialog: NSOpenPanel = NSOpenPanel()
+    let fileDialog = NSOpenPanel()
     fileDialog.canChooseFiles = false
     fileDialog.canChooseDirectories = true
     fileDialog.canCreateDirectories = true
