@@ -119,15 +119,15 @@ class ModelGeneratorTests: XCTestCase {
 
     var objectKey = "ValueSix"
     objectKey.appendPrefix(config.prefix)
-    expect(files[3].fileName).to(equal(objectKey))
-
+    expect(files[1].fileName).to(equal(objectKey))
+    
     var subValueKey = "ValueSeven"
     subValueKey.appendPrefix(config.prefix)
-    expect(files[1].fileName).to(equal(subValueKey))
+    expect(files[2].fileName).to(equal(subValueKey))
 
     var objectArrayKey = "SubValueFive"
     objectArrayKey.appendPrefix(config.prefix)
-    expect(files[2].fileName).to(equal(objectArrayKey))
+    expect(files[3].fileName).to(equal(objectArrayKey))
 
     let baseModelFile = files.first
     var baseClass = config.baseClassName
@@ -177,15 +177,15 @@ class ModelGeneratorTests: XCTestCase {
 
     var objectKey = "ValueSix"
     objectKey.appendPrefix(config.prefix)
-    expect(files[3].fileName).to(equal(objectKey))
+    expect(files[1].fileName).to(equal(objectKey))
 
     var subValueKey = "ValueSeven"
     subValueKey.appendPrefix(config.prefix)
-    expect(files[1].fileName).to(equal(subValueKey))
+    expect(files[2].fileName).to(equal(subValueKey))
 
     var objectArrayKey = "SubValueFive"
     objectArrayKey.appendPrefix(config.prefix)
-    expect(files[2].fileName).to(equal(objectArrayKey))
+    expect(files[3].fileName).to(equal(objectArrayKey))
 
     let baseModelFile = files.first
     var baseClass = config.baseClassName

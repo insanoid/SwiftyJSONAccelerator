@@ -94,11 +94,15 @@ struct FileGenerator {
    - returns: Boolean indicating if the process was successful.
    */
   static internal func writeToFileWith(_ name: String, content: String, path: String) -> Bool {
-    let filename = path.appendingFormat("/%@", (name + ".swift"))
+    let filename = path.appendingFormat("%@", (name + ".swift"))
     do {
+      try FileManager.default.createDirectory(at: URL.init(fileURLWithPath: path),
+                                          withIntermediateDirectories: true,
+                                          attributes: nil)
       try content.write(toFile: filename, atomically: true, encoding: String.Encoding.utf8)
       return true
-    } catch {
+    } catch let error as NSError {
+        print(error)
       return false
     }
   }
