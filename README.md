@@ -1,11 +1,11 @@
-![Logo](https://raw.githubusercontent.com/insanoid/SwiftyJSONAccelerator/master/SwiftyJSONAccelerator/Assets.xcassets/AppIcon.appiconset/Icon_32x32%402x.png)
+![Logo](SwiftyJSONAccelerator/Support/Assets.xcassets/AppIcon.appiconset/Icon_32x32%402x.png)
 
 # SwiftyJSONAccelerator
 
 [![Build
 Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)](https://travis-ci.org/insanoid/SwiftyJSONAccelerator) [![codecov](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator/branch/master/graph/badge.svg)](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator)
 
-** Version v1.0.0 Released! **
+**Version v1.0.0 Released!**
 
 - Now generates **Swift 3** and the software itself is upgraded to Swift 3.
 - Unit tests and complete code coverage for file generation module.
@@ -30,7 +30,7 @@ Currently, the pattern is very similar to its Objective-C counterpart. It genera
 ![Preview](preview.png)
 
 - Simple configurable interface for generation of file.
-- Each class in the JSON is generated as a file._
+- Each class in the JSON is generated as a file.
 
 ## Adding New Libraries
 
