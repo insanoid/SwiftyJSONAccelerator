@@ -20,8 +20,8 @@ public {OBJECT_KIND} {OBJECT_NAME}{EXTENDED_OBJECT_COLON}{EXTEND_FROM} {
    Generates description of the object in the form of a NSDictionary.
    - returns: A Key value pair containing all valid values in the object.
   */
-  public func dictionaryRepresentation() -> [String: AnyObject] {
-    var dictionary: [String: AnyObject] = [:]
+  public func dictionaryRepresentation() -> [String: Any] {
+    var dictionary: [String: Any] = [:]
 {DESCRIPTION}
     return dictionary
   }

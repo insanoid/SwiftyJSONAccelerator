@@ -224,14 +224,14 @@ class ModelGeneratorTests: XCTestCase {
 
     expect(baseModelFile!.component.description.count).to(equal(8))
     let descriptions = [
-      "if let value = valueSeven { dictionary.updateValue(value.map { $0.dictionaryRepresentation() }, forKey: kACBaseClassValueSevenKey) }",
-      "if let value = valueTwo { dictionary.updateValue(value, forKey: kACBaseClassValueTwoKey) }",
-      "if let value = valueFour { dictionary.updateValue(value, forKey: kACBaseClassValueFourKey) }",
-      "if let value = valueFive { dictionary.updateValue(value, forKey: kACBaseClassValueFiveKey) }",
-      "if let value = valueSix { dictionary.updateValue(value.dictionaryRepresentation(), forKey: kACBaseClassValueSixKey) }",
-      "if let value = valueOne { dictionary.updateValue(value, forKey: kACBaseClassValueOneKey) }",
-      "dictionary.updateValue(valueThree, forKey: kACBaseClassValueThreeKey)",
-      "if let value = valueEight { dictionary.updateValue(value, forKey: kACBaseClassValueEightKey) }"
+        "if let value = valueSix { dictionary[kACBaseClassValueSixKey] = value.dictionaryRepresentation() }",
+        "if let value = valueFive { dictionary[kACBaseClassValueFiveKey] = value }",
+        "if let value = valueTwo { dictionary[kACBaseClassValueTwoKey] = value }",
+        "dictionary[kACBaseClassValueThreeKey] = valueThree",
+        "if let value = valueSeven { dictionary[kACBaseClassValueSevenKey] = value.map { $0.dictionaryRepresentation() } }",
+        "if let value = valueOne { dictionary[kACBaseClassValueOneKey] = value }",
+        "if let value = valueFour { dictionary[kACBaseClassValueFourKey] = value }",
+        "if let value = valueEight { dictionary[kACBaseClassValueEightKey] = value }"
     ]
     for description in descriptions {
       expect(baseModelFile!.component.description.contains(description)).to(equal(true))

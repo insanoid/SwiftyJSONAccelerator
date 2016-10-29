@@ -4,7 +4,7 @@
    - parameter object: The object of either Dictionary or Array kind that was passed.
    - returns: An initalized instance of the class.
   */
-  convenience public init(object: AnyObject) {
+  convenience public init(object: Any) {
     self.init(json: JSON(object))
   }
 

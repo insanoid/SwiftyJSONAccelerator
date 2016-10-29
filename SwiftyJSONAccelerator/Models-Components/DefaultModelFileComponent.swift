@@ -136,20 +136,20 @@ extension DefaultModelFileComponent {
 
   func genDescriptionForPrimitive(_ name: String, _ type: String, _ constantName: String) -> String {
     if type == VariableType.Bool.rawValue {
-      return "dictionary.updateValue(\(name), forKey: \(constantName))"
+      return "dictionary[\(constantName)] = \(name)"
     }
-    return "if let value = \(name) { dictionary.updateValue(value, forKey: \(constantName)) }"
+    return "if let value = \(name) { dictionary[\(constantName)] = value }"
   }
   func genDescriptionForPrimitiveArray(_ name: String, _ constantName: String) -> String {
-    return "if let value = \(name) { dictionary.updateValue(value, forKey: \(constantName)) }"
+    return "if let value = \(name) { dictionary[\(constantName)] = value }"
   }
 
   func genDescriptionForObject(_ name: String, _ constantName: String) -> String {
-    return "if let value = \(name) { dictionary.updateValue(value.dictionaryRepresentation(), forKey: \(constantName)) }"
+    return "if let value = \(name) { dictionary[\(constantName)] = value.dictionaryRepresentation() }"
   }
 
   func genDescriptionForObjectArray(_ name: String, _ constantName: String) -> String {
-    return "if let value = \(name) { dictionary.updateValue(value.map { $0.dictionaryRepresentation() }, forKey: \(constantName)) }"
+    return "if let value = \(name) { dictionary[\(constantName)] = value.map { $0.dictionaryRepresentation() } }"
   }
 
   func genEncoder(_ name: String, _ type: String, _ constantName: String) -> String {
