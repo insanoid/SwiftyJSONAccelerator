@@ -751,16 +751,19 @@
                             </box>
                             <popUpButton verticalHuggingPriority="750" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r5l-Lv-rfg">
                                 <rect key="frame" x="10" y="35" width="348" height="26"/>
-                                <popUpButtonCell key="cell" type="push" title="SwiftyJSON" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" selectedItem="0QP-u9-O6V" id="l4o-yX-zdG">
+                                <popUpButtonCell key="cell" type="push" title="SwiftyJSON" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="0QP-u9-O6V" id="l4o-yX-zdG">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
-                                    <menu key="menu" id="QJi-PT-im1">
+                                    <menu key="menu" autoenablesItems="NO" id="QJi-PT-im1">
                                         <items>
                                             <menuItem title="SwiftyJSON" state="on" hidden="YES" id="0QP-u9-O6V"/>
                                             <menuItem title="ObjectMapper" id="FPc-o9-hXy"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <connections>
+                                    <action selector="librarySwitchedWithSender:" target="XfG-lQ-9wD" id="bwM-P9-BEg"/>
+                                </connections>
                             </popUpButton>
                             <segmentedControl focusRingType="exterior" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZUC-Iy-7fC">
                                 <rect key="frame" x="363" y="35" width="342" height="25"/>

@@ -166,7 +166,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         }
         NSUserNotificationCenter.default.deliver(notification)
     }
-    
+
   // MARK: Internal Methods
 
   /**
@@ -274,6 +274,13 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         resetErrorImage()
     }
   }
+
+  @IBAction func librarySwitched(sender: Any) {
+    if let menu = sender as? NSPopUpButton {
+        self.librarySelector.title = menu.selectedItem!.title
+    }
+  }
+
 
   // MARK: Internal Methods
 
