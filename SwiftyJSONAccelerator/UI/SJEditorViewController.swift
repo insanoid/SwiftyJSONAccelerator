@@ -123,7 +123,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     if object != nil {
 
         let nsCodingState = self.enableNSCodingSupportCheckbox.state == 1 && (modelTypeSelectorSegment.selectedSegment == 1)
-        let constructType = self.modelTypeSelectorSegment.selectedSegment == 0 ? ConstructType.ClassType : ConstructType.StructType
+        let constructType = self.modelTypeSelectorSegment.selectedSegment == 0 ? ConstructType.StructType : ConstructType.ClassType
         let libraryType = self.librarySelector.indexOfSelectedItem == 0 ? JSONMappingLibrary.SwiftyJSON : JSONMappingLibrary.ObjectMapper
         let configuration = ModelGenerationConfiguration.init(
             filePath: filePath!.appending("/"),
@@ -160,7 +160,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         let notification = NSUserNotification()
         notification.title = "SwiftyJSONAccelerator"
         if completionState && fileCount > 0 {
-            notification.subtitle = "Completed - \(fileCount) Generated."
+            notification.subtitle = "Completed - \(fileCount) Files Generated"
         } else {
             notification.subtitle = "No files were generated, cannot model arrays inside arrays."
         }
