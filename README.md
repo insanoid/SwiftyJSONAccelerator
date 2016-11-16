@@ -5,6 +5,10 @@
 [![Build
 Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)](https://travis-ci.org/insanoid/SwiftyJSONAccelerator) [![codecov](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator/branch/master/graph/badge.svg)](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator)
 
+**Version v1.1.0 Released!**
+
+- Now generates the correct option `struct` and `class` based on what was selected.
+
 **Version v1.0.0 Released!**
 
 - Now generates **Swift 3** and the software itself is upgraded to Swift 3.
@@ -13,8 +17,9 @@ Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)]
 - Project upgraded with SwiftLint, Travis, CocoaPods etc.
 
 ## Download/Installing
+
 - Download the repo, install pods and run the project!
-- [Download the .app(v1.0.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v1.0.0/SwiftyJSONAccelerator.zip)
+- [Download the .app(v1.1.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v1.1.0/SwiftyJSONAccelerator.zip).0/SwiftyJSONAccelerator.zip)
 
 A swift model generator like the Objective-C [JSONAccelerator](http://nerdery.com/json-accelerator). Formats and generates models for the given JSON and also breaks them into files making it easy to manage and share between several models.
 
