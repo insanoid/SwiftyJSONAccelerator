@@ -43,6 +43,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
   @IBOutlet var authorNameTextField: NSTextField!
   @IBOutlet var includeHeaderImportCheckbox: NSButton!
   @IBOutlet var enableNSCodingSupportCheckbox: NSButton!
+  @IBOutlet var setAsFinalCheckbox: NSButton!
   @IBOutlet var librarySelector: NSPopUpButton!
   @IBOutlet var modelTypeSelectorSegment: NSSegmentedControl!
 
@@ -123,6 +124,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     if object != nil {
 
         let nsCodingState = self.enableNSCodingSupportCheckbox.state == 1 && (modelTypeSelectorSegment.selectedSegment == 1)
+        let isFinalClass = self.setAsFinalCheckbox.state == 1 && (modelTypeSelectorSegment.selectedSegment == 1)
         let constructType = self.modelTypeSelectorSegment.selectedSegment == 0 ? ConstructType.StructType : ConstructType.ClassType
         let libraryType = libraryForIndex(self.librarySelector.indexOfSelectedItem)
         let configuration = ModelGenerationConfiguration.init(
@@ -133,7 +135,8 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
             prefix: prefixClassTextField.stringValue,
             constructType: constructType,
             modelMappingLibrary: libraryType,
-            supportNSCoding: nsCodingState)
+            supportNSCoding: nsCodingState,
+            isFinalRequired: isFinalClass)
         let modelGenerator = ModelGenerator.init(JSON(object!), configuration)
         let filesGenerated = modelGenerator.generate()
         var successState = true
@@ -162,6 +165,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
 
   @IBAction func recalcEnabledBoxes(_ sender: AnyObject) {
     self.enableNSCodingSupportCheckbox.isEnabled = (modelTypeSelectorSegment.selectedSegment == 1)
+     self.setAsFinalCheckbox.isEnabled = (modelTypeSelectorSegment.selectedSegment == 1)
   }
 
 

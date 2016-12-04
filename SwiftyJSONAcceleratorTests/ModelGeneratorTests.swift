@@ -67,7 +67,8 @@ class ModelGeneratorTests: XCTestCase {
                                                  prefix: "AC",
                                                  constructType: .StructType,
                                                  modelMappingLibrary: library,
-                                                 supportNSCoding: true)
+                                                 supportNSCoding: true,
+                                                 isFinalRequired: true)
     }
 
     /**
@@ -182,12 +183,40 @@ class ModelGeneratorTests: XCTestCase {
         for m in files {
             let content = FileGenerator.generateFileContentWith(m, configuration: config)
             expect(content.contains("public required init(object: MarshaledObject)")).to(equal(false))
-             expect(content.contains("public init(object: MarshaledObject)")).to(equal(true))
+            expect(content.contains("public init(object: MarshaledObject)")).to(equal(true))
+            expect(content.contains("public struct")).to(equal(true))
             let name = m.fileName
             let path = "/Users/karthikeyaudupa/Desktop/tmp/om/"
             expect(FileGenerator.writeToFileWith(name, content: content, path: path)).to(equal(true))
         }
     }
+    
+    func testMarshalModelAsClass() {
+        let config = ModelGenerationConfiguration.init(
+            filePath: "/tmp/",
+            baseClassName: "BaseClass",
+            authorName: "Jane Smith",
+            companyName: "Acme Co.",
+            prefix: "AC",
+            constructType: .ClassType,
+            modelMappingLibrary: .Marshal,
+            supportNSCoding: true,
+            isFinalRequired: true)
+        let m = ModelGenerator.init(testJSON(), config)
+        let files = m.generate()
+        runCheckForBaseModel(files, config, runMarshalInitialiserCheckForBaseModel(_:))
+        
+        for m in files {
+            let content = FileGenerator.generateFileContentWith(m, configuration: config)
+            expect(content.contains("public required init(object: MarshaledObject)")).to(equal(true))
+            expect(content.contains("public init(object: MarshaledObject)")).to(equal(false))
+            expect(content.contains("public final class")).to(equal(true))
+            let name = m.fileName
+            let path = "/Users/karthikeyaudupa/Desktop/tmp/om/"
+            expect(FileGenerator.writeToFileWith(name, content: content, path: path)).to(equal(true))
+        }
+    }
+    
 
     func runCheckForBaseModel(_ files: [ModelFile], _ config: ModelGenerationConfiguration, _ initialiserCheeck: ((ModelFile) -> Void)) {
 
