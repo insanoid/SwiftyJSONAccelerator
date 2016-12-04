@@ -5,6 +5,12 @@
 [![Build
 Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)](https://travis-ci.org/insanoid/SwiftyJSONAccelerator) [![codecov](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator/branch/master/graph/badge.svg)](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator)
 
+**Version v1.2.0 Released!**
+
+- Now supports [Marshal](https://github.com/utahiosmac/Marshal)! One of the fastest JSONSerialisation class out there! [(Read more)](https://github.com/bwhiteley/JSONShootout)
+- Set `class` as `final`.
+- `init` marked as `required` by default for `class`.
+
 **Version v1.1.0 Released!**
 
 - Now generates the correct option `struct` and `class` based on what was selected.
@@ -18,8 +24,8 @@ Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)]
 
 ## Download/Installing
 
-- Download the repo, install pods and run the project!
-- [Download the .app(v1.1.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v1.1.0/SwiftyJSONAccelerator.zip).0/SwiftyJSONAccelerator.zip)
+- **Option 1:** Download the repo, install pods and run the project!
+- **Option 2:** [Download the .app(v1.2.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v1.2.0/SwiftyJSONAccelerator.zip)
 
 A swift model generator like the Objective-C [JSONAccelerator](http://nerdery.com/json-accelerator). Formats and generates models for the given JSON and also breaks them into files making it easy to manage and share between several models.
 
@@ -27,6 +33,7 @@ The models that are generated depend on JSON object mapping libraries, currently
 
 - [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
 - [Hearst-DD/ObjectMapper](https://github.com/Hearst-DD/ObjectMapper)
+- [Marshal](https://github.com/utahiosmac/Marshal)
 
 Currently, the pattern is very similar to its Objective-C counterpart. It generates classes with following properties.
 
