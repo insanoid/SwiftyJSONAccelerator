@@ -46,10 +46,12 @@ enum ConstructType: String {
 
  - SwiftyJSON:   SwiftyJSON - https://github.com/SwiftyJSON/SwiftyJSON
  - ObjectMapper: ObjectMapper - https://github.com/Hearst-DD/ObjectMapper
+ - Marshal: Marshal - https://github.com/utahiosmac/Marshal
  */
 enum JSONMappingLibrary: String {
   case SwiftyJSON
   case ObjectMapper
+  case Marshal
 }
 
 /**

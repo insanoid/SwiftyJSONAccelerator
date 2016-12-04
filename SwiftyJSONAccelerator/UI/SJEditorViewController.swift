@@ -124,7 +124,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
 
         let nsCodingState = self.enableNSCodingSupportCheckbox.state == 1 && (modelTypeSelectorSegment.selectedSegment == 1)
         let constructType = self.modelTypeSelectorSegment.selectedSegment == 0 ? ConstructType.StructType : ConstructType.ClassType
-        let libraryType = self.librarySelector.indexOfSelectedItem == 0 ? JSONMappingLibrary.SwiftyJSON : JSONMappingLibrary.ObjectMapper
+        let libraryType = libraryForIndex(self.librarySelector.indexOfSelectedItem)
         let configuration = ModelGenerationConfiguration.init(
             filePath: filePath!.appending("/"),
             baseClassName: baseClassTextField.stringValue,
@@ -150,6 +150,15 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
       alert.runModal()
     }
   }
+
+    func libraryForIndex(_ index: Int) -> JSONMappingLibrary {
+        if index == 1 {
+            return JSONMappingLibrary.ObjectMapper
+        } else if index == 2 {
+            return JSONMappingLibrary.Marshal
+        }
+        return JSONMappingLibrary.SwiftyJSON
+    }
 
   @IBAction func recalcEnabledBoxes(_ sender: AnyObject) {
     self.enableNSCodingSupportCheckbox.isEnabled = (modelTypeSelectorSegment.selectedSegment == 1)

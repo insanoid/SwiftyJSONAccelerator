@@ -15,6 +15,8 @@
 		930462B51D31131800FE61A6 /* PropertyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930462B11D310FF200FE61A6 /* PropertyComponent.swift */; };
 		930462B61D31133B00FE61A6 /* FileGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930462AC1D3106A400FE61A6 /* FileGenerator.swift */; };
 		930462B71D31134900FE61A6 /* ModelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930462AF1D310F6900FE61A6 /* ModelComponent.swift */; };
+		9327F2881DF4BCA70002BE40 /* MarshalModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9327F2871DF4BCA70002BE40 /* MarshalModelFile.swift */; };
+		9327F28A1DF4BD540002BE40 /* MarshalTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9327F2891DF4BD540002BE40 /* MarshalTemplate.txt */; };
 		9341A14A1BD6E5FE0048CE2C /* ModelGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A1491BD6E5FE0048CE2C /* ModelGenerator.swift */; };
 		9341A14F1BD6E7290048CE2C /* BaseTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9341A14E1BD6E7290048CE2C /* BaseTemplate.txt */; };
 		9361FD141BD18558001ED533 /* LineNumberRulerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9361FD131BD18558001ED533 /* LineNumberRulerView.swift */; };
@@ -79,6 +81,8 @@
 		930462AC1D3106A400FE61A6 /* FileGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileGenerator.swift; sourceTree = "<group>"; };
 		930462AF1D310F6900FE61A6 /* ModelComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelComponent.swift; sourceTree = "<group>"; };
 		930462B11D310FF200FE61A6 /* PropertyComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyComponent.swift; sourceTree = "<group>"; };
+		9327F2871DF4BCA70002BE40 /* MarshalModelFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarshalModelFile.swift; sourceTree = "<group>"; };
+		9327F2891DF4BD540002BE40 /* MarshalTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MarshalTemplate.txt; sourceTree = "<group>"; };
 		9341A1491BD6E5FE0048CE2C /* ModelGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelGenerator.swift; sourceTree = "<group>"; };
 		9341A14E1BD6E7290048CE2C /* BaseTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BaseTemplate.txt; sourceTree = "<group>"; };
 		9361FD131BD18558001ED533 /* LineNumberRulerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineNumberRulerView.swift; sourceTree = "<group>"; };
@@ -211,6 +215,7 @@
 			children = (
 				93F1593F1CFF96E700175636 /* ObjectMapperModelFile.swift */,
 				93F1593D1CFF969900175636 /* SwiftyJSONModelFile.swift */,
+				9327F2871DF4BCA70002BE40 /* MarshalModelFile.swift */,
 			);
 			path = "Library-Extensions";
 			sourceTree = "<group>";
@@ -291,6 +296,7 @@
 			children = (
 				C667011C1BDCAF23009BA254 /* ObjectMapperTemplate.txt */,
 				C667011A1BDCABCE009BA254 /* SwiftyJSONTemplate.txt */,
+				9327F2891DF4BD540002BE40 /* MarshalTemplate.txt */,
 			);
 			path = "Library-Extension-Templates";
 			sourceTree = "<group>";
@@ -369,7 +375,7 @@
 		93F174371BD0707D007E7DFC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Karthikeya Udupa K M";
 				TargetAttributes = {
 					93F1743E1BD0707D007E7DFC = {
@@ -414,6 +420,7 @@
 				C667011D1BDCAF23009BA254 /* ObjectMapperTemplate.txt in Resources */,
 				9341A14F1BD6E7290048CE2C /* BaseTemplate.txt in Resources */,
 				93F1744A1BD0707D007E7DFC /* Main.storyboard in Resources */,
+				9327F28A1DF4BD540002BE40 /* MarshalTemplate.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,6 +556,7 @@
 				9341A14A1BD6E5FE0048CE2C /* ModelGenerator.swift in Sources */,
 				930462B21D310FF200FE61A6 /* PropertyComponent.swift in Sources */,
 				93F1593A1CFF853C00175636 /* NameGenerator.swift in Sources */,
+				9327F2881DF4BCA70002BE40 /* MarshalModelFile.swift in Sources */,
 				930462AD1D3106A400FE61A6 /* FileGenerator.swift in Sources */,
 				93F174451BD0707D007E7DFC /* SJEditorViewController.swift in Sources */,
 				93F1593E1CFF969900175636 /* SwiftyJSONModelFile.swift in Sources */,

@@ -37,6 +37,12 @@ struct FileGenerator {
     content = content.replacingOccurrences(of: "{DATE}", with: todayDateString())
     content = content.replacingOccurrences(of: "{OBJECT_KIND}", with: modelFile.type.rawValue)
     content = content.replacingOccurrences(of: "{JSON_PARSER_LIBRARY_BODY}", with: loadFileWith(modelFile.mainBodyFileName()))
+
+    if modelFile.type == .ClassType {
+        content = content.replacingOccurrences(of: "{REQUIRED}", with: " required ")
+    } else {
+        content = content.replacingOccurrences(of: "{REQUIRED}", with: " ")
+    }
     if let authorName = configuration.authorName {
       content = content.replacingOccurrences(of: "__NAME__", with: authorName)
     }
@@ -68,7 +74,7 @@ struct FileGenerator {
 
     content = content.replacingOccurrences(of: "{STRING_CONSTANT}", with: stringConstants)
     content = content.replacingOccurrences(of: "{DECLARATION}", with: declarations)
-    content = content.replacingOccurrences(of: "{INITALIZER}", with: initialisers)
+    content = content.replacingOccurrences(of: "{INITIALIZER}", with: initialisers)
     content = content.replacingOccurrences(of: "{DESCRIPTION}", with: description)
 
     if configuration.constructType == .StructType {
