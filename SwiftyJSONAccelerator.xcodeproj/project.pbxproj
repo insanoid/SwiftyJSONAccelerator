@@ -17,6 +17,7 @@
 		930462B71D31134900FE61A6 /* ModelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930462AF1D310F6900FE61A6 /* ModelComponent.swift */; };
 		9327F2881DF4BCA70002BE40 /* MarshalModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9327F2871DF4BCA70002BE40 /* MarshalModelFile.swift */; };
 		9327F28A1DF4BD540002BE40 /* MarshalTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9327F2891DF4BD540002BE40 /* MarshalTemplate.txt */; };
+		9327F2971DF4CF650002BE40 /* MarshalModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9327F2871DF4BCA70002BE40 /* MarshalModelFile.swift */; };
 		9341A14A1BD6E5FE0048CE2C /* ModelGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A1491BD6E5FE0048CE2C /* ModelGenerator.swift */; };
 		9341A14F1BD6E7290048CE2C /* BaseTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9341A14E1BD6E7290048CE2C /* BaseTemplate.txt */; };
 		9361FD141BD18558001ED533 /* LineNumberRulerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9361FD131BD18558001ED533 /* LineNumberRulerView.swift */; };
@@ -586,6 +587,7 @@
 				93D850EF1D00D3070023D573 /* ObjectMapperModelFile.swift in Sources */,
 				93D850DC1D00D2ED0023D573 /* SJEditorViewController.swift in Sources */,
 				93D850D81D00D2030023D573 /* ModelGenerator.swift in Sources */,
+				9327F2971DF4CF650002BE40 /* MarshalModelFile.swift in Sources */,
 				93D850E91D00D3020023D573 /* String+Helpers.swift in Sources */,
 				9362F8661BD07DBA0001372E /* JSONHelperTests.swift in Sources */,
 				93D850DE1D00D2F00023D573 /* SJTextView.swift in Sources */,
