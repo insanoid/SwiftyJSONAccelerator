@@ -155,9 +155,9 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
   }
 
     func libraryForIndex(_ index: Int) -> JSONMappingLibrary {
-        if index == 1 {
+        if index == 2 {
             return JSONMappingLibrary.ObjectMapper
-        } else if index == 2 {
+        } else if index == 3 {
             return JSONMappingLibrary.Marshal
         }
         return JSONMappingLibrary.SwiftyJSON
