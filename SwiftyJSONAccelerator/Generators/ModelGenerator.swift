@@ -145,6 +145,8 @@ public struct ModelGenerator {
       return ObjectMapperModelFile()
     case .SwiftyJSON:
       return SwiftyJSONModelFile()
+    case .Marshal:
+        return MarshalModelFile()
     }
   }
 

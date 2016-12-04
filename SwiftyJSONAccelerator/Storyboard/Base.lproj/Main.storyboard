@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="XfG-lQ-9wD">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="XfG-lQ-9wD">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -751,13 +753,15 @@
                             </box>
                             <popUpButton verticalHuggingPriority="750" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r5l-Lv-rfg">
                                 <rect key="frame" x="10" y="35" width="348" height="26"/>
-                                <popUpButtonCell key="cell" type="push" title="SwiftyJSON" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="0QP-u9-O6V" id="l4o-yX-zdG">
+                                <popUpButtonCell key="cell" type="push" title="SwiftyJSON (Default)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" autoenablesItems="NO" id="l4o-yX-zdG">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" autoenablesItems="NO" id="QJi-PT-im1">
                                         <items>
-                                            <menuItem title="SwiftyJSON" state="on" hidden="YES" id="0QP-u9-O6V"/>
+                                            <menuItem title="SwiftyJSON (Default)" id="0QP-u9-O6V"/>
+                                            <menuItem title="SwiftyJSON" id="mkQ-rW-3gF"/>
                                             <menuItem title="ObjectMapper" id="FPc-o9-hXy"/>
+                                            <menuItem title="Marshal" id="7Q8-u2-Yfm"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
@@ -786,8 +790,15 @@
                                 </buttonCell>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="ZXf-O8-Z1c">
-                                <rect key="frame" x="363" y="14" width="346" height="18"/>
+                                <rect key="frame" x="363" y="14" width="175" height="18"/>
                                 <buttonCell key="cell" type="check" title="Support NSCoding" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="X76-Zb-p14">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="DR0-oc-DGs">
+                                <rect key="frame" x="542" y="14" width="175" height="18"/>
+                                <buttonCell key="cell" type="check" title="Set As Final" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="2nM-63-TSR">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -801,7 +812,7 @@
                             <constraint firstItem="aJ1-yn-Pl7" firstAttribute="width" secondItem="mJg-3P-2Aw" secondAttribute="width" id="9m4-gy-MnL"/>
                             <constraint firstAttribute="trailing" secondItem="Gmg-Tp-PPn" secondAttribute="trailing" id="APF-Xg-5Am"/>
                             <constraint firstItem="U3A-Rw-grw" firstAttribute="leading" secondItem="mJg-3P-2Aw" secondAttribute="leading" id="Avf-R5-mSy"/>
-                            <constraint firstItem="ZXf-O8-Z1c" firstAttribute="width" secondItem="ZUC-Iy-7fC" secondAttribute="width" id="Dai-9x-FG5"/>
+                            <constraint firstItem="ZXf-O8-Z1c" firstAttribute="width" secondItem="ZUC-Iy-7fC" secondAttribute="width" multiplier="0.5" id="Dai-9x-FG5"/>
                             <constraint firstItem="sNu-7Z-F06" firstAttribute="leading" secondItem="mJg-3P-2Aw" secondAttribute="leading" id="EKU-pL-FZ6"/>
                             <constraint firstItem="LPu-t9-bJY" firstAttribute="width" secondItem="r5l-Lv-rfg" secondAttribute="width" id="Edd-qg-wGx"/>
                             <constraint firstItem="ZUC-Iy-7fC" firstAttribute="trailing" secondItem="U3A-Rw-grw" secondAttribute="trailing" id="FHj-IO-zG7"/>
@@ -814,6 +825,8 @@
                             <constraint firstItem="Gmg-Tp-PPn" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="KPd-r3-s21"/>
                             <constraint firstAttribute="bottom" secondItem="ZXf-O8-Z1c" secondAttribute="bottom" constant="16" id="Klm-8m-iFi"/>
                             <constraint firstItem="r5l-Lv-rfg" firstAttribute="leading" secondItem="U3A-Rw-grw" secondAttribute="leading" id="LxH-kq-I6f"/>
+                            <constraint firstItem="DR0-oc-DGs" firstAttribute="top" secondItem="ZXf-O8-Z1c" secondAttribute="top" id="N4k-Sd-h1W"/>
+                            <constraint firstItem="DR0-oc-DGs" firstAttribute="height" secondItem="ZXf-O8-Z1c" secondAttribute="height" id="NKg-rh-bTk"/>
                             <constraint firstItem="LPu-t9-bJY" firstAttribute="bottom" secondItem="ZXf-O8-Z1c" secondAttribute="bottom" id="O4W-2e-5be"/>
                             <constraint firstItem="U3A-Rw-grw" firstAttribute="top" secondItem="mJg-3P-2Aw" secondAttribute="bottom" constant="7" id="ORY-sD-wV5"/>
                             <constraint firstItem="U3A-Rw-grw" firstAttribute="width" secondItem="mJg-3P-2Aw" secondAttribute="width" id="Oat-h7-73K"/>
@@ -824,8 +837,10 @@
                             <constraint firstItem="ZUC-Iy-7fC" firstAttribute="top" secondItem="r5l-Lv-rfg" secondAttribute="top" id="XWe-CU-xq2"/>
                             <constraint firstItem="ZUC-Iy-7fC" firstAttribute="width" secondItem="r5l-Lv-rfg" secondAttribute="width" id="ZA8-0k-S6v"/>
                             <constraint firstItem="PJA-AP-s5I" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="ZKf-XD-X3C"/>
+                            <constraint firstItem="DR0-oc-DGs" firstAttribute="width" secondItem="ZXf-O8-Z1c" secondAttribute="width" id="aLF-NZ-8Ng"/>
                             <constraint firstItem="AwX-MF-DMD" firstAttribute="top" secondItem="Gmg-Tp-PPn" secondAttribute="bottom" constant="7" id="cHK-Sj-6ps"/>
                             <constraint firstItem="AwX-MF-DMD" firstAttribute="top" secondItem="PJA-AP-s5I" secondAttribute="top" id="ds3-Tk-TKg"/>
+                            <constraint firstItem="DR0-oc-DGs" firstAttribute="leading" secondItem="ZXf-O8-Z1c" secondAttribute="trailing" constant="8" id="f09-ft-TiP"/>
                             <constraint firstItem="aJ1-yn-Pl7" firstAttribute="top" secondItem="PJA-AP-s5I" secondAttribute="bottom" constant="10" id="gHI-A7-SyE"/>
                             <constraint firstItem="mJg-3P-2Aw" firstAttribute="top" secondItem="sNu-7Z-F06" secondAttribute="bottom" constant="2" id="h24-Ox-KU7"/>
                             <constraint firstItem="Gmg-Tp-PPn" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="hMN-xb-eV1"/>
@@ -848,6 +863,7 @@
                         <outlet property="messageLabel" destination="GbJ-FJ-Uuc" id="19Z-0L-YwW"/>
                         <outlet property="modelTypeSelectorSegment" destination="ZUC-Iy-7fC" id="p0d-4X-4cG"/>
                         <outlet property="prefixClassTextField" destination="b3c-Wz-v36" id="3wr-bV-AAf"/>
+                        <outlet property="setAsFinalCheckbox" destination="DR0-oc-DGs" id="hmS-RW-efa"/>
                         <outlet property="textView" destination="fWl-7Q-Cq6" id="1lh-CW-y1Y"/>
                     </connections>
                 </viewController>

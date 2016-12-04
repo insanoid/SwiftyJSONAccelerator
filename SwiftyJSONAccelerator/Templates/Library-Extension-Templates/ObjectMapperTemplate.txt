@@ -1,9 +1,9 @@
-  // MARK: ObjectMapper Initalizers
+  // MARK: ObjectMapper Initializers
   /**
    Map a JSON object to this class using ObjectMapper
    - parameter map: A mapping from ObjectMapper
   */
-  required public init?(_ map: Map){
+  public{REQUIRED}init?(_ map: Map){
 
   }
 
@@ -12,5 +12,5 @@
    - parameter map: A mapping from ObjectMapper
   */
   public func mapping(map: Map) {
-{INITALIZER}
+{INITIALIZER}
   }
