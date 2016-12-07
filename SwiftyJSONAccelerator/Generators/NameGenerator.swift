@@ -91,8 +91,6 @@ struct NameGenerator {
    - returns: The name for the key for the variable in the given class.
    */
   static func variableKey(_ className: String, _ variableName: String) -> String {
-    var _variableName = variableName
-    _variableName.uppercaseFirst()
-    return "k\(className)\(_variableName)Key"
+    return "SerializationKeys.\(variableName)"
   }
 }
