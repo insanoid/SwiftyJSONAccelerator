@@ -241,14 +241,14 @@ class ModelGeneratorTests: XCTestCase {
 
         expect(baseModelFile!.component.stringConstants.count).to(equal(8))
         let stringConstants = [
-            "private let kACBaseClassValueSevenKey: String = \"value_seven\"",
-            "private let kACBaseClassValueTwoKey: String = \"value_two\"",
-            "private let kACBaseClassValueFourKey: String = \"value_four\"",
-            "private let kACBaseClassValueFiveKey: String = \"value_five\"",
-            "private let kACBaseClassValueSixKey: String = \"value_six\"",
-            "private let kACBaseClassValueOneKey: String = \"value_one\"",
-            "private let kACBaseClassValueThreeKey: String = \"value_three\"",
-            "private let kACBaseClassValueEightKey: String = \"value_eight\""
+            "static let valueSeven = \"value_seven\"",
+            "static let valueTwo = \"value_two\"",
+            "static let valueFour = \"value_four\"",
+            "static let valueFive = \"value_five\"",
+            "static let valueSix = \"value_six\"",
+            "static let valueOne = \"value_one\"",
+            "static let valueThree = \"value_three\"",
+            "static let valueEight = \"value_eight\""
         ]
         for stringConstant in stringConstants {
             expect(baseModelFile!.component.stringConstants.contains(stringConstant)).to(equal(true))
@@ -262,7 +262,7 @@ class ModelGeneratorTests: XCTestCase {
             "public var valueFive: [String]?",
             "public var valueSix: ACValueSix?",
             "public var valueOne: String?",
-            "public var valueThree: Bool = false",
+            "public var valueThree: Bool? = false",
             "public var valueEight: [Any]?"
         ]
         for declaration in declarations {
@@ -271,14 +271,14 @@ class ModelGeneratorTests: XCTestCase {
 
         expect(baseModelFile!.component.description.count).to(equal(8))
         let descriptions = [
-            "if let value = valueSix { dictionary[kACBaseClassValueSixKey] = value.dictionaryRepresentation() }",
-            "if let value = valueFive { dictionary[kACBaseClassValueFiveKey] = value }",
-            "if let value = valueTwo { dictionary[kACBaseClassValueTwoKey] = value }",
-            "dictionary[kACBaseClassValueThreeKey] = valueThree",
-            "if let value = valueSeven { dictionary[kACBaseClassValueSevenKey] = value.map { $0.dictionaryRepresentation() } }",
-            "if let value = valueOne { dictionary[kACBaseClassValueOneKey] = value }",
-            "if let value = valueFour { dictionary[kACBaseClassValueFourKey] = value }",
-            "if let value = valueEight { dictionary[kACBaseClassValueEightKey] = value }"
+            "if let value = valueSix { dictionary[SerializationKeys.valueSix] = value.dictionaryRepresentation() }",
+            "if let value = valueFive { dictionary[SerializationKeys.valueFive] = value }",
+            "if let value = valueTwo { dictionary[SerializationKeys.valueTwo] = value }",
+            "dictionary[SerializationKeys.valueThree] = valueThree",
+            "if let value = valueSeven { dictionary[SerializationKeys.valueSeven] = value.map { $0.dictionaryRepresentation() } }",
+            "if let value = valueOne { dictionary[SerializationKeys.valueOne] = value }",
+            "if let value = valueFour { dictionary[SerializationKeys.valueFour] = value }",
+            "if let value = valueEight { dictionary[SerializationKeys.valueEight] = value }"
         ]
         for description in descriptions {
             expect(baseModelFile!.component.description.contains(description)).to(equal(true))
@@ -286,28 +286,28 @@ class ModelGeneratorTests: XCTestCase {
 
         expect(baseModelFile!.component.encoders.count).to(equal(8))
         let encoders = [
-            "aCoder.encode(valueSeven, forKey: kACBaseClassValueSevenKey)",
-            "aCoder.encode(valueTwo, forKey: kACBaseClassValueTwoKey)",
-            "aCoder.encode(valueFour, forKey: kACBaseClassValueFourKey)",
-            "aCoder.encode(valueFive, forKey: kACBaseClassValueFiveKey)",
-            "aCoder.encode(valueSix, forKey: kACBaseClassValueSixKey)",
-            "aCoder.encode(valueOne, forKey: kACBaseClassValueOneKey)",
-            "aCoder.encode(valueThree, forKey: kACBaseClassValueThreeKey)",
-            "aCoder.encode(valueEight, forKey: kACBaseClassValueEightKey)"]
+            "aCoder.encode(valueSeven, forKey: SerializationKeys.valueSeven)",
+            "aCoder.encode(valueTwo, forKey: SerializationKeys.valueTwo)",
+            "aCoder.encode(valueFour, forKey: SerializationKeys.valueFour)",
+            "aCoder.encode(valueFive, forKey: SerializationKeys.valueFive)",
+            "aCoder.encode(valueSix, forKey: SerializationKeys.valueSix)",
+            "aCoder.encode(valueOne, forKey: SerializationKeys.valueOne)",
+            "aCoder.encode(valueThree, forKey: SerializationKeys.valueThree)",
+            "aCoder.encode(valueEight, forKey: SerializationKeys.valueEight)"]
         for encoder in encoders {
             expect(baseModelFile!.component.encoders.contains(encoder)).to(equal(true))
         }
 
         expect(baseModelFile!.component.decoders.count).to(equal(8))
         let decoders = [
-            "self.valueSeven = aDecoder.decodeObject(forKey: kACBaseClassValueSevenKey) as? [ACValueSeven]",
-            "self.valueTwo = aDecoder.decodeObject(forKey: kACBaseClassValueTwoKey) as? Int",
-            "self.valueFour = aDecoder.decodeObject(forKey: kACBaseClassValueFourKey) as? Float",
-            "self.valueFive = aDecoder.decodeObject(forKey: kACBaseClassValueFiveKey) as? [String]",
-            "self.valueSix = aDecoder.decodeObject(forKey: kACBaseClassValueSixKey) as? ACValueSix",
-            "self.valueOne = aDecoder.decodeObject(forKey: kACBaseClassValueOneKey) as? String",
-            "self.valueThree = aDecoder.decodeBool(forKey: kACBaseClassValueThreeKey)",
-            "self.valueEight = aDecoder.decodeObject(forKey: kACBaseClassValueEightKey) as? [Any]"
+            "self.valueSeven = aDecoder.decodeObject(forKey: SerializationKeys.valueSeven) as? [ACValueSeven]",
+            "self.valueTwo = aDecoder.decodeObject(forKey: SerializationKeys.valueTwo) as? Int",
+            "self.valueFour = aDecoder.decodeObject(forKey: SerializationKeys.valueFour) as? Float",
+            "self.valueFive = aDecoder.decodeObject(forKey: SerializationKeys.valueFive) as? [String]",
+            "self.valueSix = aDecoder.decodeObject(forKey: SerializationKeys.valueSix) as? ACValueSix",
+            "self.valueOne = aDecoder.decodeObject(forKey: SerializationKeys.valueOne) as? String",
+            "self.valueThree = aDecoder.decodeBool(forKey: SerializationKeys.valueThree)",
+            "self.valueEight = aDecoder.decodeObject(forKey: SerializationKeys.valueEight) as? [Any]"
         ]
         for decoder in decoders {
             expect(baseModelFile!.component.decoders.contains(decoder)).to(equal(true))
@@ -317,14 +317,14 @@ class ModelGeneratorTests: XCTestCase {
     func runSwiftyJSONInitialiserCheckForBaseModel(_ baseModelFile: ModelFile) {
         expect(baseModelFile.component.initialisers.count).to(equal(8))
         let initialisers = [
-            "if let items = json[kACBaseClassValueSevenKey].array { valueSeven = items.map { ACValueSeven(json: $0) } }",
-            "valueTwo = json[kACBaseClassValueTwoKey].int",
-            "valueFour = json[kACBaseClassValueFourKey].float",
-            "if let items = json[kACBaseClassValueFiveKey].array { valueFive = items.map { $0.stringValue } }",
-            "valueSix = ACValueSix(json: json[kACBaseClassValueSixKey])",
-            "valueOne = json[kACBaseClassValueOneKey].string",
-            "valueThree = json[kACBaseClassValueThreeKey].boolValue",
-            "if let items = json[kACBaseClassValueEightKey].array { valueEight = items.map { $0.object} }"
+            "if let items = json[SerializationKeys.valueSeven].array { valueSeven = items.map { ACValueSeven(json: $0) } }",
+            "valueTwo = json[SerializationKeys.valueTwo].int",
+            "valueFour = json[SerializationKeys.valueFour].float",
+            "if let items = json[SerializationKeys.valueFive].array { valueFive = items.map { $0.stringValue } }",
+            "valueSix = ACValueSix(json: json[SerializationKeys.valueSix])",
+            "valueOne = json[SerializationKeys.valueOne].string",
+            "valueThree = json[SerializationKeys.valueThree].boolValue",
+            "if let items = json[SerializationKeys.valueEight].array { valueEight = items.map { $0.object} }"
         ]
         for initialiser in initialisers {
             expect(baseModelFile.component.initialisers.contains(initialiser)).to(equal(true))
@@ -334,14 +334,14 @@ class ModelGeneratorTests: XCTestCase {
     func runObjectMapperInitialiserCheckForBaseModel(_ baseModelFile: ModelFile) {
         expect(baseModelFile.component.initialisers.count).to(equal(8))
         let initialisers = [
-            "valueSeven <- map[kACBaseClassValueSevenKey]",
-            "valueTwo <- map[kACBaseClassValueTwoKey]",
-            "valueFour <- map[kACBaseClassValueFourKey]",
-            "valueFive <- map[kACBaseClassValueFiveKey]",
-            "valueSix <- map[kACBaseClassValueSixKey]",
-            "valueEight <- map[kACBaseClassValueEightKey]",
-            "valueOne <- map[kACBaseClassValueOneKey]",
-            "valueThree <- map[kACBaseClassValueThreeKey]"
+            "valueSeven <- map[SerializationKeys.valueSeven]",
+            "valueTwo <- map[SerializationKeys.valueTwo]",
+            "valueFour <- map[SerializationKeys.valueFour]",
+            "valueFive <- map[SerializationKeys.valueFive]",
+            "valueSix <- map[SerializationKeys.valueSix]",
+            "valueEight <- map[SerializationKeys.valueEight]",
+            "valueOne <- map[SerializationKeys.valueOne]",
+            "valueThree <- map[SerializationKeys.valueThree]"
         ]
         for initialiser in initialisers {
             expect(baseModelFile.component.initialisers.contains(initialiser)).to(equal(true))
@@ -351,14 +351,14 @@ class ModelGeneratorTests: XCTestCase {
     func runMarshalInitialiserCheckForBaseModel(_ baseModelFile: ModelFile) {
         expect(baseModelFile.component.initialisers.count).to(equal(8))
         let initialisers = [
-            "valueSeven = try? object.value(for: kACBaseClassValueSevenKey)",
-            "valueTwo = try? object.value(for: kACBaseClassValueTwoKey)",
-            "valueFour = try? object.value(for: kACBaseClassValueFourKey)",
-            "valueFive = try? object.value(for: kACBaseClassValueFiveKey)",
-            "valueSix = try? object.value(for: kACBaseClassValueSixKey)",
-            "valueOne = try? object.value(for: kACBaseClassValueOneKey)",
-            "valueThree = try? object.value(for: kACBaseClassValueThreeKey)",
-            "valueEight = try? object.value(for: kACBaseClassValueEightKey)"
+            "valueSeven = try? object.value(for: SerializationKeys.valueSeven)",
+            "valueTwo = try? object.value(for: SerializationKeys.valueTwo)",
+            "valueFour = try? object.value(for: SerializationKeys.valueFour)",
+            "valueFive = try? object.value(for: SerializationKeys.valueFive)",
+            "valueSix = try? object.value(for: SerializationKeys.valueSix)",
+            "valueOne = try? object.value(for: SerializationKeys.valueOne)",
+            "valueThree = try? object.value(for: SerializationKeys.valueThree)",
+            "valueEight = try? object.value(for: SerializationKeys.valueEight)"
         ]
         for initialiser in initialisers {
             expect(baseModelFile.component.initialisers.contains(initialiser)).to(equal(true))
