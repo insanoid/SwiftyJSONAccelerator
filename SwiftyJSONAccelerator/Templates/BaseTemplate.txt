@@ -16,10 +16,9 @@ public{IS_FINAL}{OBJECT_KIND} {OBJECT_NAME}{EXTENDED_OBJECT_COLON}{EXTEND_FROM} 
 {DECLARATION}
 
 {JSON_PARSER_LIBRARY_BODY}
-  /**
-   Generates description of the object in the form of a NSDictionary.
-   - returns: A Key value pair containing all valid values in the object.
-  */
+  /// Generates description of the object in the form of a NSDictionary.
+  ///
+  /// - returns: A Key value pair containing all valid values in the object.
   public func dictionaryRepresentation() -> [String: Any] {
     var dictionary: [String: Any] = [:]
 {DESCRIPTION}
