@@ -116,7 +116,7 @@ protocol DefaultModelFileComponent {
 extension DefaultModelFileComponent {
 
   func genStringConstant(_ constantName: String, _ value: String) -> String {
-    return "private let \(constantName): String = \"\(value)\""
+    return "private let \(constantName) = \"\(value)\""
   }
 
   func genVariableDeclaration(_ name: String, _ type: String, _ isArray: Bool) -> String {
@@ -129,7 +129,7 @@ extension DefaultModelFileComponent {
 
   func genPrimitiveVariableDeclaration(_ name: String, _ type: String) -> String {
     if type == VariableType.Bool.rawValue {
-      return "public var \(name): \(type) = false"
+      return "public var \(name) = false"
     }
     return "public var \(name): \(type)?"
   }
