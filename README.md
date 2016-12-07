@@ -1,31 +1,22 @@
 ![Logo](https://raw.githubusercontent.com/insanoid/SwiftyJSONAccelerator/master/SwiftyJSONAccelerator/Support/Assets.xcassets/AppIcon.appiconset/Icon_32x32%402x.png)
 
-# SwiftyJSONAccelerator
+# SwiftyJSONAccelerator (Model file Generator For Swift 3)
 
 [![Build
 Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)](https://travis-ci.org/insanoid/SwiftyJSONAccelerator) [![codecov](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator/branch/master/graph/badge.svg)](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator)
 
-**Version v1.2.0 Released!**
+**Version v1.3.0 Released!**
 
-- Now supports [Marshal](https://github.com/utahiosmac/Marshal)! One of the fastest JSONSerialisation class out there! [(Read more)](https://github.com/bwhiteley/JSONShootout)
-- Set `class` as `final`.
-- `init` marked as `required` by default for `class`.
+- Serialisation keys moved into a struct for clarity.
+- Minor fixes for Marshal and ObjectMapper.
+- Generated comments now updated to the new Swift 3 Markup.
 
-**Version v1.1.0 Released!**
-
-- Now generates the correct option `struct` and `class` based on what was selected.
-
-**Version v1.0.0 Released!**
-
-- Now generates **Swift 3** and the software itself is upgraded to Swift 3.
-- Unit tests and complete code coverage for file generation module.
-- Modular code to make adding support for other JSON mapping libraries simple.
-- Project upgraded with SwiftLint, Travis, CocoaPods etc.
+[Previous Release Notes](#previous-releases)
 
 ## Download/Installing
 
 - **Option 1:** Download the repo, install pods and run the project!
-- **Option 2:** [Download the .app(v1.2.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v1.2.0/SwiftyJSONAccelerator.zip)
+- **Option 2:** [Download the .app(v1.3.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v1.3.0/SwiftyJSONAccelerator.zip)
 
 A swift model generator like the Objective-C [JSONAccelerator](http://nerdery.com/json-accelerator). Formats and generates models for the given JSON and also breaks them into files making it easy to manage and share between several models.
 
@@ -52,6 +43,25 @@ Currently, the pattern is very similar to its Objective-C counterpart. It genera
 - Follow the examples in [Library-Extensions](SwiftyJSONAccelerator/Library-Extensions) and create a struct implementing`ModelFile`. Follow the other extensions for SwiftyJSON and ObjectMapper, they tell you what all you can replace based on your libraries specification.
 - Do the necessary UI changes for the dropdown.
 - Add tests for your library.
+
+## Previous Releases
+
+**Version v1.2.0 Released!**
+
+- Now supports [Marshal](https://github.com/utahiosmac/Marshal)! One of the fastest JSONSerialisation class out there! [(Read more)](https://github.com/bwhiteley/JSONShootout)
+- Set `class` as `final`.
+- `init` marked as `required` by default for `class`.
+
+**Version v1.1.0 Released!**
+
+- Now generates the correct option `struct` and `class` based on what was selected.
+
+**Version v1.0.0 Released!**
+
+- Now generates **Swift 3** and the software itself is upgraded to Swift 3.
+- Unit tests and complete code coverage for file generation module.
+- Modular code to make adding support for other JSON mapping libraries simple.
+- Project upgraded with SwiftLint, Travis, CocoaPods etc.
 
 ## Swift 2?
 
