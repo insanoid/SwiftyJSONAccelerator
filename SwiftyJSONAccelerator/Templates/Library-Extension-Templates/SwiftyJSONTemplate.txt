@@ -10,7 +10,6 @@
   /// Initiates the instance based on the JSON that was passed.
   ///
   /// - parameter json: JSON object from SwiftyJSON.
-  /// - returns: An initialized instance of the class.
   public{REQUIRED}init(json: JSON) {
 {INITIALIZER}
   }

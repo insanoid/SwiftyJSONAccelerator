@@ -2,7 +2,7 @@
 
   /// Map a JSON object to this class using Marshal.
   ///
-  /// - parameter map: A mapping from ObjectMapper
+  /// - parameter object: A mapping from ObjectMapper
   public{REQUIRED}init(object: MarshaledObject) {
 {INITIALIZER}
   }
