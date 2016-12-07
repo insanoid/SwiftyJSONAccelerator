@@ -1,16 +1,14 @@
   // MARK: ObjectMapper Initializers
-  /**
-   Map a JSON object to this class using ObjectMapper
-   - parameter map: A mapping from ObjectMapper
-  */
-  public{REQUIRED}init?(_ map: Map){
+  /// Map a JSON object to this class using ObjectMapper.
+  ///
+  /// - parameter map: A mapping from ObjectMapper.
+  public{REQUIRED}init?(map: Map){
 
   }
 
-  /**
-  Map a JSON object to this class using ObjectMapper
-   - parameter map: A mapping from ObjectMapper
-  */
+  /// Map a JSON object to this class using ObjectMapper.
+  ///
+  /// - parameter map: A mapping from ObjectMapper.
   public func mapping(map: Map) {
 {INITIALIZER}
   }

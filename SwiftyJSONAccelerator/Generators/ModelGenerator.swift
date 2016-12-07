@@ -66,7 +66,7 @@ public struct ModelGenerator {
 
     if let rootObject = object.dictionary {
       // A model file to store the current model.
-      var currentModel = self.initaliseModelFileFor(configuration.modelMappingLibrary)
+      var currentModel = self.initialiseModelFileFor(configuration.modelMappingLibrary)
       currentModel.setInfo(className, configuration)
 
       for (key, value) in rootObject {
@@ -139,7 +139,7 @@ public struct ModelGenerator {
 
    - returns: A new model file of the required type.
    */
-  func initaliseModelFileFor(_ modelMappingLibrary: JSONMappingLibrary) -> ModelFile {
+  func initialiseModelFileFor(_ modelMappingLibrary: JSONMappingLibrary) -> ModelFile {
     switch modelMappingLibrary {
     case .ObjectMapper:
       return ObjectMapperModelFile()

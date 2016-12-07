@@ -27,7 +27,7 @@ internal struct ModelComponent {
   var description: [String]
 
   /**
-   Initalise a blank model component structure.
+   Initialise a blank model component structure.
    */
   init() {
     declarations = []

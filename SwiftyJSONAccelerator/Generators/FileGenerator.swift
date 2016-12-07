@@ -33,6 +33,7 @@ struct FileGenerator {
     static func generateFileContentWith(_ modelFile: ModelFile, configuration: ModelGenerationConfiguration) -> String {
 
         var content = loadFileWith("BaseTemplate")
+        let singleTab = "  ", doubleTab =  "    "
         content = content.replacingOccurrences(of: "{OBJECT_NAME}", with: modelFile.fileName)
         content = content.replacingOccurrences(of: "{DATE}", with: todayDateString())
         content = content.replacingOccurrences(of: "{OBJECT_KIND}", with: modelFile.type.rawValue)
@@ -73,10 +74,11 @@ struct FileGenerator {
             content = content.replacingOccurrences(of: "{EXTENDED_OBJECT_COLON}", with: "")
         }
 
-        let stringConstants = modelFile.component.stringConstants.map({ "  " + $0 }).joined(separator: "\n")
-        let declarations = modelFile.component.declarations.map({ "  " + $0 }).joined(separator: "\n")
-        let initialisers = modelFile.component.initialisers.map({ "    " + $0 }).joined(separator: "\n")
-        let description = modelFile.component.description.map({ "    " + $0 }).joined(separator: "\n")
+        
+        let stringConstants = modelFile.component.stringConstants.map({doubleTab + $0 }).joined(separator: "\n")
+        let declarations = modelFile.component.declarations.map({ singleTab + $0 }).joined(separator: "\n")
+        let initialisers = modelFile.component.initialisers.map({doubleTab + $0 }).joined(separator: "\n")
+        let description = modelFile.component.description.map({ doubleTab + $0 }).joined(separator: "\n")
 
         content = content.replacingOccurrences(of: "{STRING_CONSTANT}", with: stringConstants)
         content = content.replacingOccurrences(of: "{DECLARATION}", with: declarations)
@@ -89,8 +91,8 @@ struct FileGenerator {
 
         if configuration.supportNSCoding && configuration.constructType == .ClassType {
             content = content.replacingOccurrences(of: "{NSCODING_SUPPORT}", with: loadFileWith("NSCodingTemplate"))
-            let encoders = modelFile.component.encoders.map({ "    " + $0 }).joined(separator: "\n")
-            let decoders = modelFile.component.decoders.map({ "    " + $0 }).joined(separator: "\n")
+            let encoders = modelFile.component.encoders.map({ doubleTab + $0 }).joined(separator: "\n")
+            let decoders = modelFile.component.decoders.map({ doubleTab + $0 }).joined(separator: "\n")
             content = content.replacingOccurrences(of: "{DECODERS}", with: decoders)
             content = content.replacingOccurrences(of: "{ENCODERS}", with: encoders)
         } else {

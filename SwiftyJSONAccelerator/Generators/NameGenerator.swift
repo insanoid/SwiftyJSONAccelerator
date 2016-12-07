@@ -68,9 +68,8 @@ struct NameGenerator {
    */
   static func replaceKeywords(_ currentName: String) -> String {
 
-    let keywordsWithReplacements = ["id": "internalIdentifier",
+    let keywordsWithReplacements = [
       "description": "descriptionValue",
-      "_id": "internalIdentifier",
       "class": "classProperty",
       "struct": "structProperty",
       "enum": "enumProperty",
@@ -91,8 +90,6 @@ struct NameGenerator {
    - returns: The name for the key for the variable in the given class.
    */
   static func variableKey(_ className: String, _ variableName: String) -> String {
-    var _variableName = variableName
-    _variableName.uppercaseFirst()
-    return "k\(className)\(_variableName)Key"
+    return "SerializationKeys.\(variableName)"
   }
 }
