@@ -68,9 +68,8 @@ struct NameGenerator {
    */
   static func replaceKeywords(_ currentName: String) -> String {
 
-    let keywordsWithReplacements = ["id": "internalIdentifier",
+    let keywordsWithReplacements = [
       "description": "descriptionValue",
-      "_id": "internalIdentifier",
       "class": "classProperty",
       "struct": "structProperty",
       "enum": "enumProperty",
