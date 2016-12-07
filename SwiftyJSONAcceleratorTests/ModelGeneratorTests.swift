@@ -74,13 +74,13 @@ class ModelGeneratorTests: XCTestCase {
     /**
    Test model file initialisation test.
    */
-    func testinitaliseModelFileFor() {
+    func testinitialiseModelFileFor() {
         let config = defaultConfiguration(.SwiftyJSON)
         let m = ModelGenerator.init(JSON.init([testJSON()]), config)
-        expect(m.initaliseModelFileFor(.SwiftyJSON) is SwiftyJSONModelFile).to(equal(true))
-        expect(m.initaliseModelFileFor(.SwiftyJSON) is ObjectMapperModelFile).to(equal(false))
-        expect(m.initaliseModelFileFor(.ObjectMapper) is SwiftyJSONModelFile).to(equal(false))
-        expect(m.initaliseModelFileFor(.ObjectMapper) is ObjectMapperModelFile).to(equal(true))
+        expect(m.initialiseModelFileFor(.SwiftyJSON) is SwiftyJSONModelFile).to(equal(true))
+        expect(m.initialiseModelFileFor(.SwiftyJSON) is ObjectMapperModelFile).to(equal(false))
+        expect(m.initialiseModelFileFor(.ObjectMapper) is SwiftyJSONModelFile).to(equal(false))
+        expect(m.initialiseModelFileFor(.ObjectMapper) is ObjectMapperModelFile).to(equal(true))
     }
 
     /**
