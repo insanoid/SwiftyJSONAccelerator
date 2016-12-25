@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 /**
  *  A protocol defining the structure of the model file.
@@ -15,6 +16,9 @@ protocol ModelFile {
 
   /// Filename for the model.
   var fileName: String { get set }
+
+  /// Original JSON source file used for generating this model.
+  var sourceJSON: JSON { get set }
 
   /// Type of the the object, if a structure or a class.
   var type: ConstructType { get }
@@ -56,6 +60,6 @@ protocol ModelFile {
 
    - returns: Name of the JSON file (without extension)
    */
-  func mainBodyFileName() -> String
+  func mainBodyTemplateFileName() -> String
 
 }

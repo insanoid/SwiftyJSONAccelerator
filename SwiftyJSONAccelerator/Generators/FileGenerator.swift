@@ -37,7 +37,7 @@ struct FileGenerator {
         content = content.replacingOccurrences(of: "{OBJECT_NAME}", with: modelFile.fileName)
         content = content.replacingOccurrences(of: "{DATE}", with: todayDateString())
         content = content.replacingOccurrences(of: "{OBJECT_KIND}", with: modelFile.type.rawValue)
-        content = content.replacingOccurrences(of: "{JSON_PARSER_LIBRARY_BODY}", with: loadFileWith(modelFile.mainBodyFileName()))
+        content = content.replacingOccurrences(of: "{JSON_PARSER_LIBRARY_BODY}", with: loadFileWith(modelFile.mainBodyTemplateFileName()))
 
         if modelFile.type == .ClassType {
             content = content.replacingOccurrences(of: "{REQUIRED}", with: " required ")
@@ -50,7 +50,11 @@ struct FileGenerator {
         if let companyName = configuration.companyName {
             content = content.replacingOccurrences(of: "__MyCompanyName__", with: companyName)
         }
-        content = content.replacingOccurrences(of: "{INCLUDE_HEADER}", with: "\nimport \(modelFile.moduleName())")
+        if configuration.isFinalRequired {
+            content = content.replacingOccurrences(of: "{INCLUDE_HEADER}", with: "\nimport \(modelFile.moduleName())")
+        } else {
+             content = content.replacingOccurrences(of: "{INCLUDE_HEADER}", with: "")
+        }
 
         var classesExtendFrom: [String] = []
         if let extendFrom = modelFile.baseElementName() {
@@ -74,7 +78,6 @@ struct FileGenerator {
             content = content.replacingOccurrences(of: "{EXTENDED_OBJECT_COLON}", with: "")
         }
 
-        
         let stringConstants = modelFile.component.stringConstants.map({doubleTab + $0 }).joined(separator: "\n")
         let declarations = modelFile.component.declarations.map({ singleTab + $0 }).joined(separator: "\n")
         let initialisers = modelFile.component.initialisers.map({doubleTab + $0 }).joined(separator: "\n")

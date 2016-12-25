@@ -35,7 +35,7 @@ class ModelGeneratorTests: XCTestCase {
                              "value_two": 3,
                              "value_three": true,
                              "value_four": 3.4,
-                             "value_dont_show": nil,
+                             "value_dont_show": JSON.null,
                              "value_five": ["string", "random_stuff"],
                              "value_six": ["sub_value": "value", "sub_value_second": false],
                              "value_seven": [
@@ -68,7 +68,8 @@ class ModelGeneratorTests: XCTestCase {
                                                  constructType: .StructType,
                                                  modelMappingLibrary: library,
                                                  supportNSCoding: true,
-                                                 isFinalRequired: true)
+                                                 isFinalRequired: true,
+                                                 isHeaderIncluded: true)
     }
 
     /**
@@ -201,7 +202,8 @@ class ModelGeneratorTests: XCTestCase {
             constructType: .ClassType,
             modelMappingLibrary: .Marshal,
             supportNSCoding: true,
-            isFinalRequired: true)
+            isFinalRequired: true,
+            isHeaderIncluded: true)
         let m = ModelGenerator.init(testJSON(), config)
         let files = m.generate()
         runCheckForBaseModel(files, config, runMarshalInitialiserCheckForBaseModel(_:))

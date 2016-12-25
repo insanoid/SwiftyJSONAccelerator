@@ -136,7 +136,8 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
             constructType: constructType,
             modelMappingLibrary: libraryType,
             supportNSCoding: nsCodingState,
-            isFinalRequired: isFinalClass)
+            isFinalRequired: isFinalClass,
+            isHeaderIncluded: includeHeaderImportCheckbox.state == 1 ? true : false)
         let modelGenerator = ModelGenerator.init(JSON(object!), configuration)
         let filesGenerated = modelGenerator.generate()
         var successState = true

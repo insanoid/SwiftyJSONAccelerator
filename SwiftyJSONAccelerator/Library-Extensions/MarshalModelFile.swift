@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 struct MarshalModelFile: ModelFile, DefaultModelFileComponent {
 
@@ -14,11 +15,13 @@ struct MarshalModelFile: ModelFile, DefaultModelFileComponent {
     var fileName: String
     var type: ConstructType
     var component: ModelComponent
+    var sourceJSON: JSON
 
     init() {
         self.fileName = ""
         type = ConstructType.StructType
         component = ModelComponent.init()
+        sourceJSON = JSON.init([])
     }
 
     mutating func setInfo(_ fileName: String, _ configuration: ModelGenerationConfiguration) {
@@ -34,7 +37,7 @@ struct MarshalModelFile: ModelFile, DefaultModelFileComponent {
         return "Unmarshaling"
     }
 
-    func mainBodyFileName() -> String {
+    func mainBodyTemplateFileName() -> String {
         return "MarshalTemplate"
     }
 

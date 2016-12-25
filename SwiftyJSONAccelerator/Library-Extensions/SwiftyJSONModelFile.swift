@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 /**
  *  Provides support for SwiftyJSON library.
@@ -16,12 +17,14 @@ struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
   var fileName: String
   var type: ConstructType
   var component: ModelComponent
+  var sourceJSON: JSON
 
   // MARK: - Initialisers.
   init() {
     self.fileName = ""
     type = ConstructType.StructType
     component = ModelComponent.init()
+    sourceJSON = JSON.init([])
   }
 
   mutating func setInfo(_ fileName: String, _ configuration: ModelGenerationConfiguration) {
@@ -37,7 +40,7 @@ struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
     return nil
   }
 
-  func mainBodyFileName() -> String {
+  func mainBodyTemplateFileName() -> String {
     return "SwiftyJSONTemplate"
   }
 
