@@ -23,16 +23,22 @@ class MultipleModelGeneratorTests: XCTestCase {
     }
 
     func testFileCheck() {
-        
+
         do {
-            let generatedModelInfo = try MultipleModelGenerator.generate(forPath: "/Users/karthikeyaudupa/Desktop/JSONFiles")
-            expect(generatedModelInfo.modelFiles.count).to(equal(5))
-            for file in generatedModelInfo.modelfiles {
-                let content = FileGenerator.generateFileContentWith(file, configuration: generatedModelInfo.configuration)
-                let name = file.fileName
-                let path = generatedModelInfo.configuration.filePath
-                expect(FileGenerator.writeToFileWith(name, content: content, path: path)).to(equal(true))
+            let testBundle = Bundle(for: type(of: self))
+            if let path = testBundle.path(forResource: "album", ofType: ".json") {
+                let folderPath = path.replacingOccurrences(of: "album.json", with: "")
+                let generatedModelInfo = try MultipleModelGenerator.generate(forPath: folderPath)
+                expect(generatedModelInfo.modelFiles.count).to(equal(6))
+                for file in generatedModelInfo.modelFiles {
+                    let content = FileGenerator.generateFileContentWith(file, configuration: generatedModelInfo.configuration)
+                    let name = file.fileName
+                    let path = generatedModelInfo.configuration.filePath
+                    expect(FileGenerator.writeToFileWith(name, content: content, path: path)).to(equal(true))
+                }
             }
+
+
         } catch {
             assertionFailure("Something went wrong with model generation.")
         }

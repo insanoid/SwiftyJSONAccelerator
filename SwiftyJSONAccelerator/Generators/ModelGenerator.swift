@@ -68,6 +68,7 @@ public struct ModelGenerator {
             // A model file to store the current model.
             var currentModel = self.initialiseModelFileFor(configuration.modelMappingLibrary)
             currentModel.setInfo(className, configuration)
+            currentModel.sourceJSON = object
 
             for (key, value) in rootObject {
                 /// basic information, name, type and the constant to store the key.
@@ -149,25 +150,4 @@ public struct ModelGenerator {
             return MarshalModelFile()
         }
     }
-
-    func groupByName(models: [ModelFile]) -> [ModelFile] {
-        var modelGroups = [String: [ModelFile]]()
-        for model in models {
-            let key = model.mainBodyTemplateFileName()
-            if modelGroups.index(forKey: key) != nil {
-                modelGroups[key]?.append(model)
-            } else {
-                modelGroups[key] = [model]
-            }
-        }
-        return modelGroups.flatMap({$1})
-    }
-
-    func reduce(models: [ModelFile]) -> ModelFile {
-        if models.count == 1 {
-            return models.first!
-        }
-       return models.first!
-    }
-
 }

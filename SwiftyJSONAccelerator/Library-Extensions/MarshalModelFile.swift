@@ -16,6 +16,7 @@ struct MarshalModelFile: ModelFile, DefaultModelFileComponent {
     var type: ConstructType
     var component: ModelComponent
     var sourceJSON: JSON
+    var configuration: ModelGenerationConfiguration?
 
     init() {
         self.fileName = ""
@@ -27,6 +28,7 @@ struct MarshalModelFile: ModelFile, DefaultModelFileComponent {
     mutating func setInfo(_ fileName: String, _ configuration: ModelGenerationConfiguration) {
         self.fileName = fileName
         type = configuration.constructType
+        self.configuration = configuration
     }
 
     func moduleName() -> String {

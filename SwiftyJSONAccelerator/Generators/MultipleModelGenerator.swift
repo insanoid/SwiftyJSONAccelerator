@@ -92,7 +92,7 @@ struct MultipleModelGenerator {
         var models = [ModelFile]()
         for file in response.files {
             let url = URL.init(fileURLWithPath: file)
-            let fileName = url.lastPathComponent.replacingOccurrences(of: ".swift", with: "")
+            let fileName = url.lastPathComponent.replacingOccurrences(of: ".json", with: "")
             if let json = loadJSON(fromFile: file) {
                 finalConfiguration.baseClassName = fileName
                 let m = ModelGenerator.init(json, finalConfiguration)
@@ -102,7 +102,8 @@ struct MultipleModelGenerator {
             }
         }
 
-        return (models, finalConfiguration)
+
+        return (merge(models: models), finalConfiguration)
     }
 
 
@@ -117,7 +118,7 @@ struct MultipleModelGenerator {
         var configFile: String?
         while let element = enumerator?.nextObject() as? String {
             if element.hasSuffix("json") {
-                if element == ".config.json" {
+                if element == ".config.json" || element == "test_config.json" {
                     configFile = path + "/" + element
                 } else {
                     jsonFiles.append(path + "/" + element)
@@ -166,6 +167,55 @@ struct MultipleModelGenerator {
     }
 
 
+    /// Merge the models into sensible models.
+    ///
+    /// - Parameter models: List of suggested models.
+    /// - Returns: Reduced set of fisible models.
+    static func merge(models: [ModelFile]) -> [ModelFile] {
+
+        // If there are no models or a single model we do not care.
+        if models.count <= 1 {
+            return models
+        }
+
+        // This is an array to keep a track of the models we need to return.
+        var modelsToReturn = [ModelFile]()
+
+        // We need to group models by their filename to simplify merging.
+        let groupedModels = groupByName(models: models)
+
+        for models in groupedModels {
+            if models.count <= 1 {
+                modelsToReturn.append(contentsOf: models)
+            } else {
+                var sourceJSON = [JSON]()
+                for model in models {
+                    sourceJSON.append(model.sourceJSON)
+                }
+                // Take the JSON of the files and merge the models (this might generate further dependencies)
+                let combinedJSON = JSONHelper.reduce(sourceJSON)
+
+                let currentConfig = (models.first?.configuration)!
+                var fileName = (models.first?.fileName)!
+
+                if let prefix = currentConfig.prefix, let range = fileName.range(of: prefix) {
+                    fileName = fileName.replacingOccurrences(of: prefix, with: "", options: .literal, range: range)
+                }
+
+                let m = ModelGenerator.init(combinedJSON, (models.first?.configuration)!)
+                let newModels = m.generateModelForJSON(combinedJSON, fileName, false)
+                for newModel in newModels {
+                    // We only care about the current model file, all sub models will be merged on their own.
+                    if newModel.fileName == (models.first?.fileName)! {
+                        modelsToReturn.append(newModel)
+                        break
+                    }
+                }
+            }
+        }
+        return modelsToReturn
+    }
+
     /// Load a JSON file from the file at the given path.
     ///
     /// - Parameter fromFile: Filepath for the JSON file.
@@ -182,6 +232,19 @@ struct MultipleModelGenerator {
         } catch {
             return nil
         }
+    }
+
+    static func groupByName(models: [ModelFile]) -> [[ModelFile]] {
+        var modelGroups = [String: [ModelFile]]()
+        for model in models {
+            let key = model.fileName
+            if modelGroups.index(forKey: key) != nil {
+                modelGroups[key]?.append(model)
+            } else {
+                modelGroups[key] = [model]
+            }
+        }
+        return modelGroups.flatMap({ $1 })
     }
 
 }

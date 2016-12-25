@@ -149,7 +149,7 @@ class ModelGeneratorTests: XCTestCase {
         for m in files {
             let content = FileGenerator.generateFileContentWith(m, configuration: config)
             let name = m.fileName
-            let path = "/Users/karthikeyaudupa/Desktop/tmp/sj/"
+            let path = "/tmp/sj/"
             expect(FileGenerator.writeToFileWith(name, content: content, path: path)).to(equal(true))
         }
 
@@ -167,7 +167,7 @@ class ModelGeneratorTests: XCTestCase {
         for m in files {
             let content = FileGenerator.generateFileContentWith(m, configuration: config)
             let name = m.fileName
-            let path = "/Users/karthikeyaudupa/Desktop/tmp/om/"
+            let path = "/tmp/om/"
             expect(FileGenerator.writeToFileWith(name, content: content, path: path)).to(equal(true))
         }
     }
@@ -187,14 +187,14 @@ class ModelGeneratorTests: XCTestCase {
             expect(content.contains("public init(object: MarshaledObject)")).to(equal(true))
             expect(content.contains("public struct")).to(equal(true))
             let name = m.fileName
-            let path = "/Users/karthikeyaudupa/Desktop/tmp/om/"
+            let path = config.filePath
             expect(FileGenerator.writeToFileWith(name, content: content, path: path)).to(equal(true))
         }
     }
     
     func testMarshalModelAsClass() {
         let config = ModelGenerationConfiguration.init(
-            filePath: "/tmp/",
+            filePath: "/tmp/ml",
             baseClassName: "BaseClass",
             authorName: "Jane Smith",
             companyName: "Acme Co.",
@@ -214,7 +214,7 @@ class ModelGeneratorTests: XCTestCase {
             expect(content.contains("public init(object: MarshaledObject)")).to(equal(false))
             expect(content.contains("public final class")).to(equal(true))
             let name = m.fileName
-            let path = "/Users/karthikeyaudupa/Desktop/tmp/om/"
+            let path = config.filePath
             expect(FileGenerator.writeToFileWith(name, content: content, path: path)).to(equal(true))
         }
     }
