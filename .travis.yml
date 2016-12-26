@@ -18,8 +18,6 @@ before_script:
   - bundle exec pod install
   - swiftlint version
 script:
-  - xcodebuild -workspace SwiftyJSONAccelerator.xcworkspace -scheme "SwiftyJSONAccelerator" test | tee xcodebuild.log | xcpretty -s
-  - swiftlint
+  - xcodebuild -workspace SwiftyJSONAccelerator.xcworkspace -scheme "SwiftyJSONAccelerator" -destination 'platform=OS X,arch=x86_64' build test
 after_success:
-  - slather
-  - bash <(curl -s https://codecov.io/bash) -f build/slather/cobertura.xml
+  - bash <(curl -s https://codecov.io/bash)

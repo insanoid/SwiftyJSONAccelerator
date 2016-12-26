@@ -37,8 +37,6 @@ class MultipleModelGeneratorTests: XCTestCase {
                     expect(FileGenerator.writeToFileWith(name, content: content, path: path)).to(equal(true))
                 }
             }
-
-
         } catch {
             assertionFailure("Something went wrong with model generation.")
         }
