@@ -16,8 +16,7 @@ before_script:
   - rm -rf Podlock
   - bundle install
   - bundle exec pod install
-  - swiftlint version
 script:
-   - xcodebuild -workspace SwiftyJSONAccelerator.xcworkspace -scheme "SwiftyJSONAccelerator" test
-after_success:
+  - xcodebuild -workspace SwiftyJSONAccelerator.xcworkspace -scheme "SwiftyJSONAccelerator" test | tee xcodebuild.log
+ after_success:
   - bash <(curl -s https://codecov.io/bash)
