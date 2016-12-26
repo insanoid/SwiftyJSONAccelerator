@@ -9,7 +9,6 @@
 import Foundation
 import SwiftyJSON
 
-
 /// An enumeration for handling various kinds of errors generated from multiple model generator.
 ///
 /// - noJSONFiles: No JSON file was found at the location.
@@ -25,7 +24,6 @@ enum MultipleModelGeneratorError: Error {
     case invalidJSONFile(filename: String)
     case invalidConfigJSON
     case invalidPath
-
 
     /// Generate an error message for the error case.
     ///
@@ -48,10 +46,8 @@ enum MultipleModelGeneratorError: Error {
     }
 }
 
-
 /// A structure to generate multiple mdoels from JSON files at once.
 struct MultipleModelGenerator {
-
 
     /// Generate models for the JSON files in the given path. Use the `.config.json` to load config.
     ///
@@ -101,11 +97,8 @@ struct MultipleModelGenerator {
                 throw MultipleModelGeneratorError.invalidJSONFile(filename: url.lastPathComponent)
             }
         }
-
-
         return (merge(models: models), finalConfiguration)
     }
-
 
     /// Fetch the files in the path, both normal JSON file and config files.
     ///
@@ -127,7 +120,6 @@ struct MultipleModelGenerator {
         }
         return (jsonFiles, configFile)
     }
-
 
     /// Load configuration file from the provided JSON.
     ///
@@ -165,7 +157,6 @@ struct MultipleModelGenerator {
             throw MultipleModelGeneratorError.configInvalid(rule: response.reason)
         }
     }
-
 
     /// Merge the models into sensible models.
     ///

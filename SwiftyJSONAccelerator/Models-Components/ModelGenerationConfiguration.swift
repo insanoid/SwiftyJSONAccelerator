@@ -33,7 +33,6 @@ struct ModelGenerationConfiguration {
     /// Should header be included.
     var isHeaderIncluded: Bool
 
-
     /// Checks if the configuration is valid as per the rules of Swift.
     ///
     /// - Returns: If the config is valid and the reason for invalidation if it is invalid.

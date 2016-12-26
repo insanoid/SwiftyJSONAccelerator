@@ -29,7 +29,6 @@ fileprivate func <= <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 }
 
-
 /// View for the processing of the content and generation of the files.
 class SJEditorViewController: NSViewController, NSTextViewDelegate {
 
@@ -197,7 +196,6 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         self.setAsFinalCheckbox.isEnabled = (modelTypeSelectorSegment.selectedSegment == 1)
     }
 
-
     func notify(completionState: Bool, fileCount: Int) {
         let notification = NSUserNotification()
         notification.title = "SwiftyJSONAccelerator"
@@ -322,7 +320,6 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
             self.librarySelector.title = menu.selectedItem!.title
         }
     }
-
 
     // MARK: Internal Methods
 
