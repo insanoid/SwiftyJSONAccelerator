@@ -79,12 +79,7 @@ struct MultipleModelGenerator {
         guard var finalConfiguration = config else {
             throw MultipleModelGeneratorError.configInvalid(rule: NSLocalizedString("Invalid configration.", comment: ""))
         }
-
-        /// If there is no file path, put the default path in.
-        if finalConfiguration.filePath == "" {
-            finalConfiguration.filePath = forPath
-        }
-
+        finalConfiguration.filePath = generatePathToSave(fromBasePath: forPath, destinationPath: finalConfiguration.filePath)
         var models = [ModelFile]()
         for file in response.files {
             let url = URL.init(fileURLWithPath: file)
@@ -98,6 +93,30 @@ struct MultipleModelGenerator {
             }
         }
         return (merge(models: models), finalConfiguration)
+    }
+
+    /// If there is no file path, put the default path in, if it is relative fix it using the the file path.
+    /// Additionally fix the path by adding `/` at the end.
+    ///
+    /// - Parameter fromBasePath: base path, which the json files are fetched from.
+    /// - Returns: Path provided in the config file.
+    static func generatePathToSave(fromBasePath: String, destinationPath: String) -> String {
+        var finalPath = destinationPath
+        if destinationPath == "" {
+            finalPath = fromBasePath
+        } else if destinationPath.hasPrefix("/") == false {
+
+            var basePath = fromBasePath
+            if basePath.hasSuffix("/") == false {
+                basePath = basePath + "/"
+            }
+            finalPath = basePath + destinationPath
+        }
+
+        if finalPath.hasSuffix("/") == false {
+            finalPath = finalPath + "/"
+        }
+        return finalPath
     }
 
     /// Fetch the files in the path, both normal JSON file and config files.

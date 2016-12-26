@@ -34,7 +34,11 @@ class MultipleModelGeneratorTests: XCTestCase {
                     let content = FileGenerator.generateFileContentWith(file, configuration: generatedModelInfo.configuration)
                     let name = file.fileName
                     let path = generatedModelInfo.configuration.filePath
-                    expect(FileGenerator.writeToFileWith(name, content: content, path: path)).to(equal(true))
+                    do {
+                        try FileGenerator.writeToFileWith(name, content: content, path: path)
+                    } catch {
+                        assertionFailure("File generation Failed")
+                    }
                 }
             }
         } catch {

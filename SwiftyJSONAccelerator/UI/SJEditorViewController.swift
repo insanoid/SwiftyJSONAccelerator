@@ -71,23 +71,23 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
 
         do {
             let generatedModelInfo = try MultipleModelGenerator.generate(forPath: path)
-            var successState = true
             for file in generatedModelInfo.modelFiles {
                 let content = FileGenerator.generateFileContentWith(file, configuration: generatedModelInfo.configuration)
                 let name = file.fileName
                 let path = generatedModelInfo.configuration.filePath
-                successState = FileGenerator.writeToFileWith(name, content: content, path: path)
+                try FileGenerator.writeToFileWith(name, content: content, path: path)
             }
-            notify(completionState: successState, fileCount: generatedModelInfo.modelFiles.count)
+            notify(fileCount: generatedModelInfo.modelFiles.count)
 
         } catch let error as MultipleModelGeneratorError {
             let alert: NSAlert = NSAlert()
-            alert.messageText = "Unable to generate the file!"
+            alert.messageText = "Unable to generate the files."
             alert.informativeText = error.errorMessage()
             alert.runModal()
-        } catch {
+        } catch let error as NSError {
             let alert: NSAlert = NSAlert()
-            alert.messageText = "Unable to generate the files, please check the contents of the folder."
+            alert.messageText = "Unable to generate the files."
+            alert.informativeText = error.localizedDescription
             alert.runModal()
         }
     }
@@ -167,14 +167,20 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
                                                                   isHeaderIncluded: includeHeaderImportCheckbox.state == 1 ? true : false)
             let modelGenerator = ModelGenerator.init(JSON(object!), configuration)
             let filesGenerated = modelGenerator.generate()
-            var successState = true
             for file in filesGenerated {
                 let content = FileGenerator.generateFileContentWith(file, configuration: configuration)
                 let name = file.fileName
                 let path = configuration.filePath
-                successState = FileGenerator.writeToFileWith(name, content: content, path: path)
+                do {
+                    try FileGenerator.writeToFileWith(name, content: content, path: path)
+                } catch let error as NSError {
+                    let alert: NSAlert = NSAlert()
+                    alert.messageText = "Unable to generate the files, please check the contents of the folder."
+                    alert.informativeText = error.localizedDescription
+                    alert.runModal()
+                }
             }
-            notify(completionState: successState, fileCount: filesGenerated.count)
+            notify(fileCount: filesGenerated.count)
         } else {
             let alert: NSAlert = NSAlert()
             alert.messageText = "Unable to save the file check the content."
@@ -196,13 +202,13 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         self.setAsFinalCheckbox.isEnabled = (modelTypeSelectorSegment.selectedSegment == 1)
     }
 
-    func notify(completionState: Bool, fileCount: Int) {
+    func notify(fileCount: Int) {
         let notification = NSUserNotification()
         notification.title = "SwiftyJSONAccelerator"
-        if completionState && fileCount > 0 {
+        if fileCount > 0 {
             notification.subtitle = "Completed - \(fileCount) Files Generated"
         } else {
-            notification.subtitle = "No files were generated, cannot model arrays inside arrays."
+            notification.subtitle = "No files were generated."
         }
         NSUserNotificationCenter.default.deliver(notification)
     }

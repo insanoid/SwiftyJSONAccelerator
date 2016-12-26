@@ -150,7 +150,11 @@ class ModelGeneratorTests: XCTestCase {
             let content = FileGenerator.generateFileContentWith(m, configuration: config)
             let name = m.fileName
             let path = "/tmp/sj/"
-            expect(FileGenerator.writeToFileWith(name, content: content, path: path)).to(equal(true))
+            do {
+                try FileGenerator.writeToFileWith(name, content: content, path: path)
+            } catch {
+                assertionFailure("File generation Failed")
+            }
         }
 
     }
@@ -168,7 +172,11 @@ class ModelGeneratorTests: XCTestCase {
             let content = FileGenerator.generateFileContentWith(m, configuration: config)
             let name = m.fileName
             let path = "/tmp/om/"
-            expect(FileGenerator.writeToFileWith(name, content: content, path: path)).to(equal(true))
+            do {
+                try FileGenerator.writeToFileWith(name, content: content, path: path)
+            } catch {
+                assertionFailure("File generation Failed")
+            }
         }
     }
 
@@ -188,7 +196,11 @@ class ModelGeneratorTests: XCTestCase {
             expect(content.contains("public struct")).to(equal(true))
             let name = m.fileName
             let path = config.filePath
-            expect(FileGenerator.writeToFileWith(name, content: content, path: path)).to(equal(true))
+            do {
+                try FileGenerator.writeToFileWith(name, content: content, path: path)
+            } catch {
+                assertionFailure("File generation Failed")
+            }
         }
     }
     
@@ -215,7 +227,11 @@ class ModelGeneratorTests: XCTestCase {
             expect(content.contains("public final class")).to(equal(true))
             let name = m.fileName
             let path = config.filePath
-            expect(FileGenerator.writeToFileWith(name, content: content, path: path)).to(equal(true))
+            do {
+                try FileGenerator.writeToFileWith(name, content: content, path: path)
+            } catch {
+                assertionFailure("File generation Failed")
+            }
         }
     }
     

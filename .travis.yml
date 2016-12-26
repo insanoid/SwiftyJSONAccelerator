@@ -1,4 +1,4 @@
-language: generic
+language: objective-c
 cache:
   - bundler
   - cocoapods
@@ -18,6 +18,6 @@ before_script:
   - bundle exec pod install
   - swiftlint version
 script:
-  - xcodebuild -workspace SwiftyJSONAccelerator.xcworkspace -scheme "SwiftyJSONAccelerator" -destination 'platform=OS X,arch=x86_64' test
+   - xcodebuild -workspace SwiftyJSONAccelerator.xcworkspace -scheme "SwiftyJSONAccelerator" test
 after_success:
   - bash <(curl -s https://codecov.io/bash)
