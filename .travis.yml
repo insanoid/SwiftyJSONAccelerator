@@ -1,4 +1,4 @@
-language: objective-c
+language: Swift
 cache:
   - bundler
   - cocoapods
