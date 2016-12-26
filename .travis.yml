@@ -5,7 +5,7 @@ cache:
 osx_image: xcode8.0
 xcode_workspace: SwiftyJSONAccelerator.xcworkspace
 xcode_scheme: SwiftyJSONAccelerator
-xcode_sdk: macosx
+xcode_sdk: macosx10.12
 podfile: Podfile
 install:
   - bundle install
@@ -18,6 +18,6 @@ before_script:
   - bundle exec pod install
   - swiftlint version
 script:
-  - xcodebuild -workspace SwiftyJSONAccelerator.xcworkspace -scheme "SwiftyJSONAccelerator" -destination 'platform=OS X,arch=x86_64' build test
+  - xcodebuild -workspace SwiftyJSONAccelerator.xcworkspace -scheme "SwiftyJSONAccelerator" -destination 'platform=OS X,arch=x86_64' test
 after_success:
   - bash <(curl -s https://codecov.io/bash)
