@@ -5,7 +5,7 @@ cache:
 osx_image: xcode8.0
 xcode_workspace: SwiftyJSONAccelerator.xcworkspace
 xcode_scheme: SwiftyJSONAccelerator
-xcode_sdk: macosx10.10
+xcode_sdk: macosx
 podfile: Podfile
 install:
   - bundle install
