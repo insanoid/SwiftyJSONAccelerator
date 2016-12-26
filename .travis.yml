@@ -18,5 +18,5 @@ before_script:
   - bundle exec pod install
 script:
   - xcodebuild -workspace SwiftyJSONAccelerator.xcworkspace -scheme "SwiftyJSONAccelerator" test | tee xcodebuild.log
- after_success:
+after_success:
   - bash <(curl -s https://codecov.io/bash)
