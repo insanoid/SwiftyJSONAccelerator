@@ -6,6 +6,8 @@ disabled_rules: # rule identifiers to exclude from running
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - SwiftyJSONAcceleratorTests
   - Pods
+  - Core/External-Libraries
   - SwiftyJSONAccelerator/External-Libraries
+  - SJAccelerator/External-Libraries
   - SwiftyJSON
   - SwiftCLI

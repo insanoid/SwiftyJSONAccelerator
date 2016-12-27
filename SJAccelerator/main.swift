@@ -12,8 +12,7 @@ CLI.setup(name: "SJAccelerator", version: "1.4.0", description: "Create swift mo
 var path = FileManager.default.currentDirectoryPath
 CLI.registerChainableCommand(name: "generate")
     .withOptionsSetup({ (options) in
-        options.add(keys: ["-p", "--path"], usage: "Provide a path else takes the path of execution.")
-        { (value) in
+        options.add(keys: ["-p", "--path"], usage: "Provide a path else takes the path of execution.") { (value) in
             path = value
         }
     })
@@ -27,7 +26,7 @@ CLI.registerChainableCommand(name: "generate")
                 print(" ✓   " + name)
                 try FileGenerator.writeToFileWith(name, content: content, path: generatedModelInfo.configuration.filePath)
             }
-        print("✓ Generation Complete - \(generatedModelInfo.modelFiles.count) files at \(generatedModelInfo.configuration.filePath)")
+            print("✓ Generation Complete - \(generatedModelInfo.modelFiles.count) files at \(generatedModelInfo.configuration.filePath)")
         } catch let error as MultipleModelGeneratorError {
             throw CLIError.error("✖ Error: Unable to generate the files." + "\n✖ Reason: " + error.errorMessage())
         } catch let error as NSError {

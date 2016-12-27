@@ -27,7 +27,6 @@ struct FileGenerator {
         return ""
     }
 
-    
     static func stringFor(filename: String) throws -> String {
         switch filename {
         case "MarshalTemplate":
@@ -45,4 +44,3 @@ struct FileGenerator {
         }
     }
 }
-

@@ -9,3 +9,4 @@ ignore:
   - SwiftyJSONAccelerator/Application-Delegate/*
   - SwiftyJSONAccelerator/UI/*
   - Pods/*
+  - Core/External-Libraries/*
