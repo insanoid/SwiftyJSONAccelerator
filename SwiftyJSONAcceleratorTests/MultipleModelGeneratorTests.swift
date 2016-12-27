@@ -8,7 +8,6 @@
 
 import XCTest
 import Nimble
-import SwiftyJSON
 import Foundation
 
 /// Test for multiple model generator.

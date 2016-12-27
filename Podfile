@@ -2,13 +2,8 @@ platform :osx, '10.10'
 use_frameworks!
 inhibit_all_warnings!
 
-
-target 'SwiftyJSONAccelerator' do
-  pod 'SwiftyJSON'
-end
-
+## Since Cocoapods does not work with console app.
 target 'SwiftyJSONAcceleratorTests' do
-  pod 'SwiftyJSON'
   pod 'Nimble'
 end
 

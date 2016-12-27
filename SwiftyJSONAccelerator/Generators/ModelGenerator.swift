@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 /// Model generator responsible for creation of models based on the JSON, needs to be initialised
 /// with all properties before proceeding.

@@ -9,7 +9,6 @@
 import Foundation
 import XCTest
 import Nimble
-import SwiftyJSON
 
 /// Test cases for the model Generator.
 class ModelGeneratorTests: XCTestCase {

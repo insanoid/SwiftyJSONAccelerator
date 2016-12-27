@@ -1,0 +1,6 @@
+[submodule "SwiftCLI"]
+	path = SwiftCLI
+	url = https://github.com/jakeheis/SwiftCLI.git
+[submodule "SwiftyJSON"]
+	path = SwiftyJSON
+	url = https://github.com/SwiftyJSON/SwiftyJSON.git

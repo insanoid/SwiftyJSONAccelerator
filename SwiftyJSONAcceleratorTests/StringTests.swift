@@ -8,7 +8,6 @@
 
 import XCTest
 import Nimble
-import SwiftyJSON
 
 /// Additional tests foe String extensions.
 class StringTests: XCTestCase {

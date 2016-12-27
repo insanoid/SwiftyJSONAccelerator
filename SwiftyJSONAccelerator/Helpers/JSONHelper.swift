@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 /// Provides helpers to handle JSON content that user provides.
 open class JSONHelper {

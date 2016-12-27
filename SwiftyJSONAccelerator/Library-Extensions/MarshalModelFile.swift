@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 struct MarshalModelFile: ModelFile, DefaultModelFileComponent {
 

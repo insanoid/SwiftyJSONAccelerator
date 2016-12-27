@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 /// An enumeration for handling various kinds of errors generated from multiple model generator.
 ///

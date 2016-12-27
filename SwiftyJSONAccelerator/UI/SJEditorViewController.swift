@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import SwiftyJSON
 
 fileprivate func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
     switch (lhs, rhs) {
@@ -74,8 +73,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
             for file in generatedModelInfo.modelFiles {
                 let content = FileGenerator.generateFileContentWith(file, configuration: generatedModelInfo.configuration)
                 let name = file.fileName
-                let path = generatedModelInfo.configuration.filePath
-                try FileGenerator.writeToFileWith(name, content: content, path: path)
+                try FileGenerator.writeToFileWith(name, content: content, path: generatedModelInfo.configuration.filePath)
             }
             notify(fileCount: generatedModelInfo.modelFiles.count)
 

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 /**
  *  A protocol defining the structure of the model file.
