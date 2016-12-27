@@ -10,3 +10,4 @@ ignore:
   - SwiftyJSONAccelerator/UI/*
   - Pods/*
   - Core/External-Libraries/*
+  - Submodules/*
