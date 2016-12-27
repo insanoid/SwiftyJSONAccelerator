@@ -13,6 +13,6 @@ before_script:
   - rm -rf Podlock
   - bundle install
 script:
-  - xcodebuild -workspace SwiftyJSONAccelerator.xcworkspace -scheme "SwiftyJSONAccelerator" test
+  - xcodebuild -workspace SwiftyJSONAccelerator.xcworkspace -scheme "SwiftyJSONAccelerator" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO test
 after_success:
   - bash <(curl -s https://codecov.io/bash)
