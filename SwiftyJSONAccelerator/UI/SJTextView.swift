@@ -26,9 +26,7 @@ class SJTextView: NSTextView {
   }
 
   override var readablePasteboardTypes: [String] {
-    get {
-      return [NSPasteboardTypeString]
-    }
+        return [NSPasteboardTypeString]
   }
 
   internal func updateFormat() {

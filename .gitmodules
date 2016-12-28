@@ -1,0 +1,9 @@
+[submodule "Submodules/SwiftCLI"]
+	path = Submodules/SwiftCLI
+	url = https://github.com/jakeheis/SwiftCLI.git
+[submodule "Submodules/SwiftyJSON"]
+	path = Submodules/SwiftyJSON
+	url = https://github.com/SwiftyJSON/SwiftyJSON.git
+[submodule "Submodules/Nimble"]
+	path = Submodules/Nimble
+	url = https://github.com/Quick/Nimble.git

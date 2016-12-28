@@ -1,0 +1,18 @@
+{
+	"title": "Talk On Travel Pool",
+	"link": "http://www.flickr.com/groups/talkontravel/pool/",
+	"description": "Travel and vacation photos from around the world.",
+	"modified": "2009-02-02T11:10:27Z",
+	"generator": "http://www.flickr.com/",
+	"user": [{
+		"user_id": "12345",
+		"username": "jameso1"
+	}, {
+		"user_id": "12346",
+		"username": "jameso2"
+	}, {
+		"user_id": "12347",
+		"username": "jameso3",
+		"is_disabled": false
+	}]
+}
