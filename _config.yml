@@ -1,0 +1,8 @@
+title: SwiftyJSONAccelerator
+description: JSON to Swift Model Object Generation Simplified
+google_analytics: UA-69251626-1
+show_downloads: true
+theme: jekyll-theme-minimal
+
+gems:
+  - jekyll-mentions
