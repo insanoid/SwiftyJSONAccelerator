@@ -8,8 +8,10 @@ Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)]
 **Version v1.4.0 Released!**
 
 - Generate models from multiple JSON files in a folder at with one click!
-- CLI interface - JSON to code directly from CLI, [read more about how it works!](#cli-readme)
-- Removed Cocoapods internally due to CLI not being able to work with pods, switched to sub-modules.
+- CLI interface - JSON to code directly from CLI, [read more about how it works!](#CLI)
+- Removed Cocoapods from the project due to CLI not being able to work with pods, switched to sub-modules.
+- Minor bug fixes.
+- Better installation directly from the repo with `make install`.
 
 [Previous Release Notes](#previous-releases)
 
@@ -17,7 +19,7 @@ Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)]
 
 ### App Installation
 
-- **With CLI:** Download the repo, install submodules and run the project!
+- **With CLI:** Download the repo, run the script and you are good to go!
 
   ```
   git clone https://github.com/insanoid/SwiftyJSONAccelerator.git
@@ -68,7 +70,7 @@ Currently, the pattern is very similar to its Objective-C counterpart. It genera
   - `is_final_required`: Should the model be marked as `final`. (Only works with `class`, default as `false`)
   - `is_header_included`: Should the library header be included in the model file (default as `false`)
 
-- See [test.config.json]() as an example, this config file should be in the same folder as the models.
+- See [test.config.json](https://github.com/insanoid/SwiftyJSONAccelerator/blob/master/SwiftyJSONAcceleratorTests/Support%20Files/MultipleModelTests/test_config.json) is an example. The config file should be in the same folder as the models.
 
 - You can use `./swiftyjsonaccelerator generate -p path/to/json/files` to load JSON files at a particular location.
 
