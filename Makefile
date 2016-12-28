@@ -2,6 +2,8 @@ WORKSPACE = SwiftyJSONAccelerator.xcworkspace
 PROJECT = SwiftyJSONAccelerator.xcodeproj
 TEMPORARY_FOLDER?=/tmp/SwiftyJSONAccelerator.dst/
 BUILD_TOOL?=xcodebuild
+PIPE_FAIL = set -o pipefail &&
+XCPRETTY = | xcpretty -s
 
 APP_SCHEME = "SwiftyJSONAccelerator"
 CLI_SCHEME = "SJAccelerator - CLI"
@@ -34,25 +36,25 @@ synxify:
 # Clean the projects.
 clean:
 	@rm -rf "$(TEMPORARY_FOLDER)"
-	@$(BUILD_TOOL) $(XCODEFLAGS_APP) -configuration Debug clean | xcpretty -s
-	@$(BUILD_TOOL) $(XCODEFLAGS_APP) -configuration Release clean | xcpretty -s
-	@$(BUILD_TOOL) $(XCODEFLAGS_APP) -configuration Test clean | xcpretty -s
-	@$(BUILD_TOOL) $(XCODEFLAGS_CLI) -configuration Debug clean | xcpretty -s
-	@$(BUILD_TOOL) $(XCODEFLAGS_CLI) -configuration Release clean | xcpretty -s
-	@$(BUILD_TOOL) $(XCODEFLAGS_CLI) -configuration Test clean | xcpretty -s
+	@$(BUILD_TOOL) $(XCODEFLAGS_APP) -configuration Debug clean $(XCPRETTY)
+	@$(BUILD_TOOL) $(XCODEFLAGS_APP) -configuration Release clean $(XCPRETTY)
+	@$(BUILD_TOOL) $(XCODEFLAGS_APP) -configuration Test clean $(XCPRETTY)
+	@$(BUILD_TOOL) $(XCODEFLAGS_CLI) -configuration Debug clean $(XCPRETTY)
+	@$(BUILD_TOOL) $(XCODEFLAGS_CLI) -configuration Release clean $(XCPRETTY)
+	@$(BUILD_TOOL) $(XCODEFLAGS_CLI) -configuration Test clean $(XCPRETTY)
 
 # Run test for the app.
 test:
-	@$(BUILD_TOOL) $(XCODEFLAGS_APP) -configuration Test | tee xcodebuild.log | xcpretty -s
+	@$(BUILD_TOOL) $(XCODEFLAGS_APP) -configuration Test | tee xcodebuild.log $(XCPRETTY)
 	@slather coverage --show --html --scheme $(APP_SCHEME) $(PROJECT)
 	@rm xcodebuild.log
 
 install: bootstrap uninstall
 # Application
-	@$(BUILD_TOOL) $(XCODEFLAGS_APP) -configuration Release | xcpretty -s
+	@$(BUILD_TOOL) $(XCODEFLAGS_APP) -configuration Release $(XCPRETTY)
 	@cp -r $(TEMPORARY_FOLDER)$(APP_NAME) $(APP_INSTALLATION_PATH)$(APP_NAME)
 # CLI
-	@$(BUILD_TOOL) $(XCODEFLAGS_CLI) -configuration Release | xcpretty -s
+	@$(BUILD_TOOL) $(XCODEFLAGS_CLI) -configuration Release $(XCPRETTY)
 	@cp $(TEMPORARY_FOLDER)$(CLI_NAME) $(CLI_INSTALLATION_PATH)
 	@echo " ✓ SwiftyJSONAccelerator app and CLI successfully installed!! 🍻 "
 	@echo " ✓ Use the app from Applications or ./"$(CLI_NAME)

@@ -17,12 +17,17 @@ Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)]
 
 ### App Installation
 
-- **Option 1:** Download the repo, install submodules and run the project!
-- **Option 2:** [Download the .app(v1.4.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v1.4.0/SwiftyJSONAccelerator.zip)
+- **With CLI:** Download the repo, install submodules and run the project!
 
-### CLI Installation
+  ```
+  git clone https://github.com/insanoid/SwiftyJSONAccelerator.git
+  cd SwiftyJSONAccelerator
+  make install
+  cd ..
+  rm -rf SwiftyJSONAccelerator
+  ```
 
-CLI uses `gem` to install, simply use `gem install SJAccelerator` and you should be good to go!
+- **Application Only:** [Download the .app(v1.4.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v1.4.0/SwiftyJSONAccelerator.zip)
 
 ## Features
 
@@ -98,6 +103,7 @@ There is a lot more to do, follow the [issues section](https://github.com/insano
 
 - Find solution for CLI not to have static text for templates in code.
 - Add more comprehensive tests for CLI related code.
+- Brew setup for the CLI.
 - Adding support for better libraries mentioned [here](https://github.com/bwhiteley/JSONShootout).
 - Creating a better UI for the application.
 
