@@ -60,14 +60,14 @@ install: bootstrap uninstall
 uninstall:
 	@rm -rf $(APP_INSTALLATION_PATH)$(APP_NAME)
 	@rm -f $(CLI_INSTALLATION_PATH)$(CLI_NAME)
-	
+
 bootstrap: dependencies
 	@brew remove swiftlint --force || true
 	@brew install swiftlint
 
-dependencies: submodules
+dependencies: gitsubmodules
 	@bundle install
 
-submodules:
+gitsubmodules:
 	@git submodule sync --recursive || true
 	@git submodule update --init --recursive || true

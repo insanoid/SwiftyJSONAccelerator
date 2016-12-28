@@ -880,7 +880,7 @@
 				DEVELOPMENT_TEAM = UYGU8PDBPS;
 				INFOPLIST_FILE = SwiftyJSONAccelerator/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.karthik.SwiftyJSONAccelerator;
 				PRODUCT_NAME = SwiftyJSONAccelerator;
 				SWIFT_VERSION = 3.0;
@@ -897,7 +897,7 @@
 				DEVELOPMENT_TEAM = UYGU8PDBPS;
 				INFOPLIST_FILE = SwiftyJSONAccelerator/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.karthik.SwiftyJSONAccelerator;
 				PRODUCT_NAME = SwiftyJSONAccelerator;
 				SWIFT_VERSION = 3.0;
