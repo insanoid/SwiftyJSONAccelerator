@@ -1,6 +1,6 @@
 //
 //  main.swift
-//  SJAccelerator
+//  SwiftyJSONAccelerator-CLI
 //
 //  Created by Karthik on 26/12/2016.
 //  Copyright © 2016 Karthikeya Udupa K M. All rights reserved.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-CLI.setup(name: "SJAccelerator", version: "1.4.0", description: "Create swift models from JSON files")
+CLI.setup(name: "swiftyjsonaccelerator", version: "1.4.0", description: "Create swift models from JSON files")
 var path = FileManager.default.currentDirectoryPath
 CLI.registerChainableCommand(name: "generate")
     .withOptionsSetup({ (options) in

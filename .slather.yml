@@ -11,3 +11,4 @@ ignore:
   - Pods/*
   - Core/External-Libraries/*
   - Submodules/*
+  - SwiftyJSONAccelerator-CLI/*

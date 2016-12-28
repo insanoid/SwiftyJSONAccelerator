@@ -129,7 +129,7 @@
 		930462B11D310FF200FE61A6 /* PropertyComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyComponent.swift; sourceTree = "<group>"; };
 		9327F2871DF4BCA70002BE40 /* MarshalModelFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarshalModelFile.swift; sourceTree = "<group>"; };
 		9327F2891DF4BD540002BE40 /* MarshalTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MarshalTemplate.txt; sourceTree = "<group>"; };
-		933CF3931E11699600F9C412 /* SJAccelerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SJAccelerator; sourceTree = BUILT_PRODUCTS_DIR; };
+		933CF3931E11699600F9C412 /* swiftyjsonaccelerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = swiftyjsonaccelerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		933CF3951E11699700F9C412 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		9341A1491BD6E5FE0048CE2C /* ModelGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelGenerator.swift; sourceTree = "<group>"; };
 		9341A14E1BD6E7290048CE2C /* BaseTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BaseTemplate.txt; sourceTree = "<group>"; };
@@ -252,14 +252,14 @@
 			path = "Application-Delegate";
 			sourceTree = "<group>";
 		};
-		933CF3941E11699700F9C412 /* SJAccelerator */ = {
+		933CF3941E11699700F9C412 /* SwiftyJSONAccelerator-CLI */ = {
 			isa = PBXGroup;
 			children = (
 				9372452B1E12E789005387E8 /* External-Libraries */,
 				934F09F31E12DC1000D983FF /* FileGenerator.swift */,
 				933CF3951E11699700F9C412 /* main.swift */,
 			);
-			path = SJAccelerator;
+			path = "SwiftyJSONAccelerator-CLI";
 			sourceTree = "<group>";
 		};
 		9341A14D1BD6E6EF0048CE2C /* Templates */ = {
@@ -411,11 +411,11 @@
 			isa = PBXGroup;
 			children = (
 				934F09DA1E12D36700D983FF /* Core */,
-				93F174401BD0707D007E7DFC /* Products */,
-				933CF3941E11699700F9C412 /* SJAccelerator */,
-				93F174411BD0707D007E7DFC /* SwiftyJSONAccelerator */,
-				93F174531BD0707D007E7DFC /* SwiftyJSONAcceleratorTests */,
 				937245561E12EE37005387E8 /* Frameworks */,
+				93F174401BD0707D007E7DFC /* Products */,
+				93F174411BD0707D007E7DFC /* SwiftyJSONAccelerator */,
+				933CF3941E11699700F9C412 /* SwiftyJSONAccelerator-CLI */,
+				93F174531BD0707D007E7DFC /* SwiftyJSONAcceleratorTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -424,7 +424,7 @@
 			children = (
 				93F1743F1BD0707D007E7DFC /* SwiftyJSONAccelerator.app */,
 				93F174501BD0707D007E7DFC /* SwiftyJSONAccelerator.xctest */,
-				933CF3931E11699600F9C412 /* SJAccelerator */,
+				933CF3931E11699600F9C412 /* swiftyjsonaccelerator */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -468,9 +468,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		933CF3921E11699600F9C412 /* SJAccelerator */ = {
+		933CF3921E11699600F9C412 /* swiftyjsonaccelerator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 933CF3971E11699700F9C412 /* Build configuration list for PBXNativeTarget "SJAccelerator" */;
+			buildConfigurationList = 933CF3971E11699700F9C412 /* Build configuration list for PBXNativeTarget "swiftyjsonaccelerator" */;
 			buildPhases = (
 				933CF38F1E11699600F9C412 /* Sources */,
 				3B0568DBEF9225AB503EB001 /* Frameworks */,
@@ -479,9 +479,9 @@
 			);
 			dependencies = (
 			);
-			name = SJAccelerator;
+			name = swiftyjsonaccelerator;
 			productName = SJAccelerator;
-			productReference = 933CF3931E11699600F9C412 /* SJAccelerator */;
+			productReference = 933CF3931E11699600F9C412 /* swiftyjsonaccelerator */;
 			productType = "com.apple.product-type.tool";
 		};
 		93F1743E1BD0707D007E7DFC /* SwiftyJSONAccelerator */ = {
@@ -564,7 +564,7 @@
 			targets = (
 				93F1743E1BD0707D007E7DFC /* SwiftyJSONAccelerator */,
 				93F1744F1BD0707D007E7DFC /* SwiftyJSONAcceleratorTests */,
-				933CF3921E11699600F9C412 /* SJAccelerator */,
+				933CF3921E11699600F9C412 /* swiftyjsonaccelerator */,
 			);
 		};
 /* End PBXProject section */
@@ -760,7 +760,7 @@
 				DEVELOPMENT_TEAM = UYGU8PDBPS;
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/../Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -775,7 +775,7 @@
 				DEVELOPMENT_TEAM = UYGU8PDBPS;
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/../Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -939,7 +939,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		933CF3971E11699700F9C412 /* Build configuration list for PBXNativeTarget "SJAccelerator" */ = {
+		933CF3971E11699700F9C412 /* Build configuration list for PBXNativeTarget "swiftyjsonaccelerator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				933CF3981E11699700F9C412 /* Debug */,

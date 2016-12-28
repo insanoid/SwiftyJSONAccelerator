@@ -3,7 +3,7 @@ PROJECT = SwiftyJSONAccelerator.xcodeproj
 SCHEME = "SwiftyJSONAccelerator"
 
 synxify:
-	bundle exec synx -p -e "Core/External-Libraries" -e "SJAccelerator/External-Libraries" $(PROJECT)
+	bundle exec synx -p -e "Core/External-Libraries" -e "SwiftyJSONAccelerator-CLI/External-Libraries" $(PROJECT)
 
 build:
 	xcodebuild ONLY_ACTIVE_ARCH=NO -workspace $(WORKSPACE) -scheme $(SCHEME) -configuration Debug clean build | tee xcodebuild.log | xcpretty

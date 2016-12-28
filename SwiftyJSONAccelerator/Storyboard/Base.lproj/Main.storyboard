@@ -445,7 +445,7 @@
                             </segmentedControl>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="LPu-t9-bJY">
                                 <rect key="frame" x="11" y="14" width="346" height="18"/>
-                                <buttonCell key="cell" type="check" title="Add Import Header Statement" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Uqu-ha-fNp">
+                                <buttonCell key="cell" type="check" title="Add Import &lt;Module&gt;" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Uqu-ha-fNp">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -459,7 +459,7 @@
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="DR0-oc-DGs">
                                 <rect key="frame" x="542" y="14" width="175" height="18"/>
-                                <buttonCell key="cell" type="check" title="Set As Final" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="2nM-63-TSR">
+                                <buttonCell key="cell" type="check" title="Set as Final" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="2nM-63-TSR">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -469,7 +469,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="238" id="ogu-3M-pNI"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="Generate Models for JSON Files" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="H3t-gU-O1h">
+                                <buttonCell key="cell" type="push" title="Load Multiple JSONs with Config" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="H3t-gU-O1h">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>

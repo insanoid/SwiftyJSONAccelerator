@@ -8,5 +8,5 @@ excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Pods
   - Core/External-Libraries
   - SwiftyJSONAccelerator/External-Libraries
-  - SJAccelerator/External-Libraries
+  - SwiftyJSONAccelerator-CLI/External-Libraries
   - Submodules
