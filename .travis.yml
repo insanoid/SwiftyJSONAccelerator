@@ -9,9 +9,8 @@ install:
   - bundle install
   - ./install_swiftlint.sh
 before_script:
-  - rm -rf Pods
-  - rm -rf Podlock
   - bundle install
+  - swift --version
 script:
   - xcodebuild -workspace SwiftyJSONAccelerator.xcworkspace -scheme "SwiftyJSONAccelerator" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO test
 after_success:
