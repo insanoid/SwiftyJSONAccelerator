@@ -29,7 +29,7 @@ Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)]
   rm -rf SwiftyJSONAccelerator
   ```
 
-- **Application Only:** [Download the .app(v1.4.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v1.4.0/SwiftyJSONAccelerator.zip)
+- **Application Only:** [Download the .app (v1.4.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v1.4.0/SwiftyJSONAccelerator.zip)
 
 ## Features
 
@@ -76,8 +76,8 @@ Currently, the pattern is very similar to its Objective-C counterpart. It genera
 
 ## Adding New Libraries
 
-- Add a new type in `JSONMappingLibrary` in [Constants.swift](https://github.com/insanoid/SwiftyJSONAccelerator/blob/master/SwiftyJSONAccelerator/Constants.swift).
-- Follow the examples in [Library-Extensions](https://github.com/insanoid/SwiftyJSONAccelerator/blob/master/SwiftyJSONAccelerator/Library-Extensions) and create a struct implementing`ModelFile`. Follow the other extensions for SwiftyJSON and ObjectMapper, they tell you what all you can replace based on your libraries specification. You will also have to add the file to `SJAccelerator/FileGenerator` as string unfortunately for now.
+- Add a new type in `JSONMappingLibrary` in [Constants.swift](https://github.com/insanoid/SwiftyJSONAccelerator/blob/master/Core/Constants.swift).
+- Follow the examples in [Library-Extensions](https://github.com/insanoid/SwiftyJSONAccelerator/blob/master/Core/Library-Extensions) and create a struct implementing`ModelFile`. Follow the other extensions for SwiftyJSON and ObjectMapper, they tell you what all you can replace based on your libraries specification. You will also have to add the file to [SJAccelerator-CLI/FileGenerator](https://github.com/insanoid/SwiftyJSONAccelerator/blob/master/SJAccelerator-CLI/FileGenerator) as string unfortunately for now.
 - Do the necessary UI changes for the dropdown.
 - Add tests for your library.
 
