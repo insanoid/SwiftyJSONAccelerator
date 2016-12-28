@@ -9,7 +9,6 @@
 import Foundation
 import XCTest
 import Nimble
-import SwiftyJSON
 
 /// Test cases for the model Generator.
 class ModelGeneratorTests: XCTestCase {
@@ -35,7 +34,7 @@ class ModelGeneratorTests: XCTestCase {
                              "value_two": 3,
                              "value_three": true,
                              "value_four": 3.4,
-                             "value_dont_show": nil,
+                             "value_dont_show": JSON.null,
                              "value_five": ["string", "random_stuff"],
                              "value_six": ["sub_value": "value", "sub_value_second": false],
                              "value_seven": [
@@ -68,7 +67,8 @@ class ModelGeneratorTests: XCTestCase {
                                                  constructType: .StructType,
                                                  modelMappingLibrary: library,
                                                  supportNSCoding: true,
-                                                 isFinalRequired: true)
+                                                 isFinalRequired: true,
+                                                 isHeaderIncluded: true)
     }
 
     /**
@@ -148,8 +148,12 @@ class ModelGeneratorTests: XCTestCase {
         for m in files {
             let content = FileGenerator.generateFileContentWith(m, configuration: config)
             let name = m.fileName
-            let path = "/Users/karthikeyaudupa/Desktop/tmp/sj/"
-            expect(FileGenerator.writeToFileWith(name, content: content, path: path)).to(equal(true))
+            let path = "/tmp/sj/"
+            do {
+                try FileGenerator.writeToFileWith(name, content: content, path: path)
+            } catch {
+                assertionFailure("File generation Failed")
+            }
         }
 
     }
@@ -166,8 +170,12 @@ class ModelGeneratorTests: XCTestCase {
         for m in files {
             let content = FileGenerator.generateFileContentWith(m, configuration: config)
             let name = m.fileName
-            let path = "/Users/karthikeyaudupa/Desktop/tmp/om/"
-            expect(FileGenerator.writeToFileWith(name, content: content, path: path)).to(equal(true))
+            let path = "/tmp/om/"
+            do {
+                try FileGenerator.writeToFileWith(name, content: content, path: path)
+            } catch {
+                assertionFailure("File generation Failed")
+            }
         }
     }
 
@@ -186,14 +194,18 @@ class ModelGeneratorTests: XCTestCase {
             expect(content.contains("public init(object: MarshaledObject)")).to(equal(true))
             expect(content.contains("public struct")).to(equal(true))
             let name = m.fileName
-            let path = "/Users/karthikeyaudupa/Desktop/tmp/om/"
-            expect(FileGenerator.writeToFileWith(name, content: content, path: path)).to(equal(true))
+            let path = config.filePath
+            do {
+                try FileGenerator.writeToFileWith(name, content: content, path: path)
+            } catch {
+                assertionFailure("File generation Failed")
+            }
         }
     }
     
     func testMarshalModelAsClass() {
         let config = ModelGenerationConfiguration.init(
-            filePath: "/tmp/",
+            filePath: "/tmp/ml",
             baseClassName: "BaseClass",
             authorName: "Jane Smith",
             companyName: "Acme Co.",
@@ -201,7 +213,8 @@ class ModelGeneratorTests: XCTestCase {
             constructType: .ClassType,
             modelMappingLibrary: .Marshal,
             supportNSCoding: true,
-            isFinalRequired: true)
+            isFinalRequired: true,
+            isHeaderIncluded: true)
         let m = ModelGenerator.init(testJSON(), config)
         let files = m.generate()
         runCheckForBaseModel(files, config, runMarshalInitialiserCheckForBaseModel(_:))
@@ -212,8 +225,12 @@ class ModelGeneratorTests: XCTestCase {
             expect(content.contains("public init(object: MarshaledObject)")).to(equal(false))
             expect(content.contains("public final class")).to(equal(true))
             let name = m.fileName
-            let path = "/Users/karthikeyaudupa/Desktop/tmp/om/"
-            expect(FileGenerator.writeToFileWith(name, content: content, path: path)).to(equal(true))
+            let path = config.filePath
+            do {
+                try FileGenerator.writeToFileWith(name, content: content, path: path)
+            } catch {
+                assertionFailure("File generation Failed")
+            }
         }
     }
     

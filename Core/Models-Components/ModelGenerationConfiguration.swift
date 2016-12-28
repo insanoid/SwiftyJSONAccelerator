@@ -30,4 +30,28 @@ struct ModelGenerationConfiguration {
     var supportNSCoding: Bool
     /// Indicates if the final keyword is required for the object.
     var isFinalRequired: Bool
+    /// Should header be included.
+    var isHeaderIncluded: Bool
+
+    /// Checks if the configuration is valid as per the rules of Swift.
+    ///
+    /// - Returns: If the config is valid and the reason for invalidation if it is invalid.
+    func isConfigurationValid() -> (isValid: Bool, reason: String) {
+        if constructType == .StructType && (isFinalRequired == true || supportNSCoding == true) {
+            return (false, "Struct cannot have final or NSCoding support, only applicable to class.")
+        }
+        return (true, "")
+    }
+
+    mutating func defaultConfig() {
+        isHeaderIncluded = true
+        isFinalRequired = true
+        supportNSCoding = true
+        modelMappingLibrary = .SwiftyJSON
+        constructType = .ClassType
+        prefix = ""
+        filePath = ""
+        baseClassName = ""
+    }
+
 }

@@ -45,8 +45,6 @@ xcodebuild.log
 #appcode
 .idea
 
-*.xcworkspace
-
 #Code Coverage in Xcode7
 *.gcda
 *.gcno

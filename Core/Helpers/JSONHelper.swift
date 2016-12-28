@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 /// Provides helpers to handle JSON content that user provides.
 open class JSONHelper {
@@ -99,7 +98,7 @@ open class JSONHelper {
           finalObject[key] = reduce([JSON(newValue), finalObject[key]])
         } else if let newValue = jsonValue.array, newValue.first != nil && (newValue.first!.dictionary != nil || newValue.first!.array != nil) {
           finalObject[key] = JSON([reduce(newValue + finalObject[key].arrayValue)])
-        } else {
+        } else if jsonValue != JSON.null || !finalObject[key].exists() {
           finalObject[key] = jsonValue
         }
       }

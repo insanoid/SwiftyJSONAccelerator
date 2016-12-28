@@ -1,41 +1,45 @@
 //
-//  MarshalModelFile.swift
+//  ObjectMapperModel.swift
 //  SwiftyJSONAccelerator
 //
-//  Created by Karthik on 04/12/2016.
+//  Created by Karthikeya Udupa on 02/06/16.
 //  Copyright © 2016 Karthikeya Udupa K M. All rights reserved.
 //
 
 import Foundation
 
-struct MarshalModelFile: ModelFile, DefaultModelFileComponent {
+struct ObjectMapperModelFile: ModelFile, DefaultModelFileComponent {
 
     /// Filename for the model.
     var fileName: String
     var type: ConstructType
     var component: ModelComponent
+    var sourceJSON: JSON
+    var configuration: ModelGenerationConfiguration?
 
     init() {
         self.fileName = ""
         type = ConstructType.StructType
         component = ModelComponent.init()
+        sourceJSON = JSON.init([])
     }
 
     mutating func setInfo(_ fileName: String, _ configuration: ModelGenerationConfiguration) {
         self.fileName = fileName
         type = configuration.constructType
+        self.configuration = configuration
     }
 
     func moduleName() -> String {
-        return "Marshal"
+        return "ObjectMapper"
     }
 
     func baseElementName() -> String? {
-        return "Unmarshaling"
+        return "Mappable"
     }
 
-    func mainBodyFileName() -> String {
-        return "MarshalTemplate"
+    func mainBodyTemplateFileName() -> String {
+        return "ObjectMapperTemplate"
     }
 
     mutating func generateAndAddComponentsFor(_ property: PropertyComponent) {
@@ -86,7 +90,7 @@ struct MarshalModelFile: ModelFile, DefaultModelFileComponent {
     // MARK: - Customised methods for ObjectMapper
     // MARK: - Initialisers
     func genInitializerForVariable(_ name: String, _ constantName: String) -> String {
-        return "\(name) = try? object.value(for: \(constantName))"
+        return "\(name) <- map[\(constantName)]"
     }
 
 }
