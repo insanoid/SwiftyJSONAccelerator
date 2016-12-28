@@ -1,6 +1,6 @@
 ![Logo](https://raw.githubusercontent.com/insanoid/SwiftyJSONAccelerator/master/SwiftyJSONAccelerator/Support/Assets.xcassets/AppIcon.appiconset/Icon_32x32%402x.png)
 
-# SwiftyJSONAccelerator (Model file Generator For Swift 3) macOS app and CLI Interface.
+# SwiftyJSONAccelerator (Model file Generator For Swift 3) with CLI Interface aswell!
 
 [![Build
 Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)](https://travis-ci.org/insanoid/SwiftyJSONAccelerator) [![codecov](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator/branch/master/graph/badge.svg)](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator)
@@ -29,7 +29,7 @@ Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)]
   rm -rf SwiftyJSONAccelerator
   ```
 
-- **Application Only:** [Download the .app(v1.4.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v1.4.0/SwiftyJSONAccelerator.zip)
+- **Application Only:** [Download the .app (v1.4.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v1.4.0/SwiftyJSONAccelerator.zip)
 
 ## Features
 
@@ -47,7 +47,7 @@ Currently, the pattern is very similar to its Objective-C counterpart. It genera
 - Optional `NSCoding` compliance.
 - Convert object to `Dictionary` for description printing.
 
-![Preview](preview.png)
+![Preview](https://github.com/insanoid/SwiftyJSONAccelerator/raw/master/preview.png)
 
 - Simple configurable interface for generation of file.
 - Each class in the JSON is generated as a file.
@@ -55,7 +55,7 @@ Currently, the pattern is very similar to its Objective-C counterpart. It genera
 
 ### CLI
 
-![Preview](preview-cli.png)
+![Preview](https://github.com/insanoid/SwiftyJSONAccelerator/raw/master/preview-cli.png)
 
 - CLI simply works with the command `./swiftyjsonaccelerator generate` inside the folder with the JSON file.
 - It merges the properties of multiple declarations of the same object (with the same key) in multiple JSON files into a single assimilated model.
@@ -76,8 +76,8 @@ Currently, the pattern is very similar to its Objective-C counterpart. It genera
 
 ## Adding New Libraries
 
-- Add a new type in `JSONMappingLibrary` in [Constants.swift](SwiftyJSONAccelerator/Constants.swift).
-- Follow the examples in [Library-Extensions](SwiftyJSONAccelerator/Library-Extensions) and create a struct implementing`ModelFile`. Follow the other extensions for SwiftyJSON and ObjectMapper, they tell you what all you can replace based on your libraries specification. You will also have to add the file to `SJAccelerator/FileGenerator` as string unfortunately for now.
+- Add a new type in `JSONMappingLibrary` in [Constants.swift](https://github.com/insanoid/SwiftyJSONAccelerator/blob/master/Core/Constants.swift).
+- Follow the examples in [Library-Extensions](https://github.com/insanoid/SwiftyJSONAccelerator/blob/master/Core/Library-Extensions) and create a struct implementing`ModelFile`. Follow the other extensions for SwiftyJSON and ObjectMapper, they tell you what all you can replace based on your libraries specification. You will also have to add the file to [SwiftyJSONAccelerator-CLI/FileGenerator.swift](https://github.com/insanoid/SwiftyJSONAccelerator/blob/master/SwiftyJSONAccelerator-CLI/FileGenerator.swift) as string unfortunately for now.
 - Do the necessary UI changes for the dropdown.
 - Add tests for your library.
 
