@@ -47,7 +47,7 @@ Currently, the pattern is very similar to its Objective-C counterpart. It genera
 - Optional `NSCoding` compliance.
 - Convert object to `Dictionary` for description printing.
 
-![Preview](preview.png)
+![Preview](https://github.com/insanoid/SwiftyJSONAccelerator/raw/master/preview.png)
 
 - Simple configurable interface for generation of file.
 - Each class in the JSON is generated as a file.
@@ -55,7 +55,7 @@ Currently, the pattern is very similar to its Objective-C counterpart. It genera
 
 ### CLI
 
-![Preview](preview-cli.png)
+![Preview](https://github.com/insanoid/SwiftyJSONAccelerator/raw/master/preview-cli.png)
 
 - CLI simply works with the command `./swiftyjsonaccelerator generate` inside the folder with the JSON file.
 - It merges the properties of multiple declarations of the same object (with the same key) in multiple JSON files into a single assimilated model.
@@ -76,8 +76,8 @@ Currently, the pattern is very similar to its Objective-C counterpart. It genera
 
 ## Adding New Libraries
 
-- Add a new type in `JSONMappingLibrary` in [Constants.swift](SwiftyJSONAccelerator/Constants.swift).
-- Follow the examples in [Library-Extensions](SwiftyJSONAccelerator/Library-Extensions) and create a struct implementing`ModelFile`. Follow the other extensions for SwiftyJSON and ObjectMapper, they tell you what all you can replace based on your libraries specification. You will also have to add the file to `SJAccelerator/FileGenerator` as string unfortunately for now.
+- Add a new type in `JSONMappingLibrary` in [Constants.swift](https://github.com/insanoid/SwiftyJSONAccelerator/blob/master/SwiftyJSONAccelerator/Constants.swift).
+- Follow the examples in [Library-Extensions](https://github.com/insanoid/SwiftyJSONAccelerator/blob/master/SwiftyJSONAccelerator/Library-Extensions) and create a struct implementing`ModelFile`. Follow the other extensions for SwiftyJSON and ObjectMapper, they tell you what all you can replace based on your libraries specification. You will also have to add the file to `SJAccelerator/FileGenerator` as string unfortunately for now.
 - Do the necessary UI changes for the dropdown.
 - Add tests for your library.
 
