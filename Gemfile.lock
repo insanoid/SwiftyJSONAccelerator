@@ -19,6 +19,7 @@ GEM
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
     pkg-config (1.1.7)
+    rouge (1.10.1)
     slather (2.2.1)
       clamp (~> 0.6)
       nokogiri (~> 1.6.3)
@@ -34,6 +35,8 @@ GEM
       activesupport (>= 3)
       claide (>= 1.0.0, < 2.0)
       colored (~> 1.2)
+    xcpretty (0.2.2)
+      rouge (~> 1.8)
 
 PLATFORMS
   ruby
@@ -41,6 +44,7 @@ PLATFORMS
 DEPENDENCIES
   slather
   synx
+  xcpretty
 
 BUNDLED WITH
    1.12.5
