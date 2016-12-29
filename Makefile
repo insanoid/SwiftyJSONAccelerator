@@ -1,6 +1,7 @@
 WORKSPACE = SwiftyJSONAccelerator.xcworkspace
 PROJECT = SwiftyJSONAccelerator.xcodeproj
 TEMPORARY_FOLDER?=/tmp/SwiftyJSONAccelerator.dst/
+TEMPORARY_FOLDER_CLI?=/tmp/SwiftyJSONAccelerator-CLI.dst/
 BUILD_TOOL?=xcodebuild
 PIPE_FAIL = set -o pipefail &&
 XCPRETTY = | xcpretty -s
@@ -14,17 +15,16 @@ CLI_INSTALLATION_PATH = /usr/local/bin/
 
 XCODEFLAGS_APP=-workspace $(WORKSPACE) \
 	-scheme $(APP_SCHEME) \
-	DSTROOT=$(TEMPORARY_FOLDER) \
 	CODE_SIGN_IDENTITY="" \
 	CODE_SIGNING_REQUIRED=NO \
 	CONFIGURATION_BUILD_DIR=$(TEMPORARY_FOLDER)
 
 XCODEFLAGS_CLI=-workspace $(WORKSPACE) \
 	-scheme $(CLI_SCHEME) \
-	DSTROOT=$(TEMPORARY_FOLDER) \
 	CODE_SIGN_IDENTITY="" \
 	CODE_SIGNING_REQUIRED=NO \
-	CONFIGURATION_BUILD_DIR=$(TEMPORARY_FOLDER)
+	CONFIGURATION_BUILD_DIR=$(TEMPORARY_FOLDER_CLI)
+
 
 # Format the folder structure.
 synxify:
@@ -50,12 +50,13 @@ test:
 	@rm xcodebuild.log
 
 install: bootstrap uninstall
+# CLI
+	@$(BUILD_TOOL) $(XCODEFLAGS_CLI) -configuration Release $(XCPRETTY)
+	@cp $(TEMPORARY_FOLDER_CLI)$(CLI_NAME) $(CLI_INSTALLATION_PATH)
 # Application
 	@$(BUILD_TOOL) $(XCODEFLAGS_APP) -configuration Release $(XCPRETTY)
 	@cp -r $(TEMPORARY_FOLDER)$(APP_NAME) $(APP_INSTALLATION_PATH)$(APP_NAME)
-# CLI
-	@$(BUILD_TOOL) $(XCODEFLAGS_CLI) -configuration Release $(XCPRETTY)
-	@cp $(TEMPORARY_FOLDER)$(CLI_NAME) $(CLI_INSTALLATION_PATH)
+
 	@echo " ✓ SwiftyJSONAccelerator app and CLI successfully installed!! 🍻 "
 	@echo " ✓ Use the app from Applications or ./"$(CLI_NAME)
 
