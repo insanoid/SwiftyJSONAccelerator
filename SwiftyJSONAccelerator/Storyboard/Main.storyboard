@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="XfG-lQ-9wD">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="XfG-lQ-9wD">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
@@ -344,25 +344,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <imageView translatesAutoresizingMaskIntoConstraints="NO" id="PJA-AP-s5I">
-                                <rect key="frame" x="680" y="91" width="35" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="35" id="aa1-My-IFd"/>
-                                    <constraint firstAttribute="height" constant="35" id="r0w-v9-b89"/>
-                                </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="failure" id="CKF-pW-DBY"/>
-                            </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GbJ-FJ-Uuc">
-                                <rect key="frame" x="725" y="86" width="257" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="zjf-68-eLW"/>
-                                </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="j5n-yT-9hg">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b3c-Wz-v36">
                                 <rect key="frame" x="680" y="409" width="300" height="30"/>
                                 <constraints>
@@ -405,9 +386,9 @@
                                     <constraint firstAttribute="height" constant="30" id="0Cw-YA-tIQ"/>
                                     <constraint firstAttribute="width" constant="300" id="N8Q-JY-Uf6"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="push" title="SwiftyJSON (Default)" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" selectedItem="0QP-u9-O6V" id="l4o-yX-zdG">
+                                <popUpButtonCell key="cell" type="push" title="SwiftyJSON (Default)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" selectedItem="0QP-u9-O6V" id="l4o-yX-zdG">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" autoenablesItems="NO" id="QJi-PT-im1">
                                         <items>
                                             <menuItem title="SwiftyJSON (Default)" hidden="YES" id="0QP-u9-O6V"/>
@@ -483,33 +464,8 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SnH-nC-2b8">
-                                <rect key="frame" x="674" y="41" width="312" height="41"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="8ph-9n-dru"/>
-                                    <constraint firstAttribute="height" constant="30" id="iS5-BJ-kGh"/>
-                                </constraints>
-                                <contentFilters>
-                                    <ciFilter name="CIFalseColor">
-                                        <configuration>
-                                            <ciColor key="inputColor0" red="0.2784313725" green="0.2784313725" blue="0.2784313725" alpha="1"/>
-                                            <ciColor key="inputColor1" red="1" green="1" blue="1" alpha="1"/>
-                                            <null key="inputImage"/>
-                                        </configuration>
-                                    </ciFilter>
-                                </contentFilters>
-                                <buttonCell key="cell" type="push" title="Load Multiple JSONs with Config" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="H3t-gU-O1h">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent">l</string>
-                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="handleMultipleFiles:" target="XfG-lQ-9wD" id="NYi-S7-Auk"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AwX-MF-DMD">
-                                <rect key="frame" x="674" y="3" width="312" height="41"/>
+                                <rect key="frame" x="674" y="85" width="312" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="N93-Id-Xdf"/>
                                     <constraint firstAttribute="height" constant="30" id="qkJ-Tk-S9V"/>
@@ -533,35 +489,72 @@
                                     <action selector="format:" target="XfG-lQ-9wD" id="3wu-2c-YDh"/>
                                 </connections>
                             </button>
+                            <imageView translatesAutoresizingMaskIntoConstraints="NO" id="PJA-AP-s5I">
+                                <rect key="frame" x="609" y="16" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="aa1-My-IFd"/>
+                                    <constraint firstAttribute="height" constant="35" id="r0w-v9-b89"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="failure" id="CKF-pW-DBY"/>
+                            </imageView>
+                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="f1n-a7-REo">
+                                <rect key="frame" x="680" y="79" width="300" height="5"/>
+                            </box>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SnH-nC-2b8">
+                                <rect key="frame" x="674" y="35" width="312" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="8ph-9n-dru"/>
+                                    <constraint firstAttribute="height" constant="30" id="iS5-BJ-kGh"/>
+                                </constraints>
+                                <contentFilters>
+                                    <ciFilter name="CIFalseColor">
+                                        <configuration>
+                                            <ciColor key="inputColor0" red="0.2784313725" green="0.2784313725" blue="0.2784313725" alpha="1"/>
+                                            <ciColor key="inputColor1" red="1" green="1" blue="1" alpha="1"/>
+                                            <null key="inputImage"/>
+                                        </configuration>
+                                    </ciFilter>
+                                </contentFilters>
+                                <buttonCell key="cell" type="push" title="Load Multiple JSONs with Config" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="H3t-gU-O1h">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent">l</string>
+                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="handleMultipleFiles:" target="XfG-lQ-9wD" id="NYi-S7-Auk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="ZUC-Iy-7fC" firstAttribute="top" secondItem="r5l-Lv-rfg" secondAttribute="bottom" constant="8" id="0ET-B4-YoO"/>
+                            <constraint firstItem="f1n-a7-REo" firstAttribute="width" secondItem="AwX-MF-DMD" secondAttribute="width" id="0Ob-Sp-ncR"/>
                             <constraint firstAttribute="trailing" secondItem="ZUC-Iy-7fC" secondAttribute="trailing" constant="20" id="2gB-9o-SAV"/>
+                            <constraint firstAttribute="bottom" secondItem="PJA-AP-s5I" secondAttribute="bottom" constant="16" id="38h-zo-TR3"/>
                             <constraint firstItem="DR0-oc-DGs" firstAttribute="top" secondItem="LPu-t9-bJY" secondAttribute="bottom" constant="8" id="6I8-bU-c5A"/>
-                            <constraint firstItem="AwX-MF-DMD" firstAttribute="top" secondItem="SnH-nC-2b8" secondAttribute="bottom" constant="8" id="9Sk-1u-Rqb"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="SnH-nC-2b8" secondAttribute="bottom" constant="8" id="9qM-h2-glK"/>
+                            <constraint firstItem="f1n-a7-REo" firstAttribute="top" secondItem="AwX-MF-DMD" secondAttribute="bottom" constant="10" id="Apv-dz-y4S"/>
                             <constraint firstItem="ZXf-O8-Z1c" firstAttribute="leading" secondItem="Gmg-Tp-PPn" secondAttribute="trailing" constant="20" id="BPQ-EU-2n1"/>
                             <constraint firstAttribute="trailing" secondItem="ZXf-O8-Z1c" secondAttribute="trailing" constant="20" id="Cw4-Pq-8xd"/>
                             <constraint firstItem="SnH-nC-2b8" firstAttribute="leading" secondItem="Gmg-Tp-PPn" secondAttribute="trailing" constant="20" id="DHg-WH-jz2"/>
                             <constraint firstAttribute="trailing" secondItem="aJ1-yn-Pl7" secondAttribute="trailing" constant="20" id="FXF-Vn-ipr"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="AwX-MF-DMD" secondAttribute="bottom" constant="8" id="JSp-ff-4GI"/>
+                            <constraint firstItem="AwX-MF-DMD" firstAttribute="top" secondItem="ZXf-O8-Z1c" secondAttribute="bottom" constant="12" id="OEd-mC-CY8"/>
                             <constraint firstAttribute="trailing" secondItem="sNu-7Z-F06" secondAttribute="trailing" constant="20" id="PI7-Hs-KO6"/>
                             <constraint firstItem="LPu-t9-bJY" firstAttribute="top" secondItem="ZUC-Iy-7fC" secondAttribute="bottom" constant="20" id="PNQ-Ak-f1b"/>
-                            <constraint firstAttribute="trailing" secondItem="GbJ-FJ-Uuc" secondAttribute="trailing" constant="20" id="Pcc-2z-1ez"/>
                             <constraint firstItem="LPu-t9-bJY" firstAttribute="leading" secondItem="Gmg-Tp-PPn" secondAttribute="trailing" constant="20" id="Pwr-pQ-oIc"/>
-                            <constraint firstItem="GbJ-FJ-Uuc" firstAttribute="leading" secondItem="PJA-AP-s5I" secondAttribute="trailing" constant="12" id="QJs-yX-bAc"/>
-                            <constraint firstItem="SnH-nC-2b8" firstAttribute="top" secondItem="GbJ-FJ-Uuc" secondAttribute="bottom" constant="8" id="RFz-IZ-9E1"/>
+                            <constraint firstItem="SnH-nC-2b8" firstAttribute="top" secondItem="f1n-a7-REo" secondAttribute="bottom" constant="9" id="QIP-yk-lfv"/>
                             <constraint firstItem="aJ1-yn-Pl7" firstAttribute="leading" secondItem="Gmg-Tp-PPn" secondAttribute="trailing" constant="20" id="RKW-ik-wcy"/>
                             <constraint firstAttribute="bottom" secondItem="Gmg-Tp-PPn" secondAttribute="bottom" id="RgL-YO-s7p"/>
-                            <constraint firstItem="PJA-AP-s5I" firstAttribute="top" secondItem="ZXf-O8-Z1c" secondAttribute="bottom" constant="8" id="Sgz-wD-6ea"/>
                             <constraint firstItem="mJg-3P-2Aw" firstAttribute="leading" secondItem="Gmg-Tp-PPn" secondAttribute="trailing" constant="20" id="SiP-G4-C3b"/>
                             <constraint firstItem="r5l-Lv-rfg" firstAttribute="top" secondItem="mJg-3P-2Aw" secondAttribute="bottom" constant="20" id="TcD-0i-0pw"/>
                             <constraint firstAttribute="trailing" secondItem="DR0-oc-DGs" secondAttribute="trailing" constant="20" id="UCP-q3-Sca"/>
                             <constraint firstItem="r5l-Lv-rfg" firstAttribute="leading" secondItem="Gmg-Tp-PPn" secondAttribute="trailing" constant="20" id="UJz-71-mqj"/>
+                            <constraint firstItem="f1n-a7-REo" firstAttribute="leading" secondItem="AwX-MF-DMD" secondAttribute="leading" id="Ymn-Yk-Xfm"/>
                             <constraint firstItem="sNu-7Z-F06" firstAttribute="top" secondItem="b3c-Wz-v36" secondAttribute="bottom" constant="8" id="adA-aC-2Ud"/>
                             <constraint firstItem="Gmg-Tp-PPn" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="aiQ-cF-j6F"/>
-                            <constraint firstItem="PJA-AP-s5I" firstAttribute="leading" secondItem="Gmg-Tp-PPn" secondAttribute="trailing" constant="20" id="dPj-Nc-cwR"/>
+                            <constraint firstItem="PJA-AP-s5I" firstAttribute="trailing" secondItem="fWl-7Q-Cq6" secondAttribute="trailing" constant="-16" id="dSw-QJ-EcU"/>
                             <constraint firstItem="AwX-MF-DMD" firstAttribute="leading" secondItem="Gmg-Tp-PPn" secondAttribute="trailing" constant="20" id="eoZ-2p-Ikj"/>
-                            <constraint firstItem="GbJ-FJ-Uuc" firstAttribute="top" secondItem="ZXf-O8-Z1c" secondAttribute="bottom" constant="8" id="fW4-9b-VrZ"/>
                             <constraint firstAttribute="trailing" secondItem="b3c-Wz-v36" secondAttribute="trailing" constant="20" id="j4R-RM-APv"/>
                             <constraint firstItem="mJg-3P-2Aw" firstAttribute="top" secondItem="sNu-7Z-F06" secondAttribute="bottom" constant="8" id="jA7-dz-Dqc"/>
                             <constraint firstAttribute="trailing" secondItem="LPu-t9-bJY" secondAttribute="trailing" constant="20" id="lUp-a8-hei"/>
@@ -589,7 +582,6 @@
                         <outlet property="generateModelsButton" destination="AwX-MF-DMD" id="KXz-a3-MyE"/>
                         <outlet property="includeHeaderImportCheckbox" destination="LPu-t9-bJY" id="yMW-hS-PxV"/>
                         <outlet property="librarySelector" destination="r5l-Lv-rfg" id="378-dH-QjI"/>
-                        <outlet property="messageLabel" destination="GbJ-FJ-Uuc" id="19Z-0L-YwW"/>
                         <outlet property="modelTypeSelectorSegment" destination="ZUC-Iy-7fC" id="p0d-4X-4cG"/>
                         <outlet property="multipleJsonButton" destination="H3t-gU-O1h" id="ihp-33-hAv"/>
                         <outlet property="prefixClassTextField" destination="b3c-Wz-v36" id="3wr-bV-AAf"/>
@@ -598,6 +590,7 @@
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <imageCell refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="failure" id="fwh-Cm-inR"/>
             </objects>
             <point key="canvasLocation" x="961" y="424.5"/>
         </scene>

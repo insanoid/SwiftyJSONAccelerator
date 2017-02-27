@@ -33,7 +33,6 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
 
     // MARK: Outlet files.
     @IBOutlet var textView: SJTextView!
-    @IBOutlet var messageLabel: NSTextField!
     @IBOutlet var errorImageView: NSImageView!
     @IBOutlet var baseClassTextField: NSTextField!
     @IBOutlet var prefixClassTextField: NSTextField!
@@ -44,8 +43,6 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     @IBOutlet var setAsFinalCheckbox: NSButton!
     @IBOutlet var librarySelector: NSPopUpButton!
     @IBOutlet var modelTypeSelectorSegment: NSSegmentedControl!
-    @IBOutlet var backView: NSView!
-    
 
     // MARK: View methods
     override func loadView() {
@@ -55,32 +52,6 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         textView!.lnv_setUpLineNumberView()
         resetErrorImage()
         authorNameTextField?.stringValue = NSFullUserName()
-        applyBackground()
-        applyColorText()
-    }
-    
-    func applyColorText(){
-        messageLabel.textColor = .white
-        setButtonColorText(button: includeHeaderImportCheckbox, color: .white)
-        setButtonColorText(button: enableNSCodingSupportCheckbox, color: .white)
-        setButtonColorText(button: setAsFinalCheckbox, color: .white)
-    }
-    
-    func setButtonColorText(button: NSButton, color: NSColor){
-        button.attributedTitle = NSAttributedString(string: button.title, attributes: [NSForegroundColorAttributeName: color])
-    }
-    
-    func applyBackground(){
-        var view = backView
-        view?.wantsLayer = true
-        let colorTop = NSColor(red:0.30, green:0.19, blue:0.46, alpha:1.00).cgColor
-        let colorBottom = NSColor(red:0.16, green:0.20, blue:0.38, alpha:1.00).cgColor
-        let gradient  = CAGradientLayer()
-        gradient.colors = [ colorTop, colorBottom]
-        gradient.locations = [ 0.0, 1.0]
-        view?.layer = gradient
-//        super.contentView = view
-        
     }
 
     // MARK: Actions
@@ -226,8 +197,6 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     @IBAction func recalcEnabledBoxes(_ sender: AnyObject) {
         self.enableNSCodingSupportCheckbox.isEnabled = (modelTypeSelectorSegment.selectedSegment == 1)
         self.setAsFinalCheckbox.isEnabled = (modelTypeSelectorSegment.selectedSegment == 1)
-        setButtonColorText(button: enableNSCodingSupportCheckbox, color: .white)
-        setButtonColorText(button: setAsFinalCheckbox, color: .white)
     }
 
     func notify(fileCount: Int) {
@@ -319,7 +288,6 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
    */
     func resetErrorImage() {
         errorImageView?.image = nil
-        messageLabel?.stringValue = ""
     }
 
     /**
@@ -327,7 +295,6 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
    */
     func correctJSONMessage() {
         errorImageView?.image = NSImage.init(named: "success")
-        messageLabel?.stringValue = "Valid JSON!"
     }
 
     /**
@@ -338,7 +305,6 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
    */
     func invalidJSONError(_ message: String) {
         errorImageView?.image = NSImage.init(named: "failure")
-        messageLabel?.stringValue = message
     }
 
     // MARK: TextView Delegate

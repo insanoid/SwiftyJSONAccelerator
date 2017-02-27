@@ -83,7 +83,7 @@ public struct ModelGenerator {
                         let subClassType = value.arrayValue.first!.detailedValueType()
                         if subClassType == .Object {
                             let models = generateModelForJSON(JSONHelper.reduce(value.arrayValue), variableName, false)
-                            modelFiles = modelFiles + models
+                            modelFiles += models
                             let model = models.first
                             let classname = model?.fileName
                             currentModel.generateAndAddComponentsFor(PropertyComponent.init(variableName, classname!, stringConstantName, key, .ObjectTypeArray))
@@ -96,7 +96,7 @@ public struct ModelGenerator {
                     let model = models.first
                     let typeName = model?.fileName
                     currentModel.generateAndAddComponentsFor(PropertyComponent.init(variableName, typeName!, stringConstantName, key, .ObjectType))
-                    modelFiles = modelFiles + models
+                    modelFiles += models
                 case .Null:
                     currentModel.generateAndAddComponentsFor(PropertyComponent.init(variableName, VariableType.Null.rawValue, stringConstantName, key, .NullType))
                     break
