@@ -41,7 +41,7 @@ extension FileGenerator {
             classesExtendFrom = [extendFrom]
         }
         if configuration.supportNSCoding && configuration.constructType == .ClassType {
-            classesExtendFrom = classesExtendFrom + ["NSCoding"]
+            classesExtendFrom += ["NSCoding"]
         }
 
         if configuration.isFinalRequired && configuration.constructType == .ClassType {

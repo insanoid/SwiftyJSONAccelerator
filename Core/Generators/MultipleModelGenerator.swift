@@ -107,13 +107,13 @@ struct MultipleModelGenerator {
 
             var basePath = fromBasePath
             if basePath.hasSuffix("/") == false {
-                basePath = basePath + "/"
+                basePath += "/"
             }
             finalPath = basePath + destinationPath
         }
 
         if finalPath.hasSuffix("/") == false {
-            finalPath = finalPath + "/"
+            finalPath += "/"
         }
         return finalPath
     }
