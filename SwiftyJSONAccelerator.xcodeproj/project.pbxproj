@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0A14C5631EE58D1300CE0EC1 /* SwiftyJSONMapperModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14C5621EE58D1300CE0EC1 /* SwiftyJSONMapperModelFile.swift */; };
 		0A14C5651EE5931200CE0EC1 /* SwiftyJSONMapperTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A14C5641EE5931200CE0EC1 /* SwiftyJSONMapperTemplate.txt */; };
+		0AFFD78D1EE6E20300ED6849 /* SwiftyJSONMapperModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14C5621EE58D1300CE0EC1 /* SwiftyJSONMapperModelFile.swift */; };
+		0AFFD78E1EE6E20300ED6849 /* SwiftyJSONMapperModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14C5621EE58D1300CE0EC1 /* SwiftyJSONMapperModelFile.swift */; };
 		930462AD1D3106A400FE61A6 /* FileGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930462AC1D3106A400FE61A6 /* FileGenerator.swift */; };
 		930462B01D310F6900FE61A6 /* ModelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930462AF1D310F6900FE61A6 /* ModelComponent.swift */; };
 		930462B21D310FF200FE61A6 /* PropertyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930462B11D310FF200FE61A6 /* PropertyComponent.swift */; };
@@ -657,6 +659,7 @@
 				937245451E12ED36005387E8 /* CommandMessageGenerator.swift in Sources */,
 				934F09E41E12D39200D983FF /* SwiftyJSONModelFile.swift in Sources */,
 				9372454E1E12ED36005387E8 /* RawArgumentParser.swift in Sources */,
+				0AFFD78E1EE6E20300ED6849 /* SwiftyJSONMapperModelFile.swift in Sources */,
 				937245461E12ED36005387E8 /* CommandSignature.swift in Sources */,
 				934F09E31E12D39200D983FF /* ObjectMapperModelFile.swift in Sources */,
 				937245491E12ED36005387E8 /* Input.swift in Sources */,
@@ -723,6 +726,7 @@
 				9362F8661BD07DBA0001372E /* JSONHelperTests.swift in Sources */,
 				93D850DE1D00D2F00023D573 /* SJTextView.swift in Sources */,
 				930462B51D31131800FE61A6 /* PropertyComponent.swift in Sources */,
+				0AFFD78D1EE6E20300ED6849 /* SwiftyJSONMapperModelFile.swift in Sources */,
 				93D850EC1D00D3070023D573 /* ModelGenerationConfiguration.swift in Sources */,
 				93D850DB1D00D2EA0023D573 /* AppDelegate.swift in Sources */,
 				93D850EE1D00D3070023D573 /* SwiftyJSONModelFile.swift in Sources */,

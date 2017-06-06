@@ -134,7 +134,7 @@ struct NameGenerator {
       return value
     }
     if swiftKeywords.contains(currentName) {
-        return "'" + currentName + "'"
+        return "`" + currentName + "`"
     }
     return currentName
   }
