@@ -31,7 +31,7 @@ struct MarshalModelFile: ModelFile, DefaultModelFileComponent {
     }
 
     func moduleName() -> String {
-        return "Marshal"
+        return "import Marshal"
     }
 
     func baseElementName() -> String? {

@@ -31,7 +31,7 @@ struct ObjectMapperModelFile: ModelFile, DefaultModelFileComponent {
     }
 
     func moduleName() -> String {
-        return "ObjectMapper"
+        return "import ObjectMapper"
     }
 
     func baseElementName() -> String? {

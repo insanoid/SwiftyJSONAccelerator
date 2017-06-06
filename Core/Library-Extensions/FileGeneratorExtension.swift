@@ -30,8 +30,8 @@ extension FileGenerator {
         if let companyName = configuration.companyName {
             content = content.replacingOccurrences(of: "__MyCompanyName__", with: companyName)
         }
-        if configuration.isFinalRequired {
-            content = content.replacingOccurrences(of: "{INCLUDE_HEADER}", with: "\nimport \(modelFile.moduleName())")
+        if configuration.isHeaderIncluded {
+            content = content.replacingOccurrences(of: "{INCLUDE_HEADER}", with: modelFile.moduleName())
         } else {
             content = content.replacingOccurrences(of: "{INCLUDE_HEADER}", with: "")
         }

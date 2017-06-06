@@ -151,11 +151,7 @@ struct MultipleModelGenerator {
         }
         var jsonLibrary = JSONMappingLibrary.SwiftyJSON
         if let type = fromJSON["model_mapping_library"].string {
-            if type == JSONMappingLibrary.ObjectMapper.rawValue {
-                jsonLibrary = JSONMappingLibrary.ObjectMapper
-            } else if type == JSONMappingLibrary.Marshal.rawValue {
-                jsonLibrary = JSONMappingLibrary.Marshal
-            }
+            jsonLibrary = JSONMappingLibrary(rawValue: type) ?? JSONMappingLibrary.SwiftyJSON
         }
         let config = ModelGenerationConfiguration.init(filePath: fromJSON["destination_path"].string ?? "",
                                                        baseClassName: "",

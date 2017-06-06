@@ -5,7 +5,8 @@
 //  Copyright (c) __MyCompanyName__. All rights reserved.
 //
 
-import Foundation{INCLUDE_HEADER}
+import Foundation
+{INCLUDE_HEADER}
 
 public{IS_FINAL}{OBJECT_KIND} {OBJECT_NAME}{EXTENDED_OBJECT_COLON}{EXTEND_FROM} {
 

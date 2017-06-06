@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A14C5631EE58D1300CE0EC1 /* SwiftyJSONMapperModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14C5621EE58D1300CE0EC1 /* SwiftyJSONMapperModelFile.swift */; };
+		0A14C5651EE5931200CE0EC1 /* SwiftyJSONMapperTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A14C5641EE5931200CE0EC1 /* SwiftyJSONMapperTemplate.txt */; };
 		930462AD1D3106A400FE61A6 /* FileGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930462AC1D3106A400FE61A6 /* FileGenerator.swift */; };
 		930462B01D310F6900FE61A6 /* ModelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930462AF1D310F6900FE61A6 /* ModelComponent.swift */; };
 		930462B21D310FF200FE61A6 /* PropertyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930462B11D310FF200FE61A6 /* PropertyComponent.swift */; };
@@ -124,6 +126,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A14C5621EE58D1300CE0EC1 /* SwiftyJSONMapperModelFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSONMapperModelFile.swift; sourceTree = "<group>"; };
+		0A14C5641EE5931200CE0EC1 /* SwiftyJSONMapperTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftyJSONMapperTemplate.txt; sourceTree = "<group>"; };
 		930462AC1D3106A400FE61A6 /* FileGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileGenerator.swift; sourceTree = "<group>"; };
 		930462AF1D310F6900FE61A6 /* ModelComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelComponent.swift; sourceTree = "<group>"; };
 		930462B11D310FF200FE61A6 /* PropertyComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyComponent.swift; sourceTree = "<group>"; };
@@ -381,6 +385,7 @@
 				9327F2871DF4BCA70002BE40 /* MarshalModelFile.swift */,
 				93F1593F1CFF96E700175636 /* ObjectMapperModelFile.swift */,
 				93F1593D1CFF969900175636 /* SwiftyJSONModelFile.swift */,
+				0A14C5621EE58D1300CE0EC1 /* SwiftyJSONMapperModelFile.swift */,
 			);
 			path = "Library-Extensions";
 			sourceTree = "<group>";
@@ -461,6 +466,7 @@
 				9327F2891DF4BD540002BE40 /* MarshalTemplate.txt */,
 				C667011C1BDCAF23009BA254 /* ObjectMapperTemplate.txt */,
 				C667011A1BDCABCE009BA254 /* SwiftyJSONTemplate.txt */,
+				0A14C5641EE5931200CE0EC1 /* SwiftyJSONMapperTemplate.txt */,
 			);
 			path = "Library-Extension-Templates";
 			sourceTree = "<group>";
@@ -577,6 +583,7 @@
 				93C273CB1E150CEA00CC1AED /* Main.storyboard in Resources */,
 				C667011B1BDCABCE009BA254 /* SwiftyJSONTemplate.txt in Resources */,
 				C667011F1BDCBE1F009BA254 /* NSCodingTemplate.txt in Resources */,
+				0A14C5651EE5931200CE0EC1 /* SwiftyJSONMapperTemplate.txt in Resources */,
 				93F174471BD0707D007E7DFC /* Assets.xcassets in Resources */,
 				C667011D1BDCAF23009BA254 /* ObjectMapperTemplate.txt in Resources */,
 				9341A14F1BD6E7290048CE2C /* BaseTemplate.txt in Resources */,
@@ -670,6 +677,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A14C5631EE58D1300CE0EC1 /* SwiftyJSONMapperModelFile.swift in Sources */,
 				93F1592C1CFF826900175636 /* ModelGenerationConfiguration.swift in Sources */,
 				934E61991E0EA20000B7601B /* MultipleModelGenerator.swift in Sources */,
 				93CDE7721BD1A00B00B5B234 /* SJTextView.swift in Sources */,

@@ -67,6 +67,61 @@ struct NameGenerator {
    - returns: New name for the variable.
    */
   static func replaceKeywords(_ currentName: String) -> String {
+    let swiftKeywords = [
+        "associatedtype",
+        "class",
+        "deinit",
+        "enum",
+        "extension",
+        "fileprivate",
+        "func",
+        "import",
+        "init",
+        "inout",
+        "internal",
+        "let",
+        "open",
+        "operator",
+        "private",
+        "protocol",
+        "public",
+        "static",
+        "struct",
+        "subscript",
+        "typealias",
+        "var",
+        "break",
+        "case",
+        "continue",
+        "default",
+        "defer",
+        "do",
+        "else",
+        "fallthrough",
+        "for",
+        "guard",
+        "if",
+        "in",
+        "repeat",
+        "return",
+        "switch",
+        "where",
+        "while",
+        "as",
+        "Any",
+        "catch",
+        "false",
+        "is",
+        "nil",
+        "rethrows",
+        "super",
+        "self",
+        "Self",
+        "throw",
+        "throws",
+        "true",
+        "try"
+    ]
 
     let keywordsWithReplacements = [
       "description": "descriptionValue",
@@ -77,6 +132,9 @@ struct NameGenerator {
       "default": "defaultValue"]
     if let value = keywordsWithReplacements[currentName] {
       return value
+    }
+    if swiftKeywords.contains(currentName) {
+        return "'" + currentName + "'"
     }
     return currentName
   }

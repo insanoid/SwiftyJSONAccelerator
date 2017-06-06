@@ -1,17 +1,18 @@
 //
-//  SwiftyJSONModel.swift
+//  SwiftyJSONMapperModel.swift
 //  SwiftyJSONAccelerator
 //
 //  Created by Karthikeya Udupa on 02/06/16.
+//  Modified by Dmitriy Borovikov 06/05/17
 //  Copyright © 2016 Karthikeya Udupa K M. All rights reserved.
 //
 
 import Foundation
 
 /**
- *  Provides support for SwiftyJSON library.
+ *  Provides support for Moya-SwiftyJSONMapper library.
  */
-struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
+struct SwiftyJSONMapperModelFile: ModelFile, DefaultModelFileComponent {
 
     var fileName: String
     var type: ConstructType
@@ -34,15 +35,15 @@ struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
     }
 
     func moduleName() -> String {
-        return "import SwiftyJSON"
+        return "import Moya_SwiftyJSONMapper\nimport SwiftyJSON"
     }
 
     func baseElementName() -> String? {
-        return nil
+        return "ALSwiftyJSONAble"
     }
 
     func mainBodyTemplateFileName() -> String {
-        return "SwiftyJSONTemplate"
+        return "SwiftyJSONMapperTemplate"
     }
 
     mutating func generateAndAddComponentsFor(_ property: PropertyComponent) {
@@ -88,32 +89,32 @@ struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
         }
     }
 
-    // MARK: - Customised methods for SWiftyJSON
+    // MARK: - Customised methods for Moya-SwiftyJSONMapper
     // MARK: - Initialisers
     func genInitializerForVariable(_ name: String, _ type: String, _ constantName: String) -> String {
         var variableType = type
         variableType.lowerCaseFirst()
         if type == VariableType.Bool.rawValue {
-            return "\(name) = json[\(constantName)].\(variableType)Value"
+            return "\(name) = jsonData[\(constantName)].\(variableType)Value"
         }
-        return "\(name) = json[\(constantName)].\(variableType)"
+        return "\(name) = jsonData[\(constantName)].\(variableType)"
     }
 
     func genInitializerForObject(_ name: String, _ type: String, _ constantName: String) -> String {
-        return "\(name) = \(type)(json: json[\(constantName)])"
+        return "\(name) = \(type)(jsonData: jsonData[\(constantName)])"
     }
 
     func genInitializerForObjectArray(_ name: String, _ type: String, _ constantName: String) -> String {
-        return "if let items = json[\(constantName)].array { \(name) = items.map { \(type)(json: $0) } }"
+        return "if let items = jsonData[\(constantName)].array { \(name) = items.map { \(type)(json: $0) } }"
     }
 
     func genInitializerForPrimitiveArray(_ name: String, _ type: String, _ constantName: String) -> String {
         var variableType = type
         variableType.lowerCaseFirst()
         if type == "object" {
-            return "if let items = json[\(constantName)].array { \(name) = items.map { $0.\(variableType)} }"
+            return "if let items = jsonData[\(constantName)].array { \(name) = items.map { $0.\(variableType)} }"
         } else {
-            return "if let items = json[\(constantName)].array { \(name) = items.map { $0.\(variableType)Value } }"
+            return "if let items = jsonData[\(constantName)].array { \(name) = items.map { $0.\(variableType)Value } }"
         }
     }
 

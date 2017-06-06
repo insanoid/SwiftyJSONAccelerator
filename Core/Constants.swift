@@ -45,11 +45,13 @@ enum ConstructType: String {
  List of supported mapping libraries.
 
  - SwiftyJSON:   SwiftyJSON - https://github.com/SwiftyJSON/SwiftyJSON
+ - SwiftyJSONMapper: Moya-SwiftyJSONMapper - https://github.com/AvdLee/Moya-SwiftyJSONMapper
  - ObjectMapper: ObjectMapper - https://github.com/Hearst-DD/ObjectMapper
  - Marshal: Marshal - https://github.com/utahiosmac/Marshal
  */
 enum JSONMappingLibrary: String {
   case SwiftyJSON
+  case SwiftyJSONMapper
   case ObjectMapper
   case Marshal
 }
