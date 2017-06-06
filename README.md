@@ -38,6 +38,7 @@ A swift model generator like the Objective-C [JSONAccelerator](http://nerdery.co
 The models that are generated depend on JSON object mapping libraries, currently the model can be generated to depend on any of the below mentioned mapping libraries:
 
 - [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
+- [Moya-SwiftyJSONMapper](https://github.com/AvdLee/Moya-SwiftyJSONMapper)
 - [Hearst-DD/ObjectMapper](https://github.com/Hearst-DD/ObjectMapper)
 - [Marshal](https://github.com/utahiosmac/Marshal)
 
