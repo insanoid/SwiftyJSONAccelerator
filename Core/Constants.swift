@@ -20,25 +20,25 @@ import Foundation
  - Object:       Object.
  */
 enum VariableType: String {
-  case String = "String"
-  case Int = "Int"
-  case Float = "Float"
-  case Double = "Double"
-  case Bool = "Bool"
-  case Array = "[]"
-  case Object = "{OBJ}"
-  case Null = "Any"
+  case string = "String"
+  case int = "Int"
+  case float = "Float"
+  case double = "Double"
+  case bool = "Bool"
+  case array = "[]"
+  case object = "{OBJ}"
+  case null = "Any"
 }
 
 /**
  Various types of construct that can be generated.
 
- - ClassType:  Model with construct type class.
- - StructType: Model with construct type struct.
+ - classType:  Model with construct type class.
+ - structType: Model with construct type struct.
  */
 enum ConstructType: String {
-  case ClassType = "class"
-  case StructType = "struct"
+  case classType = "class"
+  case structType = "struct"
 }
 
 /**
@@ -49,9 +49,9 @@ enum ConstructType: String {
  - Marshal: Marshal - https://github.com/utahiosmac/Marshal
  */
 enum JSONMappingLibrary: String {
-  case SwiftyJSON
-  case ObjectMapper
-  case Marshal
+  case libSwiftyJSON = "SwiftyJSON"
+  case libObjectMapper = "ObjectMapper"
+  case libMarshal = "Marshal"
 }
 
 /**
@@ -61,14 +61,14 @@ enum JSONMappingLibrary: String {
  - ValueArray:  Array of Value
  - Object:      Object type
  - ObjectArray: Array of object
- - EmptyArray:  An empty array
+ - emptyArray:  An empty array
  - Null:        Null value
  */
 enum PropertyType: String {
-  case ValueType
-  case ValueTypeArray
-  case ObjectType
-  case ObjectTypeArray
-  case EmptyArray
-  case NullType
+  case valueType
+  case valueTypeArray
+  case objectType
+  case objectTypeArray
+  case emptyArray
+  case nullType
 }
