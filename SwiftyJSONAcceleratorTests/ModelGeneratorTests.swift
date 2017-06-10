@@ -64,7 +64,7 @@ class ModelGeneratorTests: XCTestCase {
                                                  authorName: "Jane Smith",
                                                  companyName: "Acme Co.",
                                                  prefix: "AC",
-                                                 constructType: .StructType,
+                                                 constructType: .structType,
                                                  modelMappingLibrary: library,
                                                  supportNSCoding: true,
                                                  isFinalRequired: true,
@@ -75,19 +75,19 @@ class ModelGeneratorTests: XCTestCase {
    Test model file initialisation test.
    */
     func testinitialiseModelFileFor() {
-        let config = defaultConfiguration(.SwiftyJSON)
+        let config = defaultConfiguration(.libSwiftyJSON)
         let m = ModelGenerator.init(JSON.init([testJSON()]), config)
-        expect(m.initialiseModelFileFor(.SwiftyJSON) is SwiftyJSONModelFile).to(equal(true))
-        expect(m.initialiseModelFileFor(.SwiftyJSON) is ObjectMapperModelFile).to(equal(false))
-        expect(m.initialiseModelFileFor(.ObjectMapper) is SwiftyJSONModelFile).to(equal(false))
-        expect(m.initialiseModelFileFor(.ObjectMapper) is ObjectMapperModelFile).to(equal(true))
+        expect(m.initialiseModelFileFor(.libSwiftyJSON) is SwiftyJSONModelFile).to(equal(true))
+        expect(m.initialiseModelFileFor(.libSwiftyJSON) is ObjectMapperModelFile).to(equal(false))
+        expect(m.initialiseModelFileFor(.libObjectMapper) is SwiftyJSONModelFile).to(equal(false))
+        expect(m.initialiseModelFileFor(.libObjectMapper) is ObjectMapperModelFile).to(equal(true))
     }
 
     /**
    Test notifications to be generated for the given files.
    */
     func testNotifications() {
-        let config = defaultConfiguration(.SwiftyJSON)
+        let config = defaultConfiguration(.libSwiftyJSON)
         let m = ModelGenerator.init(JSON.init([testJSON()]), config)
         let files = m.generate()
         let errorNotification = m.generateNotificationFor([])
@@ -103,7 +103,7 @@ class ModelGeneratorTests: XCTestCase {
    Test for invalid JSON.
    */
     func testSwiftyJSONForInvalidJSON() {
-        let config = defaultConfiguration(.SwiftyJSON)
+        let config = defaultConfiguration(.libSwiftyJSON)
         let m = ModelGenerator.init(JSON.init(["hello!"]), config)
         let files = m.generate()
         expect(files.count).to(equal(0))
@@ -113,7 +113,7 @@ class ModelGeneratorTests: XCTestCase {
    Generate files for JSON which is an array.
    */
     func testSwiftyJSONModelWithRootAsArray() {
-        let config = defaultConfiguration(.SwiftyJSON)
+        let config = defaultConfiguration(.libSwiftyJSON)
         let m = ModelGenerator.init(JSON.init([testJSON()]), config)
         let files = m.generate()
         expect(files.count).to(equal(4))
@@ -140,7 +140,7 @@ class ModelGeneratorTests: XCTestCase {
    Generate and test the files generated for SwiftyJSON value.
    */
     func testSwiftyJSONModel() {
-        let config = defaultConfiguration(.SwiftyJSON)
+        let config = defaultConfiguration(.libSwiftyJSON)
         let m = ModelGenerator.init(testJSON(), config)
         let files = m.generate()
         runCheckForBaseModel(files, config, runSwiftyJSONInitialiserCheckForBaseModel(_:))
@@ -162,7 +162,7 @@ class ModelGeneratorTests: XCTestCase {
    Generate and test the files generated for ObjectMapper value.
    */
     func testObjectMapperModel() {
-        let config = defaultConfiguration(.ObjectMapper)
+        let config = defaultConfiguration(.libObjectMapper)
         let m = ModelGenerator.init(testJSON(), config)
         let files = m.generate()
         runCheckForBaseModel(files, config, runObjectMapperInitialiserCheckForBaseModel(_:))
@@ -183,7 +183,7 @@ class ModelGeneratorTests: XCTestCase {
      Generate and test the files generated for Marshal value.
      */
     func testMarshalModel() {
-        let config = defaultConfiguration(.Marshal)
+        let config = defaultConfiguration(.libMarshal)
         let m = ModelGenerator.init(testJSON(), config)
         let files = m.generate()
         runCheckForBaseModel(files, config, runMarshalInitialiserCheckForBaseModel(_:))
@@ -210,8 +210,8 @@ class ModelGeneratorTests: XCTestCase {
             authorName: "Jane Smith",
             companyName: "Acme Co.",
             prefix: "AC",
-            constructType: .ClassType,
-            modelMappingLibrary: .Marshal,
+            constructType: .classType,
+            modelMappingLibrary: .libMarshal,
             supportNSCoding: true,
             isFinalRequired: true,
             isHeaderIncluded: true)

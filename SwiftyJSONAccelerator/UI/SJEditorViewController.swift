@@ -33,7 +33,6 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
 
     // MARK: Outlet files.
     @IBOutlet var textView: SJTextView!
-    @IBOutlet var messageLabel: NSTextField!
     @IBOutlet var errorImageView: NSImageView!
     @IBOutlet var baseClassTextField: NSTextField!
     @IBOutlet var prefixClassTextField: NSTextField!
@@ -150,7 +149,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
 
             let nsCodingState = self.enableNSCodingSupportCheckbox.state == 1 && (modelTypeSelectorSegment.selectedSegment == 1)
             let isFinalClass = self.setAsFinalCheckbox.state == 1 && (modelTypeSelectorSegment.selectedSegment == 1)
-            let constructType = self.modelTypeSelectorSegment.selectedSegment == 0 ? ConstructType.StructType : ConstructType.ClassType
+            let constructType = self.modelTypeSelectorSegment.selectedSegment == 0 ? ConstructType.structType : ConstructType.classType
             let libraryType = libraryForIndex(self.librarySelector.indexOfSelectedItem)
             let configuration = ModelGenerationConfiguration.init(
                                                                   filePath: filePath!.appending("/"),
@@ -188,11 +187,11 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
 
     func libraryForIndex(_ index: Int) -> JSONMappingLibrary {
         if index == 2 {
-            return JSONMappingLibrary.ObjectMapper
+            return JSONMappingLibrary.libObjectMapper
         } else if index == 3 {
-            return JSONMappingLibrary.Marshal
+            return JSONMappingLibrary.libMarshal
         }
-        return JSONMappingLibrary.SwiftyJSON
+        return JSONMappingLibrary.libSwiftyJSON
     }
 
     @IBAction func recalcEnabledBoxes(_ sender: AnyObject) {
@@ -289,7 +288,6 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
    */
     func resetErrorImage() {
         errorImageView?.image = nil
-        messageLabel?.stringValue = ""
     }
 
     /**
@@ -297,7 +295,6 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
    */
     func correctJSONMessage() {
         errorImageView?.image = NSImage.init(named: "success")
-        messageLabel?.stringValue = "Valid JSON!"
     }
 
     /**
@@ -308,7 +305,6 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
    */
     func invalidJSONError(_ message: String) {
         errorImageView?.image = NSImage.init(named: "failure")
-        messageLabel?.stringValue = message
     }
 
     // MARK: TextView Delegate

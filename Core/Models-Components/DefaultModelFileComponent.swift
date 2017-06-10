@@ -130,14 +130,14 @@ extension DefaultModelFileComponent {
   }
 
   func genPrimitiveVariableDeclaration(_ name: String, _ type: String) -> String {
-    if type == VariableType.Bool.rawValue {
+    if type == VariableType.bool.rawValue {
       return "public var \(name): \(type)? = false"
     }
     return "public var \(name): \(type)?"
   }
 
   func genDescriptionForPrimitive(_ name: String, _ type: String, _ constantName: String) -> String {
-    if type == VariableType.Bool.rawValue {
+    if type == VariableType.bool.rawValue {
       return "dictionary[\(constantName)] = \(name)"
     }
     return "if let value = \(name) { dictionary[\(constantName)] = value }"
@@ -155,7 +155,7 @@ extension DefaultModelFileComponent {
   }
 
   func genEncoder(_ name: String, _ type: String, _ constantName: String) -> String {
-    if type == VariableType.Bool.rawValue {
+    if type == VariableType.bool.rawValue {
       return "aCoder.encode(\(name), forKey: \(constantName))"
     }
     return "aCoder.encode(\(name), forKey: \(constantName))"
@@ -163,7 +163,7 @@ extension DefaultModelFileComponent {
 
   func genDecoder(_ name: String, _ type: String, _ constantName: String, _ isArray: Bool) -> String {
     let finalTypeName = isArray ? "[\(type)]" : type
-    if type == VariableType.Bool.rawValue {
+    if type == VariableType.bool.rawValue {
       return "self.\(name) = aDecoder.decodeBool(forKey: \(constantName))"
     }
     return "self.\(name) = aDecoder.decodeObject(forKey: \(constantName)) as? \(finalTypeName)"
