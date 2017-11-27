@@ -31,16 +31,16 @@ struct Swift4ModelFile: ModelFile, DefaultModelFileComponent {
 		self.configuration = configuration
 	}
 
-	func moduleName() -> String {
-		return "Swift4"
-	}
-
-	func baseElementName() -> String? {
+	func moduleName() -> String? {
 		return nil
 	}
 
+	func baseElementName() -> String? {
+		return "Codable"
+	}
+
 	func mainBodyTemplateFileName() -> String {
-		return "SwiftyJSONTemplate"
+		return "Swift4Template"
 	}
 
 	mutating func generateAndAddComponentsFor(_ property: PropertyComponent) {

@@ -30,7 +30,7 @@ struct MarshalModelFile: ModelFile, DefaultModelFileComponent {
         self.configuration = configuration
     }
 
-    func moduleName() -> String {
+    func moduleName() -> String? {
         return "Marshal"
     }
 

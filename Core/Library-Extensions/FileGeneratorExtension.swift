@@ -30,13 +30,8 @@ extension FileGenerator {
         if let companyName = configuration.companyName {
             content = content.replacingOccurrences(of: "__MyCompanyName__", with: companyName)
         }
-        if configuration.isFinalRequired {
-			let moduleName = modelFile.moduleName()
-			if moduleName.count > 0 {
-				content = content.replacingOccurrences(of: "{INCLUDE_HEADER}", with: "\nimport \(modelFile.moduleName())")
-			} else {
-				content = content.replacingOccurrences(of: "{INCLUDE_HEADER}", with: "")
-			}
+        if configuration.isFinalRequired, let moduleName = modelFile.moduleName() {
+			content = content.replacingOccurrences(of: "{INCLUDE_HEADER}", with: "\nimport \(moduleName)")
         } else {
             content = content.replacingOccurrences(of: "{INCLUDE_HEADER}", with: "")
         }
@@ -45,6 +40,7 @@ extension FileGenerator {
         if let extendFrom = modelFile.baseElementName() {
             classesExtendFrom = [extendFrom]
         }
+
         if configuration.supportNSCoding && configuration.constructType == .classType {
             classesExtendFrom += ["NSCoding"]
         }
