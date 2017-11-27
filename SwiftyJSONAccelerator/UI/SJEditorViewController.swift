@@ -191,8 +191,10 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
             return JSONMappingLibrary.objectMapper
         } else if index == 3 {
             return JSONMappingLibrary.marshal
+		} else if index == 4 {
+			return JSONMappingLibrary.swiftyJSON
         }
-        return JSONMappingLibrary.swiftyJSON
+		return JSONMappingLibrary.swift4
     }
 
     @IBAction func recalcEnabledBoxes(_ sender: AnyObject) {

@@ -105,6 +105,8 @@ public struct ModelGenerator {
 
             }
 
+			currentModel.finishedGeneration()
+
             modelFiles = [currentModel] + modelFiles
         }
 

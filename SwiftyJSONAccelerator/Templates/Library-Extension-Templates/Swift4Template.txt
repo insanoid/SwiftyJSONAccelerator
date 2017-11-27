@@ -1,8 +1,0 @@
-  // MARK: Swift4 Initializers
-
-  /// Decode a decodable object to this class using Swift4 Codable.
-  ///
-  /// - parameter object: A JSON Decoder
-  public{REQUIRED}init(coder: JSONDecoder) {
-{INITIALIZER}
-  }

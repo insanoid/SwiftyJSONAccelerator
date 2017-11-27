@@ -84,9 +84,11 @@ struct Swift4ModelFile: ModelFile, DefaultModelFileComponent {
 			// Currently we do not deal with null values.
 			break
 		}
+
+		component.description = []
 	}
 
-	// MARK: - Customised methods for SWiftyJSON
+	// MARK: - Customised methods for Swift 4
 	// MARK: - Initialisers
 	func genInitializerForVariable(_ name: String, _ type: String, _ constantName: String) -> String {
 		var variableType = type
@@ -113,6 +115,16 @@ struct Swift4ModelFile: ModelFile, DefaultModelFileComponent {
 		} else {
 			return "if let items = json[\(constantName)].array { \(name) = items.map { $0.\(variableType)Value } }"
 		}
+	}
+
+	mutating func finishedGeneration() {
+		 self.component.description = [
+"if let encodedData = try? JSONEncoder().encode(self),",
+"let jsonObj = try? JSONSerialization.jsonObject(with: encodedData, options: .allowFragments),",
+"let jsonDict = jsonObj as? [String: Any] {",
+"dictionary.merge(jsonDict) { (_, new) in new }",
+"}"
+		]
 	}
 
 }

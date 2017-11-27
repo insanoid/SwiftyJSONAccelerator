@@ -12,7 +12,8 @@ extension FileGenerator {
 
     static func generateFileContentWith(_ modelFile: ModelFile, configuration: ModelGenerationConfiguration) -> String {
 
-		var content:String = ""
+		var content: String = ""
+
 		content = loadFileWith("BaseTemplate")
 
         let singleTab = "  ", doubleTab = "    "
@@ -89,7 +90,10 @@ extension FileGenerator {
             content = content.replacingOccurrences(of: " convenience", with: "")
         }
 
-        if configuration.supportNSCoding && configuration.constructType == .classType {
+        if configuration.supportNSCoding
+			&& configuration.constructType == .classType
+			&& configuration.modelMappingLibrary != .swift4 {
+
             content = content.replacingOccurrences(of: "{NSCODING_SUPPORT}", with: loadFileWith("NSCodingTemplate"))
             let encoders = modelFile.component.encoders.map({ doubleTab + $0 }).joined(separator: "\n")
             let decoders = modelFile.component.decoders.map({ doubleTab + $0 }).joined(separator: "\n")

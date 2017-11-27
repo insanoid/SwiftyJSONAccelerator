@@ -33,6 +33,8 @@ struct FileGenerator {
             return "  // MARK: Marshal Initializers\n\n  /// Map a JSON object to this class using Marshal.\n  ///\n  /// - parameter object: A mapping from ObjectMapper\n  public{REQUIRED}init(object: MarshaledObject) {\n{INITIALIZER}\n  }\n"
         case "ObjectMapperTemplate":
             return "  // MARK: ObjectMapper Initializers\n  /// Map a JSON object to this class using ObjectMapper.\n  ///\n  /// - parameter map: A mapping from ObjectMapper.\n  public{REQUIRED}init?(map: Map){\n\n  }\n\n  /// Map a JSON object to this class using ObjectMapper.\n  ///\n  /// - parameter map: A mapping from ObjectMapper.\n  public func mapping(map: Map) {\n{INITIALIZER}\n  }\n"
+		case "Swift4Template":
+			return "\n"
         case "SwiftyJSONTemplate":
             return "  // MARK: SwiftyJSON Initializers\n  /// Initiates the instance based on the object.\n  ///\n  /// - parameter object: The object of either Dictionary or Array kind that was passed.\n  /// - returns: An initialized instance of the class.\n  public convenience init(object: Any) {\n    self.init(json: JSON(object))\n  }\n\n  /// Initiates the instance based on the JSON that was passed.\n  ///\n  /// - parameter json: JSON object from SwiftyJSON.\n  public{REQUIRED}init(json: JSON) {\n{INITIALIZER}\n  }\n"
         case "BaseTemplate":
