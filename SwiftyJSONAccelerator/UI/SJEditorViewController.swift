@@ -8,7 +8,7 @@
 
 import Cocoa
 
-fileprivate func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
+private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
     switch (lhs, rhs) {
     case let (l?, r?):
         return l < r
@@ -19,7 +19,7 @@ fileprivate func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 }
 
-fileprivate func <= <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
+private func <= <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
     switch (lhs, rhs) {
     case let (l?, r?):
         return l <= r
@@ -150,7 +150,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
 
             let nsCodingState = self.enableNSCodingSupportCheckbox.state == 1 && (modelTypeSelectorSegment.selectedSegment == 1)
             let isFinalClass = self.setAsFinalCheckbox.state == 1 && (modelTypeSelectorSegment.selectedSegment == 1)
-            let constructType = self.modelTypeSelectorSegment.selectedSegment == 0 ? ConstructType.StructType : ConstructType.ClassType
+            let constructType = self.modelTypeSelectorSegment.selectedSegment == 0 ? ConstructType.structType : ConstructType.classType
             let libraryType = libraryForIndex(self.librarySelector.indexOfSelectedItem)
             let configuration = ModelGenerationConfiguration.init(
                                                                   filePath: filePath!.appending("/"),
@@ -188,11 +188,11 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
 
     func libraryForIndex(_ index: Int) -> JSONMappingLibrary {
         if index == 2 {
-            return JSONMappingLibrary.ObjectMapper
+            return JSONMappingLibrary.objectMapper
         } else if index == 3 {
-            return JSONMappingLibrary.Marshal
+            return JSONMappingLibrary.marshal
         }
-        return JSONMappingLibrary.SwiftyJSON
+        return JSONMappingLibrary.swiftyJSON
     }
 
     @IBAction func recalcEnabledBoxes(_ sender: AnyObject) {

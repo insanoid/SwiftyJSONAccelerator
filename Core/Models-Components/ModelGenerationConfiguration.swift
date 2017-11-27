@@ -37,7 +37,7 @@ struct ModelGenerationConfiguration {
     ///
     /// - Returns: If the config is valid and the reason for invalidation if it is invalid.
     func isConfigurationValid() -> (isValid: Bool, reason: String) {
-        if constructType == .StructType && (isFinalRequired == true || supportNSCoding == true) {
+        if constructType == .structType && (isFinalRequired == true || supportNSCoding == true) {
             return (false, "Struct cannot have final or NSCoding support, only applicable to class.")
         }
         return (true, "")
@@ -47,8 +47,8 @@ struct ModelGenerationConfiguration {
         isHeaderIncluded = true
         isFinalRequired = true
         supportNSCoding = true
-        modelMappingLibrary = .SwiftyJSON
-        constructType = .ClassType
+        modelMappingLibrary = .swiftyJSON
+        constructType = .classType
         prefix = ""
         filePath = ""
         baseClassName = ""
