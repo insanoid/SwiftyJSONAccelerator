@@ -12,7 +12,9 @@ extension FileGenerator {
 
     static func generateFileContentWith(_ modelFile: ModelFile, configuration: ModelGenerationConfiguration) -> String {
 
-        var content = loadFileWith("BaseTemplate")
+		var content:String = ""
+		content = loadFileWith("BaseTemplate")
+
         let singleTab = "  ", doubleTab = "    "
         content = content.replacingOccurrences(of: "{OBJECT_NAME}", with: modelFile.fileName)
         content = content.replacingOccurrences(of: "{DATE}", with: todayDateString())
@@ -24,24 +26,38 @@ extension FileGenerator {
         } else {
             content = content.replacingOccurrences(of: "{REQUIRED}", with: " ")
         }
-        if let authorName = configuration.authorName {
+
+		if let authorName = configuration.authorName {
             content = content.replacingOccurrences(of: "__NAME__", with: authorName)
         }
-        if let companyName = configuration.companyName {
+
+		if let companyName = configuration.companyName {
             content = content.replacingOccurrences(of: "__MyCompanyName__", with: companyName)
         }
-        if configuration.isFinalRequired, let moduleName = modelFile.moduleName() {
+
+		if configuration.isFinalRequired, let moduleName = modelFile.moduleName() {
 			content = content.replacingOccurrences(of: "{INCLUDE_HEADER}", with: "\nimport \(moduleName)")
         } else {
             content = content.replacingOccurrences(of: "{INCLUDE_HEADER}", with: "")
         }
 
+		if configuration.modelMappingLibrary == .swift4 {
+			content = content.replacingOccurrences(of: "{SERIALIZATION_KEYS_KIND}", with: "enum")
+			content = content.replacingOccurrences(of: "{SERIALIZATION_KEYS_EXTENSIONS}", with: " : String, CodingKeys")
+		} else {
+			content = content.replacingOccurrences(of: "{SERIALIZATION_KEYS_KIND}", with: "struct")
+			content = content.replacingOccurrences(of: "{SERIALIZATION_KEYS_EXTENSIONS}", with: "")
+		}
+
         var classesExtendFrom: [String] = []
+
         if let extendFrom = modelFile.baseElementName() {
             classesExtendFrom = [extendFrom]
         }
 
-        if configuration.supportNSCoding && configuration.constructType == .classType {
+        if configuration.supportNSCoding
+			&& configuration.constructType == .classType
+			&& configuration.modelMappingLibrary != .swift4 {
             classesExtendFrom += ["NSCoding"]
         }
 

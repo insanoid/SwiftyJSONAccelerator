@@ -111,6 +111,8 @@
 		971A0F661FCC298100C830F9 /* Swift4ModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0F651FCC298100C830F9 /* Swift4ModelFile.swift */; };
 		971A0F671FCC298900C830F9 /* Swift4ModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0F651FCC298100C830F9 /* Swift4ModelFile.swift */; };
 		971A0F681FCC298900C830F9 /* Swift4ModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0F651FCC298100C830F9 /* Swift4ModelFile.swift */; };
+		971A0F6A1FCC2ED600C830F9 /* Swift4Template.txt in Resources */ = {isa = PBXBuildFile; fileRef = 971A0F691FCC2ED600C830F9 /* Swift4Template.txt */; };
+		971A0F6B1FCC2EDE00C830F9 /* Swift4Template.txt in Resources */ = {isa = PBXBuildFile; fileRef = 971A0F691FCC2ED600C830F9 /* Swift4Template.txt */; };
 		C667011B1BDCABCE009BA254 /* SwiftyJSONTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = C667011A1BDCABCE009BA254 /* SwiftyJSONTemplate.txt */; };
 		C667011D1BDCAF23009BA254 /* ObjectMapperTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = C667011C1BDCAF23009BA254 /* ObjectMapperTemplate.txt */; };
 		C667011F1BDCBE1F009BA254 /* NSCodingTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = C667011E1BDCBE1F009BA254 /* NSCodingTemplate.txt */; };
@@ -190,6 +192,7 @@
 		93F174561BD0707D007E7DFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93F1745F1BD070AA007E7DFC /* JSONHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
 		971A0F651FCC298100C830F9 /* Swift4ModelFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift4ModelFile.swift; sourceTree = "<group>"; };
+		971A0F691FCC2ED600C830F9 /* Swift4Template.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Swift4Template.txt; sourceTree = "<group>"; };
 		C667011A1BDCABCE009BA254 /* SwiftyJSONTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftyJSONTemplate.txt; sourceTree = "<group>"; };
 		C667011C1BDCAF23009BA254 /* ObjectMapperTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ObjectMapperTemplate.txt; sourceTree = "<group>"; };
 		C667011E1BDCBE1F009BA254 /* NSCodingTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NSCodingTemplate.txt; sourceTree = "<group>"; };
@@ -463,6 +466,7 @@
 		93F5F2141D344CCC00FEB9C9 /* Library-Extension-Templates */ = {
 			isa = PBXGroup;
 			children = (
+				971A0F691FCC2ED600C830F9 /* Swift4Template.txt */,
 				9327F2891DF4BD540002BE40 /* MarshalTemplate.txt */,
 				C667011C1BDCAF23009BA254 /* ObjectMapperTemplate.txt */,
 				C667011A1BDCABCE009BA254 /* SwiftyJSONTemplate.txt */,
@@ -584,6 +588,7 @@
 				C667011F1BDCBE1F009BA254 /* NSCodingTemplate.txt in Resources */,
 				93F174471BD0707D007E7DFC /* Assets.xcassets in Resources */,
 				C667011D1BDCAF23009BA254 /* ObjectMapperTemplate.txt in Resources */,
+				971A0F6A1FCC2ED600C830F9 /* Swift4Template.txt in Resources */,
 				9341A14F1BD6E7290048CE2C /* BaseTemplate.txt in Resources */,
 				9327F28A1DF4BD540002BE40 /* MarshalTemplate.txt in Resources */,
 			);
@@ -598,6 +603,7 @@
 				93D850E31D00D2F60023D573 /* SwiftyJSONTemplate.txt in Resources */,
 				934E61A51E10587F00B7601B /* test_config.json in Resources */,
 				934E61A31E10587F00B7601B /* album.json in Resources */,
+				971A0F6B1FCC2EDE00C830F9 /* Swift4Template.txt in Resources */,
 				934E61A71E10587F00B7601B /* user.json in Resources */,
 				93D850F71D00D7C80023D573 /* TestJSONFile.sample in Resources */,
 				93D850E01D00D2F60023D573 /* BaseTemplate.txt in Resources */,
