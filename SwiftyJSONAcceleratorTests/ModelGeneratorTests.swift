@@ -439,12 +439,21 @@ class ModelGeneratorTests: XCTestCase {
 
 		let baseModelFile = runCheckForFiles(files, config)
 
-		runInitialiserCheckForModel(baseModelFile)
-		runMappingCheckForModel(baseModelFile)
-		runDeclarationCheckForModel(baseModelFile)
-		runDictionaryDescriptionCheckForModel(baseModelFile)
-		runEncoderCheckForModel(baseModelFile)
-		runDecoderCheckForModel(baseModelFile)
+		let path: WritableKeyPath = \ModelComponent.initialisers
+		path
+		let checkingKeypaths = [
+			\ModelComponent.initialisers,
+			\ModelComponent.mappingConstants,
+			\ModelComponent.properties,
+			\ModelComponent.dictionaryDescriptions,
+			\ModelComponent.encoders,
+			\ModelComponent.decoders
+		]
+
+		for path in checkingKeypaths {
+			print("Checking \(path.hashValue)")
+			runCheckForModelKeypathEquality(baseModelFile, path)
+		}
     }
 
 	func runCheckForFiles(_ files: [ModelFile], _ config: ModelGenerationConfiguration) -> ModelFile {
@@ -470,30 +479,6 @@ class ModelGeneratorTests: XCTestCase {
 		return baseModelFile
 	}
 
-	func runInitialiserCheckForModel(_ baseModelFile: ModelFile) {
-		runCheckForModelKeypathEquality(baseModelFile, \ModelComponent.initialisers)
-	}
-
-	func runMappingCheckForModel(_ baseModelFile: ModelFile) {
-		runCheckForModelKeypathEquality(baseModelFile, \ModelComponent.mappingConstants)
-	}
-
-	func runDeclarationCheckForModel(_ baseModelFile: ModelFile) {
-		runCheckForModelKeypathEquality(baseModelFile, \ModelComponent.properties)
-	}
-
-	func runDictionaryDescriptionCheckForModel(_ baseModelFile: ModelFile) {
-		runCheckForModelKeypathEquality(baseModelFile, \ModelComponent.dictionaryDescriptions)
-	}
-
-	func runEncoderCheckForModel(_ baseModelFile: ModelFile) {
-		runCheckForModelKeypathEquality(baseModelFile, \ModelComponent.encoders)
-	}
-
-	func runDecoderCheckForModel(_ baseModelFile: ModelFile) {
-		runCheckForModelKeypathEquality(baseModelFile, \ModelComponent.decoders)
-	}
-
 	func runCheckForModelKeypathEquality(_ baseModelFile: ModelFile,
 	                                     _ componentKeyPath: KeyPath<ModelComponent, [String]>) {
 
@@ -502,7 +487,12 @@ class ModelGeneratorTests: XCTestCase {
 		let data = dataComponent ?? []
 		expect(modelComponent.count).to(equal(data.count))
 		for component in data {
-			expect(modelComponent.contains(component)).to(equal(true))
+			let expectation = expect(modelComponent.contains(component))
+			if !expectation.to(equal(true)) {
+				print(modelComponent)
+				print(component)
+			}
+
 		}
 	}
 }

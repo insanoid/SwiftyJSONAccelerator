@@ -44,17 +44,26 @@ struct Swift4ModelFile: ModelFile, DefaultModelFileComponent {
 	}
 
 	mutating func generateAndAddComponentsFor(_ property: PropertyComponent) {
-		component.mappingConstants.append(genEnumConstant(property.constantName, property.key))
 		switch property.propertyType {
 		case .valueType, .objectType:
 			component.properties.append(genVariableDeclaration(property.name, property.type, false))
-		case .valueTypeArray,.objectTypeArray:
+			component.mappingConstants.append(genEnumConstant(property.constantName, property.key))
+		case .valueTypeArray, .objectTypeArray:
 			component.properties.append(genVariableDeclaration(property.name, property.type, true))
+			component.mappingConstants.append(genEnumConstant(property.constantName, property.key))
 		case .emptyArray:
 			component.properties.append(genVariableDeclaration(property.name, "Any", true))
+			component.mappingConstants.append(genEnumConstant(property.constantName, property.key))
 		case .nullType:
 			// Currently we ignore null values.
 			break
 		}
+	}
+
+	func genPrimitiveVariableDeclaration(_ name: String, _ type: String) -> String {
+		if type == VariableType.bool.rawValue {
+			return "public var \(name): \(type) = false"
+		}
+		return "public var \(name): \(type)?"
 	}
 }

@@ -124,9 +124,8 @@ extension DefaultModelFileComponent {
 	func genEnumConstant(_ constantName: String, _ value: String) -> String {
 		//The incoming string is in the format "SeralizationKey.ConstantName" we only need the second part.
 		let component = constantName.components(separatedBy: ".")
-		return "enum \(component.last!) = \"\(value)\""
+		return "case \(component.last!) = \"\(value)\""
 	}
-
 
 	func genVariableDeclaration(_ name: String, _ type: String, _ isArray: Bool) -> String {
 		var _type = type
