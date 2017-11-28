@@ -117,9 +117,14 @@ extension FileGenerator {
      */
     static internal func writeToFileWith(_ name: String, content: String, path: String) throws {
         let filename = path.appendingFormat("%@", (name + ".swift"))
-        try FileManager.default.createDirectory(at: URL.init(fileURLWithPath: path),
-                                                withIntermediateDirectories: true,
-                                                attributes: nil)
+
+		let directoryURL = URL.init(fileURLWithPath: path)
+		try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true)
+
+		if FileManager.default.fileExists(atPath: filename) {
+			try FileManager.default.removeItem(atPath: filename)
+		}
+
         try content.write(toFile: filename, atomically: true, encoding: String.Encoding.utf8)
     }
 

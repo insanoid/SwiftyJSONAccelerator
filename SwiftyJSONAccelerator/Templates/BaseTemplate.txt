@@ -18,13 +18,5 @@ private {SERIALIZATION_KEYS_KIND} SerializationKeys{SERIALIZATION_KEYS_EXTENSION
 {PROPERTY_DECLARATIONS}
 
 {JSON_PARSER_LIBRARY_BODY}
-  /// Generates description of the object in the form of a NSDictionary.
-  ///
-  /// - returns: A Key value pair containing all valid values in the object.
-  public func dictionaryRepresentation() -> [String: Any] {
-    var dictionary: [String: Any] = [:]
-{DICTIONARY_REPRESENTATION_PARSER}
-    return dictionary
-  }
 {NSCODING_SUPPORT}
 }
