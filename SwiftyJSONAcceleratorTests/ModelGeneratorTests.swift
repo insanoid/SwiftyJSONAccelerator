@@ -10,6 +10,201 @@ import Foundation
 import XCTest
 import Nimble
 
+fileprivate extension JSONMappingLibrary {
+
+	static func testJSON() -> [String: Any] {
+		return ["value_one": "string value",
+		 "value_two": 3,
+		 "value_three": true,
+		 "value_four": 3.4,
+		 "value_dont_show": JSON.null,
+		 "value_five": ["string", "random_stuff"],
+		 "value_six": ["sub_value": "value", "sub_value_second": false],
+		 "value_seven": [
+			[
+				"sub_value_third": 4.5,
+				"double_value": Double.init(5.3),
+				"sub_value_four": "value",
+				"internal": "renamed_value",
+				"sub_value_five": ["two_level_down": "value"]
+			]
+			],
+		 "value_eight": []
+		]
+	}
+
+	var initializers: [String] {
+		switch self {
+		case .marshal:
+			return [
+				"valueSeven = try? object.value(for: SerializationKeys.valueSeven)",
+				"valueTwo = try? object.value(for: SerializationKeys.valueTwo)",
+				"valueFour = try? object.value(for: SerializationKeys.valueFour)",
+				"valueFive = try? object.value(for: SerializationKeys.valueFive)",
+				"valueSix = try? object.value(for: SerializationKeys.valueSix)",
+				"valueOne = try? object.value(for: SerializationKeys.valueOne)",
+				"valueThree = try? object.value(for: SerializationKeys.valueThree)",
+				"valueEight = try? object.value(for: SerializationKeys.valueEight)"
+			]
+		case .objectMapper:
+			return [
+				"valueSeven <- map[SerializationKeys.valueSeven]",
+				"valueTwo <- map[SerializationKeys.valueTwo]",
+				"valueFour <- map[SerializationKeys.valueFour]",
+				"valueFive <- map[SerializationKeys.valueFive]",
+				"valueSix <- map[SerializationKeys.valueSix]",
+				"valueEight <- map[SerializationKeys.valueEight]",
+				"valueOne <- map[SerializationKeys.valueOne]",
+				"valueThree <- map[SerializationKeys.valueThree]"
+			]
+		case .swiftyJSON:
+			return [
+				"if let items = json[SerializationKeys.valueSeven].array { valueSeven = items.map { ACValueSeven(json: $0) } }",
+				"valueTwo = json[SerializationKeys.valueTwo].int",
+				"valueFour = json[SerializationKeys.valueFour].float",
+				"if let items = json[SerializationKeys.valueFive].array { valueFive = items.map { $0.stringValue } }",
+				"valueSix = ACValueSix(json: json[SerializationKeys.valueSix])",
+				"valueOne = json[SerializationKeys.valueOne].string",
+				"valueThree = json[SerializationKeys.valueThree].boolValue",
+				"if let items = json[SerializationKeys.valueEight].array { valueEight = items.map { $0.object} }"
+			]
+		case .swift4:
+			return []
+		}
+	}
+
+	var decoders: [String] {
+		switch self {
+		case .marshal, .objectMapper, .swiftyJSON:
+			return [
+				"self.valueSeven = aDecoder.decodeObject(forKey: SerializationKeys.valueSeven) as? [ACValueSeven]",
+				"self.valueTwo = aDecoder.decodeObject(forKey: SerializationKeys.valueTwo) as? Int",
+				"self.valueFour = aDecoder.decodeObject(forKey: SerializationKeys.valueFour) as? Float",
+				"self.valueFive = aDecoder.decodeObject(forKey: SerializationKeys.valueFive) as? [String]",
+				"self.valueSix = aDecoder.decodeObject(forKey: SerializationKeys.valueSix) as? ACValueSix",
+				"self.valueOne = aDecoder.decodeObject(forKey: SerializationKeys.valueOne) as? String",
+				"self.valueThree = aDecoder.decodeBool(forKey: SerializationKeys.valueThree)",
+				"self.valueEight = aDecoder.decodeObject(forKey: SerializationKeys.valueEight) as? [Any]"
+			]
+		case .swift4:
+			return []
+		}
+	}
+
+	var encoders: [String] {
+		switch self {
+		case .marshal, .objectMapper, .swiftyJSON:
+			return [
+				"aCoder.encode(valueSeven, forKey: SerializationKeys.valueSeven)",
+				"aCoder.encode(valueTwo, forKey: SerializationKeys.valueTwo)",
+				"aCoder.encode(valueFour, forKey: SerializationKeys.valueFour)",
+				"aCoder.encode(valueFive, forKey: SerializationKeys.valueFive)",
+				"aCoder.encode(valueSix, forKey: SerializationKeys.valueSix)",
+				"aCoder.encode(valueOne, forKey: SerializationKeys.valueOne)",
+				"aCoder.encode(valueThree, forKey: SerializationKeys.valueThree)",
+				"aCoder.encode(valueEight, forKey: SerializationKeys.valueEight)"
+			]
+		case .swift4:
+			return []
+		}
+	}
+
+	var properties: [String] {
+		switch self {
+		case .marshal, .objectMapper, .swiftyJSON:
+			return [
+				"public var valueSeven: [ACValueSeven]?",
+				"public var valueTwo: Int?",
+				"public var valueFour: Float?",
+				"public var valueFive: [String]?",
+				"public var valueSix: ACValueSix?",
+				"public var valueOne: String?",
+				"public var valueThree: Bool? = false",
+				"public var valueEight: [Any]?"
+			]
+		case .swift4:
+			return [
+				"public var valueSeven: [ACValueSeven]?",
+				"public var valueTwo: Int?",
+				"public var valueFour: Float?",
+				"public var valueFive: [String]?",
+				"public var valueSix: ACValueSix?",
+				"public var valueOne: String?",
+				"public var valueThree: Bool = false",
+				"public var valueEight: [Any]?"
+			]
+		}
+	}
+
+	var dictionaryDescriptions: [String] {
+		switch self {
+		case .marshal, .objectMapper, .swiftyJSON:
+			return [
+				"if let value = valueSix { dictionary[SerializationKeys.valueSix] = value.dictionaryRepresentation() }",
+				"if let value = valueFive { dictionary[SerializationKeys.valueFive] = value }",
+				"if let value = valueTwo { dictionary[SerializationKeys.valueTwo] = value }",
+				"dictionary[SerializationKeys.valueThree] = valueThree",
+				"if let value = valueSeven { dictionary[SerializationKeys.valueSeven] = value.map { $0.dictionaryRepresentation() } }",
+				"if let value = valueOne { dictionary[SerializationKeys.valueOne] = value }",
+				"if let value = valueFour { dictionary[SerializationKeys.valueFour] = value }",
+				"if let value = valueEight { dictionary[SerializationKeys.valueEight] = value }"
+			]
+		case .swift4:
+			return []
+		}
+	}
+
+	var mapping: [String] {
+		switch self {
+		case .marshal, .objectMapper, .swiftyJSON:
+			return  [
+				"static let valueSeven = \"value_seven\"",
+				"static let valueTwo = \"value_two\"",
+				"static let valueFour = \"value_four\"",
+				"static let valueFive = \"value_five\"",
+				"static let valueSix = \"value_six\"",
+				"static let valueOne = \"value_one\"",
+				"static let valueThree = \"value_three\"",
+				"static let valueEight = \"value_eight\""
+			]
+		case .swift4:
+			return [
+				"case valueSeven = \"value_seven\"",
+				"case valueTwo = \"value_two\"",
+				"case valueFour = \"value_four\"",
+				"case valueFive = \"value_five\"",
+				"case valueSix = \"value_six\"",
+				"case valueOne = \"value_one\"",
+				"case valueThree = \"value_three\"",
+				"case valueEight = \"value_eight\""
+			]
+		}
+	}
+}
+
+fileprivate extension ModelGenerationConfiguration {
+
+	func testData(for path: KeyPath<ModelComponent,[String]>) -> [String] {
+		switch path {
+		case \ModelComponent.initialisers:
+			return self.modelMappingLibrary.initializers
+		case \ModelComponent.decoders:
+			return self.modelMappingLibrary.decoders
+		case \ModelComponent.encoders:
+			return self.modelMappingLibrary.encoders
+		case \ModelComponent.properties:
+			return self.modelMappingLibrary.properties
+		case \ModelComponent.dictionaryDescriptions:
+			return self.modelMappingLibrary.dictionaryDescriptions
+		case \ModelComponent.mappingConstants:
+			return self.modelMappingLibrary.mapping
+		default:
+			return []
+		}
+	}
+}
+
+
 /// Test cases for the model Generator.
 class ModelGeneratorTests: XCTestCase {
 
@@ -29,25 +224,7 @@ class ModelGeneratorTests: XCTestCase {
    - returns: A valid JSON.
    */
     func testJSON() -> JSON {
-        return JSON.init(
-                         ["value_one": "string value",
-                             "value_two": 3,
-                             "value_three": true,
-                             "value_four": 3.4,
-                             "value_dont_show": JSON.null,
-                             "value_five": ["string", "random_stuff"],
-                             "value_six": ["sub_value": "value", "sub_value_second": false],
-                             "value_seven": [
-                                 [
-                                     "sub_value_third": 4.5,
-                                     "double_value": Double.init(5.3),
-                                     "sub_value_four": "value",
-                                     "internal": "renamed_value",
-                                     "sub_value_five": ["two_level_down": "value"]
-                                 ]
-                             ],
-                             "value_eight": []
-                         ])
+        return JSON.init(JSONMappingLibrary.testJSON())
     }
 
     /**
@@ -136,6 +313,29 @@ class ModelGeneratorTests: XCTestCase {
         expect(baseModelFile!.fileName).to(equal(baseClass))
     }
 
+	/**
+	Generate and test the files generated for Swift4 value.
+	*/
+	func testSwift4Model() {
+		let config = defaultConfiguration(.swift4)
+		let m = ModelGenerator.init(testJSON(), config)
+		let files = m.generate()
+		runChecksForBaseModel(files, config)
+
+		for m in files {
+			let content = FileGenerator.generateFileContentWith(m, configuration: config)
+			let name = m.fileName
+			let path = "/tmp/sj/"
+			do {
+				try FileGenerator.writeToFileWith(name, content: content, path: path)
+			} catch {
+				assertionFailure("File generation Failed")
+			}
+		}
+
+	}
+
+
     /**
    Generate and test the files generated for SwiftyJSON value.
    */
@@ -143,7 +343,7 @@ class ModelGeneratorTests: XCTestCase {
         let config = defaultConfiguration(.swiftyJSON)
         let m = ModelGenerator.init(testJSON(), config)
         let files = m.generate()
-        runCheckForBaseModel(files, config, runSwiftyJSONInitialiserCheckForBaseModel(_:))
+        runChecksForBaseModel(files, config)
 
         for m in files {
             let content = FileGenerator.generateFileContentWith(m, configuration: config)
@@ -165,7 +365,7 @@ class ModelGeneratorTests: XCTestCase {
         let config = defaultConfiguration(.objectMapper)
         let m = ModelGenerator.init(testJSON(), config)
         let files = m.generate()
-        runCheckForBaseModel(files, config, runObjectMapperInitialiserCheckForBaseModel(_:))
+        runChecksForBaseModel(files, config)
 
         for m in files {
             let content = FileGenerator.generateFileContentWith(m, configuration: config)
@@ -186,7 +386,7 @@ class ModelGeneratorTests: XCTestCase {
         let config = defaultConfiguration(.marshal)
         let m = ModelGenerator.init(testJSON(), config)
         let files = m.generate()
-        runCheckForBaseModel(files, config, runMarshalInitialiserCheckForBaseModel(_:))
+        runChecksForBaseModel(files, config)
 
         for m in files {
             let content = FileGenerator.generateFileContentWith(m, configuration: config)
@@ -217,7 +417,7 @@ class ModelGeneratorTests: XCTestCase {
             isHeaderIncluded: true)
         let m = ModelGenerator.init(testJSON(), config)
         let files = m.generate()
-        runCheckForBaseModel(files, config, runMarshalInitialiserCheckForBaseModel(_:))
+        runChecksForBaseModel(files, config)
         
         for m in files {
             let content = FileGenerator.generateFileContentWith(m, configuration: config)
@@ -233,170 +433,76 @@ class ModelGeneratorTests: XCTestCase {
             }
         }
     }
-    
 
-    func runCheckForBaseModel(_ files: [ModelFile], _ config: ModelGenerationConfiguration, _ initialiserCheeck: ((ModelFile) -> Void)) {
 
-        expect(files.count).to(equal(4))
+	func runChecksForBaseModel(_ files: [ModelFile], _ config: ModelGenerationConfiguration) {
 
-        var objectKey = "ValueSix"
-        objectKey.appendPrefix(config.prefix)
-        expect(files[1].fileName).to(equal(objectKey))
+		let baseModelFile = runCheckForFiles(files, config)
 
-        var subValueKey = "ValueSeven"
-        subValueKey.appendPrefix(config.prefix)
-        expect(files[2].fileName).to(equal(subValueKey))
-
-        var objectArrayKey = "SubValueFive"
-        objectArrayKey.appendPrefix(config.prefix)
-        expect(files[3].fileName).to(equal(objectArrayKey))
-
-        let baseModelFile = files.first
-        var baseClass = config.baseClassName
-        baseClass.appendPrefix(config.prefix)
-        expect(baseModelFile!.fileName).to(equal(baseClass))
-
-        expect(baseModelFile!.component.mappingConstants.count).to(equal(8))
-        let mappingConstants = [
-            "static let valueSeven = \"value_seven\"",
-            "static let valueTwo = \"value_two\"",
-            "static let valueFour = \"value_four\"",
-            "static let valueFive = \"value_five\"",
-            "static let valueSix = \"value_six\"",
-            "static let valueOne = \"value_one\"",
-            "static let valueThree = \"value_three\"",
-            "static let valueEight = \"value_eight\""
-        ]
-        for stringConstant in mappingConstants {
-            expect(baseModelFile!.component.mappingConstants.contains(stringConstant)).to(equal(true))
-        }
-
-        expect(baseModelFile!.component.properties.count).to(equal(8))
-        let declarations = [
-            "public var valueSeven: [ACValueSeven]?",
-            "public var valueTwo: Int?",
-            "public var valueFour: Float?",
-            "public var valueFive: [String]?",
-            "public var valueSix: ACValueSix?",
-            "public var valueOne: String?",
-            "public var valueThree: Bool? = false",
-            "public var valueEight: [Any]?"
-        ]
-        for declaration in declarations {
-            expect(baseModelFile!.component.properties.contains(declaration)).to(equal(true))
-        }
-
-        expect(baseModelFile!.component.dictionaryDescriptions.count).to(equal(8))
-        let descriptions = [
-            "if let value = valueSix { dictionary[SerializationKeys.valueSix] = value.dictionaryRepresentation() }",
-            "if let value = valueFive { dictionary[SerializationKeys.valueFive] = value }",
-            "if let value = valueTwo { dictionary[SerializationKeys.valueTwo] = value }",
-            "dictionary[SerializationKeys.valueThree] = valueThree",
-            "if let value = valueSeven { dictionary[SerializationKeys.valueSeven] = value.map { $0.dictionaryRepresentation() } }",
-            "if let value = valueOne { dictionary[SerializationKeys.valueOne] = value }",
-            "if let value = valueFour { dictionary[SerializationKeys.valueFour] = value }",
-            "if let value = valueEight { dictionary[SerializationKeys.valueEight] = value }"
-        ]
-        for description in descriptions {
-            expect(baseModelFile!.component.dictionaryDescriptions.contains(description)).to(equal(true))
-        }
-
-        expect(baseModelFile!.component.encoders.count).to(equal(8))
-        let encoders = [
-            "aCoder.encode(valueSeven, forKey: SerializationKeys.valueSeven)",
-            "aCoder.encode(valueTwo, forKey: SerializationKeys.valueTwo)",
-            "aCoder.encode(valueFour, forKey: SerializationKeys.valueFour)",
-            "aCoder.encode(valueFive, forKey: SerializationKeys.valueFive)",
-            "aCoder.encode(valueSix, forKey: SerializationKeys.valueSix)",
-            "aCoder.encode(valueOne, forKey: SerializationKeys.valueOne)",
-            "aCoder.encode(valueThree, forKey: SerializationKeys.valueThree)",
-            "aCoder.encode(valueEight, forKey: SerializationKeys.valueEight)"]
-        for encoder in encoders {
-            expect(baseModelFile!.component.encoders.contains(encoder)).to(equal(true))
-        }
-
-        expect(baseModelFile!.component.decoders.count).to(equal(8))
-        let decoders = [
-            "self.valueSeven = aDecoder.decodeObject(forKey: SerializationKeys.valueSeven) as? [ACValueSeven]",
-            "self.valueTwo = aDecoder.decodeObject(forKey: SerializationKeys.valueTwo) as? Int",
-            "self.valueFour = aDecoder.decodeObject(forKey: SerializationKeys.valueFour) as? Float",
-            "self.valueFive = aDecoder.decodeObject(forKey: SerializationKeys.valueFive) as? [String]",
-            "self.valueSix = aDecoder.decodeObject(forKey: SerializationKeys.valueSix) as? ACValueSix",
-            "self.valueOne = aDecoder.decodeObject(forKey: SerializationKeys.valueOne) as? String",
-            "self.valueThree = aDecoder.decodeBool(forKey: SerializationKeys.valueThree)",
-            "self.valueEight = aDecoder.decodeObject(forKey: SerializationKeys.valueEight) as? [Any]"
-        ]
-        for decoder in decoders {
-            expect(baseModelFile!.component.decoders.contains(decoder)).to(equal(true))
-        }
+		runInitialiserCheckForModel(baseModelFile)
+		runMappingCheckForModel(baseModelFile)
+		runDeclarationCheckForModel(baseModelFile)
+		runDictionaryDescriptionCheckForModel(baseModelFile)
+		runEncoderCheckForModel(baseModelFile)
+		runDecoderCheckForModel(baseModelFile)
     }
 
-	func runSwift4InitialiserCheckForBaseModel(_ baseModelFile: ModelFile) {
-		expect(baseModelFile.component.initialisers.count).to(equal(8))
-		let initialisers = [
-			"if let items = json[SerializationKeys.valueSeven].array { valueSeven = items.map { ACValueSeven(json: $0) } }",
-			"valueTwo = json[SerializationKeys.valueTwo].int",
-			"valueFour = json[SerializationKeys.valueFour].float",
-			"if let items = json[SerializationKeys.valueFive].array { valueFive = items.map { $0.stringValue } }",
-			"valueSix = ACValueSix(json: json[SerializationKeys.valueSix])",
-			"valueOne = json[SerializationKeys.valueOne].string",
-			"valueThree = json[SerializationKeys.valueThree].boolValue",
-			"if let items = json[SerializationKeys.valueEight].array { valueEight = items.map { $0.object} }"
-		]
-		for initialiser in initialisers {
-			expect(baseModelFile.component.initialisers.contains(initialiser)).to(equal(true))
-		}
+	func runCheckForFiles(_ files: [ModelFile], _ config: ModelGenerationConfiguration) -> ModelFile {
+		expect(files.count).to(equal(4))
+
+		var objectKey = "ValueSix"
+		objectKey.appendPrefix(config.prefix)
+		expect(files[1].fileName).to(equal(objectKey))
+
+		var subValueKey = "ValueSeven"
+		subValueKey.appendPrefix(config.prefix)
+		expect(files[2].fileName).to(equal(subValueKey))
+
+		var objectArrayKey = "SubValueFive"
+		objectArrayKey.appendPrefix(config.prefix)
+		expect(files[3].fileName).to(equal(objectArrayKey))
+
+		let baseModelFile = files.first!
+		var baseClass = config.baseClassName
+		baseClass.appendPrefix(config.prefix)
+		expect(baseModelFile.fileName).to(equal(baseClass))
+
+		return baseModelFile
 	}
 
-    func runSwiftyJSONInitialiserCheckForBaseModel(_ baseModelFile: ModelFile) {
-        expect(baseModelFile.component.initialisers.count).to(equal(8))
-        let initialisers = [
-            "if let items = json[SerializationKeys.valueSeven].array { valueSeven = items.map { ACValueSeven(json: $0) } }",
-            "valueTwo = json[SerializationKeys.valueTwo].int",
-            "valueFour = json[SerializationKeys.valueFour].float",
-            "if let items = json[SerializationKeys.valueFive].array { valueFive = items.map { $0.stringValue } }",
-            "valueSix = ACValueSix(json: json[SerializationKeys.valueSix])",
-            "valueOne = json[SerializationKeys.valueOne].string",
-            "valueThree = json[SerializationKeys.valueThree].boolValue",
-            "if let items = json[SerializationKeys.valueEight].array { valueEight = items.map { $0.object} }"
-        ]
-        for initialiser in initialisers {
-            expect(baseModelFile.component.initialisers.contains(initialiser)).to(equal(true))
-        }
-    }
+	func runInitialiserCheckForModel(_ baseModelFile: ModelFile) {
+		runCheckForModelKeypathEquality(baseModelFile, \ModelComponent.initialisers)
+	}
 
-    func runObjectMapperInitialiserCheckForBaseModel(_ baseModelFile: ModelFile) {
-        expect(baseModelFile.component.initialisers.count).to(equal(8))
-        let initialisers = [
-            "valueSeven <- map[SerializationKeys.valueSeven]",
-            "valueTwo <- map[SerializationKeys.valueTwo]",
-            "valueFour <- map[SerializationKeys.valueFour]",
-            "valueFive <- map[SerializationKeys.valueFive]",
-            "valueSix <- map[SerializationKeys.valueSix]",
-            "valueEight <- map[SerializationKeys.valueEight]",
-            "valueOne <- map[SerializationKeys.valueOne]",
-            "valueThree <- map[SerializationKeys.valueThree]"
-        ]
-        for initialiser in initialisers {
-            expect(baseModelFile.component.initialisers.contains(initialiser)).to(equal(true))
-        }
-    }
+	func runMappingCheckForModel(_ baseModelFile: ModelFile) {
+		runCheckForModelKeypathEquality(baseModelFile, \ModelComponent.mappingConstants)
+	}
 
-    func runMarshalInitialiserCheckForBaseModel(_ baseModelFile: ModelFile) {
-        expect(baseModelFile.component.initialisers.count).to(equal(8))
-        let initialisers = [
-            "valueSeven = try? object.value(for: SerializationKeys.valueSeven)",
-            "valueTwo = try? object.value(for: SerializationKeys.valueTwo)",
-            "valueFour = try? object.value(for: SerializationKeys.valueFour)",
-            "valueFive = try? object.value(for: SerializationKeys.valueFive)",
-            "valueSix = try? object.value(for: SerializationKeys.valueSix)",
-            "valueOne = try? object.value(for: SerializationKeys.valueOne)",
-            "valueThree = try? object.value(for: SerializationKeys.valueThree)",
-            "valueEight = try? object.value(for: SerializationKeys.valueEight)"
-        ]
-        for initialiser in initialisers {
-            expect(baseModelFile.component.initialisers.contains(initialiser)).to(equal(true))
-        }
-    }
+	func runDeclarationCheckForModel(_ baseModelFile: ModelFile) {
+		runCheckForModelKeypathEquality(baseModelFile, \ModelComponent.properties)
+	}
 
+	func runDictionaryDescriptionCheckForModel(_ baseModelFile: ModelFile) {
+		runCheckForModelKeypathEquality(baseModelFile, \ModelComponent.dictionaryDescriptions)
+	}
+
+	func runEncoderCheckForModel(_ baseModelFile: ModelFile) {
+		runCheckForModelKeypathEquality(baseModelFile, \ModelComponent.encoders)
+	}
+
+	func runDecoderCheckForModel(_ baseModelFile: ModelFile) {
+		runCheckForModelKeypathEquality(baseModelFile, \ModelComponent.decoders)
+	}
+
+	func runCheckForModelKeypathEquality(_ baseModelFile: ModelFile,
+	                                     _ componentKeyPath: KeyPath<ModelComponent, [String]>) {
+
+		let dataComponent = baseModelFile.configuration?.testData(for: componentKeyPath)
+		let modelComponent = baseModelFile.component[keyPath: componentKeyPath]
+		let data = dataComponent ?? []
+		expect(modelComponent.count).to(equal(data.count))
+		for component in data {
+			expect(modelComponent.contains(component)).to(equal(true))
+		}
+	}
 }
