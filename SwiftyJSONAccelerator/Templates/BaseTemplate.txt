@@ -11,11 +11,11 @@ public{IS_FINAL}{OBJECT_KIND} {OBJECT_NAME}{EXTENDED_OBJECT_COLON}{EXTEND_FROM} 
 
   // MARK: Declaration for string constants to be used to decode and also serialize.
 private {SERIALIZATION_KEYS_KIND} SerializationKeys{SERIALIZATION_KEYS_EXTENSIONS} {
-{STRING_CONSTANT}
+{SERIALIZATION_KEYS_EACH}
   }
 
   // MARK: Properties
-{DECLARATION}
+{PROPERTY_DECLARATIONS}
 
 {JSON_PARSER_LIBRARY_BODY}
   /// Generates description of the object in the form of a NSDictionary.
@@ -23,7 +23,7 @@ private {SERIALIZATION_KEYS_KIND} SerializationKeys{SERIALIZATION_KEYS_EXTENSION
   /// - returns: A Key value pair containing all valid values in the object.
   public func dictionaryRepresentation() -> [String: Any] {
     var dictionary: [String: Any] = [:]
-{DESCRIPTION}
+{DICTIONARY_REPRESENTATION_PARSER}
     return dictionary
   }
 {NSCODING_SUPPORT}

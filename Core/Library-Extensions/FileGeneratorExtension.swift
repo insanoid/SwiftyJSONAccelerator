@@ -81,10 +81,10 @@ extension FileGenerator {
         let initialisers = modelFile.component.initialisers.map({ doubleTab + $0 }).joined(separator: "\n")
         let description = modelFile.component.description.map({ doubleTab + $0 }).joined(separator: "\n")
 
-        content = content.replacingOccurrences(of: "{STRING_CONSTANT}", with: stringConstants)
-        content = content.replacingOccurrences(of: "{DECLARATION}", with: declarations)
+        content = content.replacingOccurrences(of: "{SERIALIZATION_KEYS_EACH}", with: stringConstants)
+        content = content.replacingOccurrences(of: "{PROPERTY_DECLARATIONS}", with: declarations)
         content = content.replacingOccurrences(of: "{INITIALIZER}", with: initialisers)
-        content = content.replacingOccurrences(of: "{DESCRIPTION}", with: description)
+        content = content.replacingOccurrences(of: "{DICTIONARY_REPRESENTATION_PARSER}", with: description)
 
         if configuration.constructType == .structType {
             content = content.replacingOccurrences(of: " convenience", with: "")
