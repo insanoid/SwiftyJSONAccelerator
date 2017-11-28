@@ -65,4 +65,3 @@ protocol ModelFile {
     func mainBodyTemplateFileName() -> String
 
 }
-

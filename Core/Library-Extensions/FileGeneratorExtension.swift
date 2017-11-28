@@ -76,15 +76,15 @@ extension FileGenerator {
             content = content.replacingOccurrences(of: "{EXTENDED_OBJECT_COLON}", with: "")
         }
 
-        let stringConstants = modelFile.component.stringConstants.map({ doubleTab + $0 }).joined(separator: "\n")
-        let declarations = modelFile.component.declarations.map({ singleTab + $0 }).joined(separator: "\n")
+        let mappingConstants = modelFile.component.mappingConstants.map({ doubleTab + $0 }).joined(separator: "\n")
+        let properties = modelFile.component.properties.map({ singleTab + $0 }).joined(separator: "\n")
         let initialisers = modelFile.component.initialisers.map({ doubleTab + $0 }).joined(separator: "\n")
-        let description = modelFile.component.description.map({ doubleTab + $0 }).joined(separator: "\n")
+        let dictionaryDescriptions = modelFile.component.dictionaryDescriptions.map({ doubleTab + $0 }).joined(separator: "\n")
 
-        content = content.replacingOccurrences(of: "{SERIALIZATION_KEYS_EACH}", with: stringConstants)
-        content = content.replacingOccurrences(of: "{PROPERTY_DECLARATIONS}", with: declarations)
+        content = content.replacingOccurrences(of: "{SERIALIZATION_KEYS_EACH}", with: mappingConstants)
+        content = content.replacingOccurrences(of: "{PROPERTY_DECLARATIONS}", with: properties)
         content = content.replacingOccurrences(of: "{INITIALIZER}", with: initialisers)
-        content = content.replacingOccurrences(of: "{DICTIONARY_REPRESENTATION_PARSER}", with: description)
+        content = content.replacingOccurrences(of: "{DICTIONARY_REPRESENTATION_PARSER}", with: dictionaryDescriptions)
 
         if configuration.constructType == .structType {
             content = content.replacingOccurrences(of: " convenience", with: "")

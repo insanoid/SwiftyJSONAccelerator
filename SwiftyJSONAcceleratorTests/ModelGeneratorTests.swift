@@ -256,8 +256,8 @@ class ModelGeneratorTests: XCTestCase {
         baseClass.appendPrefix(config.prefix)
         expect(baseModelFile!.fileName).to(equal(baseClass))
 
-        expect(baseModelFile!.component.stringConstants.count).to(equal(8))
-        let stringConstants = [
+        expect(baseModelFile!.component.mappingConstants.count).to(equal(8))
+        let mappingConstants = [
             "static let valueSeven = \"value_seven\"",
             "static let valueTwo = \"value_two\"",
             "static let valueFour = \"value_four\"",
@@ -267,11 +267,12 @@ class ModelGeneratorTests: XCTestCase {
             "static let valueThree = \"value_three\"",
             "static let valueEight = \"value_eight\""
         ]
-        for stringConstant in stringConstants {
-            expect(baseModelFile!.component.stringConstants.contains(stringConstant)).to(equal(true))
+        for stringConstant in mappingConstants {
+            expect(baseModelFile!.component.mappingConstants.contains(stringConstant)).to(equal(true))
         }
 
-        expect(baseModelFile!.component.declarations.count).to(equal(8))
+        expect(baseModelFile!.component.properties.
+count).to(equal(8))
         let declarations = [
             "public var valueSeven: [ACValueSeven]?",
             "public var valueTwo: Int?",
@@ -283,10 +284,11 @@ class ModelGeneratorTests: XCTestCase {
             "public var valueEight: [Any]?"
         ]
         for declaration in declarations {
-            expect(baseModelFile!.component.declarations.contains(declaration)).to(equal(true))
+            expect(baseModelFile!.component.properties.
+contains(declaration)).to(equal(true))
         }
 
-        expect(baseModelFile!.component.description.count).to(equal(8))
+        expect(baseModelFile!.component.dictionaryDescriptions.count).to(equal(8))
         let descriptions = [
             "if let value = valueSix { dictionary[SerializationKeys.valueSix] = value.dictionaryRepresentation() }",
             "if let value = valueFive { dictionary[SerializationKeys.valueFive] = value }",
@@ -298,7 +300,7 @@ class ModelGeneratorTests: XCTestCase {
             "if let value = valueEight { dictionary[SerializationKeys.valueEight] = value }"
         ]
         for description in descriptions {
-            expect(baseModelFile!.component.description.contains(description)).to(equal(true))
+            expect(baseModelFile!.component.dictionaryDescriptions.contains(description)).to(equal(true))
         }
 
         expect(baseModelFile!.component.encoders.count).to(equal(8))
