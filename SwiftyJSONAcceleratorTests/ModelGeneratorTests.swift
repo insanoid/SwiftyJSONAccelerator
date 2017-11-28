@@ -102,8 +102,8 @@ class ModelGeneratorTests: XCTestCase {
     /**
    Test for invalid JSON.
    */
-    func testSwiftyJSONForInvalidJSON() {
-        let config = defaultConfiguration(.swiftyJSON)
+    func testSwift4ForInvalidJSON() {
+        let config = defaultConfiguration(.swift4)
         let m = ModelGenerator.init(JSON.init(["hello!"]), config)
         let files = m.generate()
         expect(files.count).to(equal(0))
@@ -112,8 +112,8 @@ class ModelGeneratorTests: XCTestCase {
     /**
    Generate files for JSON which is an array.
    */
-    func testSwiftyJSONModelWithRootAsArray() {
-        let config = defaultConfiguration(.swiftyJSON)
+    func testSwift4ModelWithRootAsArray() {
+        let config = defaultConfiguration(.swift4)
         let m = ModelGenerator.init(JSON.init([testJSON()]), config)
         let files = m.generate()
         expect(files.count).to(equal(4))
@@ -271,8 +271,7 @@ class ModelGeneratorTests: XCTestCase {
             expect(baseModelFile!.component.mappingConstants.contains(stringConstant)).to(equal(true))
         }
 
-        expect(baseModelFile!.component.properties.
-count).to(equal(8))
+        expect(baseModelFile!.component.properties.count).to(equal(8))
         let declarations = [
             "public var valueSeven: [ACValueSeven]?",
             "public var valueTwo: Int?",
@@ -280,12 +279,11 @@ count).to(equal(8))
             "public var valueFive: [String]?",
             "public var valueSix: ACValueSix?",
             "public var valueOne: String?",
-            "public var valueThree: Bool = false",
+            "public var valueThree: Bool? = false",
             "public var valueEight: [Any]?"
         ]
         for declaration in declarations {
-            expect(baseModelFile!.component.properties.
-contains(declaration)).to(equal(true))
+            expect(baseModelFile!.component.properties.contains(declaration)).to(equal(true))
         }
 
         expect(baseModelFile!.component.dictionaryDescriptions.count).to(equal(8))
@@ -332,6 +330,23 @@ contains(declaration)).to(equal(true))
             expect(baseModelFile!.component.decoders.contains(decoder)).to(equal(true))
         }
     }
+
+	func runSwift4InitialiserCheckForBaseModel(_ baseModelFile: ModelFile) {
+		expect(baseModelFile.component.initialisers.count).to(equal(8))
+		let initialisers = [
+			"if let items = json[SerializationKeys.valueSeven].array { valueSeven = items.map { ACValueSeven(json: $0) } }",
+			"valueTwo = json[SerializationKeys.valueTwo].int",
+			"valueFour = json[SerializationKeys.valueFour].float",
+			"if let items = json[SerializationKeys.valueFive].array { valueFive = items.map { $0.stringValue } }",
+			"valueSix = ACValueSix(json: json[SerializationKeys.valueSix])",
+			"valueOne = json[SerializationKeys.valueOne].string",
+			"valueThree = json[SerializationKeys.valueThree].boolValue",
+			"if let items = json[SerializationKeys.valueEight].array { valueEight = items.map { $0.object} }"
+		]
+		for initialiser in initialisers {
+			expect(baseModelFile.component.initialisers.contains(initialiser)).to(equal(true))
+		}
+	}
 
     func runSwiftyJSONInitialiserCheckForBaseModel(_ baseModelFile: ModelFile) {
         expect(baseModelFile.component.initialisers.count).to(equal(8))
