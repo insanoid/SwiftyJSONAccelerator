@@ -40,6 +40,14 @@ struct FileGenerator {
 			{INITIALIZER}
 			}
 
+			/// Generates description of the object in the form of a NSDictionary.
+			///
+			/// - returns: A Key value pair containing all valid values in the object.
+			public func dictionaryRepresentation() -> [String: Any] {
+			var dictionary: [String: Any] = [:]
+			{DICTIONARY_REPRESENTATION_PARSER}
+			return dictionary
+			}
 			"""
 		case "ObjectMapperTemplate":
 			return """
@@ -56,6 +64,15 @@ struct FileGenerator {
 			/// - parameter map: A mapping from ObjectMapper.
 			public func mapping(map: Map) {
 			{INITIALIZER}
+			}
+
+			/// Generates description of the object in the form of a NSDictionary.
+			///
+			/// - returns: A Key value pair containing all valid values in the object.
+			public func dictionaryRepresentation() -> [String: Any] {
+			var dictionary: [String: Any] = [:]
+			{DICTIONARY_REPRESENTATION_PARSER}
+			return dictionary
 			}
 			"""
 		case "Swift4Template":

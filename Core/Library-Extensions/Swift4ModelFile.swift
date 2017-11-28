@@ -117,14 +117,11 @@ struct Swift4ModelFile: ModelFile, DefaultModelFileComponent {
 		}
 	}
 
-	mutating func finishedGeneration() {
-		 self.component.description = [
-"if let encodedData = try? JSONEncoder().encode(self),",
-"let jsonObj = try? JSONSerialization.jsonObject(with: encodedData, options: .allowFragments),",
-"let jsonDict = jsonObj as? [String: Any] {",
-"dictionary.merge(jsonDict) { (_, new) in new }",
-"}"
-		]
+	func genPrimitiveVariableDeclaration(_ name: String, _ type: String) -> String {
+		if type == VariableType.bool.rawValue {
+			return "public var \(name): \(type) = false"
+		}
+		return "public var \(name): \(type)?"
 	}
-
+	
 }

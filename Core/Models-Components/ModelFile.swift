@@ -64,17 +64,5 @@ protocol ModelFile {
    */
     func mainBodyTemplateFileName() -> String
 
-	/**
-	The callback when file generation is completed, before adding to list of files generated.
-	*/
-	mutating func finishedGeneration()
 }
 
-extension ModelFile {
-	/**
-	Empty implementation by default
-	*/
-	mutating func finishedGeneration() {
-		//Do Nothing
-	}
-}

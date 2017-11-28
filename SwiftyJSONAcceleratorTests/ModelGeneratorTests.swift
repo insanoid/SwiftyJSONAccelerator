@@ -279,7 +279,7 @@ class ModelGeneratorTests: XCTestCase {
             "public var valueFive: [String]?",
             "public var valueSix: ACValueSix?",
             "public var valueOne: String?",
-            "public var valueThree: Bool? = false",
+            "public var valueThree: Bool = false",
             "public var valueEight: [Any]?"
         ]
         for declaration in declarations {
