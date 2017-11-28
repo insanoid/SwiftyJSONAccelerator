@@ -9,66 +9,67 @@
 import Foundation
 
 /**
- Various supported variable types
+Various supported variable types
 
- - String:       String.
- - Int:          Integer.
- - Float:        Float.
- - Double: 		 Double.
- - Bool:         Boolean.
- - Array:        Array.
- - Object:       Object.
- */
+- String:       String.
+- Int:          Integer.
+- Float:        Float.
+- Double: 		 Double.
+- Bool:         Boolean.
+- Array:        Array.
+- Object:       Object.
+*/
 enum VariableType: String {
-  case String = "String"
-  case Int = "Int"
-  case Float = "Float"
-  case Double = "Double"
-  case Bool = "Bool"
-  case Array = "[]"
-  case Object = "{OBJ}"
-  case Null = "Any"
+	case string = "String"
+	case int = "Int"
+	case float = "Float"
+	case double = "Double"
+	case bool = "Bool"
+	case array = "[]"
+	case object = "{OBJ}"
+	case null = "Any"
 }
 
 /**
- Various types of construct that can be generated.
+Various types of construct that can be generated.
 
- - ClassType:  Model with construct type class.
- - StructType: Model with construct type struct.
- */
+- ClassType:  Model with construct type class.
+- StructType: Model with construct type struct.
+*/
 enum ConstructType: String {
-  case ClassType = "class"
-  case StructType = "struct"
+	case classType = "class"
+	case structType = "struct"
 }
 
 /**
- List of supported mapping libraries.
+List of supported mapping libraries.
 
- - SwiftyJSON:   SwiftyJSON - https://github.com/SwiftyJSON/SwiftyJSON
- - ObjectMapper: ObjectMapper - https://github.com/Hearst-DD/ObjectMapper
- - Marshal: Marshal - https://github.com/utahiosmac/Marshal
- */
+- SwiftyJSON:   SwiftyJSON - https://github.com/SwiftyJSON/SwiftyJSON
+- ObjectMapper: ObjectMapper - https://github.com/Hearst-DD/ObjectMapper
+- Marshal: Marshal - https://github.com/utahiosmac/Marshal
+*/
 enum JSONMappingLibrary: String {
-  case SwiftyJSON
-  case ObjectMapper
-  case Marshal
+	case swiftyJSON = "SwiftyJSON"
+	case objectMapper = "ObjectMapper"
+	case marshal = "Marshal"
+	case swift4 = "Swift4"
 }
 
 /**
- Types of property.
+Types of property.
 
- - Value:       Value type like String, Integer, Float etc.
- - ValueArray:  Array of Value
- - Object:      Object type
- - ObjectArray: Array of object
- - EmptyArray:  An empty array
- - Null:        Null value
- */
+- Value:       Value type like String, Integer, Float etc.
+- ValueArray:  Array of Value
+- Object:      Object type
+- ObjectArray: Array of object
+- EmptyArray:  An empty array
+- Null:        Null value
+*/
 enum PropertyType: String {
-  case ValueType
-  case ValueTypeArray
-  case ObjectType
-  case ObjectTypeArray
-  case EmptyArray
-  case NullType
+	case valueType = "ValueType"
+	case valueTypeArray = "ValueTypeArray"
+	case objectType = "ObjectType"
+	case objectTypeArray = "ObjectTypeArray"
+	case emptyArray = "EmptyArray"
+	case nullType = "NullType"
 }

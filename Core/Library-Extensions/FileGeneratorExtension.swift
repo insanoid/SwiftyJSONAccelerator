@@ -12,39 +12,57 @@ extension FileGenerator {
 
     static func generateFileContentWith(_ modelFile: ModelFile, configuration: ModelGenerationConfiguration) -> String {
 
-        var content = loadFileWith("BaseTemplate")
+		var content: String = ""
+
+		content = loadFileWith("BaseTemplate")
+
         let singleTab = "  ", doubleTab = "    "
         content = content.replacingOccurrences(of: "{OBJECT_NAME}", with: modelFile.fileName)
         content = content.replacingOccurrences(of: "{DATE}", with: todayDateString())
         content = content.replacingOccurrences(of: "{OBJECT_KIND}", with: modelFile.type.rawValue)
         content = content.replacingOccurrences(of: "{JSON_PARSER_LIBRARY_BODY}", with: loadFileWith(modelFile.mainBodyTemplateFileName()))
 
-        if modelFile.type == .ClassType {
+        if modelFile.type == .classType {
             content = content.replacingOccurrences(of: "{REQUIRED}", with: " required ")
         } else {
             content = content.replacingOccurrences(of: "{REQUIRED}", with: " ")
         }
-        if let authorName = configuration.authorName {
+
+		if let authorName = configuration.authorName {
             content = content.replacingOccurrences(of: "__NAME__", with: authorName)
         }
-        if let companyName = configuration.companyName {
+
+		if let companyName = configuration.companyName {
             content = content.replacingOccurrences(of: "__MyCompanyName__", with: companyName)
         }
-        if configuration.isFinalRequired {
-            content = content.replacingOccurrences(of: "{INCLUDE_HEADER}", with: "\nimport \(modelFile.moduleName())")
+
+		if configuration.isFinalRequired, let moduleName = modelFile.moduleName() {
+			content = content.replacingOccurrences(of: "{INCLUDE_HEADER}", with: "\nimport \(moduleName)")
         } else {
             content = content.replacingOccurrences(of: "{INCLUDE_HEADER}", with: "")
         }
 
+		if configuration.modelMappingLibrary == .swift4 {
+			content = content.replacingOccurrences(of: "{SERIALIZATION_KEYS_KIND}", with: "enum")
+			content = content.replacingOccurrences(of: "{SERIALIZATION_KEYS_EXTENSIONS}", with: " : String, CodingKeys")
+		} else {
+			content = content.replacingOccurrences(of: "{SERIALIZATION_KEYS_KIND}", with: "struct")
+			content = content.replacingOccurrences(of: "{SERIALIZATION_KEYS_EXTENSIONS}", with: "")
+		}
+
         var classesExtendFrom: [String] = []
+
         if let extendFrom = modelFile.baseElementName() {
             classesExtendFrom = [extendFrom]
         }
-        if configuration.supportNSCoding && configuration.constructType == .ClassType {
-            classesExtendFrom = classesExtendFrom + ["NSCoding"]
+
+        if configuration.supportNSCoding
+			&& configuration.constructType == .classType
+			&& configuration.modelMappingLibrary != .swift4 {
+            classesExtendFrom += ["NSCoding"]
         }
 
-        if configuration.isFinalRequired && configuration.constructType == .ClassType {
+        if configuration.isFinalRequired && configuration.constructType == .classType {
             content = content.replacingOccurrences(of: "{IS_FINAL}", with: " final ")
         } else {
             content = content.replacingOccurrences(of: "{IS_FINAL}", with: " ")
@@ -58,21 +76,24 @@ extension FileGenerator {
             content = content.replacingOccurrences(of: "{EXTENDED_OBJECT_COLON}", with: "")
         }
 
-        let stringConstants = modelFile.component.stringConstants.map({ doubleTab + $0 }).joined(separator: "\n")
-        let declarations = modelFile.component.declarations.map({ singleTab + $0 }).joined(separator: "\n")
+        let mappingConstants = modelFile.component.mappingConstants.map({ doubleTab + $0 }).joined(separator: "\n")
+        let properties = modelFile.component.properties.map({ singleTab + $0 }).joined(separator: "\n")
         let initialisers = modelFile.component.initialisers.map({ doubleTab + $0 }).joined(separator: "\n")
-        let description = modelFile.component.description.map({ doubleTab + $0 }).joined(separator: "\n")
+        let dictionaryDescriptions = modelFile.component.dictionaryDescriptions.map({ doubleTab + $0 }).joined(separator: "\n")
 
-        content = content.replacingOccurrences(of: "{STRING_CONSTANT}", with: stringConstants)
-        content = content.replacingOccurrences(of: "{DECLARATION}", with: declarations)
+        content = content.replacingOccurrences(of: "{SERIALIZATION_KEYS_EACH}", with: mappingConstants)
+        content = content.replacingOccurrences(of: "{PROPERTY_DECLARATIONS}", with: properties)
         content = content.replacingOccurrences(of: "{INITIALIZER}", with: initialisers)
-        content = content.replacingOccurrences(of: "{DESCRIPTION}", with: description)
+        content = content.replacingOccurrences(of: "{DICTIONARY_REPRESENTATION_PARSER}", with: dictionaryDescriptions)
 
-        if configuration.constructType == .StructType {
+        if configuration.constructType == .structType {
             content = content.replacingOccurrences(of: " convenience", with: "")
         }
 
-        if configuration.supportNSCoding && configuration.constructType == .ClassType {
+        if configuration.supportNSCoding
+			&& configuration.constructType == .classType
+			&& configuration.modelMappingLibrary != .swift4 {
+
             content = content.replacingOccurrences(of: "{NSCODING_SUPPORT}", with: loadFileWith("NSCodingTemplate"))
             let encoders = modelFile.component.encoders.map({ doubleTab + $0 }).joined(separator: "\n")
             let decoders = modelFile.component.decoders.map({ doubleTab + $0 }).joined(separator: "\n")
@@ -96,9 +117,14 @@ extension FileGenerator {
      */
     static internal func writeToFileWith(_ name: String, content: String, path: String) throws {
         let filename = path.appendingFormat("%@", (name + ".swift"))
-        try FileManager.default.createDirectory(at: URL.init(fileURLWithPath: path),
-                                                withIntermediateDirectories: true,
-                                                attributes: nil)
+
+		let directoryURL = URL.init(fileURLWithPath: path)
+		try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true)
+
+		if FileManager.default.fileExists(atPath: filename) {
+			try FileManager.default.removeItem(atPath: filename)
+		}
+
         try content.write(toFile: filename, atomically: true, encoding: String.Encoding.utf8)
     }
 

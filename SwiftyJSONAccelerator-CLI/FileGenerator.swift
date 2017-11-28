@@ -27,20 +27,131 @@ struct FileGenerator {
         return ""
     }
 
-    static func stringFor(filename: String) throws -> String {
-        switch filename {
-        case "MarshalTemplate":
-            return "  // MARK: Marshal Initializers\n\n  /// Map a JSON object to this class using Marshal.\n  ///\n  /// - parameter object: A mapping from ObjectMapper\n  public{REQUIRED}init(object: MarshaledObject) {\n{INITIALIZER}\n  }\n"
-        case "ObjectMapperTemplate":
-            return "  // MARK: ObjectMapper Initializers\n  /// Map a JSON object to this class using ObjectMapper.\n  ///\n  /// - parameter map: A mapping from ObjectMapper.\n  public{REQUIRED}init?(map: Map){\n\n  }\n\n  /// Map a JSON object to this class using ObjectMapper.\n  ///\n  /// - parameter map: A mapping from ObjectMapper.\n  public func mapping(map: Map) {\n{INITIALIZER}\n  }\n"
-        case "SwiftyJSONTemplate":
-            return "  // MARK: SwiftyJSON Initializers\n  /// Initiates the instance based on the object.\n  ///\n  /// - parameter object: The object of either Dictionary or Array kind that was passed.\n  /// - returns: An initialized instance of the class.\n  public convenience init(object: Any) {\n    self.init(json: JSON(object))\n  }\n\n  /// Initiates the instance based on the JSON that was passed.\n  ///\n  /// - parameter json: JSON object from SwiftyJSON.\n  public{REQUIRED}init(json: JSON) {\n{INITIALIZER}\n  }\n"
-        case "BaseTemplate":
-            return "//\n//  {OBJECT_NAME}.swift\n//\n//  Created by __NAME__ on {DATE}\n//  Copyright (c) __MyCompanyName__. All rights reserved.\n//\n\nimport Foundation{INCLUDE_HEADER}\n\npublic{IS_FINAL}{OBJECT_KIND} {OBJECT_NAME}{EXTENDED_OBJECT_COLON}{EXTEND_FROM} {\n\n  // MARK: Declaration for string constants to be used to decode and also serialize.\n  private struct SerializationKeys {\n{STRING_CONSTANT}\n  }\n\n  // MARK: Properties\n{DECLARATION}\n\n{JSON_PARSER_LIBRARY_BODY}\n  /// Generates description of the object in the form of a NSDictionary.\n  ///\n  /// - returns: A Key value pair containing all valid values in the object.\n  public func dictionaryRepresentation() -> [String: Any] {\n    var dictionary: [String: Any] = [:]\n{DESCRIPTION}\n    return dictionary\n  }\n{NSCODING_SUPPORT}\n}\n"
-        case "NSCodingTemplate":
-            return "\n  // MARK: NSCoding Protocol\n  required public init(coder aDecoder: NSCoder) {\n{DECODERS}\n  }\n\n  public func encode(with aCoder: NSCoder) {\n{ENCODERS}\n  }\n"
-        default:
-            throw NSError.init(domain: "SwiftyJSONAccelerator", code: 0, userInfo: nil)
-        }
-    }
+	static func stringFor(filename: String) throws -> String {
+		switch filename {
+		case "MarshalTemplate":
+			return """
+			// MARK: Marshal Initializers
+
+			/// Map a JSON object to this class using Marshal.
+			///
+			/// - parameter object: A mapping from ObjectMapper
+			public{REQUIRED}init(object: MarshaledObject) {
+			{INITIALIZER}
+			}
+
+			/// Generates description of the object in the form of a NSDictionary.
+			///
+			/// - returns: A Key value pair containing all valid values in the object.
+			public func dictionaryRepresentation() -> [String: Any] {
+			var dictionary: [String: Any] = [:]
+			{DICTIONARY_REPRESENTATION_PARSER}
+			return dictionary
+			}
+			"""
+		case "ObjectMapperTemplate":
+			return """
+			// MARK: ObjectMapper Initializers
+			/// Map a JSON object to this class using ObjectMapper.
+			///
+			/// - parameter map: A mapping from ObjectMapper.
+			public{REQUIRED}init?(map: Map){
+
+			}
+
+			/// Map a JSON object to this class using ObjectMapper.
+			///
+			/// - parameter map: A mapping from ObjectMapper.
+			public func mapping(map: Map) {
+			{INITIALIZER}
+			}
+
+			/// Generates description of the object in the form of a NSDictionary.
+			///
+			/// - returns: A Key value pair containing all valid values in the object.
+			public func dictionaryRepresentation() -> [String: Any] {
+			var dictionary: [String: Any] = [:]
+			{DICTIONARY_REPRESENTATION_PARSER}
+			return dictionary
+			}
+			"""
+		case "Swift4Template":
+			return """
+			"""
+		case "SwiftyJSONTemplate":
+			return
+			"""
+			// MARK: SwiftyJSON Initializers
+			/// Initiates the instance based on the object.
+			///
+			/// - parameter object: The object of either Dictionary or Array kind that was passed.
+			/// - returns: An initialized instance of the class.
+			public convenience init(object: Any) {
+			self.init(json: JSON(object))
+			}
+
+			/// Initiates the instance based on the JSON that was passed.
+			///
+			/// - parameter json: JSON object from SwiftyJSON.
+			public{REQUIRED}init(json: JSON) {
+			{INITIALIZER}
+			}
+
+			/// Generates description of the object in the form of a NSDictionary.
+			///
+			/// - returns: A Key value pair containing all valid values in the object.
+			public func dictionaryRepresentation() -> [String: Any] {
+			var dictionary: [String: Any] = [:]
+			{DICTIONARY_REPRESENTATION_PARSER}
+			return dictionary
+			}
+			"""
+		case "BaseTemplate":
+			return """
+			//
+			//  {OBJECT_NAME}.swift
+			//
+			//  Created by __NAME__ on {DATE}
+			//  Copyright (c) __MyCompanyName__. All rights reserved.
+			//
+
+			import Foundation{INCLUDE_HEADER}
+
+			public{IS_FINAL}{OBJECT_KIND} {OBJECT_NAME}{EXTENDED_OBJECT_COLON}{EXTEND_FROM} {
+
+			// MARK: Declaration for string constants to be used to decode and also serialize.
+			private struct SerializationKeys {
+			{SERIALIZATION_KEYS_EACH}
+			}
+
+			// MARK: Properties
+			{PROPERTY_DECLARATIONS}
+
+			{JSON_PARSER_LIBRARY_BODY}
+			/// Generates description of the object in the form of a NSDictionary.
+			///
+			/// - returns: A Key value pair containing all valid values in the object.
+			public func dictionaryRepresentation() -> [String: Any] {
+			var dictionary: [String: Any] = [:]
+			{DICTIONARY_REPRESENTATION_PARSER}
+			return dictionary
+			}
+			{NSCODING_SUPPORT}
+			}
+			"""
+		case "NSCodingTemplate":
+			return """
+			// MARK: NSCoding Protocol
+			required public init(coder aDecoder: NSCoder) {
+			{DECODERS}
+			}
+
+			public func encode(with aCoder: NSCoder) {
+			{ENCODERS}
+			}
+			"""
+		default:
+			throw NSError.init(domain: "SwiftyJSONAccelerator", code: 0, userInfo: nil)
+		}
+	}
 }

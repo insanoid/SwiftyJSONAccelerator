@@ -14,9 +14,9 @@ import Foundation
 internal struct ModelComponent {
 
   /// Declaration of properties.
-  var declarations: [String]
+  var properties: [String]
   /// String constants to store the keys.
-  var stringConstants: [String]
+  var mappingConstants: [String]
   /// Initialisers for the properties.
   var initialisers: [String]
   /// Encoders for NSCoding support.
@@ -24,17 +24,17 @@ internal struct ModelComponent {
   /// Decoders for NSCoding support.
   var decoders: [String]
   /// Description printer for each of the properties.
-  var description: [String]
+  var dictionaryDescriptions: [String]
 
   /**
    Initialise a blank model component structure.
    */
   init() {
-    declarations = []
-    stringConstants = []
+    properties = []
+    mappingConstants = []
     initialisers = []
     encoders = []
     decoders = []
-    description = []
+    dictionaryDescriptions = []
   }
 }

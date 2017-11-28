@@ -13,3 +13,12 @@
   public{REQUIRED}init(json: JSON) {
 {INITIALIZER}
   }
+
+/// Generates description of the object in the form of a NSDictionary.
+///
+/// - returns: A Key value pair containing all valid values in the object.
+public func dictionaryRepresentation() -> [String: Any] {
+var dictionary: [String: Any] = [:]
+{DICTIONARY_REPRESENTATION_PARSER}
+return dictionary
+}

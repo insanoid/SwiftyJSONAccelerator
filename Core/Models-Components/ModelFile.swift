@@ -48,7 +48,7 @@ protocol ModelFile {
 
    - returns: String representing the name of the model type.
    */
-    func moduleName() -> String
+    func moduleName() -> String?
 
     /**
    Name of the base element the structure has to extend from.

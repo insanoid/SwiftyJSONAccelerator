@@ -8,7 +8,7 @@
 
 import Cocoa
 
-fileprivate func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
+private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
     switch (lhs, rhs) {
     case let (l?, r?):
         return l < r
@@ -19,7 +19,7 @@ fileprivate func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 }
 
-fileprivate func <= <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
+private func <= <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
     switch (lhs, rhs) {
     case let (l?, r?):
         return l <= r
@@ -99,7 +99,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
    */
     func validateAndFormat(_ pretty: Bool) -> Bool {
 
-        if textView?.string?.characters.count == 0 {
+        if textView?.string.characters.count == 0 {
             return false
         }
 
@@ -108,13 +108,13 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         if valid {
             if pretty {
                 textView?.string = JSONHelper.prettyJSON(textView?.string)!
-                textView!.lnv_textDidChange(Notification.init(name: NSNotification.Name.NSTextDidChange, object: nil))
+                textView!.lnv_textDidChange(Notification.init(name: NSText.didChangeNotification, object: nil))
                 return true
             }
             correctJSONMessage()
         } else if error != nil {
             handleError(error)
-            textView!.lnv_textDidChange(Notification.init(name: NSNotification.Name.NSTextDidChange, object: nil))
+            textView!.lnv_textDidChange(Notification.init(name: NSText.didChangeNotification, object: nil))
             return false
         } else {
             genericJSONError()
@@ -148,9 +148,9 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         // Checks for validity of the content, else can cause crashes.
         if object != nil {
 
-            let nsCodingState = self.enableNSCodingSupportCheckbox.state == 1 && (modelTypeSelectorSegment.selectedSegment == 1)
-            let isFinalClass = self.setAsFinalCheckbox.state == 1 && (modelTypeSelectorSegment.selectedSegment == 1)
-            let constructType = self.modelTypeSelectorSegment.selectedSegment == 0 ? ConstructType.StructType : ConstructType.ClassType
+            let nsCodingState = self.enableNSCodingSupportCheckbox.state.rawValue == 1 && (modelTypeSelectorSegment.selectedSegment == 1)
+            let isFinalClass = self.setAsFinalCheckbox.state.rawValue == 1 && (modelTypeSelectorSegment.selectedSegment == 1)
+            let constructType = self.modelTypeSelectorSegment.selectedSegment == 0 ? ConstructType.structType : ConstructType.classType
             let libraryType = libraryForIndex(self.librarySelector.indexOfSelectedItem)
             let configuration = ModelGenerationConfiguration.init(
                                                                   filePath: filePath!.appending("/"),
@@ -162,7 +162,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
                                                                   modelMappingLibrary: libraryType,
                                                                   supportNSCoding: nsCodingState,
                                                                   isFinalRequired: isFinalClass,
-                                                                  isHeaderIncluded: includeHeaderImportCheckbox.state == 1 ? true : false)
+                                                                  isHeaderIncluded: includeHeaderImportCheckbox.state.rawValue == 1 ? true : false)
             let modelGenerator = ModelGenerator.init(JSON(object!), configuration)
             let filesGenerated = modelGenerator.generate()
             for file in filesGenerated {
@@ -188,11 +188,13 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
 
     func libraryForIndex(_ index: Int) -> JSONMappingLibrary {
         if index == 2 {
-            return JSONMappingLibrary.ObjectMapper
+            return JSONMappingLibrary.objectMapper
         } else if index == 3 {
-            return JSONMappingLibrary.Marshal
+            return JSONMappingLibrary.marshal
+		} else if index == 4 {
+			return JSONMappingLibrary.swiftyJSON
         }
-        return JSONMappingLibrary.SwiftyJSON
+		return JSONMappingLibrary.swift4
     }
 
     @IBAction func recalcEnabledBoxes(_ sender: AnyObject) {
@@ -296,7 +298,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
    Show that the JSON is fine with proper icon.
    */
     func correctJSONMessage() {
-        errorImageView?.image = NSImage.init(named: "success")
+        errorImageView?.image = NSImage.init(named: NSImage.Name(rawValue: "success"))
         messageLabel?.stringValue = "Valid JSON!"
     }
 
@@ -307,7 +309,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
    - message: Error message that is to be shown.
    */
     func invalidJSONError(_ message: String) {
-        errorImageView?.image = NSImage.init(named: "failure")
+        errorImageView?.image = NSImage.init(named: NSImage.Name(rawValue: "failure"))
         messageLabel?.stringValue = message
     }
 
@@ -337,7 +339,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         fileDialog.canChooseFiles = false
         fileDialog.canChooseDirectories = true
         fileDialog.canCreateDirectories = true
-        if fileDialog.runModal() == NSModalResponseOK {
+        if fileDialog.runModal() == NSApplication.ModalResponse.OK {
             return fileDialog.url?.path
         }
         return nil

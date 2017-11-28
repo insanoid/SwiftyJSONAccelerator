@@ -22,7 +22,7 @@ struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
     // MARK: - Initialisers.
     init() {
         self.fileName = ""
-        type = ConstructType.StructType
+        type = ConstructType.structType
         component = ModelComponent.init()
         sourceJSON = JSON.init([])
     }
@@ -33,7 +33,7 @@ struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
         self.configuration = configuration
     }
 
-    func moduleName() -> String {
+    func moduleName() -> String? {
         return "SwiftyJSON"
     }
 
@@ -47,42 +47,42 @@ struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
 
     mutating func generateAndAddComponentsFor(_ property: PropertyComponent) {
         switch property.propertyType {
-        case .ValueType:
-            component.stringConstants.append(genStringConstant(property.constantName, property.key))
+        case .valueType:
+            component.mappingConstants.append(genStringConstant(property.constantName, property.key))
             component.initialisers.append(genInitializerForVariable(property.name, property.type, property.constantName))
-            component.declarations.append(genVariableDeclaration(property.name, property.type, false))
-            component.description.append(genDescriptionForPrimitive(property.name, property.type, property.constantName))
+            component.properties.append(genVariableDeclaration(property.name, property.type, false))
+            component.dictionaryDescriptions.append(genDescriptionForPrimitive(property.name, property.type, property.constantName))
             component.decoders.append(genDecoder(property.name, property.type, property.constantName, false))
             component.encoders.append(genEncoder(property.name, property.type, property.constantName))
-        case .ValueTypeArray:
-            component.stringConstants.append(genStringConstant(property.constantName, property.key))
+        case .valueTypeArray:
+            component.mappingConstants.append(genStringConstant(property.constantName, property.key))
             component.initialisers.append(genInitializerForPrimitiveArray(property.name, property.type, property.constantName))
-            component.declarations.append(genVariableDeclaration(property.name, property.type, true))
-            component.description.append(genDescriptionForPrimitiveArray(property.name, property.constantName))
+            component.properties.append(genVariableDeclaration(property.name, property.type, true))
+            component.dictionaryDescriptions.append(genDescriptionForPrimitiveArray(property.name, property.constantName))
             component.decoders.append(genDecoder(property.name, property.type, property.constantName, true))
             component.encoders.append(genEncoder(property.name, property.type, property.constantName))
-        case .ObjectType:
-            component.stringConstants.append(genStringConstant(property.constantName, property.key))
+        case .objectType:
+            component.mappingConstants.append(genStringConstant(property.constantName, property.key))
             component.initialisers.append(genInitializerForObject(property.name, property.type, property.constantName))
-            component.declarations.append(genVariableDeclaration(property.name, property.type, false))
-            component.description.append(genDescriptionForObject(property.name, property.constantName))
+            component.properties.append(genVariableDeclaration(property.name, property.type, false))
+            component.dictionaryDescriptions.append(genDescriptionForObject(property.name, property.constantName))
             component.decoders.append(genDecoder(property.name, property.type, property.constantName, false))
             component.encoders.append(genEncoder(property.name, property.type, property.constantName))
-        case .ObjectTypeArray:
-            component.stringConstants.append(genStringConstant(property.constantName, property.key))
+        case .objectTypeArray:
+            component.mappingConstants.append(genStringConstant(property.constantName, property.key))
             component.initialisers.append(genInitializerForObjectArray(property.name, property.type, property.constantName))
-            component.declarations.append(genVariableDeclaration(property.name, property.type, true))
-            component.description.append(genDescriptionForObjectArray(property.name, property.constantName))
+            component.properties.append(genVariableDeclaration(property.name, property.type, true))
+            component.dictionaryDescriptions.append(genDescriptionForObjectArray(property.name, property.constantName))
             component.decoders.append(genDecoder(property.name, property.type, property.constantName, true))
             component.encoders.append(genEncoder(property.name, property.type, property.constantName))
-        case .EmptyArray:
-            component.stringConstants.append(genStringConstant(property.constantName, property.key))
+        case .emptyArray:
+            component.mappingConstants.append(genStringConstant(property.constantName, property.key))
             component.initialisers.append(genInitializerForPrimitiveArray(property.name, "object", property.constantName))
-            component.declarations.append(genVariableDeclaration(property.name, "Any", true))
-            component.description.append(genDescriptionForPrimitiveArray(property.name, property.constantName))
+            component.properties.append(genVariableDeclaration(property.name, "Any", true))
+            component.dictionaryDescriptions.append(genDescriptionForPrimitiveArray(property.name, property.constantName))
             component.decoders.append(genDecoder(property.name, "Any", property.constantName, true))
             component.encoders.append(genEncoder(property.name, "Any", property.constantName))
-        case .NullType:
+        case .nullType:
             // Currently we do not deal with null values.
             break
         }
@@ -93,7 +93,7 @@ struct SwiftyJSONModelFile: ModelFile, DefaultModelFileComponent {
     func genInitializerForVariable(_ name: String, _ type: String, _ constantName: String) -> String {
         var variableType = type
         variableType.lowerCaseFirst()
-        if type == VariableType.Bool.rawValue {
+        if type == VariableType.bool.rawValue {
             return "\(name) = json[\(constantName)].\(variableType)Value"
         }
         return "\(name) = json[\(constantName)].\(variableType)"

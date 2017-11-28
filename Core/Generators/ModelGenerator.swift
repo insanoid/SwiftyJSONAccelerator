@@ -56,7 +56,7 @@ public struct ModelGenerator {
             let subClassType = firstObject.detailedValueType()
             // If the type of the first item is an object then make it the base class and generate
             // stuff. However, currently it does not make a base file to handle the array.
-            if subClassType == .Object {
+            if subClassType == .object {
                 return self.generateModelForJSON(JSONHelper.reduce(rootObject), defaultClassName, isTopLevelObject)
             }
             return []
@@ -76,32 +76,31 @@ public struct ModelGenerator {
                 let stringConstantName = NameGenerator.variableKey(className, variableName)
 
                 switch variableType {
-                case .Array:
+                case .array:
                     if value.arrayValue.count <= 0 {
-                        currentModel.generateAndAddComponentsFor(PropertyComponent.init(variableName, VariableType.Array.rawValue, stringConstantName, key, .EmptyArray))
+                        currentModel.generateAndAddComponentsFor(PropertyComponent.init(variableName, VariableType.array.rawValue, stringConstantName, key, .emptyArray))
                     } else {
                         let subClassType = value.arrayValue.first!.detailedValueType()
-                        if subClassType == .Object {
+                        if subClassType == .object {
                             let models = generateModelForJSON(JSONHelper.reduce(value.arrayValue), variableName, false)
-                            modelFiles = modelFiles + models
+                            modelFiles += models
                             let model = models.first
                             let classname = model?.fileName
-                            currentModel.generateAndAddComponentsFor(PropertyComponent.init(variableName, classname!, stringConstantName, key, .ObjectTypeArray))
+                            currentModel.generateAndAddComponentsFor(PropertyComponent.init(variableName, classname!, stringConstantName, key, .objectTypeArray))
                         } else {
-                            currentModel.generateAndAddComponentsFor(PropertyComponent.init(variableName, subClassType.rawValue, stringConstantName, key, .ValueTypeArray))
+                            currentModel.generateAndAddComponentsFor(PropertyComponent.init(variableName, subClassType.rawValue, stringConstantName, key, .valueTypeArray))
                         }
                     }
-                case .Object:
+                case .object:
                     let models = generateModelForJSON(value, variableName, false)
                     let model = models.first
                     let typeName = model?.fileName
-                    currentModel.generateAndAddComponentsFor(PropertyComponent.init(variableName, typeName!, stringConstantName, key, .ObjectType))
-                    modelFiles = modelFiles + models
-                case .Null:
-                    currentModel.generateAndAddComponentsFor(PropertyComponent.init(variableName, VariableType.Null.rawValue, stringConstantName, key, .NullType))
-                    break
+                    currentModel.generateAndAddComponentsFor(PropertyComponent.init(variableName, typeName!, stringConstantName, key, .objectType))
+                    modelFiles += models
+                case .null:
+                    currentModel.generateAndAddComponentsFor(PropertyComponent.init(variableName, VariableType.null.rawValue, stringConstantName, key, .nullType))
                 default:
-                    currentModel.generateAndAddComponentsFor(PropertyComponent.init(variableName, variableType.rawValue, stringConstantName, key, .ValueType))
+                    currentModel.generateAndAddComponentsFor(PropertyComponent.init(variableName, variableType.rawValue, stringConstantName, key, .valueType))
                 }
 
             }
@@ -140,13 +139,15 @@ public struct ModelGenerator {
    - returns: A new model file of the required type.
    */
     func initialiseModelFileFor(_ modelMappingLibrary: JSONMappingLibrary) -> ModelFile {
-        switch modelMappingLibrary {
-        case .ObjectMapper:
-            return ObjectMapperModelFile()
-        case .SwiftyJSON:
-            return SwiftyJSONModelFile()
-        case .Marshal:
-            return MarshalModelFile()
-        }
+		switch modelMappingLibrary {
+		case .objectMapper:
+			return ObjectMapperModelFile()
+		case .swiftyJSON:
+			return SwiftyJSONModelFile()
+		case .marshal:
+			return MarshalModelFile()
+		case .swift4:
+			return Swift4ModelFile()
+		}
     }
 }

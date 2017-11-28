@@ -108,6 +108,11 @@
 		93F174451BD0707D007E7DFC /* SJEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F174441BD0707D007E7DFC /* SJEditorViewController.swift */; };
 		93F174471BD0707D007E7DFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93F174461BD0707D007E7DFC /* Assets.xcassets */; };
 		93F174601BD070AA007E7DFC /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1745F1BD070AA007E7DFC /* JSONHelper.swift */; };
+		971A0F661FCC298100C830F9 /* Swift4ModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0F651FCC298100C830F9 /* Swift4ModelFile.swift */; };
+		971A0F671FCC298900C830F9 /* Swift4ModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0F651FCC298100C830F9 /* Swift4ModelFile.swift */; };
+		971A0F681FCC298900C830F9 /* Swift4ModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0F651FCC298100C830F9 /* Swift4ModelFile.swift */; };
+		971A0F6A1FCC2ED600C830F9 /* Swift4Template.txt in Resources */ = {isa = PBXBuildFile; fileRef = 971A0F691FCC2ED600C830F9 /* Swift4Template.txt */; };
+		971A0F6B1FCC2EDE00C830F9 /* Swift4Template.txt in Resources */ = {isa = PBXBuildFile; fileRef = 971A0F691FCC2ED600C830F9 /* Swift4Template.txt */; };
 		C667011B1BDCABCE009BA254 /* SwiftyJSONTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = C667011A1BDCABCE009BA254 /* SwiftyJSONTemplate.txt */; };
 		C667011D1BDCAF23009BA254 /* ObjectMapperTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = C667011C1BDCAF23009BA254 /* ObjectMapperTemplate.txt */; };
 		C667011F1BDCBE1F009BA254 /* NSCodingTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = C667011E1BDCBE1F009BA254 /* NSCodingTemplate.txt */; };
@@ -186,6 +191,8 @@
 		93F174501BD0707D007E7DFC /* SwiftyJSONAccelerator.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyJSONAccelerator.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93F174561BD0707D007E7DFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93F1745F1BD070AA007E7DFC /* JSONHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
+		971A0F651FCC298100C830F9 /* Swift4ModelFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift4ModelFile.swift; sourceTree = "<group>"; };
+		971A0F691FCC2ED600C830F9 /* Swift4Template.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Swift4Template.txt; sourceTree = "<group>"; };
 		C667011A1BDCABCE009BA254 /* SwiftyJSONTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftyJSONTemplate.txt; sourceTree = "<group>"; };
 		C667011C1BDCAF23009BA254 /* ObjectMapperTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ObjectMapperTemplate.txt; sourceTree = "<group>"; };
 		C667011E1BDCBE1F009BA254 /* NSCodingTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NSCodingTemplate.txt; sourceTree = "<group>"; };
@@ -381,6 +388,7 @@
 				9327F2871DF4BCA70002BE40 /* MarshalModelFile.swift */,
 				93F1593F1CFF96E700175636 /* ObjectMapperModelFile.swift */,
 				93F1593D1CFF969900175636 /* SwiftyJSONModelFile.swift */,
+				971A0F651FCC298100C830F9 /* Swift4ModelFile.swift */,
 			);
 			path = "Library-Extensions";
 			sourceTree = "<group>";
@@ -458,6 +466,7 @@
 		93F5F2141D344CCC00FEB9C9 /* Library-Extension-Templates */ = {
 			isa = PBXGroup;
 			children = (
+				971A0F691FCC2ED600C830F9 /* Swift4Template.txt */,
 				9327F2891DF4BD540002BE40 /* MarshalTemplate.txt */,
 				C667011C1BDCAF23009BA254 /* ObjectMapperTemplate.txt */,
 				C667011A1BDCABCE009BA254 /* SwiftyJSONTemplate.txt */,
@@ -527,7 +536,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Karthikeya Udupa K M";
 				TargetAttributes = {
 					933CF3921E11699600F9C412 = {
@@ -537,13 +546,13 @@
 					};
 					93F1743E1BD0707D007E7DFC = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = UYGU8PDBPS;
-						LastSwiftMigration = 0800;
+						DevelopmentTeam = V94Z6JM853;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					93F1744F1BD0707D007E7DFC = {
 						CreatedOnToolsVersion = 7.0.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 93F1743E1BD0707D007E7DFC;
 					};
@@ -579,6 +588,7 @@
 				C667011F1BDCBE1F009BA254 /* NSCodingTemplate.txt in Resources */,
 				93F174471BD0707D007E7DFC /* Assets.xcassets in Resources */,
 				C667011D1BDCAF23009BA254 /* ObjectMapperTemplate.txt in Resources */,
+				971A0F6A1FCC2ED600C830F9 /* Swift4Template.txt in Resources */,
 				9341A14F1BD6E7290048CE2C /* BaseTemplate.txt in Resources */,
 				9327F28A1DF4BD540002BE40 /* MarshalTemplate.txt in Resources */,
 			);
@@ -593,6 +603,7 @@
 				93D850E31D00D2F60023D573 /* SwiftyJSONTemplate.txt in Resources */,
 				934E61A51E10587F00B7601B /* test_config.json in Resources */,
 				934E61A31E10587F00B7601B /* album.json in Resources */,
+				971A0F6B1FCC2EDE00C830F9 /* Swift4Template.txt in Resources */,
 				934E61A71E10587F00B7601B /* user.json in Resources */,
 				93D850F71D00D7C80023D573 /* TestJSONFile.sample in Resources */,
 				93D850E01D00D2F60023D573 /* BaseTemplate.txt in Resources */,
@@ -658,6 +669,7 @@
 				9372454D1E12ED36005387E8 /* Output.swift in Sources */,
 				934F09E01E12D38E00D983FF /* JSONHelper.swift in Sources */,
 				9372454A1E12ED36005387E8 /* LightweightCommand.swift in Sources */,
+				971A0F681FCC298900C830F9 /* Swift4ModelFile.swift in Sources */,
 				937245411E12ED36005387E8 /* CLI.swift in Sources */,
 				934F09F41E12DC1000D983FF /* FileGenerator.swift in Sources */,
 				934F09E11E12D38E00D983FF /* String+Helpers.swift in Sources */,
@@ -674,6 +686,7 @@
 				934E61991E0EA20000B7601B /* MultipleModelGenerator.swift in Sources */,
 				93CDE7721BD1A00B00B5B234 /* SJTextView.swift in Sources */,
 				937245551E12ED4D005387E8 /* SwiftyJSON.swift in Sources */,
+				971A0F661FCC298100C830F9 /* Swift4ModelFile.swift in Sources */,
 				93F174601BD070AA007E7DFC /* JSONHelper.swift in Sources */,
 				9341A14A1BD6E5FE0048CE2C /* ModelGenerator.swift in Sources */,
 				934F09F61E12DC4B00D983FF /* FileGeneratorExtension.swift in Sources */,
@@ -722,6 +735,7 @@
 				93F1593C1CFF920500175636 /* ModelGeneratorTests.swift in Sources */,
 				9372452A1E12E6F2005387E8 /* LineNumberRulerView.swift in Sources */,
 				93D850E81D00D3020023D573 /* JSON+Helpers.swift in Sources */,
+				971A0F671FCC298900C830F9 /* Swift4ModelFile.swift in Sources */,
 				930462B71D31134900FE61A6 /* ModelComponent.swift in Sources */,
 				934E619B1E0EF92000B7601B /* MultipleModelGeneratorTests.swift in Sources */,
 				9372452C1E12E825005387E8 /* FileGeneratorExtension.swift in Sources */,
@@ -778,14 +792,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -827,14 +847,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -867,13 +893,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = UYGU8PDBPS;
+				DEVELOPMENT_TEAM = V94Z6JM853;
 				INFOPLIST_FILE = SwiftyJSONAccelerator/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.karthik.SwiftyJSONAccelerator;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sambhav.SwiftyJSONAccelerator;
 				PRODUCT_NAME = SwiftyJSONAccelerator;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -884,13 +911,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = UYGU8PDBPS;
+				DEVELOPMENT_TEAM = V94Z6JM853;
 				INFOPLIST_FILE = SwiftyJSONAccelerator/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.karthik.SwiftyJSONAccelerator;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sambhav.SwiftyJSONAccelerator;
 				PRODUCT_NAME = SwiftyJSONAccelerator;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -905,7 +933,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.karthik.SwiftyJSONAcceleratorTests;
 				PRODUCT_NAME = SwiftyJSONAccelerator;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftyJSONAccelerator.app/Contents/MacOS/SwiftyJSONAccelerator";
 			};
 			name = Debug;
@@ -921,7 +950,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.karthik.SwiftyJSONAcceleratorTests;
 				PRODUCT_NAME = SwiftyJSONAccelerator;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftyJSONAccelerator.app/Contents/MacOS/SwiftyJSONAccelerator";
 			};
 			name = Release;
