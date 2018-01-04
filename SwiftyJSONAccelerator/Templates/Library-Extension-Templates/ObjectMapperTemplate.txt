@@ -9,6 +9,6 @@
   /// Map a JSON object to this class using ObjectMapper.
   ///
   /// - parameter map: A mapping from ObjectMapper.
-  public func mapping(map: Map) {
+  public {MUTATING} func mapping(map: Map) {
 {INITIALIZER}
   }

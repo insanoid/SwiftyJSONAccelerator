@@ -30,10 +30,16 @@ extension FileGenerator {
         if let companyName = configuration.companyName {
             content = content.replacingOccurrences(of: "__MyCompanyName__", with: companyName)
         }
-        if configuration.isFinalRequired {
+        if configuration.isFinalRequired || configuration.constructType == .structType {
             content = content.replacingOccurrences(of: "{INCLUDE_HEADER}", with: "\nimport \(modelFile.moduleName())")
         } else {
             content = content.replacingOccurrences(of: "{INCLUDE_HEADER}", with: "")
+        }
+    
+        if configuration.constructType == .classType {
+            content = content.replacingOccurrences(of: "{MUTATING}", with: " ")
+        } else {
+            content = content.replacingOccurrences(of: "{MUTATING}", with: "mutating")
         }
 
         var classesExtendFrom: [String] = []
