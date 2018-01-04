@@ -98,7 +98,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
    */
     func validateAndFormat(_ pretty: Bool) -> Bool {
 
-        if textView?.string?.characters.count == 0 {
+        if textView?.string?.count == 0 {
             return false
         }
 
@@ -128,7 +128,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
 
         // The base class field is blank, cannot proceed without it.
         // Possibly can have a default value in the future.
-        if baseClassTextField?.stringValue.characters.count <= 0 {
+        if baseClassTextField?.stringValue.count <= 0 {
             let alert = NSAlert()
             alert.messageText = "Enter a base class name to continue."
             alert.runModal()
@@ -231,7 +231,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
             for line in string.components(separatedBy: "\n") {
                 lineNumber += 1
                 var columnNumber = 0
-                for column in line.characters {
+                for column in line {
                     characterPosition += 1
                     columnNumber += 1
                     if characterPosition == position {
