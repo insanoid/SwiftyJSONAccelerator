@@ -25,8 +25,8 @@ class SJTextView: NSTextView {
     self.isAutomaticTextReplacementEnabled = false
   }
 
-  override var readablePasteboardTypes: [String] {
-        return [NSPasteboardTypeString]
+  override var readablePasteboardTypes: [NSPasteboard.PasteboardType] {
+        return [NSPasteboard.PasteboardType.string]
   }
 
   internal func updateFormat() {

@@ -98,7 +98,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
    */
     func validateAndFormat(_ pretty: Bool) -> Bool {
 
-        if textView?.string?.characters.count == 0 {
+        if textView?.string.count == 0 {
             return false
         }
 
@@ -107,13 +107,13 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         if valid {
             if pretty {
                 textView?.string = JSONHelper.prettyJSON(textView?.string)!
-                textView!.lnv_textDidChange(Notification.init(name: NSNotification.Name.NSTextDidChange, object: nil))
+                textView!.lnv_textDidChange(Notification.init(name: NSText.didChangeNotification, object: nil))
                 return true
             }
             correctJSONMessage()
         } else if error != nil {
             handleError(error)
-            textView!.lnv_textDidChange(Notification.init(name: NSNotification.Name.NSTextDidChange, object: nil))
+            textView!.lnv_textDidChange(Notification.init(name: NSText.didChangeNotification, object: nil))
             return false
         } else {
             genericJSONError()
@@ -128,7 +128,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
 
         // The base class field is blank, cannot proceed without it.
         // Possibly can have a default value in the future.
-        if baseClassTextField?.stringValue.characters.count <= 0 {
+        if baseClassTextField?.stringValue.count <= 0 {
             let alert = NSAlert()
             alert.messageText = "Enter a base class name to continue."
             alert.runModal()
@@ -147,8 +147,8 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         // Checks for validity of the content, else can cause crashes.
         if object != nil {
 
-            let nsCodingState = self.enableNSCodingSupportCheckbox.state == 1 && (modelTypeSelectorSegment.selectedSegment == 1)
-            let isFinalClass = self.setAsFinalCheckbox.state == 1 && (modelTypeSelectorSegment.selectedSegment == 1)
+            let nsCodingState = self.enableNSCodingSupportCheckbox.state.rawValue == 1 && (modelTypeSelectorSegment.selectedSegment == 1)
+            let isFinalClass = self.setAsFinalCheckbox.state.rawValue == 1 && (modelTypeSelectorSegment.selectedSegment == 1)
             let constructType = self.modelTypeSelectorSegment.selectedSegment == 0 ? ConstructType.structType : ConstructType.classType
             let libraryType = libraryForIndex(self.librarySelector.indexOfSelectedItem)
             let configuration = ModelGenerationConfiguration.init(
@@ -161,7 +161,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
                                                                   modelMappingLibrary: libraryType,
                                                                   supportNSCoding: nsCodingState,
                                                                   isFinalRequired: isFinalClass,
-                                                                  isHeaderIncluded: includeHeaderImportCheckbox.state == 1 ? true : false)
+                                                                  isHeaderIncluded: includeHeaderImportCheckbox.state.rawValue == 1 ? true : false)
             let modelGenerator = ModelGenerator.init(JSON(object!), configuration)
             let filesGenerated = modelGenerator.generate()
             for file in filesGenerated {
@@ -231,7 +231,8 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
             for line in string.components(separatedBy: "\n") {
                 lineNumber += 1
                 var columnNumber = 0
-                for column in line.characters {
+                // TODO: Check this.
+                for column in line {
                     characterPosition += 1
                     columnNumber += 1
                     if characterPosition == position {
@@ -333,7 +334,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         fileDialog.canChooseFiles = false
         fileDialog.canChooseDirectories = true
         fileDialog.canCreateDirectories = true
-        if fileDialog.runModal() == NSModalResponseOK {
+        if fileDialog.runModal() == NSApplication.ModalResponse.OK {
             return fileDialog.url?.path
         }
         return nil

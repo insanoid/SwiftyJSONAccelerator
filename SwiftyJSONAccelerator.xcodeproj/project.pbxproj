@@ -71,7 +71,6 @@
 		937245531E12ED4A005387E8 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937245521E12ED4A005387E8 /* SwiftyJSON.swift */; };
 		937245541E12ED4D005387E8 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937245521E12ED4A005387E8 /* SwiftyJSON.swift */; };
 		937245551E12ED4D005387E8 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937245521E12ED4A005387E8 /* SwiftyJSON.swift */; };
-		937245581E12EE37005387E8 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 937245571E12EE37005387E8 /* Nimble.framework */; };
 		9380E5941D2C6D12003F77B1 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380E5931D2C6D12003F77B1 /* StringTests.swift */; };
 		9395707B1D008A860039453D /* DefaultModelFileComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9395707A1D008A860039453D /* DefaultModelFileComponent.swift */; };
 		93C273CB1E150CEA00CC1AED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93C273CA1E150CEA00CC1AED /* Main.storyboard */; };
@@ -95,6 +94,7 @@
 		93D850EF1D00D3070023D573 /* ObjectMapperModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1593F1CFF96E700175636 /* ObjectMapperModelFile.swift */; };
 		93D850F01D00D3070023D573 /* DefaultModelFileComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9395707A1D008A860039453D /* DefaultModelFileComponent.swift */; };
 		93D850F71D00D7C80023D573 /* TestJSONFile.sample in Resources */ = {isa = PBXBuildFile; fileRef = 93D850F61D00D7C80023D573 /* TestJSONFile.sample */; };
+		93E0F12622E8674D008D3B16 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E0F12522E8674D008D3B16 /* Nimble.framework */; };
 		93E91B0D1CFF2DFF00ECA2A6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E91B0C1CFF2DFF00ECA2A6 /* Constants.swift */; };
 		93F1592C1CFF826900175636 /* ModelGenerationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1592B1CFF826900175636 /* ModelGenerationConfiguration.swift */; };
 		93F159301CFF832100175636 /* ModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1592F1CFF832100175636 /* ModelFile.swift */; };
@@ -169,6 +169,7 @@
 		93C273CA1E150CEA00CC1AED /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		93CDE7711BD1A00B00B5B234 /* SJTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJTextView.swift; sourceTree = "<group>"; };
 		93D850F61D00D7C80023D573 /* TestJSONFile.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestJSONFile.sample; sourceTree = "<group>"; };
+		93E0F12522E8674D008D3B16 /* Nimble.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93E91B0C1CFF2DFF00ECA2A6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		93F1592B1CFF826900175636 /* ModelGenerationConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelGenerationConfiguration.swift; sourceTree = "<group>"; };
 		93F1592F1CFF832100175636 /* ModelFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFile.swift; sourceTree = "<group>"; };
@@ -210,7 +211,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				937245581E12EE37005387E8 /* Nimble.framework in Frameworks */,
+				93E0F12622E8674D008D3B16 /* Nimble.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +351,7 @@
 		937245561E12EE37005387E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				93E0F12522E8674D008D3B16 /* Nimble.framework */,
 				937245571E12EE37005387E8 /* Nimble.framework */,
 			);
 			name = Frameworks;
@@ -554,6 +556,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -617,7 +620,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -750,7 +753,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/../Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -765,7 +768,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/../Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -873,7 +876,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.karthik.SwiftyJSONAccelerator;
 				PRODUCT_NAME = SwiftyJSONAccelerator;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -890,7 +893,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.karthik.SwiftyJSONAccelerator;
 				PRODUCT_NAME = SwiftyJSONAccelerator;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -905,7 +908,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.karthik.SwiftyJSONAcceleratorTests;
 				PRODUCT_NAME = SwiftyJSONAccelerator;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftyJSONAccelerator.app/Contents/MacOS/SwiftyJSONAccelerator";
 			};
 			name = Debug;
@@ -921,7 +924,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.karthik.SwiftyJSONAcceleratorTests;
 				PRODUCT_NAME = SwiftyJSONAccelerator;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftyJSONAccelerator.app/Contents/MacOS/SwiftyJSONAccelerator";
 			};
 			name = Release;
