@@ -53,16 +53,18 @@ extension NSTextView {
     }
 
     postsFrameChangedNotifications = true
-    NotificationCenter.default.addObserver(self, selector: #selector(NSTextView.lnv_framDidChange(_:)), name: NSNotification.Name.NSViewFrameDidChange, object: self)
-    NotificationCenter.default.addObserver(self, selector: #selector(NSTextView.lnv_textDidChange(_:)), name: NSNotification.Name.NSTextDidChange, object: self)
+    
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(NSTextView.lnv_framDidChange(_:)), name: NSView.frameDidChangeNotification, object: self)
+    NotificationCenter.default.addObserver(self, selector: #selector(NSTextView.lnv_textDidChange(_:)), name: NSText.didChangeNotification, object: self)
   }
 
-  func lnv_framDidChange(_ notification: Notification) {
+    @objc func lnv_framDidChange(_ notification: Notification) {
 
     lineNumberView.needsDisplay = true
   }
 
-  func lnv_textDidChange(_ notification: Notification) {
+    @objc func lnv_textDidChange(_ notification: Notification) {
 
     lineNumberView.needsDisplay = true
   }
@@ -78,8 +80,8 @@ class LineNumberRulerView: NSRulerView {
   }
 
   init(textView: NSTextView) {
-    super.init(scrollView: textView.enclosingScrollView!, orientation: NSRulerOrientation.verticalRuler)
-    self.font = textView.font ?? NSFont.systemFont(ofSize: NSFont.smallSystemFontSize())
+    super.init(scrollView: textView.enclosingScrollView!, orientation: NSRulerView.Orientation.verticalRuler)
+    self.font = textView.font ?? NSFont.systemFont(ofSize: NSFont.smallSystemFontSize)
     self.clientView = textView
 
     self.ruleThickness = 40
@@ -95,7 +97,7 @@ class LineNumberRulerView: NSRulerView {
       if let layoutManager = textView.layoutManager {
 
         let relativePoint = self.convert(NSZeroPoint, from: textView)
-        let lineNumberAttributes = [NSFontAttributeName: textView.font!, NSForegroundColorAttributeName: NSColor.gray] as [String : Any]
+        let lineNumberAttributes = [NSAttributedString.Key.font.rawValue: textView.font!, NSAttributedString.Key.foregroundColor: NSColor.gray] as! [NSAttributedString.Key : Any]
         let drawLineNumber = { (lineNumberString: String, y: CGFloat) -> Void in
           let attString = NSAttributedString(string: lineNumberString, attributes: lineNumberAttributes)
           let x = 35 - attString.size().width
@@ -107,7 +109,7 @@ class LineNumberRulerView: NSRulerView {
 
         let newLineRegex = try! NSRegularExpression(pattern: "\n", options: [])
         // The line number for the first visible line
-        var lineNumber = newLineRegex.numberOfMatches(in: textView.string!, options: [], range: NSMakeRange(0, firstVisibleGlyphCharacterIndex)) + 1
+        var lineNumber = newLineRegex.numberOfMatches(in: textView.string, options: [], range: NSMakeRange(0, firstVisibleGlyphCharacterIndex)) + 1
 
         var glyphIndexForStringLine = visibleGlyphRange.location
 
@@ -115,7 +117,7 @@ class LineNumberRulerView: NSRulerView {
         while glyphIndexForStringLine < NSMaxRange(visibleGlyphRange) {
 
           // Range of current line in the string.
-          let characterRangeForStringLine = (textView.string! as NSString).lineRange(
+          let characterRangeForStringLine = (textView.string as NSString).lineRange(
             for: NSMakeRange(layoutManager.characterIndexForGlyph(at: glyphIndexForStringLine), 0)
           )
           let glyphRangeForStringLine = layoutManager.glyphRange(forCharacterRange: characterRangeForStringLine, actualCharacterRange: nil)
