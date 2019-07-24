@@ -19,11 +19,11 @@ extension JSON {
   func detailedValueType() -> VariableType {
     switch self.type {
     case .string:
-      return VariableType.String
+      return VariableType.string
     case .bool:
-      return VariableType.Bool
+      return VariableType.bool
     case .array:
-      return VariableType.Array
+      return VariableType.array
     case .number:
       switch CFNumberGetType(self.numberValue as CFNumber) {
       case .sInt8Type,
@@ -37,18 +37,18 @@ extension JSON {
           .longLongType,
           .cfIndexType,
           .nsIntegerType:
-          return VariableType.Int
+          return VariableType.int
       case .float32Type,
           .float64Type,
           .floatType,
           .cgFloatType,
           .doubleType:
-          return VariableType.Float
+          return VariableType.float
       }
     case .null:
-      return VariableType.Null
+      return VariableType.null
     default:
-      return VariableType.Object
+      return VariableType.object
     }
   }
 }

@@ -44,12 +44,12 @@ struct NameGenerator {
    */
   static func fixVariableName(_ variableName: String) -> String {
 
-    var _variableName = replaceKeywords(variableName)
-    _variableName.replaceOccurrencesOfStringsWithString(["-", "_"], " ")
-    _variableName.trim()
+    var tmpVariableName = replaceKeywords(variableName)
+    tmpVariableName.replaceOccurrencesOfStringsWithString(["-", "_"], " ")
+    tmpVariableName.trim()
 
     var finalVariableName = ""
-    for (index, var element) in _variableName.components(separatedBy: " ").enumerated() {
+    for (index, var element) in tmpVariableName.components(separatedBy: " ").enumerated() {
       index == 0 ? element.lowerCaseFirst() : element.uppercaseFirst()
       finalVariableName.append(element)
     }
