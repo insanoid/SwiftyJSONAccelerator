@@ -19,7 +19,7 @@ extension FileGenerator {
         content = content.replacingOccurrences(of: "{OBJECT_KIND}", with: modelFile.type.rawValue)
         content = content.replacingOccurrences(of: "{JSON_PARSER_LIBRARY_BODY}", with: loadFileWith(modelFile.mainBodyTemplateFileName()))
 
-        if modelFile.type == .ClassType {
+        if modelFile.type == .classType {
             content = content.replacingOccurrences(of: "{REQUIRED}", with: " required ")
         } else {
             content = content.replacingOccurrences(of: "{REQUIRED}", with: " ")
@@ -40,11 +40,11 @@ extension FileGenerator {
         if let extendFrom = modelFile.baseElementName() {
             classesExtendFrom = [extendFrom]
         }
-        if configuration.supportNSCoding && configuration.constructType == .ClassType {
-            classesExtendFrom = classesExtendFrom + ["NSCoding"]
+        if configuration.supportNSCoding && configuration.constructType == .classType {
+            classesExtendFrom += ["NSCoding"]
         }
 
-        if configuration.isFinalRequired && configuration.constructType == .ClassType {
+        if configuration.isFinalRequired && configuration.constructType == .classType {
             content = content.replacingOccurrences(of: "{IS_FINAL}", with: " final ")
         } else {
             content = content.replacingOccurrences(of: "{IS_FINAL}", with: " ")
@@ -68,11 +68,11 @@ extension FileGenerator {
         content = content.replacingOccurrences(of: "{INITIALIZER}", with: initialisers)
         content = content.replacingOccurrences(of: "{DESCRIPTION}", with: description)
 
-        if configuration.constructType == .StructType {
+        if configuration.constructType == .structType {
             content = content.replacingOccurrences(of: " convenience", with: "")
         }
 
-        if configuration.supportNSCoding && configuration.constructType == .ClassType {
+        if configuration.supportNSCoding && configuration.constructType == .classType {
             content = content.replacingOccurrences(of: "{NSCODING_SUPPORT}", with: loadFileWith("NSCodingTemplate"))
             let encoders = modelFile.component.encoders.map({ doubleTab + $0 }).joined(separator: "\n")
             let decoders = modelFile.component.decoders.map({ doubleTab + $0 }).joined(separator: "\n")

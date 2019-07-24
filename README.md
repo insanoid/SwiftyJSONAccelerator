@@ -5,6 +5,17 @@
 [![Build
 Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)](https://travis-ci.org/insanoid/SwiftyJSONAccelerator) [![codecov](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator/branch/master/graph/badge.svg)](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator)
 
+**Version v1.4.0 Released! (Swift 3 Last Legacy Version)**
+
+- This is a compatibility release for people using Swift 3 still to make sure the project still works.
+- Code was updated to Swift 5 to make it work, however, tests are broken due to Nimble compatibility.
+- This will be the last legacy version for this project, it will only generate `swift 5` `codable` format from next version onwards (branch `swift-5`).
+- Supports dark mode :|
+
+![Preview](https://github.com/insanoid/SwiftyJSONAccelerator/raw/master/preview-dark-mode.png)
+
+- **Application Download:** [Download the .app (v1.5.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v1.5.0/SwiftyJSONAccelerator.zip)
+
 **Version v1.4.0 Released!**
 
 - Generate models from multiple JSON files in a folder at with one click!

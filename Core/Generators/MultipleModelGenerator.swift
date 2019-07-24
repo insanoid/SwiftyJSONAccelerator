@@ -107,13 +107,13 @@ struct MultipleModelGenerator {
 
             var basePath = fromBasePath
             if basePath.hasSuffix("/") == false {
-                basePath = basePath + "/"
+                basePath += "/"
             }
             finalPath = basePath + destinationPath
         }
 
         if finalPath.hasSuffix("/") == false {
-            finalPath = finalPath + "/"
+            finalPath += "/"
         }
         return finalPath
     }
@@ -145,16 +145,16 @@ struct MultipleModelGenerator {
     /// - Returns: Configuration model.
     /// - Throws: `MultipleModelGeneratorError.configInvalid` error.
     static func loadConfiguration(fromJSON: JSON) throws -> ModelGenerationConfiguration? {
-        var constructType = ConstructType.ClassType
+        var constructType = ConstructType.classType
         if let type = fromJSON["construct_type"].string, type == "struct" {
-            constructType = ConstructType.StructType
+            constructType = ConstructType.structType
         }
-        var jsonLibrary = JSONMappingLibrary.SwiftyJSON
+        var jsonLibrary = JSONMappingLibrary.libSwiftyJSON
         if let type = fromJSON["model_mapping_library"].string {
-            if type == JSONMappingLibrary.ObjectMapper.rawValue {
-                jsonLibrary = JSONMappingLibrary.ObjectMapper
-            } else if type == JSONMappingLibrary.Marshal.rawValue {
-                jsonLibrary = JSONMappingLibrary.Marshal
+            if type == JSONMappingLibrary.libObjectMapper.rawValue {
+                jsonLibrary = JSONMappingLibrary.libObjectMapper
+            } else if type == JSONMappingLibrary.libMarshal.rawValue {
+                jsonLibrary = JSONMappingLibrary.libMarshal
             }
         }
         let config = ModelGenerationConfiguration.init(filePath: fromJSON["destination_path"].string ?? "",
@@ -213,12 +213,9 @@ struct MultipleModelGenerator {
 
                 let m = ModelGenerator.init(combinedJSON, (models.first?.configuration)!)
                 let newModels = m.generateModelForJSON(combinedJSON, fileName, false)
-                for newModel in newModels {
-                    // We only care about the current model file, all sub models will be merged on their own.
-                    if newModel.fileName == (models.first?.fileName)! {
-                        modelsToReturn.append(newModel)
-                        break
-                    }
+                for newModel in newModels where newModel.fileName == (models.first?.fileName)! {
+                    modelsToReturn.append(newModel)
+                    break
                 }
             }
         }
