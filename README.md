@@ -5,7 +5,7 @@
 [![Build
 Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)](https://travis-ci.org/insanoid/SwiftyJSONAccelerator) [![codecov](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator/branch/master/graph/badge.svg)](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator)
 
-**Version v1.4.0 Released! (Swift 3 Last Legacy Version)**
+**Version v1.5.0 Released! (Swift 3 Last Legacy Version)**
 
 - This is a compatibility release for people using Swift 3 still to make sure the project still works.
 - Code was updated to Swift 5 to make it work, however, tests are broken due to Nimble compatibility.
