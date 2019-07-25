@@ -31,6 +31,11 @@ extension FileGenerator {
         content = content.replacingOccurrences(of: "{DECLARATION}", with: declarations)
         content = content.replacingOccurrences(of: "{INITIALIZER}", with: initialisers)
 
+        if modelFile.type == .classType {
+            content = content.replacingOccurrences(of: "{REQUIRED}", with: "required ")
+        } else {
+            content = content.replacingOccurrences(of: "{REQUIRED}", with: "")
+        }
         return content
     }
 

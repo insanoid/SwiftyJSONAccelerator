@@ -100,7 +100,8 @@ struct SwiftJSONModelFile: ModelFile {
         if isArray {
             variableType = "[\(type)]"
         }
+        let component = constantName.components(separatedBy: ".")
         let decodeMethod = isOptional ? "decodeIfPresent" : "decode"
-        return "\(name) = try container.\(decodeMethod)(\(variableType).self, forKey: .\(constantName))"
+        return "\(name) = try container.\(decodeMethod)(\(variableType).self, forKey: .\(component.last!))"
     }
 }

@@ -9,13 +9,13 @@ import Foundation
 
 {OBJECT_KIND} {OBJECT_NAME}: Codable {
 
-  enum CodingKeys: CodingKey {
+  enum CodingKeys: String, CodingKey {
 {STRING_CONSTANT}
   }
 
 {DECLARATION}
 
-  init(from decoder: Decoder) throws {
+  {REQUIRED}init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 {INITIALIZER}
   }
