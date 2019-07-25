@@ -25,6 +25,8 @@ Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)]
 
 ## Features
 
+![Logo](https://github.com/insanoid/SwiftyJSONAccelerator/blob/master/preview.png)
+
 A Swift model generator like the Objective-C [JSONAccelerator](http://nerdery.com/json-accelerator). Formats and generates models for the given JSON and also breaks them into files making it easy to manage and share between several models.
 
 - The models that are generated depend Swift's inbuilt `Codeable` feature making encoding and decoding objects a thing of the past.
