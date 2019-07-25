@@ -1,8 +1,0 @@
-  // MARK: Marshal Initializers
-
-  /// Map a JSON object to this class using Marshal.
-  ///
-  /// - parameter object: A mapping from ObjectMapper
-  public{REQUIRED}init(object: MarshaledObject) {
-{INITIALIZER}
-  }

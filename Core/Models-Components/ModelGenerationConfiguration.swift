@@ -8,9 +8,7 @@
 
 import Foundation
 
-/**
- *  Structure to store the configuration for the model generation.
- */
+/// Structure to store the configuration for the model generation.
 struct ModelGenerationConfiguration {
     /// Path where the generated files have to be stored.
     var filePath: String
@@ -25,33 +23,19 @@ struct ModelGenerationConfiguration {
     /// Type of the object that have to be generated.
     var constructType: ConstructType
     /// Model mapping library to be used.
-    var modelMappingLibrary: JSONMappingLibrary
-    /// Include NSCodingSupport/Currently only works for Classes.
-    var supportNSCoding: Bool
-    /// Indicates if the final keyword is required for the object.
-    var isFinalRequired: Bool
+    var modelMappingLibrary: JSONMappingMethod
+    /// Separate coding keys into an enum and not use string.
+    var separateCodingKeys: Bool
     /// Should header be included.
-    var isHeaderIncluded: Bool
-
-    /// Checks if the configuration is valid as per the rules of Swift.
-    ///
-    /// - Returns: If the config is valid and the reason for invalidation if it is invalid.
-    func isConfigurationValid() -> (isValid: Bool, reason: String) {
-        if constructType == .structType && (isFinalRequired == true || supportNSCoding == true) {
-            return (false, "Struct cannot have final or NSCoding support, only applicable to class.")
-        }
-        return (true, "")
-    }
+    var variablesOptional: Bool
 
     mutating func defaultConfig() {
-        isHeaderIncluded = true
-        isFinalRequired = true
-        supportNSCoding = true
-        modelMappingLibrary = .libSwiftyJSON
+        variablesOptional = true
+        separateCodingKeys = true
+        modelMappingLibrary = .Swift
         constructType = .classType
         prefix = ""
         filePath = ""
         baseClassName = ""
     }
-
 }

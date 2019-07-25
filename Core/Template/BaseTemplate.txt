@@ -1,0 +1,23 @@
+//
+//  {OBJECT_NAME}.swift
+//
+//  Created by __NAME__ on {DATE}
+//  Copyright (c) __MyCompanyName__. All rights reserved.
+//
+
+import Foundation
+
+{OBJECT_KIND} {OBJECT_NAME}: Codable {
+
+  enum CodingKeys: CodingKey {
+{STRING_CONSTANT}
+  }
+
+{DECLARATION}
+
+  init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+{INITIALIZER}
+  }
+
+}
