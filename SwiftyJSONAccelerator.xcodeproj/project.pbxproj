@@ -111,10 +111,9 @@
 		937D9DFA22E89F3000A83D84 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				93FBA68022E9DFFC00015EFD /* Template */,
-				93FBA66E22E9B95300015EFD /* Models-Components */,
 				93FBA66A22E9B8A000015EFD /* Generator */,
 				937D9DF322E89CA200A83D84 /* Helpers */,
+				93FBA68022E9DFFC00015EFD /* Template */,
 				937D9DFB22E89F4800A83D84 /* Constants.swift */,
 			);
 			path = Core;
@@ -124,11 +123,11 @@
 			isa = PBXGroup;
 			children = (
 				937D9DFA22E89F3000A83D84 /* Core */,
+				9CC06C3DBF72A63524446DAC /* Frameworks */,
+				432C91269AC646A242204E0B /* Pods */,
+				93E0F10522E859D5008D3B16 /* Products */,
 				93E0F10622E859D5008D3B16 /* SwiftyJSONAccelerator */,
 				93E0F11922E859D6008D3B16 /* SwiftyJSONAcceleratorTests */,
-				93E0F10522E859D5008D3B16 /* Products */,
-				432C91269AC646A242204E0B /* Pods */,
-				9CC06C3DBF72A63524446DAC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -144,8 +143,8 @@
 		93E0F10622E859D5008D3B16 /* SwiftyJSONAccelerator */ = {
 			isa = PBXGroup;
 			children = (
-				93EA46F822E888F000A7B0DB /* UI */,
 				93FBA66B22E9B8D100015EFD /* Support */,
+				93EA46F822E888F000A7B0DB /* UI */,
 			);
 			path = SwiftyJSONAccelerator;
 			sourceTree = "<group>";
@@ -153,8 +152,8 @@
 		93E0F11922E859D6008D3B16 /* SwiftyJSONAcceleratorTests */ = {
 			isa = PBXGroup;
 			children = (
-				93846D3922E8BAE20051D564 /* StringTests.swift */,
 				93E0F11C22E859D6008D3B16 /* Info.plist */,
+				93846D3922E8BAE20051D564 /* StringTests.swift */,
 			);
 			path = SwiftyJSONAcceleratorTests;
 			sourceTree = "<group>";
@@ -163,8 +162,8 @@
 			isa = PBXGroup;
 			children = (
 				93EA470122E890A100A7B0DB /* External-Libraries */,
-				93EA46FB22E8896000A7B0DB /* SJTextView.swift */,
 				93E0F10922E859D5008D3B16 /* SJEditorViewController.swift */,
+				93EA46FB22E8896000A7B0DB /* SJTextView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -184,6 +183,7 @@
 				93FBA67922E9C2D700015EFD /* FileGenerator.swift */,
 				93FBA68522E9F40E00015EFD /* FileGeneratorExtension.swift */,
 				93FBA66C22E9B8EA00015EFD /* ModalGenerator.swift */,
+				93FBA66F22E9B97A00015EFD /* ModelGenerationConfiguration.swift */,
 				93FBA67722E9BDA200015EFD /* NameGenerator.swift */,
 			);
 			path = Generator;
@@ -194,28 +194,20 @@
 			children = (
 				93E0F10722E859D5008D3B16 /* AppDelegate.swift */,
 				93E0F10B22E859D6008D3B16 /* Assets.xcassets */,
-				93E0F10D22E859D6008D3B16 /* Main.storyboard */,
 				93E0F11022E859D6008D3B16 /* Info.plist */,
+				93E0F10D22E859D6008D3B16 /* Main.storyboard */,
 				93E0F11122E859D6008D3B16 /* SwiftyJSONAccelerator.entitlements */,
 			);
 			path = Support;
 			sourceTree = "<group>";
 		};
-		93FBA66E22E9B95300015EFD /* Models-Components */ = {
-			isa = PBXGroup;
-			children = (
-				93FBA66F22E9B97A00015EFD /* ModelGenerationConfiguration.swift */,
-			);
-			path = "Models-Components";
-			sourceTree = "<group>";
-		};
 		93FBA67B22E9C2FF00015EFD /* Model-File-Components */ = {
 			isa = PBXGroup;
 			children = (
-				93FBA68322E9E5B100015EFD /* SwiftJSONModelFile.swift */,
-				93FBA67122E9BB4800015EFD /* ModelFile.swift */,
 				93FBA67522E9BCA100015EFD /* ModelComponent.swift */,
+				93FBA67122E9BB4800015EFD /* ModelFile.swift */,
 				93FBA67322E9BC5200015EFD /* PropertyComponent.swift */,
+				93FBA68322E9E5B100015EFD /* SwiftJSONModelFile.swift */,
 			);
 			path = "Model-File-Components";
 			sourceTree = "<group>";
@@ -444,6 +436,7 @@
 				93E0F10E22E859D6008D3B16 /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
