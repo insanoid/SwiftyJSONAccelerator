@@ -46,7 +46,7 @@ A Swift model generator like the Objective-C [JSONAccelerator](http://nerdery.co
 
 The older version of the project generating older swift code. Please keep in mind it is **no longer supported**.
 
-- Version v1.4.0 (Swift 3) [Download the .app (v1.5.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v1.5.0/SwiftyJSONAccelerator.zip)
+- Version v1.4.0 (Swift 3) [Download (v1.5.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v1.5.0/SwiftyJSONAccelerator.zip)
 - Version v0.0.6 (Swift 2) [Download (v0.0.6)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v0.0.6/SwiftyJSONAccelerator.zip)
 
 ## Contributions and Requests
