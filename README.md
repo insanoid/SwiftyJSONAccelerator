@@ -12,8 +12,6 @@ Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)]
 - Temporarily support for CLI and tests have been removed.
 - UI now supports Dark mode!
 
-![Preview](https://github.com/insanoid/SwiftyJSONAccelerator/raw/master/preview-dark-mode.png)
-
 - **Application Download:** [Download the .app (v2.0.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v2.0.0/SwiftyJSONAccelerator.zip)
 
 ## Installing & Building
