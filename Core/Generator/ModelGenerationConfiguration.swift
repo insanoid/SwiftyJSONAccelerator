@@ -32,7 +32,7 @@ struct ModelGenerationConfiguration {
     mutating func defaultConfig() {
         variablesOptional = true
         separateCodingKeys = true
-        modelMappingLibrary = .Swift
+        modelMappingLibrary = .swiftNormal
         constructType = .classType
         prefix = ""
         filePath = ""

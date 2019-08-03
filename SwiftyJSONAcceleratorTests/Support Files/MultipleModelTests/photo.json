@@ -1,0 +1,13 @@
+{
+	"id": "P123",
+	"url": "http://flickr.com/p123",
+	"album": [{
+		"id": "123AA",
+		"url": "http://flickr.com/alb/123AA"
+	}],
+	"user": {
+		"user_id": "12345",
+		"username": "jameso1",
+		"is_user_visible": false
+	}
+}

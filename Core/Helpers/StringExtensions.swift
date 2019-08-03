@@ -8,6 +8,13 @@
 
 import Foundation
 
+// A structure to manage the position of the character in a string-line.
+public struct CharacterPosition {
+    var character: String
+    var line: Int
+    var column: Int
+}
+
 // Extension for string to provide helper method to generate names.
 public extension String {
     /// Fetches the first character of the string.
@@ -45,31 +52,29 @@ public extension String {
     ///
     /// - Parameter prefix: String to append.
     mutating func appendPrefix(_ prefix: String?) {
-        if let _prefix = prefix {
-            self = _prefix + self
+        if let checkedPrefix = prefix {
+            self = checkedPrefix + self
         }
     }
 
-    func characterRowAndLineAt(position: Int)
-        -> (character: String, line: Int, column: Int) {
+    func characterRowAndLineAt(position: Int) -> CharacterPosition {
         var lineNumber = 0
         var characterPosition = 0
         for line in components(separatedBy: "\n") {
             lineNumber += 1
             var columnNumber = 0
-            // TODO: Check this.
             for column in line {
                 characterPosition += 1
                 columnNumber += 1
                 if characterPosition == position {
-                    return (String(column), lineNumber, columnNumber)
+                    return CharacterPosition(character: String(column), line: lineNumber, column: columnNumber)
                 }
             }
             characterPosition += 1
             if characterPosition == position {
-                return ("\n", lineNumber, columnNumber + 1)
+                return CharacterPosition(character: "\n", line: lineNumber, column: columnNumber + 1)
             }
         }
-        return ("", 0, 0)
+        return CharacterPosition(character: "", line: 0, column: 0)
     }
 }

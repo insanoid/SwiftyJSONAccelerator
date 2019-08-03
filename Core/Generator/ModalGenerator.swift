@@ -72,7 +72,7 @@ public struct ModelGenerator {
 
                 switch variableType {
                 case .array:
-                    if value.arrayValue.count <= 0 {
+                    if !value.arrayValue.isEmpty {
                         currentModel.generateAndAddComponentsFor(PropertyComponent(variableName, VariableType.array.rawValue, stringConstantName, key, .emptyArray))
                     } else {
                         let subClassType = value.arrayValue.first!.detailedValueType()

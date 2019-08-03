@@ -34,8 +34,8 @@ enum ConstructType: String {
 /// - Swift: Pure Swift 5 Codeable
 /// - SwiftCodeExtended: Codeextended along with Swift 5 - https://github.com/JohnSundell/Codextended
 enum JSONMappingMethod: String {
-    case Swift = "SwiftCodingVanilla"
-    case SwiftCodeExtended
+    case swiftNormal = "SwiftCodingVanilla"
+    case swiftCodeExtended
 }
 
 /// Types of property.
@@ -53,4 +53,9 @@ enum PropertyType: String {
     case objectTypeArray
     case emptyArray
     case nullType
+}
+
+/// Place to store actual constants that don't fit in classes.
+struct Constants {
+    static let filePathKey: String = "path"
 }

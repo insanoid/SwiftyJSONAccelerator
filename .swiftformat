@@ -1,9 +1,5 @@
 # file options
 
---exclude Tests/XCTestManifests.swift,Snapshots 
-
-# format options
-
 --allman false
 --binarygrouping 4,8
 --commas always
