@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B83234B615A1E2C083165BC /* Pods_SwiftyJSONAcceleratorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD79F3F4CA34990ED57C901 /* Pods_SwiftyJSONAcceleratorTests.framework */; };
 		233771D54E74BB0A23429F8A /* Pods_SwiftyJSONAccelerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C761827F34F7ABFE85AF9E1 /* Pods_SwiftyJSONAccelerator.framework */; };
+		93050DA222F54ADB00FBCA6B /* TestJSONFile.sample in Resources */ = {isa = PBXBuildFile; fileRef = 93050DA122F54ADB00FBCA6B /* TestJSONFile.sample */; };
+		93050DA422F54B2800FBCA6B /* ModelGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93050DA322F54B2800FBCA6B /* ModelGeneratorTests.swift */; };
 		937D9DF822E89CAC00A83D84 /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937D9DF522E89CAC00A83D84 /* JSONHelper.swift */; };
 		937D9DF922E89CAC00A83D84 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937D9DF622E89CAC00A83D84 /* StringExtensions.swift */; };
 		937D9DFC22E89F4800A83D84 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937D9DFB22E89F4800A83D84 /* Constants.swift */; };
@@ -28,6 +31,20 @@
 		93FBA68422E9E5B100015EFD /* SwiftJSONModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FBA68322E9E5B100015EFD /* SwiftJSONModelFile.swift */; };
 		93FBA68622E9F40F00015EFD /* FileGeneratorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FBA68522E9F40E00015EFD /* FileGeneratorExtension.swift */; };
 		93FBA68722E9F70A00015EFD /* BaseTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93FBA68222E9E05100015EFD /* BaseTemplate.txt */; };
+		93FDFB4322F23942007D5498 /* FileGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FBA67922E9C2D700015EFD /* FileGenerator.swift */; };
+		93FDFB4422F23942007D5498 /* FileGeneratorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FBA68522E9F40E00015EFD /* FileGeneratorExtension.swift */; };
+		93FDFB4522F23942007D5498 /* ModalGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FBA66C22E9B8EA00015EFD /* ModalGenerator.swift */; };
+		93FDFB4622F23942007D5498 /* ModelGenerationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FBA66F22E9B97A00015EFD /* ModelGenerationConfiguration.swift */; };
+		93FDFB4722F23942007D5498 /* NameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FBA67722E9BDA200015EFD /* NameGenerator.swift */; };
+		93FDFB4822F23946007D5498 /* ModelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FBA67522E9BCA100015EFD /* ModelComponent.swift */; };
+		93FDFB4922F23946007D5498 /* ModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FBA67122E9BB4800015EFD /* ModelFile.swift */; };
+		93FDFB4A22F23946007D5498 /* PropertyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FBA67322E9BC5200015EFD /* PropertyComponent.swift */; };
+		93FDFB4B22F23946007D5498 /* SwiftJSONModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FBA68322E9E5B100015EFD /* SwiftJSONModelFile.swift */; };
+		93FDFB4C22F2394B007D5498 /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937D9DF522E89CAC00A83D84 /* JSONHelper.swift */; };
+		93FDFB4D22F2394B007D5498 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937D9DF622E89CAC00A83D84 /* StringExtensions.swift */; };
+		93FDFB4E22F23960007D5498 /* BaseTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93FBA68222E9E05100015EFD /* BaseTemplate.txt */; };
+		93FDFB4F22F23962007D5498 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937D9DFB22E89F4800A83D84 /* Constants.swift */; };
+		93FDFB5122F2BECD007D5498 /* JSONHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FDFB5022F2BECD007D5498 /* JSONHelperTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,13 +58,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		139667DBBC1C031005A38ECC /* Pods-SwiftyJSONAcceleratorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyJSONAcceleratorTests.release.xcconfig"; path = "Target Support Files/Pods-SwiftyJSONAcceleratorTests/Pods-SwiftyJSONAcceleratorTests.release.xcconfig"; sourceTree = "<group>"; };
 		2ABC7D6BA5C84B6E9C5E8547 /* Pods-SwiftyJSONAccelerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyJSONAccelerator.debug.xcconfig"; path = "Target Support Files/Pods-SwiftyJSONAccelerator/Pods-SwiftyJSONAccelerator.debug.xcconfig"; sourceTree = "<group>"; };
+		5DD79F3F4CA34990ED57C901 /* Pods_SwiftyJSONAcceleratorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyJSONAcceleratorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93050D9B22F54AD100FBCA6B /* test_config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test_config.json; sourceTree = "<group>"; };
+		93050D9C22F54AD100FBCA6B /* user.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = user.json; sourceTree = "<group>"; };
+		93050D9D22F54AD100FBCA6B /* album.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = album.json; sourceTree = "<group>"; };
+		93050D9E22F54AD100FBCA6B /* community.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = community.json; sourceTree = "<group>"; };
+		93050D9F22F54AD100FBCA6B /* photo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = photo.json; sourceTree = "<group>"; };
+		93050DA022F54AD100FBCA6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93050DA122F54ADB00FBCA6B /* TestJSONFile.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TestJSONFile.sample; path = "../../../SwiftyJSONAccelerator copy/SwiftyJSONAcceleratorTests/Support Files/TestJSONFile.sample"; sourceTree = "<group>"; };
+		93050DA322F54B2800FBCA6B /* ModelGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelGeneratorTests.swift; sourceTree = "<group>"; };
 		937D9DF522E89CAC00A83D84 /* JSONHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
 		937D9DF622E89CAC00A83D84 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		937D9DFB22E89F4800A83D84 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		93846D3922E8BAE20051D564 /* StringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
 		93E0F10422E859D5008D3B16 /* SwiftyJSONAccelerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyJSONAccelerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		93E0F10722E859D5008D3B16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		93E0F10722E859D5008D3B16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../Support/AppDelegate.swift; sourceTree = "<group>"; };
 		93E0F10922E859D5008D3B16 /* SJEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SJEditorViewController.swift; sourceTree = "<group>"; };
 		93E0F10B22E859D6008D3B16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93E0F10E22E859D6008D3B16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -67,7 +94,9 @@
 		93FBA68222E9E05100015EFD /* BaseTemplate.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = BaseTemplate.txt; sourceTree = "<group>"; };
 		93FBA68322E9E5B100015EFD /* SwiftJSONModelFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftJSONModelFile.swift; sourceTree = "<group>"; };
 		93FBA68522E9F40E00015EFD /* FileGeneratorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileGeneratorExtension.swift; sourceTree = "<group>"; };
+		93FDFB5022F2BECD007D5498 /* JSONHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHelperTests.swift; sourceTree = "<group>"; };
 		9C761827F34F7ABFE85AF9E1 /* Pods_SwiftyJSONAccelerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyJSONAccelerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C98DCCC52F206DFAE6F188A /* Pods-SwiftyJSONAcceleratorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyJSONAcceleratorTests.debug.xcconfig"; path = "Target Support Files/Pods-SwiftyJSONAcceleratorTests/Pods-SwiftyJSONAcceleratorTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DA85A8FD9057653442961237 /* Pods-SwiftyJSONAccelerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyJSONAccelerator.release.xcconfig"; path = "Target Support Files/Pods-SwiftyJSONAccelerator/Pods-SwiftyJSONAccelerator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B83234B615A1E2C083165BC /* Pods_SwiftyJSONAcceleratorTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,8 +125,40 @@
 			children = (
 				2ABC7D6BA5C84B6E9C5E8547 /* Pods-SwiftyJSONAccelerator.debug.xcconfig */,
 				DA85A8FD9057653442961237 /* Pods-SwiftyJSONAccelerator.release.xcconfig */,
+				9C98DCCC52F206DFAE6F188A /* Pods-SwiftyJSONAcceleratorTests.debug.xcconfig */,
+				139667DBBC1C031005A38ECC /* Pods-SwiftyJSONAcceleratorTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		93050D9822F54AD100FBCA6B /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				93050DA122F54ADB00FBCA6B /* TestJSONFile.sample */,
+				93050D9A22F54AD100FBCA6B /* MultipleModelTests */,
+				93050DA022F54AD100FBCA6B /* Info.plist */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		93050D9A22F54AD100FBCA6B /* MultipleModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				93050D9B22F54AD100FBCA6B /* test_config.json */,
+				93050D9C22F54AD100FBCA6B /* user.json */,
+				93050D9D22F54AD100FBCA6B /* album.json */,
+				93050D9E22F54AD100FBCA6B /* community.json */,
+				93050D9F22F54AD100FBCA6B /* photo.json */,
+			);
+			path = MultipleModelTests;
+			sourceTree = "<group>";
+		};
+		935F7E4822F38B650003F787 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				93E0F10722E859D5008D3B16 /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
 			sourceTree = "<group>";
 		};
 		937D9DF322E89CA200A83D84 /* Helpers */ = {
@@ -143,6 +205,7 @@
 		93E0F10622E859D5008D3B16 /* SwiftyJSONAccelerator */ = {
 			isa = PBXGroup;
 			children = (
+				935F7E4822F38B650003F787 /* AppDelegate */,
 				93FBA66B22E9B8D100015EFD /* Support */,
 				93EA46F822E888F000A7B0DB /* UI */,
 			);
@@ -152,8 +215,11 @@
 		93E0F11922E859D6008D3B16 /* SwiftyJSONAcceleratorTests */ = {
 			isa = PBXGroup;
 			children = (
+				93050D9822F54AD100FBCA6B /* Support Files */,
 				93E0F11C22E859D6008D3B16 /* Info.plist */,
+				93FDFB5022F2BECD007D5498 /* JSONHelperTests.swift */,
 				93846D3922E8BAE20051D564 /* StringTests.swift */,
+				93050DA322F54B2800FBCA6B /* ModelGeneratorTests.swift */,
 			);
 			path = SwiftyJSONAcceleratorTests;
 			sourceTree = "<group>";
@@ -192,7 +258,6 @@
 		93FBA66B22E9B8D100015EFD /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				93E0F10722E859D5008D3B16 /* AppDelegate.swift */,
 				93E0F10B22E859D6008D3B16 /* Assets.xcassets */,
 				93E0F11022E859D6008D3B16 /* Info.plist */,
 				93E0F10D22E859D6008D3B16 /* Main.storyboard */,
@@ -224,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				9C761827F34F7ABFE85AF9E1 /* Pods_SwiftyJSONAccelerator.framework */,
+				5DD79F3F4CA34990ED57C901 /* Pods_SwiftyJSONAcceleratorTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -239,6 +305,7 @@
 				93E0F10022E859D5008D3B16 /* Sources */,
 				93E0F10122E859D5008D3B16 /* Frameworks */,
 				93E0F10222E859D5008D3B16 /* Resources */,
+				935F7E4722F3852E0003F787 /* Swiftlint */,
 				937D9DF122E8962F00A83D84 /* Swiftformat */,
 				A802EAF639CE91FCE6AB21CD /* [CP] Embed Pods Frameworks */,
 			);
@@ -255,6 +322,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 93E0F12222E859D6008D3B16 /* Build configuration list for PBXNativeTarget "SwiftyJSONAcceleratorTests" */;
 			buildPhases = (
+				3C651344C29B072C5A2C8417 /* [CP] Check Pods Manifest.lock */,
 				93E0F11222E859D6008D3B16 /* Sources */,
 				93E0F11322E859D6008D3B16 /* Frameworks */,
 				93E0F11422E859D6008D3B16 /* Resources */,
@@ -322,12 +390,54 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93FDFB4E22F23960007D5498 /* BaseTemplate.txt in Resources */,
+				93050DA222F54ADB00FBCA6B /* TestJSONFile.sample in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3C651344C29B072C5A2C8417 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwiftyJSONAcceleratorTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		935F7E4722F3852E0003F787 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint autocorrect\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		937D9DF122E8962F00A83D84 /* Swiftformat */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -415,7 +525,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93FDFB4D22F2394B007D5498 /* StringExtensions.swift in Sources */,
+				93FDFB4722F23942007D5498 /* NameGenerator.swift in Sources */,
+				93FDFB4B22F23946007D5498 /* SwiftJSONModelFile.swift in Sources */,
 				93846D3A22E8BAE20051D564 /* StringTests.swift in Sources */,
+				93FDFB4622F23942007D5498 /* ModelGenerationConfiguration.swift in Sources */,
+				93FDFB4922F23946007D5498 /* ModelFile.swift in Sources */,
+				93FDFB4A22F23946007D5498 /* PropertyComponent.swift in Sources */,
+				93FDFB5122F2BECD007D5498 /* JSONHelperTests.swift in Sources */,
+				93FDFB4F22F23962007D5498 /* Constants.swift in Sources */,
+				93FDFB4322F23942007D5498 /* FileGenerator.swift in Sources */,
+				93FDFB4422F23942007D5498 /* FileGeneratorExtension.swift in Sources */,
+				93050DA422F54B2800FBCA6B /* ModelGeneratorTests.swift in Sources */,
+				93FDFB4C22F2394B007D5498 /* JSONHelper.swift in Sources */,
+				93FDFB4522F23942007D5498 /* ModalGenerator.swift in Sources */,
+				93FDFB4822F23946007D5498 /* ModelComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,6 +725,7 @@
 		};
 		93E0F12322E859D6008D3B16 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C98DCCC52F206DFAE6F188A /* Pods-SwiftyJSONAcceleratorTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -624,6 +749,7 @@
 		};
 		93E0F12422E859D6008D3B16 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 139667DBBC1C031005A38ECC /* Pods-SwiftyJSONAcceleratorTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

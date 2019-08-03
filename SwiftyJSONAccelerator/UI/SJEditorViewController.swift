@@ -87,9 +87,9 @@ extension SJEditorViewController {
     /// Mapping method to be used based on the selector control
     func mappingMethodForIndex(_ index: Int) -> JSONMappingMethod {
         if index == 2 {
-            return JSONMappingMethod.SwiftCodeExtended
+            return JSONMappingMethod.swiftCodeExtended
         }
-        return JSONMappingMethod.Swift
+        return JSONMappingMethod.swiftNormal
     }
 
     func openFile() -> String? {
@@ -103,14 +103,19 @@ extension SJEditorViewController {
         return nil
     }
 
-    func notify(fileCount: Int) {
+    func notify(fileCount: Int, path: String) {
         let notification = NSUserNotification()
+        notification.identifier = "SwiftyJSONAccelerator-" + UUID().uuidString
         notification.title = "SwiftyJSONAccelerator"
         if fileCount > 0 {
             notification.subtitle = "Completed - \(fileCount) Files Generated"
         } else {
             notification.subtitle = "No files were generated."
         }
+        notification.userInfo = [Constants.filePathKey: path]
+        notification.soundName = NSUserNotificationDefaultSoundName
+        notification.hasActionButton = true
+        notification.actionButtonTitle = "View"
         NSUserNotificationCenter.default.deliver(notification)
     }
 
@@ -144,12 +149,13 @@ extension SJEditorViewController {
 
         // Checks for validity of the content, else can cause crashes.
         if parserResponse.parsedObject != nil {
+            let destinationPath = filePath!.appending("/")
             let variablesOptional = variablesOptionalCheckbox.state.rawValue == 1
             let separateCodingKeys = separateCodingKeysCheckbox.state.rawValue == 1
             let constructType = modelTypeSelectorSegment.selectedSegment == 0 ? ConstructType.structType : ConstructType.classType
             let libraryType = mappingMethodForIndex(librarySelector.indexOfSelectedItem)
             let configuration = ModelGenerationConfiguration(
-                filePath: filePath!.appending("/"),
+                filePath: destinationPath,
                 baseClassName: baseClassTextField.stringValue,
                 authorName: authorNameTextField.stringValue,
                 companyName: companyNameTextField.stringValue,
@@ -174,7 +180,7 @@ extension SJEditorViewController {
                     alert.runModal()
                 }
             }
-            notify(fileCount: filesGenerated.count)
+            notify(fileCount: filesGenerated.count, path: destinationPath)
         } else {
             let alert: NSAlert = NSAlert()
             alert.messageText = "Unable to save the file check the content."
@@ -222,7 +228,7 @@ extension SJEditorViewController {
 
             if validNumbers.count == 1 {
                 let index = validNumbers[0]
-                let errorPosition: (character: String, line: Int, column: Int) = (textView?.string)!.characterRowAndLineAt(position: index)
+                let errorPosition: CharacterPosition = (textView?.string)!.characterRowAndLineAt(position: index)
                 let customErrorMessage = "Error at line number: \(errorPosition.line) column: \(errorPosition.column) at Character: \(errorPosition.character)."
                 invalidJSONError(customErrorMessage)
             } else {

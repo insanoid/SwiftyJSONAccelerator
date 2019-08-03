@@ -99,7 +99,6 @@ extension JSON {
     ///
     /// - Returns: Value type of the JSON value
     func detailedValueType() -> VariableType {
-        // TODO: Add date here.
         switch type {
         case .string:
             return .string
@@ -127,6 +126,7 @@ extension JSON {
                  .cgFloatType,
                  .doubleType:
                 return .float
+                // Covers any future types for CFNumber.
             @unknown default:
                 return .float
             }
