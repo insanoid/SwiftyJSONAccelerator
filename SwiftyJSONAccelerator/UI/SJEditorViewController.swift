@@ -27,10 +27,23 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         super.viewDidLoad()
         textView.delegate = self
         textView.updateFormat()
+        resetView()
         textView!.lnv_setUpLineNumberView()
+
+        // Do any additional setup after loading the view.
+    }
+
+    func resetView() {
+        textView.string = ""
+        baseClassTextField.stringValue = "BaseClass"
         resetErrorImage()
         authorNameTextField?.stringValue = NSFullUserName()
-        // Do any additional setup after loading the view.
+        companyNameTextField.stringValue = ""
+        prefixClassTextField.stringValue = ""
+        librarySelector.selectItem(at: 0)
+        modelTypeSelectorSegment.selectSegment(withTag: 0)
+        variablesOptionalCheckbox.state = .on
+        separateCodingKeysCheckbox.state = .on
     }
 
     /// Validate and updates the textview
@@ -75,6 +88,11 @@ extension SJEditorViewController {
         if isValid {
             resetErrorImage()
         }
+    }
+
+    /// Default function when "Open > New" is clicked.
+    @IBAction func newDocument(_: Any?) {
+        resetView()
     }
 
     /// When switching between versions of code being generated
