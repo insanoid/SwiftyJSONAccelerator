@@ -14,6 +14,12 @@
 		9341B64822F98EE30092D16D /* FileGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341B64722F98EE30092D16D /* FileGeneratorTests.swift */; };
 		9341B64A22F9BC240092D16D /* MultipleModelGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341B64922F9BC240092D16D /* MultipleModelGenerator.swift */; };
 		9341B64B22F9BC550092D16D /* MultipleModelGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341B64922F9BC240092D16D /* MultipleModelGenerator.swift */; };
+		9341B64D22F9C43D0092D16D /* MultipleModelGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341B64C22F9C3950092D16D /* MultipleModelGeneratorTests.swift */; };
+		9341B64E22F9C6350092D16D /* album.json in Resources */ = {isa = PBXBuildFile; fileRef = 93050D9D22F54AD100FBCA6B /* album.json */; };
+		9341B64F22F9C6350092D16D /* community.json in Resources */ = {isa = PBXBuildFile; fileRef = 93050D9E22F54AD100FBCA6B /* community.json */; };
+		9341B65022F9C6350092D16D /* photo.json in Resources */ = {isa = PBXBuildFile; fileRef = 93050D9F22F54AD100FBCA6B /* photo.json */; };
+		9341B65122F9C6350092D16D /* test_config.json in Resources */ = {isa = PBXBuildFile; fileRef = 93050D9B22F54AD100FBCA6B /* test_config.json */; };
+		9341B65222F9C6350092D16D /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 93050D9C22F54AD100FBCA6B /* user.json */; };
 		937D9DF822E89CAC00A83D84 /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937D9DF522E89CAC00A83D84 /* JSONHelper.swift */; };
 		937D9DF922E89CAC00A83D84 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937D9DF622E89CAC00A83D84 /* StringExtensions.swift */; };
 		937D9DFC22E89F4800A83D84 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937D9DFB22E89F4800A83D84 /* Constants.swift */; };
@@ -74,6 +80,7 @@
 		93050DA322F54B2800FBCA6B /* ModelGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelGeneratorTests.swift; sourceTree = "<group>"; };
 		9341B64722F98EE30092D16D /* FileGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileGeneratorTests.swift; sourceTree = "<group>"; };
 		9341B64922F9BC240092D16D /* MultipleModelGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleModelGenerator.swift; sourceTree = "<group>"; };
+		9341B64C22F9C3950092D16D /* MultipleModelGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleModelGeneratorTests.swift; sourceTree = "<group>"; };
 		937D9DF522E89CAC00A83D84 /* JSONHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
 		937D9DF622E89CAC00A83D84 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		937D9DFB22E89F4800A83D84 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -224,6 +231,7 @@
 				9341B64722F98EE30092D16D /* FileGeneratorTests.swift */,
 				93E0F11C22E859D6008D3B16 /* Info.plist */,
 				93FDFB5022F2BECD007D5498 /* JSONHelperTests.swift */,
+				9341B64C22F9C3950092D16D /* MultipleModelGeneratorTests.swift */,
 				93050DA322F54B2800FBCA6B /* ModelGeneratorTests.swift */,
 				93846D3922E8BAE20051D564 /* StringTests.swift */,
 			);
@@ -397,8 +405,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9341B65222F9C6350092D16D /* user.json in Resources */,
+				9341B65022F9C6350092D16D /* photo.json in Resources */,
+				9341B65122F9C6350092D16D /* test_config.json in Resources */,
 				93FDFB4E22F23960007D5498 /* BaseTemplate.txt in Resources */,
+				9341B64E22F9C6350092D16D /* album.json in Resources */,
 				93050DA222F54ADB00FBCA6B /* TestJSONFile.sample in Resources */,
+				9341B64F22F9C6350092D16D /* community.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +559,7 @@
 				93FDFB4322F23942007D5498 /* FileGenerator.swift in Sources */,
 				93FDFB4422F23942007D5498 /* FileGeneratorExtension.swift in Sources */,
 				93050DA422F54B2800FBCA6B /* ModelGeneratorTests.swift in Sources */,
+				9341B64D22F9C43D0092D16D /* MultipleModelGeneratorTests.swift in Sources */,
 				93FDFB4C22F2394B007D5498 /* JSONHelper.swift in Sources */,
 				9341B64822F98EE30092D16D /* FileGeneratorTests.swift in Sources */,
 				93FDFB4522F23942007D5498 /* ModalGenerator.swift in Sources */,

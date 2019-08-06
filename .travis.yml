@@ -6,7 +6,7 @@ xcode_scheme: SwiftyJSONAccelerator
 xcode_sdk: macosx10.14
 
 before_install:
-  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+  - gem install xcpretty
   - gem install slather
   - gem install cocoapods
 
