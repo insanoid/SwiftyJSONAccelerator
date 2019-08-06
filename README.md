@@ -21,6 +21,8 @@ Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)]
   pod install
   ```
 
+  You will also need to install `SwiftFormat` with `brew install swiftformat` and `SwiftLint` with `brew install swiftlint`.
+
 - **Application Only:** [Download the .app (v2.0.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v2.0.0/SwiftyJSONAccelerator.zip)
 
 ## Features
