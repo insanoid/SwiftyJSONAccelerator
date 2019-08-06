@@ -1,5 +1,7 @@
 language:
   - swift
+cache:
+  - bundler
 osx_image: xcode10.2
 xcode_workspace: SwiftyJSONAccelerator.xcworkspace
 xcode_scheme: SwiftyJSONAccelerator
@@ -9,7 +11,9 @@ addons:
     packages:
     - swiftlint
     - swiftformat
-    update: true
+before_script:
+  - bundle install
+  - swift --version
 script:
   - xcodebuild -workspace SwiftyJSONAccelerator.xcworkspace -scheme "SwiftyJSONAccelerator" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO test
 after_success:
