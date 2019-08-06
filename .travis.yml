@@ -1,23 +1,25 @@
-language:
-  - swift
-cache:
-  - bundler
+language: swift
+
 osx_image: xcode10.2
 xcode_workspace: SwiftyJSONAccelerator.xcworkspace
 xcode_scheme: SwiftyJSONAccelerator
 xcode_sdk: macosx10.14
+
+before_install:
+  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+  - gem install slather
+  - gem install cocoapods
+
 addons:
   homebrew:
     packages:
     - swiftlint
     - swiftformat
     update: true
-install: bundle install --without=documentation --path ../travis_bundle_dir
-before_script:
-  - bundle install
-  - swift --version
+
 script:
   - xcodebuild -workspace SwiftyJSONAccelerator.xcworkspace -scheme "SwiftyJSONAccelerator" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO test
-  - bundle exec slather
+
 after_success:
+  - slather
   - bash <(curl -s https://codecov.io/bash) -f build/slather/cobertura.xml -X coveragepy -X gcov -X xcode

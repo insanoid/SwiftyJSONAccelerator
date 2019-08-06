@@ -34,7 +34,7 @@ enum ConstructType: String {
 /// - Swift: Pure Swift 5 Codeable
 /// - SwiftCodeExtended: Codeextended along with Swift 5 - https://github.com/JohnSundell/Codextended
 enum JSONMappingMethod: String {
-    case swiftNormal = "SwiftCodingVanilla"
+    case swiftNormal = "swiftCodingVanilla"
     case swiftCodeExtended
 }
 

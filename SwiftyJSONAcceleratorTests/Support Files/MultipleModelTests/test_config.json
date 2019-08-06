@@ -1,10 +1,9 @@
 {
-    "destination_path": "/tmp/mulitple_models/",
+    "destination_path": "/tmp/multiple_models/",
     "author_name": "John Smith",
     "company_name": "Acme Inc",
     "construct_type": "struct",
-    "model_mapping_library": "Marshal",
-    "support_nscoding": false,
-    "is_final_required": false,
-    "is_header_included": false
+    "json_mapping_method": "swiftCodingVanilla",
+    "variable_option": false,
+    "separate_coding_keys": true
  }

@@ -12,6 +12,8 @@
 		93050DA222F54ADB00FBCA6B /* TestJSONFile.sample in Resources */ = {isa = PBXBuildFile; fileRef = 93050DA122F54ADB00FBCA6B /* TestJSONFile.sample */; };
 		93050DA422F54B2800FBCA6B /* ModelGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93050DA322F54B2800FBCA6B /* ModelGeneratorTests.swift */; };
 		9341B64822F98EE30092D16D /* FileGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341B64722F98EE30092D16D /* FileGeneratorTests.swift */; };
+		9341B64A22F9BC240092D16D /* MultipleModelGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341B64922F9BC240092D16D /* MultipleModelGenerator.swift */; };
+		9341B64B22F9BC550092D16D /* MultipleModelGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341B64922F9BC240092D16D /* MultipleModelGenerator.swift */; };
 		937D9DF822E89CAC00A83D84 /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937D9DF522E89CAC00A83D84 /* JSONHelper.swift */; };
 		937D9DF922E89CAC00A83D84 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937D9DF622E89CAC00A83D84 /* StringExtensions.swift */; };
 		937D9DFC22E89F4800A83D84 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937D9DFB22E89F4800A83D84 /* Constants.swift */; };
@@ -71,6 +73,7 @@
 		93050DA122F54ADB00FBCA6B /* TestJSONFile.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestJSONFile.sample; sourceTree = "<group>"; };
 		93050DA322F54B2800FBCA6B /* ModelGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelGeneratorTests.swift; sourceTree = "<group>"; };
 		9341B64722F98EE30092D16D /* FileGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileGeneratorTests.swift; sourceTree = "<group>"; };
+		9341B64922F9BC240092D16D /* MultipleModelGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleModelGenerator.swift; sourceTree = "<group>"; };
 		937D9DF522E89CAC00A83D84 /* JSONHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
 		937D9DF622E89CAC00A83D84 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		937D9DFB22E89F4800A83D84 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -248,6 +251,7 @@
 		93FBA66A22E9B8A000015EFD /* Generator */ = {
 			isa = PBXGroup;
 			children = (
+				9341B64922F9BC240092D16D /* MultipleModelGenerator.swift */,
 				93FBA67B22E9C2FF00015EFD /* Model-File-Components */,
 				93FBA67922E9C2D700015EFD /* FileGenerator.swift */,
 				93FBA68522E9F40E00015EFD /* FileGeneratorExtension.swift */,
@@ -510,6 +514,7 @@
 				93EA46FC22E8896000A7B0DB /* SJTextView.swift in Sources */,
 				93E0F10A22E859D5008D3B16 /* SJEditorViewController.swift in Sources */,
 				93FBA67222E9BB4800015EFD /* ModelFile.swift in Sources */,
+				9341B64A22F9BC240092D16D /* MultipleModelGenerator.swift in Sources */,
 				93FBA68422E9E5B100015EFD /* SwiftJSONModelFile.swift in Sources */,
 				937D9DF822E89CAC00A83D84 /* JSONHelper.swift in Sources */,
 				93FBA66D22E9B8EA00015EFD /* ModalGenerator.swift in Sources */,
@@ -533,6 +538,7 @@
 				93FDFB4B22F23946007D5498 /* SwiftJSONModelFile.swift in Sources */,
 				93846D3A22E8BAE20051D564 /* StringTests.swift in Sources */,
 				93FDFB4622F23942007D5498 /* ModelGenerationConfiguration.swift in Sources */,
+				9341B64B22F9BC550092D16D /* MultipleModelGenerator.swift in Sources */,
 				93FDFB4922F23946007D5498 /* ModelFile.swift in Sources */,
 				93FDFB4A22F23946007D5498 /* PropertyComponent.swift in Sources */,
 				93FDFB5122F2BECD007D5498 /* JSONHelperTests.swift in Sources */,

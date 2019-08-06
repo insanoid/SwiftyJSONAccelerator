@@ -90,6 +90,34 @@ extension SJEditorViewController {
         }
     }
 
+    /// Handle loading multiple files at once
+    @IBAction func handleMultipleFiles(_: AnyObject?) {
+        let folderPath = openFile()
+        // No file path was selected, go back!
+        guard let path = folderPath else { return }
+
+        do {
+            let generatedModelInfo = try MultipleModelGenerator.generate(forPath: path)
+            for file in generatedModelInfo.modelFiles {
+                let content = FileGenerator.generateFileContentWith(file, configuration: generatedModelInfo.configuration)
+                let name = file.fileName
+                try FileGenerator.writeToFileWith(name, content: content, path: generatedModelInfo.configuration.filePath)
+            }
+            notify(fileCount: generatedModelInfo.modelFiles.count, path: generatedModelInfo.configuration.filePath)
+
+        } catch let error as MultipleModelGeneratorError {
+            let alert: NSAlert = NSAlert()
+            alert.messageText = "Unable to generate the files."
+            alert.informativeText = error.errorMessage()
+            alert.runModal()
+        } catch let error as NSError {
+            let alert: NSAlert = NSAlert()
+            alert.messageText = "Unable to generate the files."
+            alert.informativeText = error.localizedDescription
+            alert.runModal()
+        }
+    }
+
     /// Default function when "Open > New" is clicked.
     @IBAction func newDocument(_: Any?) {
         resetView()

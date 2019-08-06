@@ -423,6 +423,9 @@
                                     <string key="keyEquivalent">l</string>
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="handleMultipleFiles:" target="BNy-hH-vch" id="6xw-jw-t4e"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
