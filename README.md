@@ -5,6 +5,7 @@
 [![Build
 Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)](https://travis-ci.org/insanoid/SwiftyJSONAccelerator)
 [![Coverage Status](https://coveralls.io/repos/github/insanoid/SwiftyJSONAccelerator/badge.svg?branch=master)](https://coveralls.io/github/insanoid/SwiftyJSONAccelerator?branch=master)
+
 **Version v2.0 Released! (Swift 5)**
 
 - Generates Swift 5 `Codeable` version along with `CodingKeys`.
