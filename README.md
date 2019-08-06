@@ -3,8 +3,8 @@
 # SwiftyJSONAccelerator - MacOS app `Codeable` Model file Generator For Swift 5
 
 [![Build
-Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)](https://travis-ci.org/insanoid/SwiftyJSONAccelerator) [![codecov](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator/branch/master/graph/badge.svg)](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator)
-
+Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)](https://travis-ci.org/insanoid/SwiftyJSONAccelerator)
+[![Coverage Status](https://coveralls.io/repos/github/insanoid/SwiftyJSONAccelerator/badge.svg?branch=master)](https://coveralls.io/github/insanoid/SwiftyJSONAccelerator?branch=master)
 **Version v2.0 Released! (Swift 5)**
 
 - Generates Swift 5 `Codeable` version along with `CodingKeys`.

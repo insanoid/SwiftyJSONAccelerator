@@ -168,7 +168,6 @@
 		935F7E4822F38B650003F787 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
-				93E0F10722E859D5008D3B16 /* AppDelegate.swift */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -273,6 +272,7 @@
 		93FBA66B22E9B8D100015EFD /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				93E0F10722E859D5008D3B16 /* AppDelegate.swift */,
 				93E0F10B22E859D6008D3B16 /* Assets.xcassets */,
 				93E0F11022E859D6008D3B16 /* Info.plist */,
 				93E0F10D22E859D6008D3B16 /* Main.storyboard */,
