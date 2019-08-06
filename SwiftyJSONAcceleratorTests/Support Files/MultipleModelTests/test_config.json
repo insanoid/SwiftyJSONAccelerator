@@ -3,6 +3,7 @@
     "author_name": "John Smith",
     "company_name": "Acme Inc",
     "construct_type": "struct",
+    "prefix": "NS",
     "json_mapping_method": "swiftCodingVanilla",
     "variable_option": false,
     "separate_coding_keys": true

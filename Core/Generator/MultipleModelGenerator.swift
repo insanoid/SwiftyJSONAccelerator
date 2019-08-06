@@ -17,7 +17,7 @@ import SwiftyJSON
 /// - invalidJSONFile: Invalid JSON file.
 /// - invalidConfigJSON: JSON file for config is invalid.
 /// - invalidPath: The filepath is invalid.
-enum MultipleModelGeneratorError: Error {
+enum MultipleModelGeneratorError: Error, Equatable {
     case noJSONFiles
     case noConfigFile
     case configInvalid(rule: String)
@@ -43,6 +43,10 @@ enum MultipleModelGeneratorError: Error {
         case .invalidPath:
             return "The path is invalid."
         }
+    }
+
+    static func == (lhs: MultipleModelGeneratorError, rhs: MultipleModelGeneratorError) -> Bool {
+        return lhs.errorMessage() == rhs.errorMessage()
     }
 }
 
@@ -73,11 +77,8 @@ struct MultipleModelGenerator {
         }
 
         /// The final configuration for the models (without filename)
-        let config = try loadConfiguration(fromJSON: configJSON)
+        var finalConfiguration = loadConfiguration(fromJSON: configJSON)
 
-        guard var finalConfiguration = config else {
-            throw MultipleModelGeneratorError.configInvalid(rule: "Invalid configuration.")
-        }
         finalConfiguration.filePath = generatePathToSave(fromBasePath: forPath, destinationPath: finalConfiguration.filePath)
         var models = [ModelFile]()
         for file in response.files {
@@ -143,7 +144,7 @@ struct MultipleModelGenerator {
     /// - Parameter fromJSON: JSON file with configuration properties.
     /// - Returns: Configuration model.
     /// - Throws: `MultipleModelGeneratorError.configInvalid` error.
-    static func loadConfiguration(fromJSON: JSON) throws -> ModelGenerationConfiguration? {
+    static func loadConfiguration(fromJSON: JSON) -> ModelGenerationConfiguration {
         var constructType = ConstructType.classType
         if let type = fromJSON["construct_type"].string, type == "struct" {
             constructType = ConstructType.structType
@@ -191,6 +192,7 @@ struct MultipleModelGenerator {
                 let currentConfig = (models.first?.configuration)!
                 var fileName = (models.first?.fileName)!
 
+                // When being merged take out the prefixes to get the name without prefix for the generator.
                 if let prefix = currentConfig.prefix, let range = fileName.range(of: prefix) {
                     fileName = fileName.replacingOccurrences(of: prefix, with: "", options: .literal, range: range)
                 }
@@ -210,7 +212,7 @@ struct MultipleModelGenerator {
     ///
     /// - Parameter fromFile: Filepath for the JSON file.
     /// - Returns: JSON object or nil.
-    private static func loadJSON(fromFile: String) -> JSON? {
+    static func loadJSON(fromFile: String) -> JSON? {
         let fileManager = FileManager.default
         if fileManager.fileExists(atPath: fromFile) == false {
             return nil
