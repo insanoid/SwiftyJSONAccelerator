@@ -12,8 +12,7 @@ addons:
     - swiftlint
     - swiftformat
     update: true
-install:
-  - bundle install
+install: bundle install --without=documentation --path ../travis_bundle_dir
 before_script:
   - bundle install
   - swift --version
@@ -21,4 +20,4 @@ script:
   - xcodebuild -workspace SwiftyJSONAccelerator.xcworkspace -scheme "SwiftyJSONAccelerator" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO test | xcpretty
 after_success:
   - slather
-  - bash <(curl -s https://codecov.io/bash) -f build/slather/cobertura.xml
+  - bash <(curl -s https://codecov.io/bash) -f build/slather/cobertura.xml -X coveragepy -X gcov -X xcode
