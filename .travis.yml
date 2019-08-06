@@ -16,7 +16,7 @@ before_script:
   - bundle install
   - swift --version
 script:
-  - xcodebuild -workspace SwiftyJSONAccelerator.xcworkspace -scheme "SwiftyJSONAccelerator" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO test
+  - xcodebuild -workspace SwiftyJSONAccelerator.xcworkspace -scheme "SwiftyJSONAccelerator" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO test | xcpretty
 after_success:
   - slather
   - bash <(curl -s https://codecov.io/bash) -f build/slather/cobertura.xml
