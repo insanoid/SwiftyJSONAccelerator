@@ -11,6 +11,7 @@ addons:
     packages:
     - swiftlint
     - swiftformat
+    update: true
 before_script:
   - bundle install
   - swift --version
