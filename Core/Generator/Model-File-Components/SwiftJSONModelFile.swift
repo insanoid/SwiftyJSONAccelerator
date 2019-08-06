@@ -32,10 +32,6 @@ struct SwiftJSONModelFile: ModelFile {
         self.configuration = configuration
     }
 
-    func mainBodyTemplateFileName() -> String {
-        return "BaseTemplate"
-    }
-
     mutating func generateAndAddComponentsFor(_ property: PropertyComponent) {
         let isOptional = configuration!.variablesOptional
         let isArray = property.propertyType == .valueTypeArray || property.propertyType == .objectTypeArray

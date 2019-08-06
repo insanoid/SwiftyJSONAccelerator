@@ -16,20 +16,11 @@ internal struct ModelComponent {
     var stringConstants: [String]
     /// Initialisers for the properties.
     var initialisers: [String]
-    /// Encoders for NSCoding support.
-    var encoders: [String]
-    /// Decoders for NSCoding support.
-    var decoders: [String]
-    /// Description printer for each of the properties.
-    var description: [String]
 
     /// Initialise a blank model component structure.
     init() {
         declarations = []
         stringConstants = []
         initialisers = []
-        encoders = []
-        decoders = []
-        description = []
     }
 }

@@ -4,5 +4,6 @@ scheme: SwiftyJSONAccelerator
 output_directory: build/slather/
 workspace: SwiftyJSONAccelerator.xcworkspace
 ignore:
-  - Pods/*
-  - SwiftyJSONAccelerator/UI/External-Libraries/*
+  - "Pods/*"
+  - "SwiftyJSONAccelerator/UI/*"
+  - "SwiftyJSONAccelerator/Support/*"

@@ -11,6 +11,7 @@
 		233771D54E74BB0A23429F8A /* Pods_SwiftyJSONAccelerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C761827F34F7ABFE85AF9E1 /* Pods_SwiftyJSONAccelerator.framework */; };
 		93050DA222F54ADB00FBCA6B /* TestJSONFile.sample in Resources */ = {isa = PBXBuildFile; fileRef = 93050DA122F54ADB00FBCA6B /* TestJSONFile.sample */; };
 		93050DA422F54B2800FBCA6B /* ModelGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93050DA322F54B2800FBCA6B /* ModelGeneratorTests.swift */; };
+		9341B64822F98EE30092D16D /* FileGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341B64722F98EE30092D16D /* FileGeneratorTests.swift */; };
 		937D9DF822E89CAC00A83D84 /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937D9DF522E89CAC00A83D84 /* JSONHelper.swift */; };
 		937D9DF922E89CAC00A83D84 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937D9DF622E89CAC00A83D84 /* StringExtensions.swift */; };
 		937D9DFC22E89F4800A83D84 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937D9DFB22E89F4800A83D84 /* Constants.swift */; };
@@ -67,14 +68,15 @@
 		93050D9E22F54AD100FBCA6B /* community.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = community.json; sourceTree = "<group>"; };
 		93050D9F22F54AD100FBCA6B /* photo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = photo.json; sourceTree = "<group>"; };
 		93050DA022F54AD100FBCA6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		93050DA122F54ADB00FBCA6B /* TestJSONFile.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TestJSONFile.sample; path = "../../../SwiftyJSONAccelerator copy/SwiftyJSONAcceleratorTests/Support Files/TestJSONFile.sample"; sourceTree = "<group>"; };
+		93050DA122F54ADB00FBCA6B /* TestJSONFile.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestJSONFile.sample; sourceTree = "<group>"; };
 		93050DA322F54B2800FBCA6B /* ModelGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelGeneratorTests.swift; sourceTree = "<group>"; };
+		9341B64722F98EE30092D16D /* FileGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileGeneratorTests.swift; sourceTree = "<group>"; };
 		937D9DF522E89CAC00A83D84 /* JSONHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
 		937D9DF622E89CAC00A83D84 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		937D9DFB22E89F4800A83D84 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		93846D3922E8BAE20051D564 /* StringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
 		93E0F10422E859D5008D3B16 /* SwiftyJSONAccelerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyJSONAccelerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		93E0F10722E859D5008D3B16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../Support/AppDelegate.swift; sourceTree = "<group>"; };
+		93E0F10722E859D5008D3B16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93E0F10922E859D5008D3B16 /* SJEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SJEditorViewController.swift; sourceTree = "<group>"; };
 		93E0F10B22E859D6008D3B16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93E0F10E22E859D6008D3B16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -134,9 +136,9 @@
 		93050D9822F54AD100FBCA6B /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				93050DA122F54ADB00FBCA6B /* TestJSONFile.sample */,
 				93050D9A22F54AD100FBCA6B /* MultipleModelTests */,
 				93050DA022F54AD100FBCA6B /* Info.plist */,
+				93050DA122F54ADB00FBCA6B /* TestJSONFile.sample */,
 			);
 			path = "Support Files";
 			sourceTree = "<group>";
@@ -144,11 +146,11 @@
 		93050D9A22F54AD100FBCA6B /* MultipleModelTests */ = {
 			isa = PBXGroup;
 			children = (
-				93050D9B22F54AD100FBCA6B /* test_config.json */,
-				93050D9C22F54AD100FBCA6B /* user.json */,
 				93050D9D22F54AD100FBCA6B /* album.json */,
 				93050D9E22F54AD100FBCA6B /* community.json */,
 				93050D9F22F54AD100FBCA6B /* photo.json */,
+				93050D9B22F54AD100FBCA6B /* test_config.json */,
+				93050D9C22F54AD100FBCA6B /* user.json */,
 			);
 			path = MultipleModelTests;
 			sourceTree = "<group>";
@@ -216,10 +218,11 @@
 			isa = PBXGroup;
 			children = (
 				93050D9822F54AD100FBCA6B /* Support Files */,
+				9341B64722F98EE30092D16D /* FileGeneratorTests.swift */,
 				93E0F11C22E859D6008D3B16 /* Info.plist */,
 				93FDFB5022F2BECD007D5498 /* JSONHelperTests.swift */,
-				93846D3922E8BAE20051D564 /* StringTests.swift */,
 				93050DA322F54B2800FBCA6B /* ModelGeneratorTests.swift */,
+				93846D3922E8BAE20051D564 /* StringTests.swift */,
 			);
 			path = SwiftyJSONAcceleratorTests;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				93FDFB4422F23942007D5498 /* FileGeneratorExtension.swift in Sources */,
 				93050DA422F54B2800FBCA6B /* ModelGeneratorTests.swift in Sources */,
 				93FDFB4C22F2394B007D5498 /* JSONHelper.swift in Sources */,
+				9341B64822F98EE30092D16D /* FileGeneratorTests.swift in Sources */,
 				93FDFB4522F23942007D5498 /* ModalGenerator.swift in Sources */,
 				93FDFB4822F23946007D5498 /* ModelComponent.swift in Sources */,
 			);
