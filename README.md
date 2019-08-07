@@ -6,6 +6,12 @@
 Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)](https://travis-ci.org/insanoid/SwiftyJSONAccelerator)
 [![Coverage Status](https://coveralls.io/repos/github/insanoid/SwiftyJSONAccelerator/badge.svg?branch=master)](https://coveralls.io/github/insanoid/SwiftyJSONAccelerator?branch=master)
 
+
+**Version v2.1 Released! (Swift 5)**
+
+- Tests are back - major parts of the code is covered.
+- Multiple file model generator is working again.
+
 **Version v2.0 Released! (Swift 5)**
 
 - Generates Swift 5 `Codeable` version along with `CodingKeys`.
@@ -13,7 +19,7 @@ Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)]
 - Temporarily support for CLI and tests have been removed.
 - UI now supports Dark mode!
 
-- **Application Download:** [Download the .app (v2.0.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v2.0.0/SwiftyJSONAccelerator.zip)
+- **Application Download:** [Download the .app (v2.1.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v2.1.0/SwiftyJSONAccelerator.zip)
 
 ## Installing & Building
 
@@ -24,7 +30,7 @@ Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)]
 
   You will also need to install `SwiftFormat` with `brew install swiftformat` and `SwiftLint` with `brew install swiftlint`.
 
-- **Application Only:** [Download the .app (v2.0.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v2.0.0/SwiftyJSONAccelerator.zip)
+- **Application Only:** [Download the .app (v2.1.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v2.1.0/SwiftyJSONAccelerator.zip)
 
 ## Features
 
