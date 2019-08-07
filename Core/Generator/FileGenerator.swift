@@ -13,15 +13,12 @@ struct FileGenerator {
     ///
     /// - Parameter filename: Name of the file to be loaded
     /// - Returns: String containing the template.
-    static func loadFileWith(_ filename: String) -> String {
+    static func loadFileWith(_ filename: String) throws -> String {
         let bundle = Bundle.main
-        let path = bundle.path(forResource: filename, ofType: "txt")
-
-        do {
-            let content = try String(contentsOfFile: path!)
-            return content
-        } catch {}
-
-        return ""
+        guard let path = bundle.path(forResource: filename, ofType: "txt") else {
+            return ""
+        }
+        let content = try String(contentsOfFile: path)
+        return content
     }
 }

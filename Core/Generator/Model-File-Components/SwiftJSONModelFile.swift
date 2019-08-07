@@ -1,4 +1,3 @@
-
 //
 //  SwiftJSONModelFile.swift
 //  SwiftyJSONAccelerator
@@ -31,10 +30,6 @@ struct SwiftJSONModelFile: ModelFile {
         self.fileName = fileName
         type = configuration.constructType
         self.configuration = configuration
-    }
-
-    func mainBodyTemplateFileName() -> String {
-        return "BaseTemplate"
     }
 
     mutating func generateAndAddComponentsFor(_ property: PropertyComponent) {
@@ -74,11 +69,11 @@ struct SwiftJSONModelFile: ModelFile {
     ///   - isOptional: Is optional variable kind
     /// - Returns: A string to use as the declration
     func genVariableDeclaration(_ name: String, _ type: String, _ isArray: Bool, _ isOptional: Bool) -> String {
-        var _type = type
+        var internalType = type
         if isArray {
-            _type = "[\(type)]"
+            internalType = "[\(type)]"
         }
-        return genPrimitiveVariableDeclaration(name, _type, isOptional)
+        return genPrimitiveVariableDeclaration(name, internalType, isOptional)
     }
 
     /// Generate the variable declaration string

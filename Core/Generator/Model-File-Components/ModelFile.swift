@@ -37,9 +37,4 @@ protocol ModelFile {
     ///
     /// - Parameter property: Property for which components are to be generated.
     mutating func generateAndAddComponentsFor(_ property: PropertyComponent)
-
-    /// The main file containing various module releted segments to be replaced.
-    ///
-    /// - Returns: Name of the JSON file (without extension)
-    func mainBodyTemplateFileName() -> String
 }

@@ -27,10 +27,23 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         super.viewDidLoad()
         textView.delegate = self
         textView.updateFormat()
+        resetView()
         textView!.lnv_setUpLineNumberView()
+
+        // Do any additional setup after loading the view.
+    }
+
+    func resetView() {
+        textView.string = ""
+        baseClassTextField.stringValue = "BaseClass"
         resetErrorImage()
         authorNameTextField?.stringValue = NSFullUserName()
-        // Do any additional setup after loading the view.
+        companyNameTextField.stringValue = ""
+        prefixClassTextField.stringValue = ""
+        librarySelector.selectItem(at: 0)
+        modelTypeSelectorSegment.selectSegment(withTag: 0)
+        variablesOptionalCheckbox.state = .on
+        separateCodingKeysCheckbox.state = .on
     }
 
     /// Validate and updates the textview
@@ -77,6 +90,39 @@ extension SJEditorViewController {
         }
     }
 
+    /// Handle loading multiple files at once
+    @IBAction func handleMultipleFiles(_: AnyObject?) {
+        let folderPath = openFile()
+        // No file path was selected, go back!
+        guard let path = folderPath else { return }
+
+        do {
+            let generatedModelInfo = try MultipleModelGenerator.generate(forPath: path)
+            for file in generatedModelInfo.modelFiles {
+                let content = FileGenerator.generateFileContentWith(file, configuration: generatedModelInfo.configuration)
+                let name = file.fileName
+                try FileGenerator.writeToFileWith(name, content: content, path: generatedModelInfo.configuration.filePath)
+            }
+            notify(fileCount: generatedModelInfo.modelFiles.count, path: generatedModelInfo.configuration.filePath)
+
+        } catch let error as MultipleModelGeneratorError {
+            let alert: NSAlert = NSAlert()
+            alert.messageText = "Unable to generate the files."
+            alert.informativeText = error.errorMessage()
+            alert.runModal()
+        } catch let error as NSError {
+            let alert: NSAlert = NSAlert()
+            alert.messageText = "Unable to generate the files."
+            alert.informativeText = error.localizedDescription
+            alert.runModal()
+        }
+    }
+
+    /// Default function when "Open > New" is clicked.
+    @IBAction func newDocument(_: Any?) {
+        resetView()
+    }
+
     /// When switching between versions of code being generated
     @IBAction func librarySwitched(sender: Any) {
         if let menu = sender as? NSPopUpButton {
@@ -87,9 +133,9 @@ extension SJEditorViewController {
     /// Mapping method to be used based on the selector control
     func mappingMethodForIndex(_ index: Int) -> JSONMappingMethod {
         if index == 2 {
-            return JSONMappingMethod.SwiftCodeExtended
+            return JSONMappingMethod.swiftCodeExtended
         }
-        return JSONMappingMethod.Swift
+        return JSONMappingMethod.swiftNormal
     }
 
     func openFile() -> String? {
@@ -103,14 +149,19 @@ extension SJEditorViewController {
         return nil
     }
 
-    func notify(fileCount: Int) {
+    func notify(fileCount: Int, path: String) {
         let notification = NSUserNotification()
+        notification.identifier = "SwiftyJSONAccelerator-" + UUID().uuidString
         notification.title = "SwiftyJSONAccelerator"
         if fileCount > 0 {
             notification.subtitle = "Completed - \(fileCount) Files Generated"
         } else {
             notification.subtitle = "No files were generated."
         }
+        notification.userInfo = [Constants.filePathKey: path]
+        notification.soundName = NSUserNotificationDefaultSoundName
+        notification.hasActionButton = true
+        notification.actionButtonTitle = "View"
         NSUserNotificationCenter.default.deliver(notification)
     }
 
@@ -144,12 +195,13 @@ extension SJEditorViewController {
 
         // Checks for validity of the content, else can cause crashes.
         if parserResponse.parsedObject != nil {
+            let destinationPath = filePath!.appending("/")
             let variablesOptional = variablesOptionalCheckbox.state.rawValue == 1
             let separateCodingKeys = separateCodingKeysCheckbox.state.rawValue == 1
             let constructType = modelTypeSelectorSegment.selectedSegment == 0 ? ConstructType.structType : ConstructType.classType
             let libraryType = mappingMethodForIndex(librarySelector.indexOfSelectedItem)
             let configuration = ModelGenerationConfiguration(
-                filePath: filePath!.appending("/"),
+                filePath: destinationPath,
                 baseClassName: baseClassTextField.stringValue,
                 authorName: authorNameTextField.stringValue,
                 companyName: companyNameTextField.stringValue,
@@ -174,7 +226,7 @@ extension SJEditorViewController {
                     alert.runModal()
                 }
             }
-            notify(fileCount: filesGenerated.count)
+            notify(fileCount: filesGenerated.count, path: destinationPath)
         } else {
             let alert: NSAlert = NSAlert()
             alert.messageText = "Unable to save the file check the content."
@@ -222,7 +274,7 @@ extension SJEditorViewController {
 
             if validNumbers.count == 1 {
                 let index = validNumbers[0]
-                let errorPosition: (character: String, line: Int, column: Int) = (textView?.string)!.characterRowAndLineAt(position: index)
+                let errorPosition: CharacterPosition = (textView?.string)!.characterRowAndLineAt(position: index)
                 let customErrorMessage = "Error at line number: \(errorPosition.line) column: \(errorPosition.column) at Character: \(errorPosition.character)."
                 invalidJSONError(customErrorMessage)
             } else {

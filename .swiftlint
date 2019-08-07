@@ -1,7 +1,0 @@
-disabled_rules: # rule identifiers to exclude from running
-  - line_length
-  - function_body_length
-  - unused_closure_parameter
-  - valid_docs
-  - large_tuple
-  - identifier_name

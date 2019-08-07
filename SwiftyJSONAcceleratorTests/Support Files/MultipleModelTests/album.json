@@ -1,0 +1,15 @@
+{
+	"id": "123AA",
+	"title": "Barcelona",
+	"user": {
+		"user_id": "12345",
+		"username": "jameso1"
+	},
+	"photo": [{
+		"id": "P123",
+		"url": "http://flickr.com/p123"
+	}, {
+		"id": "P124",
+		"url": "http://flickr.com/p124"
+	}]
+}
