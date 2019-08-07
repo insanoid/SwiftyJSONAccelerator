@@ -19,7 +19,7 @@ Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)]
 - Temporarily support for CLI and tests have been removed.
 - UI now supports Dark mode!
 
-- **Application Download:** [Download the .app (v2.1.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v2.1.0/SwiftyJSONAccelerator.zip)
+- **Application Download:** [Download the .app (v2.1.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v2.1.0/SwiftyJSONAccelerator.app.zip)
 
 ## Installing & Building
 
@@ -30,7 +30,7 @@ Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)]
 
   You will also need to install `SwiftFormat` with `brew install swiftformat` and `SwiftLint` with `brew install swiftlint`.
 
-- **Application Only:** [Download the .app (v2.1.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v2.1.0/SwiftyJSONAccelerator.zip)
+- **Application Only:** [Download the .app (v2.1.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v2.1.0/SwiftyJSONAccelerator.app.zip)
 
 ## Features
 
@@ -55,7 +55,7 @@ A Swift model generator like the Objective-C [JSONAccelerator](http://nerdery.co
 
 The older version of the project generating older swift code. Please keep in mind it is **no longer supported**.
 
-- Version v1.4.0 (Swift 3) [Download (v1.5.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v1.5.0/SwiftyJSONAccelerator.zip)
+- Version v1.4.0 (Swift 3) [Download (v1.5.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v1.5.0/SwiftyJSONAccelerator.app.zip)
 - Version v0.0.6 (Swift 2) [Download (v0.0.6)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v0.0.6/SwiftyJSONAccelerator.zip)
 
 ## Contributions and Requests
