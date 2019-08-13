@@ -57,7 +57,8 @@ struct SwiftJSONModelFile: ModelFile {
     /// - Returns: Returns `case <constant> = "value"`.
     func genStringConstant(_ constantName: String, _ value: String) -> String {
         let component = constantName.components(separatedBy: ".")
-        return "case \(component.last!) = \"\(value)\""
+        let caseName = component.last!
+        return "case \(caseName)" + (caseName == value ? "" : " = \"\(value)\"")
     }
 
     /// Generate the variable declaration string
