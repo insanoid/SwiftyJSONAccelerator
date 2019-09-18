@@ -1,14 +1,14 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    CFPropertyList (2.3.6)
+    CFPropertyList (3.0.1)
     activesupport (4.2.11.1)
       i18n (~> 0.7)
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    addressable (2.6.0)
-      public_suffix (>= 2.0.2, < 4.0)
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
     atomos (0.1.3)
     babosa (1.0.2)
     claide (1.0.3)
@@ -68,8 +68,8 @@ GEM
       http-cookie (~> 1.0.0)
     faraday_middleware (0.13.1)
       faraday (>= 0.7.4, < 1.0)
-    fastimage (2.1.5)
-    fastlane (2.128.1)
+    fastimage (2.1.7)
+    fastlane (2.131.0)
       CFPropertyList (>= 2.3, < 4.0.0)
       addressable (>= 2.3, < 3.0.0)
       babosa (>= 1.0.2, < 2.0.0)
@@ -117,9 +117,9 @@ GEM
       representable (~> 3.0)
       retriable (>= 2.0, < 4.0)
       signet (~> 0.9)
-    google-cloud-core (1.3.0)
+    google-cloud-core (1.3.1)
       google-cloud-env (~> 1.0)
-    google-cloud-env (1.2.0)
+    google-cloud-env (1.2.1)
       faraday (~> 0.11)
     google-cloud-storage (1.16.0)
       digest-crc (~> 0.4)
@@ -142,9 +142,9 @@ GEM
     json (2.2.0)
     jwt (2.1.0)
     memoist (0.16.0)
-    mime-types (3.2.2)
+    mime-types (3.3)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2019.0331)
+    mime-types-data (3.2019.0904)
     mini_magick (4.9.5)
     minitest (5.11.3)
     molinillo (0.6.6)
@@ -165,14 +165,14 @@ GEM
     retriable (3.1.2)
     rouge (2.0.7)
     ruby-macho (1.4.0)
-    rubyzip (1.2.3)
+    rubyzip (1.2.4)
     security (0.1.3)
     signet (0.11.0)
       addressable (~> 2.3)
       faraday (~> 0.9)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
-    simctl (1.6.5)
+    simctl (1.6.6)
       CFPropertyList
       naturally
     slack-notifier (2.3.2)
@@ -202,16 +202,18 @@ GEM
       claide (>= 1.0.2, < 2.0)
       colored2 (~> 3.1)
       nanaimo (~> 0.2.6)
-    xcov (1.5.1)
+    xcov (1.6.0)
       fastlane (>= 2.82.0, < 3.0.0)
       multipart-post
       slack-notifier
       terminal-table
       xcodeproj
+      xcresult (~> 0.1.1)
     xcpretty (0.3.0)
       rouge (~> 2.0.7)
     xcpretty-travis-formatter (1.0.0)
       xcpretty (~> 0.2, >= 0.0.7)
+    xcresult (0.1.1)
 
 PLATFORMS
   ruby
