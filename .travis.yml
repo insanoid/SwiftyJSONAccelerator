@@ -23,3 +23,4 @@ script:
 
 after_success:
   - xcov -w SwiftyJSONAccelerator.xcworkspace -s SwiftyJSONAccelerator xcov_output --coveralls_service_name travis-ci --coveralls_service_job_id $TRAVIS_JOB_ID
+  - bash <(curl -s https://codecov.io/bash) -J 'SwiftyJSONAccelerator'

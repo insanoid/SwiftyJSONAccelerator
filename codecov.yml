@@ -1,0 +1,4 @@
+ignore:
+  - "Pods"
+  - "SwiftyJSONAccelerator/UI"
+  - "SwiftyJSONAccelerator/Support"
