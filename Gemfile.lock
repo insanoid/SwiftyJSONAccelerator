@@ -202,12 +202,6 @@ GEM
       claide (>= 1.0.2, < 2.0)
       colored2 (~> 3.1)
       nanaimo (~> 0.2.6)
-    xcov (1.5.1)
-      fastlane (>= 2.82.0, < 3.0.0)
-      multipart-post
-      slack-notifier
-      terminal-table
-      xcodeproj
     xcpretty (0.3.0)
       rouge (~> 2.0.7)
     xcpretty-travis-formatter (1.0.0)
@@ -219,7 +213,6 @@ PLATFORMS
 DEPENDENCIES
   cocoapods
   synx
-  xcov
   xcpretty
 
 BUNDLED WITH
