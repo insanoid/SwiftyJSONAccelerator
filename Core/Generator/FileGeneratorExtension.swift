@@ -33,8 +33,19 @@ extension FileGenerator {
 
         if modelFile.type == .classType {
             content = content.replacingOccurrences(of: "{REQUIRED}", with: "required ")
+            if modelFile.configuration?.shouldGenerateInitMethod == true {
+                let assignment = modelFile.component.initialiserFunctionComponent.map { doubleTab + $0.assignmentString }.joined(separator: "\n")
+                let functionParameters = modelFile.component.initialiserFunctionComponent.map { $0.functionParameter }.joined(separator: ", ")
+                let initialiserFunctionStatement = "\n\(singleTab)init (\(functionParameters)) {"
+                content = content.replacingOccurrences(of: "{INITIALIZER_FUNCTION_DECLRATION}", with: initialiserFunctionStatement)
+                content = content.replacingOccurrences(of: "{INITIALISER_FUNCTION_ASSIGNMENT}", with: assignment)
+                content = content.replacingOccurrences(of: "{INITIALISER_FUNCTION_END}", with: "\(singleTab)}\n")
+            }
         } else {
             content = content.replacingOccurrences(of: "{REQUIRED}", with: "")
+            content = content.replacingOccurrences(of: "{INITIALIZER_FUNCTION_DECLRATION}", with: "")
+            content = content.replacingOccurrences(of: "{INITIALISER_FUNCTION_ASSIGNMENT}", with: "")
+            content = content.replacingOccurrences(of: "{INITIALISER_FUNCTION_END}", with: "")
         }
         return content
     }

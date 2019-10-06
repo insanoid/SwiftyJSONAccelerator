@@ -28,6 +28,8 @@ struct ModelGenerationConfiguration {
     var separateCodingKeys: Bool
     /// Should header be included.
     var variablesOptional: Bool
+    /// Should generate a init method for the class (applicable only to class).
+    var shouldGenerateInitMethod: Bool
 
     mutating func defaultConfig() {
         variablesOptional = true
@@ -37,5 +39,6 @@ struct ModelGenerationConfiguration {
         prefix = ""
         filePath = ""
         baseClassName = ""
+        shouldGenerateInitMethod = true
     }
 }

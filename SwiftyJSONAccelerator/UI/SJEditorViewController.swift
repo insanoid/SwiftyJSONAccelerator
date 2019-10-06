@@ -20,6 +20,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     @IBOutlet var authorNameTextField: NSTextField!
     @IBOutlet var variablesOptionalCheckbox: NSButton!
     @IBOutlet var separateCodingKeysCheckbox: NSButton!
+    @IBOutlet var generateInitialiserFunctionCheckbox: NSButton!
     @IBOutlet var librarySelector: NSPopUpButton!
     @IBOutlet var modelTypeSelectorSegment: NSSegmentedControl!
 
@@ -44,6 +45,8 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         modelTypeSelectorSegment.selectSegment(withTag: 0)
         variablesOptionalCheckbox.state = .on
         separateCodingKeysCheckbox.state = .on
+        generateInitialiserFunctionCheckbox.state = .on
+        generateInitialiserFunctionCheckbox.isEnabled = false
     }
 
     /// Validate and updates the textview
@@ -124,9 +127,11 @@ extension SJEditorViewController {
     }
 
     /// When switching between versions of code being generated
-    @IBAction func librarySwitched(sender: Any) {
-        if let menu = sender as? NSPopUpButton {
-            librarySelector.title = menu.selectedItem!.title
+    @IBAction func modelTypeSwitched(sender _: Any) {
+        if modelTypeSelectorSegment.selectedSegment == 0 {
+            generateInitialiserFunctionCheckbox.isEnabled = false
+        } else {
+            generateInitialiserFunctionCheckbox.isEnabled = true
         }
     }
 
@@ -150,6 +155,7 @@ extension SJEditorViewController {
     }
 
     func notify(fileCount: Int, path: String) {
+        NSUserNotificationCenter.default.removeAllDeliveredNotifications()
         let notification = NSUserNotification()
         notification.identifier = "SwiftyJSONAccelerator-" + UUID().uuidString
         notification.title = "SwiftyJSONAccelerator"
@@ -192,12 +198,13 @@ extension SJEditorViewController {
         }
 
         let parserResponse = JSONHelper.convertToObject(textView?.string)
+        let generateInitialiserFunction = modelTypeSelectorSegment.selectedSegment == 1 ? generateInitialiserFunctionCheckbox.state == .on : false
 
         // Checks for validity of the content, else can cause crashes.
         if parserResponse.parsedObject != nil {
             let destinationPath = filePath!.appending("/")
-            let variablesOptional = variablesOptionalCheckbox.state.rawValue == 1
-            let separateCodingKeys = separateCodingKeysCheckbox.state.rawValue == 1
+            let variablesOptional = variablesOptionalCheckbox.state == .on
+            let separateCodingKeys = separateCodingKeysCheckbox.state == .on
             let constructType = modelTypeSelectorSegment.selectedSegment == 0 ? ConstructType.structType : ConstructType.classType
             let libraryType = mappingMethodForIndex(librarySelector.indexOfSelectedItem)
             let configuration = ModelGenerationConfiguration(
@@ -209,7 +216,8 @@ extension SJEditorViewController {
                 constructType: constructType,
                 modelMappingLibrary: libraryType,
                 separateCodingKeys: separateCodingKeys,
-                variablesOptional: variablesOptional
+                variablesOptional: variablesOptional,
+                shouldGenerateInitMethod: generateInitialiserFunction
             )
             let modelGenerator = ModelGenerator(JSON(parserResponse.parsedObject!), configuration)
             let filesGenerated = modelGenerator.generate()
