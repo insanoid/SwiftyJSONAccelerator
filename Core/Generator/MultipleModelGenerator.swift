@@ -149,6 +149,9 @@ struct MultipleModelGenerator {
         if let type = fromJSON["construct_type"].string, type == "struct" {
             constructType = ConstructType.structType
         }
+
+        let initialiserParameter = fromJSON["initaliser_needed"].bool
+        let initialisersNeeded = initialiserParameter != nil ? initialiserParameter! : true
         let jsonLibrary = JSONMappingMethod.swiftNormal
         let config = ModelGenerationConfiguration(filePath: fromJSON["destination_path"].string ?? "",
                                                   baseClassName: "",
@@ -158,7 +161,8 @@ struct MultipleModelGenerator {
                                                   constructType: constructType,
                                                   modelMappingLibrary: jsonLibrary,
                                                   separateCodingKeys: fromJSON["separate_coding_keys"].boolValue,
-                                                  variablesOptional: fromJSON["variable_option"].boolValue)
+                                                  variablesOptional: fromJSON["variable_option"].boolValue,
+                                                  shouldGenerateInitMethod: initialisersNeeded)
         return config
     }
 

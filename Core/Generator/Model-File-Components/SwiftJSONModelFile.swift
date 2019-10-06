@@ -43,6 +43,7 @@ struct SwiftJSONModelFile: ModelFile {
             component.stringConstants.append(genStringConstant(property.constantName, property.key))
             component.declarations.append(genVariableDeclaration(property.name, type, isArray, isOptional))
             component.initialisers.append(genInitializerForVariable(name: property.name, type: property.type, constantName: property.constantName, isOptional: isOptional, isArray: isArray, isObject: isObject))
+            component.initialiserFunctionComponent.append(genInitaliserFunctionAssignmentAndParams(property.name, type, isArray, isOptional))
         case .nullType:
             // Currently we do not deal with null values.
             break
@@ -77,6 +78,13 @@ struct SwiftJSONModelFile: ModelFile {
         return genPrimitiveVariableDeclaration(name, internalType, isOptional)
     }
 
+    func genPrimitiveVariableDeclaration(_ name: String, _ type: String, _ isOptional: Bool) -> String {
+        if isOptional {
+            return "var \(name): \(type)?"
+        }
+        return "var \(name): \(type)"
+    }
+
     /// Generate the variable declaration string
     ///
     /// - Parameters:
@@ -84,11 +92,19 @@ struct SwiftJSONModelFile: ModelFile {
     ///   - type: variable type to use
     ///   - isArray: Is the value an object
     /// - Returns: A string to use as the declration
-    func genPrimitiveVariableDeclaration(_ name: String, _ type: String, _ isOptional: Bool) -> String {
-        if isOptional {
-            return "var \(name): \(type)?"
+    func genInitaliserFunctionAssignmentAndParams(_ name: String, _ type: String, _ isArray: Bool, _ isOptional: Bool) -> InitialiserFunctionComponent {
+        var result = InitialiserFunctionComponent(functionParameter: "", assignmentString: "")
+        result.assignmentString = "self.\(name) = \(name)"
+
+        var typeString = type
+        if isArray {
+            typeString = "[\(typeString)]"
         }
-        return "var \(name): \(type)"
+        if isOptional {
+            typeString = "\(typeString)?"
+        }
+        result.functionParameter = "\(name): \(typeString)"
+        return result
     }
 
     func genInitializerForVariable(name: String, type: String, constantName: String, isOptional: Bool, isArray: Bool, isObject _: Bool) -> String {

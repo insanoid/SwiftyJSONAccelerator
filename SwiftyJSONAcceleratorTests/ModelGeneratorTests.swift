@@ -59,7 +59,8 @@ class ModelGeneratorTests: XCTestCase {
             constructType: .structType,
             modelMappingLibrary: library,
             separateCodingKeys: true,
-            variablesOptional: optional
+            variablesOptional: optional,
+            shouldGenerateInitMethod: true
         )
     }
 
@@ -119,7 +120,8 @@ class ModelGeneratorTests: XCTestCase {
                                                        authorName: "A3", companyName: "A4",
                                                        prefix: "A5", constructType: .classType,
                                                        modelMappingLibrary: .swiftCodeExtended,
-                                                       separateCodingKeys: true, variablesOptional: true)
+                                                       separateCodingKeys: true, variablesOptional: true,
+                                                       shouldGenerateInitMethod: true)
 
         XCTAssertEqual(modelConfig.filePath, "A1")
         XCTAssertEqual(modelConfig.baseClassName, "A2")
@@ -157,6 +159,7 @@ class ModelGeneratorTests: XCTestCase {
             validateDeclarations(filename: file.fileName, declarations: file.component.declarations, optional: optional)
             validateKeys(filename: file.fileName, stringKeys: file.component.stringConstants)
             validateInitialiser(filename: file.fileName, initialisers: file.component.initialisers, optional: optional)
+            validateInitialiserFunctionComponents(filename: file.fileName, initialiserFunctionComponents: file.component.initialiserFunctionComponent, optional: optional)
             let content = FileGenerator.generateFileContentWith(file, configuration: config)
             let name = file.fileName
             let path = "/tmp/sj/"
@@ -227,6 +230,32 @@ class ModelGeneratorTests: XCTestCase {
         XCTAssertEqual(possibleValues[filename]?.count, initialisers.count)
         for initialiser in possibleValues[filename]! {
             XCTAssert(initialisers.contains(initialiser))
+        }
+    }
+
+    func validateInitialiserFunctionComponents(filename: String, initialiserFunctionComponents: [InitialiserFunctionComponent], optional: Bool) {
+        let possibleAssignmentValues = ["ACBaseClass": ["self.valueOne = valueOne", "self.valueThree = valueThree", "self.valueSeven = valueSeven", "self.valueEight = valueEight", "self.valueFour = valueFour", "self.valueFive = valueFive", "self.valueSix = valueSix", "self.valueTwo = valueTwo"],
+                                        "ACValueSeven": ["self.subValueFive = subValueFive", "self.doubleValue = doubleValue", "self.subValueThird = subValueThird", "self.internalProperty = internalProperty", "self.subValueFour = subValueFour"],
+                                        "ACSubValueFive": ["self.twoLevelDown = twoLevelDown"],
+                                        "ACValueSix": ["self.subValue = subValue", "self.subValueSecond = subValueSecond"]]
+
+        var possibleFunctionParamValues = ["ACBaseClass": ["valueSeven: [ACValueSeven]", "valueThree: Bool", "valueFive: [String]", "valueSix: ACValueSix", "valueEight: Any", "valueTwo: Int", "valueFour: Float", "valueOne: String"],
+                                           "ACValueSeven": ["subValueFive: ACSubValueFive", "subValueFour: String", "internalProperty: String", "subValueThird: Float", "doubleValue: Float"],
+                                           "ACSubValueFive": ["twoLevelDown: String"],
+                                           "ACValueSix": ["subValue: String", "subValueSecond: Bool"]]
+
+        if optional == true {
+            possibleFunctionParamValues = ["ACBaseClass": ["valueSeven: [ACValueSeven]?", "valueThree: Bool?", "valueFive: [String]?", "valueSix: ACValueSix?", "valueEight: Any?", "valueTwo: Int?", "valueFour: Float?", "valueOne: String?"],
+                                           "ACValueSeven": ["subValueFive: ACSubValueFive?", "subValueFour: String?", "internalProperty: String?", "subValueThird: Float?", "doubleValue: Float?"],
+                                           "ACSubValueFive": ["twoLevelDown: String?"],
+                                           "ACValueSix": ["subValue: String?", "subValueSecond: Bool?"]]
+        }
+
+        XCTAssertEqual(possibleAssignmentValues[filename]?.count, initialiserFunctionComponents.count)
+        XCTAssertEqual(possibleFunctionParamValues[filename]?.count, initialiserFunctionComponents.count)
+        for initialiserFunctionComponent in initialiserFunctionComponents {
+            XCTAssert(possibleAssignmentValues[filename]!.contains(initialiserFunctionComponent.assignmentString))
+            XCTAssert(possibleFunctionParamValues[filename]!.contains(initialiserFunctionComponent.functionParameter))
         }
     }
 
