@@ -20,6 +20,9 @@ protocol ModelFile {
     /// Type of the the object, if a structure or a class.
     var type: ConstructType { get }
 
+    /// Type of access control for object and properties.
+    var accessControl: AccessControl { get }
+
     /// Storage for various components of the model, it is used to store the intermediate data.
     var component: ModelComponent { get }
 

@@ -114,7 +114,7 @@ public struct ModelGenerator {
      - returns: Notification tht was generated.
      */
     func generateNotificationFor(_ modelFiles: [ModelFile]) -> NSUserNotification {
-        let notification: NSUserNotification = NSUserNotification()
+        let notification = NSUserNotification()
         notification.title = NSLocalizedString("SwiftyJSONAccelerator", comment: "")
         if !modelFiles.isEmpty {
             let firstModel = (modelFiles.first)!

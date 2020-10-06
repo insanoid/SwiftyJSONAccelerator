@@ -149,6 +149,10 @@ struct MultipleModelGenerator {
         if let type = fromJSON["construct_type"].string, type == "struct" {
             constructType = ConstructType.structType
         }
+        var accessControl = AccessControl.internal
+        if let string = fromJSON["access_control"].string, let value = AccessControl(rawValue: string) {
+            accessControl = value
+        }
 
         let initialiserParameter = fromJSON["initaliser_needed"].bool
         let initialisersNeeded = initialiserParameter != nil ? initialiserParameter! : true
@@ -159,6 +163,7 @@ struct MultipleModelGenerator {
                                                   companyName: fromJSON["company_name"].string,
                                                   prefix: fromJSON["prefix"].string,
                                                   constructType: constructType,
+                                                  accessControl: accessControl,
                                                   modelMappingLibrary: jsonLibrary,
                                                   separateCodingKeys: fromJSON["separate_coding_keys"].boolValue,
                                                   variablesOptional: fromJSON["variable_option"].boolValue,
