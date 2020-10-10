@@ -183,7 +183,7 @@ class ModelGeneratorTests: XCTestCase {
                                               "var valueFive: [String]?", "var valueSeven: [ACValueSeven]?"],
                               "ACValueSix": ["var subValue: String?", "var subValueSecond: Bool?"],
                               "ACValueSeven": ["var subValueFive: ACSubValueFive?", "var subValueFour: String?",
-                                               "var internalProperty: String?", "var doubleValue: Float?",
+                                               "var `internal`: String?", "var doubleValue: Float?",
                                                "var subValueThird: Float?"],
                               "ACSubValueFive": ["var twoLevelDown: String?"]]
 
@@ -193,7 +193,7 @@ class ModelGeneratorTests: XCTestCase {
                                               "var valueFive: [String]", "var valueSeven: [ACValueSeven]"],
                               "ACValueSix": ["var subValue: String", "var subValueSecond: Bool"],
                               "ACValueSeven": ["var subValueFive: ACSubValueFive", "var subValueFour: String",
-                                               "var internalProperty: String", "var doubleValue: Float",
+                                               "var `internal`: String", "var doubleValue: Float",
                                                "var subValueThird: Float"],
                               "ACSubValueFive": ["var twoLevelDown: String"]]
         }
@@ -207,7 +207,7 @@ class ModelGeneratorTests: XCTestCase {
     func validateKeys(filename: String, stringKeys: [String]) {
         let possibleValues = ["ACBaseClass": ["case valueThree = \"value_three\"", "case valueSix = \"value_six\"", "case valueEight = \"value_eight\"", "case valueFive = \"value_five\"", "case valueFour = \"value_four\"", "case valueSeven = \"value_seven\"", "case valueOne = \"value_one\"", "case valueTwo = \"value_two\""],
                               "ACValueSix": ["case subValueSecond = \"sub_value_second\"", "case subValue = \"sub_value\""],
-                              "ACValueSeven": ["case subValueFour = \"sub_value_four\"", "case subValueFive = \"sub_value_five\"", "case doubleValue = \"double_value\"", "case subValueThird = \"sub_value_third\"", "case internalProperty = \"internal\""],
+                              "ACValueSeven": ["case subValueFour = \"sub_value_four\"", "case subValueFive = \"sub_value_five\"", "case doubleValue = \"double_value\"", "case subValueThird = \"sub_value_third\"", "case `internal` = \"internal\""],
                               "ACSubValueFive": ["case twoLevelDown = \"two_level_down\""]]
         XCTAssertEqual(possibleValues[filename]?.count, stringKeys.count)
         for stringKey in possibleValues[filename]! {
@@ -217,13 +217,13 @@ class ModelGeneratorTests: XCTestCase {
 
     func validateInitialiser(filename: String, initialisers: [String], optional: Bool) {
         var possibleValues = ["ACBaseClass": ["valueOne = try container.decodeIfPresent(String.self, forKey: .valueOne)", "valueThree = try container.decodeIfPresent(Bool.self, forKey: .valueThree)", "valueSeven = try container.decodeIfPresent([ACValueSeven].self, forKey: .valueSeven)", "valueEight = try container.decodeIfPresent([].self, forKey: .valueEight)", "valueFour = try container.decodeIfPresent(Float.self, forKey: .valueFour)", "valueFive = try container.decodeIfPresent([String].self, forKey: .valueFive)", "valueSix = try container.decodeIfPresent(ACValueSix.self, forKey: .valueSix)", "valueTwo = try container.decodeIfPresent(Int.self, forKey: .valueTwo)"],
-                              "ACValueSeven": ["subValueFive = try container.decodeIfPresent(ACSubValueFive.self, forKey: .subValueFive)", "doubleValue = try container.decodeIfPresent(Float.self, forKey: .doubleValue)", "subValueThird = try container.decodeIfPresent(Float.self, forKey: .subValueThird)", "internalProperty = try container.decodeIfPresent(String.self, forKey: .internalProperty)", "subValueFour = try container.decodeIfPresent(String.self, forKey: .subValueFour)"],
+                              "ACValueSeven": ["subValueFive = try container.decodeIfPresent(ACSubValueFive.self, forKey: .subValueFive)", "doubleValue = try container.decodeIfPresent(Float.self, forKey: .doubleValue)", "subValueThird = try container.decodeIfPresent(Float.self, forKey: .subValueThird)", "`internal` = try container.decodeIfPresent(String.self, forKey: .`internal`)", "subValueFour = try container.decodeIfPresent(String.self, forKey: .subValueFour)"],
                               "ACSubValueFive": ["twoLevelDown = try container.decodeIfPresent(String.self, forKey: .twoLevelDown)"],
                               "ACValueSix": ["subValue = try container.decodeIfPresent(String.self, forKey: .subValue)", "subValueSecond = try container.decodeIfPresent(Bool.self, forKey: .subValueSecond)"]]
 
         if optional == false {
             possibleValues = ["ACBaseClass": ["valueSeven = try container.decode([ACValueSeven].self, forKey: .valueSeven)", "valueThree = try container.decode(Bool.self, forKey: .valueThree)", "valueFive = try container.decode([String].self, forKey: .valueFive)", "valueSix = try container.decode(ACValueSix.self, forKey: .valueSix)", "valueEight = try container.decode([].self, forKey: .valueEight)", "valueTwo = try container.decode(Int.self, forKey: .valueTwo)", "valueFour = try container.decode(Float.self, forKey: .valueFour)", "valueOne = try container.decode(String.self, forKey: .valueOne)"],
-                              "ACValueSeven": ["subValueFive = try container.decode(ACSubValueFive.self, forKey: .subValueFive)", "subValueFour = try container.decode(String.self, forKey: .subValueFour)", "internalProperty = try container.decode(String.self, forKey: .internalProperty)", "subValueThird = try container.decode(Float.self, forKey: .subValueThird)", "doubleValue = try container.decode(Float.self, forKey: .doubleValue)"],
+                              "ACValueSeven": ["subValueFive = try container.decode(ACSubValueFive.self, forKey: .subValueFive)", "subValueFour = try container.decode(String.self, forKey: .subValueFour)", "`internal` = try container.decode(String.self, forKey: .`internal`)", "subValueThird = try container.decode(Float.self, forKey: .subValueThird)", "doubleValue = try container.decode(Float.self, forKey: .doubleValue)"],
                               "ACSubValueFive": ["twoLevelDown = try container.decode(String.self, forKey: .twoLevelDown)"],
                               "ACValueSix": ["subValue = try container.decode(String.self, forKey: .subValue)", "subValueSecond = try container.decode(Bool.self, forKey: .subValueSecond)"]]
         }
@@ -235,18 +235,18 @@ class ModelGeneratorTests: XCTestCase {
 
     func validateInitialiserFunctionComponents(filename: String, initialiserFunctionComponents: [InitialiserFunctionComponent], optional: Bool) {
         let possibleAssignmentValues = ["ACBaseClass": ["self.valueOne = valueOne", "self.valueThree = valueThree", "self.valueSeven = valueSeven", "self.valueEight = valueEight", "self.valueFour = valueFour", "self.valueFive = valueFive", "self.valueSix = valueSix", "self.valueTwo = valueTwo"],
-                                        "ACValueSeven": ["self.subValueFive = subValueFive", "self.doubleValue = doubleValue", "self.subValueThird = subValueThird", "self.internalProperty = internalProperty", "self.subValueFour = subValueFour"],
+                                        "ACValueSeven": ["self.subValueFive = subValueFive", "self.doubleValue = doubleValue", "self.subValueThird = subValueThird", "self.`internal` = `internal`", "self.subValueFour = subValueFour"],
                                         "ACSubValueFive": ["self.twoLevelDown = twoLevelDown"],
                                         "ACValueSix": ["self.subValue = subValue", "self.subValueSecond = subValueSecond"]]
 
         var possibleFunctionParamValues = ["ACBaseClass": ["valueSeven: [ACValueSeven]", "valueThree: Bool", "valueFive: [String]", "valueSix: ACValueSix", "valueEight: Any", "valueTwo: Int", "valueFour: Float", "valueOne: String"],
-                                           "ACValueSeven": ["subValueFive: ACSubValueFive", "subValueFour: String", "internalProperty: String", "subValueThird: Float", "doubleValue: Float"],
+                                           "ACValueSeven": ["subValueFive: ACSubValueFive", "subValueFour: String", "`internal`: String", "subValueThird: Float", "doubleValue: Float"],
                                            "ACSubValueFive": ["twoLevelDown: String"],
                                            "ACValueSix": ["subValue: String", "subValueSecond: Bool"]]
 
         if optional == true {
             possibleFunctionParamValues = ["ACBaseClass": ["valueSeven: [ACValueSeven]?", "valueThree: Bool?", "valueFive: [String]?", "valueSix: ACValueSix?", "valueEight: Any?", "valueTwo: Int?", "valueFour: Float?", "valueOne: String?"],
-                                           "ACValueSeven": ["subValueFive: ACSubValueFive?", "subValueFour: String?", "internalProperty: String?", "subValueThird: Float?", "doubleValue: Float?"],
+                                           "ACValueSeven": ["subValueFive: ACSubValueFive?", "subValueFour: String?", "`internal`: String?", "subValueThird: Float?", "doubleValue: Float?"],
                                            "ACSubValueFive": ["twoLevelDown: String?"],
                                            "ACValueSix": ["subValue: String?", "subValueSecond: Bool?"]]
         }

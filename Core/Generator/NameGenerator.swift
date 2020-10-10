@@ -10,6 +10,34 @@ import Foundation
 
 /// A structure to store the various kinds of string name generation functions for classes and variables.
 struct NameGenerator {
+    
+    /// Swift keywords from https://docs.swift.org/swift-book/ReferenceManual/LexicalStructure.html#ID413
+    /// as of 2020-10-10
+    /// Does not include the "sometimes" keywords
+    static let swiftKeywords: Set = [
+        "associatedtype", "class", "deinit",
+        "enum", "extension", "fileprivate",
+        "func", "import", "init",
+        "inout", "internal", "let",
+        "open", "operator", "private",
+        "protocol", "public", "rethrows",
+        "static", "struct", "subscript",
+        "typealias", "var",
+        
+        "break", "case", "continue",
+        "default", "defer", "do",
+        "else", "fallthrough", "for",
+        "guard", "if", "in",
+        "repeat", "return", "switch",
+        "where", "while",
+        
+        "as", "Any", "catch",
+        "false", "is", "nil",
+        "super", "self", "Self",
+        "throw", "throws", "true",
+        "try"
+    ]
+    
     /// Generates/fixes a classname based on the string and suffix e.g. "KT"+"ClassNameSentenceCase". Replaces invalid characters.
     ///
     /// - Parameters:
@@ -31,7 +59,7 @@ struct NameGenerator {
     /// - Parameter variableName: Name of the variable in the JSON
     /// - Returns: A generated string representation of the variable name.
     static func fixVariableName(_ variableName: String) -> String {
-        var tmpVariableName = replaceKeywords(variableName)
+        var tmpVariableName = variableName
         tmpVariableName.replaceOccurrencesOfStringsWithString(["-", "_"], " ")
         tmpVariableName.trim()
 
@@ -40,28 +68,13 @@ struct NameGenerator {
             index == 0 ? element.lowercaseFirst() : element.uppercaseFirst()
             finalVariableName.append(element)
         }
-        return finalVariableName
-    }
-
-    /// Cross checks the current name against a possible set of keywords, this list is no where
-    /// extensive, but it is not meant to be, user should be able to do this in the unlikely
-    /// case it happens.
-    ///
-    /// - Parameter currentName: The current name which has to be checked.
-    /// - Returns: New name for the variable.
-    static func replaceKeywords(_ currentName: String) -> String {
-        let keywordsWithReplacements = [
-            "description": "descriptionValue",
-            "class": "classProperty",
-            "struct": "structProperty",
-            "enum": "enumProperty",
-            "internal": "internalProperty",
-            "default": "defaultValue",
-        ]
-        if let value = keywordsWithReplacements[currentName] {
-            return value
+        
+        // quote any swift keywords
+        if swiftKeywords.contains(finalVariableName) {
+            finalVariableName = "`\(finalVariableName)`"
         }
-        return currentName
+        
+        return finalVariableName
     }
 
     /// Generate the key for the given variable.
