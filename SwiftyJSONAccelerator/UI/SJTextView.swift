@@ -19,8 +19,23 @@ extension NSColor {
     }
 }
 
+extension NSView {
+    
+    @available(OSX 10.14, *)
+    @inline(__always) public func isDarkMode() -> Bool {
+        effectiveAppearance.name == .darkAqua
+    }
+}
+
 /// A textview customization to handle formatting and handling removal of quotes.
 class SJTextView: NSTextView {
+    
+    let lightTextColor = NSColor(RGB: 0x24292d)
+    let lightBackgroundColor = NSColor(RGB: 0xf6f8fa)
+    
+    let darkTextColor = NSColor(RGB: 0xd1d5da)
+    let darkBackgroundColor = NSColor(RGB: 0x24292d)
+    
     override init(frame frameRect: NSRect, textContainer container: NSTextContainer?) {
         super.init(frame: frameRect, textContainer: container)
         disableAutoReplacement()
@@ -41,6 +56,19 @@ class SJTextView: NSTextView {
         let color = NSColor(RGB: 0x07c160)
         insertionPointColor = color
         selectedTextAttributes = [.backgroundColor: color.withAlphaComponent(0.2)]
+        
+        if #available(OSX 10.14, *) {
+            if isDarkMode() {
+                textColor = darkTextColor
+                backgroundColor = darkBackgroundColor
+            } else {
+                textColor = lightTextColor
+                backgroundColor = lightBackgroundColor
+            }
+        } else {
+            textColor = lightTextColor
+            backgroundColor = lightBackgroundColor
+        }
     }
 
     override func paste(_ sender: Any?) {
@@ -56,5 +84,11 @@ class SJTextView: NSTextView {
         isAutomaticQuoteSubstitutionEnabled = false
         isAutomaticDashSubstitutionEnabled = false
         isAutomaticTextReplacementEnabled = false
+    }
+    
+    override func layout() {
+        super.layout()
+        
+        updateFormat()
     }
 }
