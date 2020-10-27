@@ -21,9 +21,12 @@ extension NSColor {
 
 extension NSView {
     
-    @available(OSX 10.14, *)
-    @inline(__always) public func isDarkMode() -> Bool {
-        effectiveAppearance.name == .darkAqua
+    @inline(__always) public var isDarkMode: Bool {
+        if #available(OSX 10.14, *) {
+            return effectiveAppearance.name == .darkAqua
+        }
+        
+        return false
     }
 }
 
@@ -57,14 +60,9 @@ class SJTextView: NSTextView {
         insertionPointColor = color
         selectedTextAttributes = [.backgroundColor: color.withAlphaComponent(0.2)]
         
-        if #available(OSX 10.14, *) {
-            if isDarkMode() {
-                textColor = darkTextColor
-                backgroundColor = darkBackgroundColor
-            } else {
-                textColor = lightTextColor
-                backgroundColor = lightBackgroundColor
-            }
+        if isDarkMode {
+            textColor = darkTextColor
+            backgroundColor = darkBackgroundColor
         } else {
             textColor = lightTextColor
             backgroundColor = lightBackgroundColor
