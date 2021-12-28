@@ -106,12 +106,12 @@ extension SJEditorViewController {
             notify(fileCount: generatedModelInfo.modelFiles.count, path: generatedModelInfo.configuration.filePath)
 
         } catch let error as MultipleModelGeneratorError {
-            let alert: NSAlert = NSAlert()
+            let alert = NSAlert()
             alert.messageText = "Unable to generate the files."
             alert.informativeText = error.errorMessage()
             alert.runModal()
         } catch let error as NSError {
-            let alert: NSAlert = NSAlert()
+            let alert = NSAlert()
             alert.messageText = "Unable to generate the files."
             alert.informativeText = error.localizedDescription
             alert.runModal()
@@ -220,7 +220,7 @@ extension SJEditorViewController {
                 do {
                     try FileGenerator.writeToFileWith(name, content: content, path: path)
                 } catch let error as NSError {
-                    let alert: NSAlert = NSAlert()
+                    let alert = NSAlert()
                     alert.messageText = "Unable to generate the files, please check the contents of the folder."
                     alert.informativeText = error.localizedDescription
                     alert.runModal()
@@ -228,7 +228,7 @@ extension SJEditorViewController {
             }
             notify(fileCount: filesGenerated.count, path: destinationPath)
         } else {
-            let alert: NSAlert = NSAlert()
+            let alert = NSAlert()
             alert.messageText = "Unable to save the file check the content."
             alert.runModal()
         }

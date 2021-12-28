@@ -56,6 +56,6 @@ enum PropertyType: String {
 }
 
 /// Place to store actual constants that don't fit in classes.
-struct Constants {
+enum Constants {
     static let filePathKey: String = "path"
 }

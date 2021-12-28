@@ -21,7 +21,7 @@ struct JSONParserResponse {
 }
 
 /// Provide helpers to handle JSON content that the user provided.
-struct JSONHelper {
+enum JSONHelper {
     /// Validate if the string that is provided can be converted into a valid JSON.
     ///
     /// - Parameter jsonString: Input string that is to be checked as JSON.
@@ -126,7 +126,7 @@ extension JSON {
                  .cgFloatType,
                  .doubleType:
                 return .float
-                // Covers any future types for CFNumber.
+            // Covers any future types for CFNumber.
             @unknown default:
                 return .float
             }
