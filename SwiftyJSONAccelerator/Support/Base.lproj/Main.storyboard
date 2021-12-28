@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="BNy-hH-vch">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="BNy-hH-vch">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -244,15 +244,15 @@
                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uv-ll-o8s">
                                 <rect key="frame" x="0.0" y="0.0" width="660" height="485"/>
                                 <clipView key="contentView" id="SgB-eN-xGq">
-                                    <rect key="frame" x="0.0" y="0.0" width="660" height="485"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="645" height="485"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="IcJ-lQ-oY8" customClass="SJTextView" customModule="SwiftyJSONAccelerator" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="660" height="485"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="645" height="485"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="660" height="485"/>
+                                            <size key="minSize" width="645" height="485"/>
                                             <size key="maxSize" width="717" height="10000000"/>
                                             <color key="insertionPointColor" name="controlLightHighlightColor" catalog="System" colorSpace="catalog"/>
                                             <connections>
@@ -267,7 +267,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="ISY-xp-qQJ">
-                                    <rect key="frame" x="644" y="0.0" width="16" height="485"/>
+                                    <rect key="frame" x="645" y="0.0" width="15" height="485"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -308,7 +308,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RXg-zV-mn8">
-                                <rect key="frame" x="677" y="280" width="306" height="34"/>
+                                <rect key="frame" x="677" y="279" width="307" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="KjA-rM-gJV"/>
                                 </constraints>
@@ -323,7 +323,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <segmentedControl focusRingType="exterior" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qP9-w3-pR6">
-                                <rect key="frame" x="680" y="244" width="300" height="31"/>
+                                <rect key="frame" x="679" y="243" width="302" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="LiJ-Si-Mzp"/>
                                     <constraint firstAttribute="width" constant="300" id="by7-Tm-eLU"/>
@@ -337,7 +337,7 @@
                                 </segmentedCell>
                             </segmentedControl>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="lAN-qa-XnT">
-                                <rect key="frame" x="678" y="198" width="304" height="29"/>
+                                <rect key="frame" x="678" y="199" width="302" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="h7y-dn-vVW"/>
                                 </constraints>
@@ -347,7 +347,7 @@
                                 </buttonCell>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="pB7-0O-Vtq">
-                                <rect key="frame" x="678" y="167" width="304" height="29"/>
+                                <rect key="frame" x="678" y="168" width="302" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="bCs-a8-GIJ"/>
                                 </constraints>
@@ -369,7 +369,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="El4-0W-0aD">
-                                <rect key="frame" x="674" y="120" width="312" height="41"/>
+                                <rect key="frame" x="673" y="120" width="314" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="pjX-sU-1Xq"/>
                                 </constraints>
@@ -393,7 +393,7 @@
                                 </connections>
                             </button>
                             <imageView translatesAutoresizingMaskIntoConstraints="NO" id="Vbl-uc-twa">
-                                <rect key="frame" x="625" y="16" width="35" height="35"/>
+                                <rect key="frame" x="610" y="16" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="IqN-v7-uV0"/>
                                     <constraint firstAttribute="height" constant="35" id="Qe0-QR-Vj8"/>
@@ -404,7 +404,7 @@
                                 <rect key="frame" x="680" y="114" width="300" height="5"/>
                             </box>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9Bo-qk-f4Q">
-                                <rect key="frame" x="674" y="70" width="312" height="41"/>
+                                <rect key="frame" x="673" y="70" width="314" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Zol-vh-vH2"/>
                                 </constraints>
