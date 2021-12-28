@@ -26,11 +26,11 @@ struct ModelGenerationConfiguration {
     var modelMappingLibrary: JSONMappingMethod
     /// Separate coding keys into an enum and not use string.
     var separateCodingKeys: Bool
-    /// Should header be included.
-    var variablesOptional: Bool
+    /// Should use optional properties in the generated files.
+    var propertiesOptional: Bool
 
     mutating func defaultConfig() {
-        variablesOptional = true
+        propertiesOptional = true
         separateCodingKeys = true
         modelMappingLibrary = .swiftNormal
         constructType = .classType

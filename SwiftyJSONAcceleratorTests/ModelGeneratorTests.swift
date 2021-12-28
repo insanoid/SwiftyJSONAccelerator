@@ -59,7 +59,7 @@ class ModelGeneratorTests: XCTestCase {
             constructType: .structType,
             modelMappingLibrary: library,
             separateCodingKeys: true,
-            variablesOptional: optional
+            propertiesOptional: optional
         )
     }
 
@@ -119,7 +119,7 @@ class ModelGeneratorTests: XCTestCase {
                                                        authorName: "A3", companyName: "A4",
                                                        prefix: "A5", constructType: .classType,
                                                        modelMappingLibrary: .swiftCodeExtended,
-                                                       separateCodingKeys: true, variablesOptional: true)
+                                                       separateCodingKeys: true, propertiesOptional: true)
 
         XCTAssertEqual(modelConfig.filePath, "A1")
         XCTAssertEqual(modelConfig.baseClassName, "A2")
@@ -129,7 +129,7 @@ class ModelGeneratorTests: XCTestCase {
         XCTAssertEqual(modelConfig.constructType, .classType)
         XCTAssertEqual(modelConfig.modelMappingLibrary, .swiftCodeExtended)
         XCTAssertEqual(modelConfig.separateCodingKeys, true)
-        XCTAssertEqual(modelConfig.variablesOptional, true)
+        XCTAssertEqual(modelConfig.propertiesOptional, true)
 
         modelConfig.defaultConfig()
 
@@ -139,7 +139,7 @@ class ModelGeneratorTests: XCTestCase {
         XCTAssertEqual(modelConfig.constructType, .classType)
         XCTAssertEqual(modelConfig.modelMappingLibrary, .swiftNormal)
         XCTAssertEqual(modelConfig.separateCodingKeys, true)
-        XCTAssertEqual(modelConfig.variablesOptional, true)
+        XCTAssertEqual(modelConfig.propertiesOptional, true)
     }
 
     func testSwift5JSONModelsWithOptional() {

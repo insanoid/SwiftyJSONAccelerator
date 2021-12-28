@@ -33,7 +33,7 @@ struct SwiftJSONModelFile: ModelFile {
     }
 
     mutating func generateAndAddComponentsFor(_ property: PropertyComponent) {
-        let isOptional = configuration!.variablesOptional
+        let isOptional = configuration!.propertiesOptional
         let isArray = property.propertyType == .valueTypeArray || property.propertyType == .objectTypeArray
         let isObject = property.propertyType == .objectType || property.propertyType == .objectTypeArray
         let type = property.propertyType == .emptyArray ? "Any" : property.type

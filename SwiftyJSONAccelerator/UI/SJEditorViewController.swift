@@ -18,7 +18,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     @IBOutlet var prefixClassTextField: NSTextField!
     @IBOutlet var companyNameTextField: NSTextField!
     @IBOutlet var authorNameTextField: NSTextField!
-    @IBOutlet var variablesOptionalCheckbox: NSButton!
+    @IBOutlet var propertiesOptionalCheckbox: NSButton!
     @IBOutlet var separateCodingKeysCheckbox: NSButton!
     @IBOutlet var librarySelector: NSPopUpButton!
     @IBOutlet var modelTypeSelectorSegment: NSSegmentedControl!
@@ -42,7 +42,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         prefixClassTextField.stringValue = ""
         librarySelector.selectItem(at: 0)
         modelTypeSelectorSegment.selectSegment(withTag: 0)
-        variablesOptionalCheckbox.state = .on
+        propertiesOptionalCheckbox.state = .on
         separateCodingKeysCheckbox.state = .on
     }
 
@@ -196,7 +196,7 @@ extension SJEditorViewController {
         // Checks for validity of the content, else can cause crashes.
         if parserResponse.parsedObject != nil {
             let destinationPath = filePath!.appending("/")
-            let variablesOptional = variablesOptionalCheckbox.state.rawValue == 1
+            let propertiesOptional = propertiesOptionalCheckbox.state.rawValue == 1
             let separateCodingKeys = separateCodingKeysCheckbox.state.rawValue == 1
             let constructType = modelTypeSelectorSegment.selectedSegment == 0 ? ConstructType.structType : ConstructType.classType
             let libraryType = mappingMethodForIndex(librarySelector.indexOfSelectedItem)
@@ -209,7 +209,7 @@ extension SJEditorViewController {
                 constructType: constructType,
                 modelMappingLibrary: libraryType,
                 separateCodingKeys: separateCodingKeys,
-                variablesOptional: variablesOptional
+                propertiesOptional: propertiesOptional
             )
             let modelGenerator = ModelGenerator(JSON(parserResponse.parsedObject!), configuration)
             let filesGenerated = modelGenerator.generate()

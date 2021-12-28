@@ -479,9 +479,9 @@
                         <outlet property="librarySelector" destination="RXg-zV-mn8" id="RMr-Fm-2Ho"/>
                         <outlet property="modelTypeSelectorSegment" destination="qP9-w3-pR6" id="R9u-ms-jeK"/>
                         <outlet property="prefixClassTextField" destination="fl9-Mi-DaP" id="imr-qY-akM"/>
+                        <outlet property="propertiesOptionalCheckbox" destination="lAN-qa-XnT" id="Tal-WZ-Wog"/>
                         <outlet property="separateCodingKeysCheckbox" destination="pB7-0O-Vtq" id="Bej-LF-N1X"/>
                         <outlet property="textView" destination="IcJ-lQ-oY8" id="5Qd-us-tJA"/>
-                        <outlet property="variablesOptionalCheckbox" destination="lAN-qa-XnT" id="GXB-fI-BrS"/>
                     </connections>
                 </viewController>
                 <customObject id="kUF-O7-0Vj" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

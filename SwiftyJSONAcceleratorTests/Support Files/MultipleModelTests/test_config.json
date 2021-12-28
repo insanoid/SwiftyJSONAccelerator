@@ -5,6 +5,6 @@
     "construct_type": "struct",
     "prefix": "NS",
     "json_mapping_method": "swiftCodingVanilla",
-    "variable_option": false,
+    "property_option": false,
     "separate_coding_keys": true
  }
