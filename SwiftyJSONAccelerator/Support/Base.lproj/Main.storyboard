@@ -341,7 +341,17 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="h7y-dn-vVW"/>
                                 </constraints>
-                                <buttonCell key="cell" type="check" title="Variables are Optional" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="WcW-tz-Vyd">
+                                <buttonCell key="cell" type="check" title="Properties are Optional" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="WcW-tz-Vyd">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z73-d6-6Zg">
+                                <rect key="frame" x="467" y="234" width="65" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="HgM-Ae-89b"/>
+                                </constraints>
+                                <buttonCell key="cell" type="check" title="Use var instead of let" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="GxM-YN-hM1">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -482,6 +492,7 @@
                         <outlet property="propertiesOptionalCheckbox" destination="lAN-qa-XnT" id="Tal-WZ-Wog"/>
                         <outlet property="separateCodingKeysCheckbox" destination="pB7-0O-Vtq" id="Bej-LF-N1X"/>
                         <outlet property="textView" destination="IcJ-lQ-oY8" id="5Qd-us-tJA"/>
+                        <outlet property="useVarInsteadOfLetCheckbox" destination="z73-d6-6Zg" id="R26-bM-xff"/>
                     </connections>
                 </viewController>
                 <customObject id="kUF-O7-0Vj" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

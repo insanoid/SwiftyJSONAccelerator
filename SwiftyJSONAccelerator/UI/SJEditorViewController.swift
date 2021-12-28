@@ -19,6 +19,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     @IBOutlet var companyNameTextField: NSTextField!
     @IBOutlet var authorNameTextField: NSTextField!
     @IBOutlet var propertiesOptionalCheckbox: NSButton!
+    @IBOutlet var useVarInsteadOfLetCheckbox: NSButton!
     @IBOutlet var separateCodingKeysCheckbox: NSButton!
     @IBOutlet var librarySelector: NSPopUpButton!
     @IBOutlet var modelTypeSelectorSegment: NSSegmentedControl!
