@@ -28,8 +28,11 @@ struct ModelGenerationConfiguration {
     var separateCodingKeys: Bool
     /// Should use optional properties in the generated files.
     var propertiesOptional: Bool
+    /// Should use `var` instead of `let` in generated files.
+    var useVarInsteadOfLet: Bool
 
     mutating func defaultConfig() {
+        useVarInsteadOfLet = true
         propertiesOptional = true
         separateCodingKeys = true
         modelMappingLibrary = .swiftNormal

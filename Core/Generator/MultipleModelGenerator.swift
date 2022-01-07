@@ -158,7 +158,8 @@ enum MultipleModelGenerator {
                                                   constructType: constructType,
                                                   modelMappingLibrary: jsonLibrary,
                                                   separateCodingKeys: fromJSON["separate_coding_keys"].boolValue,
-                                                  propertiesOptional: fromJSON["property_optional"].boolValue)
+                                                  propertiesOptional: fromJSON["property_optional"].boolValue,
+                                                  useVarInsteadOfLet: fromJSON["use_var_instead_of_let"].boolValue)
         return config
     }
 

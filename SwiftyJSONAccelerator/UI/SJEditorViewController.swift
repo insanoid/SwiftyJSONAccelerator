@@ -12,17 +12,17 @@ import SwiftyJSON
 class SJEditorViewController: NSViewController, NSTextViewDelegate {
     // MARK: Outlet files.
 
-    @IBOutlet var textView: SJTextView!
-    @IBOutlet var errorImageView: NSImageView!
-    @IBOutlet var baseClassTextField: NSTextField!
-    @IBOutlet var prefixClassTextField: NSTextField!
-    @IBOutlet var companyNameTextField: NSTextField!
-    @IBOutlet var authorNameTextField: NSTextField!
-    @IBOutlet var propertiesOptionalCheckbox: NSButton!
-    @IBOutlet var useVarInsteadOfLetCheckbox: NSButton!
-    @IBOutlet var separateCodingKeysCheckbox: NSButton!
-    @IBOutlet var librarySelector: NSPopUpButton!
-    @IBOutlet var modelTypeSelectorSegment: NSSegmentedControl!
+    @IBOutlet private var textView: SJTextView!
+    @IBOutlet private var errorImageView: NSImageView!
+    @IBOutlet private var baseClassTextField: NSTextField!
+    @IBOutlet private var prefixClassTextField: NSTextField!
+    @IBOutlet private var companyNameTextField: NSTextField!
+    @IBOutlet private var authorNameTextField: NSTextField!
+    @IBOutlet private var propertiesOptionalCheckbox: NSButton!
+    @IBOutlet private var useVarInsteadOfLetCheckbox: NSButton!
+    @IBOutlet private var separateCodingKeysCheckbox: NSButton!
+    @IBOutlet private var librarySelector: NSPopUpButton!
+    @IBOutlet private var modelTypeSelectorSegment: NSSegmentedControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +44,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         librarySelector.selectItem(at: 0)
         modelTypeSelectorSegment.selectSegment(withTag: 0)
         propertiesOptionalCheckbox.state = .on
+        useVarInsteadOfLetCheckbox.state = .on
         separateCodingKeysCheckbox.state = .on
     }
 
@@ -197,8 +198,9 @@ extension SJEditorViewController {
         // Checks for validity of the content, else can cause crashes.
         if parserResponse.parsedObject != nil {
             let destinationPath = filePath!.appending("/")
-            let propertiesOptional = propertiesOptionalCheckbox.state.rawValue == 1
-            let separateCodingKeys = separateCodingKeysCheckbox.state.rawValue == 1
+            let propertiesOptional = propertiesOptionalCheckbox.state == .on
+            let useVarInsteadOfLet = useVarInsteadOfLetCheckbox.state == .on
+            let separateCodingKeys = separateCodingKeysCheckbox.state == .on
             let constructType = modelTypeSelectorSegment.selectedSegment == 0 ? ConstructType.structType : ConstructType.classType
             let libraryType = mappingMethodForIndex(librarySelector.indexOfSelectedItem)
             let configuration = ModelGenerationConfiguration(
@@ -210,7 +212,8 @@ extension SJEditorViewController {
                 constructType: constructType,
                 modelMappingLibrary: libraryType,
                 separateCodingKeys: separateCodingKeys,
-                propertiesOptional: propertiesOptional
+                propertiesOptional: propertiesOptional,
+                useVarInsteadOfLet: useVarInsteadOfLet
             )
             let modelGenerator = ModelGenerator(JSON(parserResponse.parsedObject!), configuration)
             let filesGenerated = modelGenerator.generate()

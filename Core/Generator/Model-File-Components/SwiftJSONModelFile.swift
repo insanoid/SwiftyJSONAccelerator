@@ -34,6 +34,7 @@ struct SwiftJSONModelFile: ModelFile {
 
     mutating func generateAndAddComponentsFor(_ property: PropertyComponent) {
         let isOptional = configuration!.propertiesOptional
+        let useVarInsteadOfLet = configuration!.useVarInsteadOfLet
         let isArray = property.propertyType == .valueTypeArray || property.propertyType == .objectTypeArray
         let isObject = property.propertyType == .objectType || property.propertyType == .objectTypeArray
         let type = property.propertyType == .emptyArray ? "Any" : property.type
@@ -41,7 +42,7 @@ struct SwiftJSONModelFile: ModelFile {
         switch property.propertyType {
         case .valueType, .valueTypeArray, .objectType, .objectTypeArray, .emptyArray:
             component.stringConstants.append(genStringConstant(property.constantName, property.key))
-            component.declarations.append(genVariableDeclaration(property.name, type, isArray, isOptional))
+            component.declarations.append(genVariableDeclaration(property.name, type, isArray, isOptional, useVarInsteadOfLet))
             component.initialisers.append(genInitializerForVariable(name: property.name, type: property.type, constantName: property.constantName, isOptional: isOptional, isArray: isArray, isObject: isObject))
         case .nullType:
             // Currently we do not deal with null values.
@@ -69,12 +70,12 @@ struct SwiftJSONModelFile: ModelFile {
     ///   - isArray: Is the value an object
     ///   - isOptional: Is optional variable kind
     /// - Returns: A string to use as the declration
-    func genVariableDeclaration(_ name: String, _ type: String, _ isArray: Bool, _ isOptional: Bool) -> String {
+    func genVariableDeclaration(_ name: String, _ type: String, _ isArray: Bool, _ isOptional: Bool, _ shouldUseVar: Bool) -> String {
         var internalType = type
         if isArray {
             internalType = "[\(type)]"
         }
-        return genPrimitiveVariableDeclaration(name, internalType, isOptional)
+        return genPrimitiveVariableDeclaration(name, internalType, isOptional, shouldUseVar)
     }
 
     /// Generate the variable declaration string
@@ -84,7 +85,7 @@ struct SwiftJSONModelFile: ModelFile {
     ///   - type: variable type to use
     ///   - isArray: Is the value an object
     /// - Returns: A string to use as the declration
-    func genPrimitiveVariableDeclaration(_ name: String, _ type: String, _ isOptional: Bool) -> String {
+    func genPrimitiveVariableDeclaration(_ name: String, _ type: String, _ isOptional: Bool, _: Bool) -> String {
         if isOptional {
             return "var \(name): \(type)?"
         }

@@ -6,5 +6,6 @@
     "prefix": "NS",
     "json_mapping_method": "swiftCodingVanilla",
     "property_option": false,
+    "use_var_instead_of_let": false,
     "separate_coding_keys": true
  }
