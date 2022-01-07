@@ -85,11 +85,11 @@ struct SwiftJSONModelFile: ModelFile {
     ///   - type: variable type to use
     ///   - isArray: Is the value an object
     /// - Returns: A string to use as the declration
-    func genPrimitiveVariableDeclaration(_ name: String, _ type: String, _ isOptional: Bool, _: Bool) -> String {
+    func genPrimitiveVariableDeclaration(_ name: String, _ type: String, _ isOptional: Bool, _ shouldUseVar: Bool) -> String {
         if isOptional {
-            return "var \(name): \(type)?"
+            return "\(shouldUseVar ? "var" : "let") \(name): \(type)?"
         }
-        return "var \(name): \(type)"
+        return "\(shouldUseVar ? "var" : "let") \(name): \(type)"
     }
 
     func genInitializerForVariable(name: String, type: String, constantName: String, isOptional: Bool, isArray: Bool, isObject _: Bool) -> String {

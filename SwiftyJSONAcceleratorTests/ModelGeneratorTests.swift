@@ -49,7 +49,7 @@ class ModelGeneratorTests: XCTestCase {
     ///
     /// - Parameter library: JSON Mapping method to be used.
     /// - Returns: Configuration with the default setup.
-    func defaultConfiguration(library: JSONMappingMethod, optional: Bool) -> ModelGenerationConfiguration {
+    func defaultConfiguration(library: JSONMappingMethod, optional: Bool, useVarInsteadOfLet: Bool) -> ModelGenerationConfiguration {
         return ModelGenerationConfiguration(
             filePath: "/tmp/",
             baseClassName: "BaseClass",
@@ -59,13 +59,14 @@ class ModelGeneratorTests: XCTestCase {
             constructType: .structType,
             modelMappingLibrary: library,
             separateCodingKeys: true,
-            propertiesOptional: optional
+            propertiesOptional: optional,
+            useVarInsteadOfLet: useVarInsteadOfLet
         )
     }
 
     /// Test notification center local notifications - both successful and failure cases
     func testNotifications() {
-        let config = defaultConfiguration(library: .swiftNormal, optional: false)
+        let config = defaultConfiguration(library: .swiftNormal, optional: false, useVarInsteadOfLet: false)
         let model = ModelGenerator(JSON([testJSON()]), config)
         let files = model.generate()
         let errorNotification = model.generateNotificationFor([])
@@ -79,7 +80,7 @@ class ModelGeneratorTests: XCTestCase {
 
     /// Test invalid JSON.
     func testForInvalidJSON() {
-        let config = defaultConfiguration(library: .swiftNormal, optional: false)
+        let config = defaultConfiguration(library: .swiftNormal, optional: false, useVarInsteadOfLet: false)
         let model = ModelGenerator(JSON(["hello!"]), config)
         let files = model.generate()
         XCTAssert(files.isEmpty)
@@ -87,7 +88,7 @@ class ModelGeneratorTests: XCTestCase {
 
     /// Generate files for JSON which is an array.
     func testModelWithRootAsArray() {
-        let config = defaultConfiguration(library: .swiftNormal, optional: false)
+        let config = defaultConfiguration(library: .swiftNormal, optional: false, useVarInsteadOfLet: false)
         let model = ModelGenerator(JSON([testJSON()]), config)
         let files = model.generate()
         XCTAssert(files.count == 4)
@@ -119,7 +120,7 @@ class ModelGeneratorTests: XCTestCase {
                                                        authorName: "A3", companyName: "A4",
                                                        prefix: "A5", constructType: .classType,
                                                        modelMappingLibrary: .swiftCodeExtended,
-                                                       separateCodingKeys: true, propertiesOptional: true)
+                                                       separateCodingKeys: true, propertiesOptional: true, useVarInsteadOfLet: true)
 
         XCTAssertEqual(modelConfig.filePath, "A1")
         XCTAssertEqual(modelConfig.baseClassName, "A2")
@@ -130,6 +131,7 @@ class ModelGeneratorTests: XCTestCase {
         XCTAssertEqual(modelConfig.modelMappingLibrary, .swiftCodeExtended)
         XCTAssertEqual(modelConfig.separateCodingKeys, true)
         XCTAssertEqual(modelConfig.propertiesOptional, true)
+        XCTAssertEqual(modelConfig.useVarInsteadOfLet, true)
 
         modelConfig.defaultConfig()
 
@@ -140,21 +142,22 @@ class ModelGeneratorTests: XCTestCase {
         XCTAssertEqual(modelConfig.modelMappingLibrary, .swiftNormal)
         XCTAssertEqual(modelConfig.separateCodingKeys, true)
         XCTAssertEqual(modelConfig.propertiesOptional, true)
+        XCTAssertEqual(modelConfig.useVarInsteadOfLet, true)
     }
 
     func testSwift5JSONModelsWithOptional() {
-        let files = generateModelFiles(optional: true)
-        testFileContent(files: files.0, optional: true, config: files.1)
+        let files = generateModelFiles(optional: true, useVarInsteadOfLet: true)
+        testFileContent(files: files.0, optional: true, useVarInsteadOfLet: true, config: files.1)
     }
 
     func testSwift5JSONModelsWithNoOptionals() {
-        let files = generateModelFiles(optional: false)
-        testFileContent(files: files.0, optional: false, config: files.1)
+        let files = generateModelFiles(optional: false, useVarInsteadOfLet: false)
+        testFileContent(files: files.0, optional: false, useVarInsteadOfLet: false, config: files.1)
     }
 
-    func testFileContent(files: [ModelFile], optional: Bool, config: ModelGenerationConfiguration) {
+    func testFileContent(files: [ModelFile], optional: Bool, useVarInsteadOfLet: Bool, config: ModelGenerationConfiguration) {
         for file in files {
-            validateDeclarations(filename: file.fileName, declarations: file.component.declarations, optional: optional)
+            validateDeclarations(filename: file.fileName, declarations: file.component.declarations, optional: optional, useVarInsteadOfLet: useVarInsteadOfLet)
             validateKeys(filename: file.fileName, stringKeys: file.component.stringConstants)
             validateInitialiser(filename: file.fileName, initialisers: file.component.initialisers, optional: optional)
             let content = FileGenerator.generateFileContentWith(file, configuration: config)
@@ -168,31 +171,124 @@ class ModelGeneratorTests: XCTestCase {
         }
     }
 
-    func generateModelFiles(optional: Bool) -> ([ModelFile], ModelGenerationConfiguration) {
-        let config = defaultConfiguration(library: .swiftNormal, optional: optional)
+    func generateModelFiles(optional: Bool, useVarInsteadOfLet: Bool) -> ([ModelFile], ModelGenerationConfiguration) {
+        let config = defaultConfiguration(library: .swiftNormal, optional: optional, useVarInsteadOfLet: useVarInsteadOfLet)
         let models = ModelGenerator(testJSON(), config)
         return (models.generate(), config)
     }
 
-    func validateDeclarations(filename: String, declarations: [String], optional: Bool) {
-        var possibleValues = ["ACBaseClass": ["var valueEight: Any?", "var valueTwo: Int?", "var valueThree: Bool?",
-                                              "var valueSix: ACValueSix?", "var valueFour: Float?", "var valueOne: String?",
-                                              "var valueFive: [String]?", "var valueSeven: [ACValueSeven]?"],
-                              "ACValueSix": ["var subValue: String?", "var subValueSecond: Bool?"],
-                              "ACValueSeven": ["var subValueFive: ACSubValueFive?", "var subValueFour: String?",
-                                               "var internalProperty: String?", "var doubleValue: Float?",
-                                               "var subValueThird: Float?"],
-                              "ACSubValueFive": ["var twoLevelDown: String?"]]
+    func validateDeclarations(filename: String, declarations: [String], optional: Bool, useVarInsteadOfLet: Bool) {
+        let possibleValues: [String: [String]]
 
-        if optional == false {
-            possibleValues = ["ACBaseClass": ["var valueEight: Any", "var valueTwo: Int", "var valueThree: Bool",
-                                              "var valueSix: ACValueSix", "var valueFour: Float", "var valueOne: String",
-                                              "var valueFive: [String]", "var valueSeven: [ACValueSeven]"],
-                              "ACValueSix": ["var subValue: String", "var subValueSecond: Bool"],
-                              "ACValueSeven": ["var subValueFive: ACSubValueFive", "var subValueFour: String",
-                                               "var internalProperty: String", "var doubleValue: Float",
-                                               "var subValueThird: Float"],
-                              "ACSubValueFive": ["var twoLevelDown: String"]]
+        switch (optional, useVarInsteadOfLet) {
+        case (true, true):
+            possibleValues = [
+                "ACBaseClass": [
+                    "var valueEight: Any?",
+                    "var valueTwo: Int?",
+                    "var valueThree: Bool?",
+                    "var valueSix: ACValueSix?",
+                    "var valueFour: Float?",
+                    "var valueOne: String?",
+                    "var valueFive: [String]?",
+                    "var valueSeven: [ACValueSeven]?",
+                ],
+                "ACValueSix": [
+                    "var subValue: String?",
+                    "var subValueSecond: Bool?",
+                ],
+                "ACValueSeven": [
+                    "var subValueFive: ACSubValueFive?",
+                    "var subValueFour: String?",
+                    "var internalProperty: String?",
+                    "var doubleValue: Float?",
+                    "var subValueThird: Float?",
+                ],
+                "ACSubValueFive": [
+                    "var twoLevelDown: String?",
+                ],
+            ]
+        case (false, true):
+            possibleValues = [
+                "ACBaseClass": [
+                    "var valueEight: Any",
+                    "var valueTwo: Int",
+                    "var valueThree: Bool",
+                    "var valueSix: ACValueSix",
+                    "var valueFour: Float",
+                    "var valueOne: String",
+                    "var valueFive: [String]",
+                    "var valueSeven: [ACValueSeven]",
+                ],
+                "ACValueSix": [
+                    "var subValue: String",
+                    "var subValueSecond: Bool",
+                ],
+                "ACValueSeven": [
+                    "var subValueFive: ACSubValueFive",
+                    "var subValueFour: String",
+                    "var internalProperty: String",
+                    "var doubleValue: Float",
+                    "var subValueThird: Float",
+                ],
+                "ACSubValueFive": [
+                    "var twoLevelDown: String",
+                ],
+            ]
+        case (true, false):
+            possibleValues = [
+                "ACBaseClass": [
+                    "let valueEight: Any?",
+                    "let valueTwo: Int?",
+                    "let valueThree: Bool?",
+                    "let valueSix: ACValueSix?",
+                    "let valueFour: Float?",
+                    "let valueOne: String?",
+                    "let valueFive: [String]?",
+                    "let valueSeven: [ACValueSeven]?",
+                ],
+                "ACValueSix": [
+                    "let subValue: String?",
+                    "let subValueSecond: Bool?",
+                ],
+                "ACValueSeven": [
+                    "let subValueFive: ACSubValueFive?",
+                    "let subValueFour: String?",
+                    "let internalProperty: String?",
+                    "let doubleValue: Float?",
+                    "let subValueThird: Float?",
+                ],
+                "ACSubValueFive": [
+                    "let twoLevelDown: String?",
+                ],
+            ]
+        case (false, false):
+            possibleValues = [
+                "ACBaseClass": [
+                    "let valueEight: Any",
+                    "let valueTwo: Int",
+                    "let valueThree: Bool",
+                    "let valueSix: ACValueSix",
+                    "let valueFour: Float",
+                    "let valueOne: String",
+                    "let valueFive: [String]",
+                    "let valueSeven: [ACValueSeven]",
+                ],
+                "ACValueSix": [
+                    "let subValue: String",
+                    "let subValueSecond: Bool",
+                ],
+                "ACValueSeven": [
+                    "let subValueFive: ACSubValueFive",
+                    "let subValueFour: String",
+                    "let internalProperty: String",
+                    "let doubleValue: Float",
+                    "let subValueThird: Float",
+                ],
+                "ACSubValueFive": [
+                    "let twoLevelDown: String",
+                ],
+            ]
         }
 
         XCTAssertEqual(possibleValues[filename]?.count, declarations.count)
@@ -231,7 +327,7 @@ class ModelGeneratorTests: XCTestCase {
     }
 
     func testClassModelGenerator() {
-        var config = defaultConfiguration(library: .swiftNormal, optional: true)
+        var config = defaultConfiguration(library: .swiftNormal, optional: true, useVarInsteadOfLet: true)
         config.constructType = .classType
         let models = ModelGenerator(testJSON(), config)
         let files = models.generate()
