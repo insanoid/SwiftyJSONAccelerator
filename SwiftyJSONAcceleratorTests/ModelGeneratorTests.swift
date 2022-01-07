@@ -145,14 +145,24 @@ class ModelGeneratorTests: XCTestCase {
         XCTAssertEqual(modelConfig.useVarInsteadOfLet, true)
     }
 
-    func testSwift5JSONModelsWithOptional() {
+    func testSwift5JSONModelsWithOptionalVars() {
         let files = generateModelFiles(optional: true, useVarInsteadOfLet: true)
         testFileContent(files: files.0, optional: true, useVarInsteadOfLet: true, config: files.1)
     }
 
-    func testSwift5JSONModelsWithNoOptionals() {
+    func testSwift5JSONModelsWithNoOptionalLets() {
         let files = generateModelFiles(optional: false, useVarInsteadOfLet: false)
         testFileContent(files: files.0, optional: false, useVarInsteadOfLet: false, config: files.1)
+    }
+
+    func testSwift5JSONModelsWithOptionalLets() {
+        let files = generateModelFiles(optional: true, useVarInsteadOfLet: false)
+        testFileContent(files: files.0, optional: true, useVarInsteadOfLet: false, config: files.1)
+    }
+
+    func testSwift5JSONModelsWithNoOptionalVars() {
+        let files = generateModelFiles(optional: false, useVarInsteadOfLet: true)
+        testFileContent(files: files.0, optional: false, useVarInsteadOfLet: true, config: files.1)
     }
 
     func testFileContent(files: [ModelFile], optional: Bool, useVarInsteadOfLet: Bool, config: ModelGenerationConfiguration) {
