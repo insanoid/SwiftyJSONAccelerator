@@ -65,6 +65,10 @@ The older version of the project generating older swift code. Please keep in min
 
 Any suggestions regarding code quality of the app, generated code's quality, Swift related improvements and pull requests are all very welcome. Please make sure you submit the pull request to the next release branch and not the master branch.
 
+- [Contributing Guidelines](.github/CONTRIBUTING.md)
+- [Pull Request Template](.github/PULL_REQUEST_TEMPLATE.md)
+- [Issue Template](.github/ISSUE_TEMPLATE.yml)
+
 ## License
 
 [MIT License](LICENSE) / [Karthikeya Udupa](https://karthikeya.co.uk)
