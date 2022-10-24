@@ -68,7 +68,8 @@ Any suggestions regarding code quality of the app, generated code's quality, Swi
 - [Contributing Guidelines](.github/CONTRIBUTING.md)
 - [Pull Request Template](.github/PULL_REQUEST_TEMPLATE.md)
 - [Issue Template](.github/ISSUE_TEMPLATE.yml)
+- [Code of Conduct](.github/CODE_OF_CONDUCT.yml)
 
 ## License
 
-[MIT License](LICENSE) / [Karthikeya Udupa](https://karthikeya.co.uk)
+[MIT License](LICENSE.md) / [Karthikeya Udupa](https://karthikeya.co.uk)
