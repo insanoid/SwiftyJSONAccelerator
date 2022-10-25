@@ -76,7 +76,7 @@ struct NameGenerator {
                 "try"
             ]
         
-        var keywordsWithReplacements:[String:String] = [:]
+        var keywordsWithReplacements: [String: String] = [:]
         for keyword in swiftKeywords {
             keywordsWithReplacements[keyword] = "\(keyword)Value"
         }

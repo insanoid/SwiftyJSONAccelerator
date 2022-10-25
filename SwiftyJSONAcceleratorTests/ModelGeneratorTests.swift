@@ -39,8 +39,8 @@ class ModelGeneratorTests: XCTestCase {
                      "double_value": Double(5.3),
                      "sub_value_four": "value",
                      "internal": "renamed_value",
-                     "sub_value_five": ["two_level_down": "value"],
-                 ],
+                     "sub_value_five": ["two_level_down": "value"]
+                 ]
              ],
              "value_eight": []])
     }
