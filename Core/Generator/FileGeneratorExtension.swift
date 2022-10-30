@@ -12,9 +12,11 @@ extension FileGenerator {
     static func generateFileContentWith(_ modelFile: ModelFile, configuration: ModelGenerationConfiguration) -> String {
         var content = try! loadFileWith("BaseTemplate")
         let singleTab = "  ", doubleTab = "    "
+        let accessPrefix = modelFile.accessControl.declarationPrefix
         content = content.replacingOccurrences(of: "{OBJECT_NAME}", with: modelFile.fileName)
         content = content.replacingOccurrences(of: "{DATE}", with: todayDateString())
         content = content.replacingOccurrences(of: "{OBJECT_KIND}", with: modelFile.type.rawValue)
+        content = content.replacingOccurrences(of: "{ACCESS_CONTROL}", with: accessPrefix)
 
         if let authorName = configuration.authorName {
             content = content.replacingOccurrences(of: "__NAME__", with: authorName)
@@ -36,7 +38,7 @@ extension FileGenerator {
             if modelFile.configuration?.shouldGenerateInitMethod == true {
                 let assignment = modelFile.component.initialiserFunctionComponent.map { doubleTab + $0.assignmentString }.joined(separator: "\n")
                 let functionParameters = modelFile.component.initialiserFunctionComponent.map { $0.functionParameter }.joined(separator: ", ")
-                let initialiserFunctionStatement = "\n\(singleTab)init (\(functionParameters)) {"
+                let initialiserFunctionStatement = "\n\(singleTab)\(accessPrefix)init (\(functionParameters)) {"
                 content = content.replacingOccurrences(of: "{INITIALIZER_FUNCTION_DECLRATION}", with: initialiserFunctionStatement)
                 content = content.replacingOccurrences(of: "{INITIALISER_FUNCTION_ASSIGNMENT}", with: assignment)
                 content = content.replacingOccurrences(of: "{INITIALISER_FUNCTION_END}", with: "\(singleTab)}\n")

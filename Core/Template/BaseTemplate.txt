@@ -7,7 +7,7 @@
 
 import Foundation
 
-{OBJECT_KIND} {OBJECT_NAME}: Codable {
+{ACCESS_CONTROL}{OBJECT_KIND} {OBJECT_NAME}: Codable {
 
   enum CodingKeys: String, CodingKey {
 {STRING_CONSTANT}
@@ -17,7 +17,7 @@ import Foundation
 {INITIALIZER_FUNCTION_DECLRATION}
 {INITIALISER_FUNCTION_ASSIGNMENT}
 {INITIALISER_FUNCTION_END}
-  {REQUIRED}init(from decoder: Decoder) throws {
+  {ACCESS_CONTROL}{REQUIRED}init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 {INITIALIZER}
   }

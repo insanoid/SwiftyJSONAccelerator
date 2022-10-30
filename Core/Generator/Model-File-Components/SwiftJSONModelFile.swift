@@ -13,6 +13,7 @@ import SwiftyJSON
 struct SwiftJSONModelFile: ModelFile {
     var fileName: String
     var type: ConstructType
+    var accessControl: AccessControl
     var component: ModelComponent
     var sourceJSON: JSON
     var configuration: ModelGenerationConfiguration?
@@ -24,11 +25,13 @@ struct SwiftJSONModelFile: ModelFile {
         type = ConstructType.structType
         component = ModelComponent()
         sourceJSON = JSON([])
+        accessControl = .internal
     }
 
     mutating func setInfo(_ fileName: String, _ configuration: ModelGenerationConfiguration) {
         self.fileName = fileName
         type = configuration.constructType
+        accessControl = configuration.accessControl
         self.configuration = configuration
     }
 
@@ -79,10 +82,8 @@ struct SwiftJSONModelFile: ModelFile {
     }
 
     func genPrimitiveVariableDeclaration(_ name: String, _ type: String, _ isOptional: Bool) -> String {
-        if isOptional {
-            return "var \(name): \(type)?"
-        }
-        return "var \(name): \(type)"
+        let optionalSuffix = isOptional ? "?" : ""
+        return "\(accessControl.declarationPrefix)var \(name): \(type)\(optionalSuffix)"
     }
 
     /// Generate the variable declaration string

@@ -57,6 +57,7 @@ class ModelGeneratorTests: XCTestCase {
             companyName: "Acme Co.",
             prefix: "AC",
             constructType: .structType,
+            accessControl: .internal,
             modelMappingLibrary: library,
             separateCodingKeys: true,
             variablesOptional: optional,
@@ -119,6 +120,7 @@ class ModelGeneratorTests: XCTestCase {
         var modelConfig = ModelGenerationConfiguration(filePath: "A1", baseClassName: "A2",
                                                        authorName: "A3", companyName: "A4",
                                                        prefix: "A5", constructType: .classType,
+                                                       accessControl: .private,
                                                        modelMappingLibrary: .swiftCodeExtended,
                                                        separateCodingKeys: true, variablesOptional: true,
                                                        shouldGenerateInitMethod: true)
@@ -129,6 +131,7 @@ class ModelGeneratorTests: XCTestCase {
         XCTAssertEqual(modelConfig.companyName, "A4")
         XCTAssertEqual(modelConfig.prefix, "A5")
         XCTAssertEqual(modelConfig.constructType, .classType)
+        XCTAssertEqual(modelConfig.accessControl, .private)
         XCTAssertEqual(modelConfig.modelMappingLibrary, .swiftCodeExtended)
         XCTAssertEqual(modelConfig.separateCodingKeys, true)
         XCTAssertEqual(modelConfig.variablesOptional, true)
@@ -139,6 +142,7 @@ class ModelGeneratorTests: XCTestCase {
         XCTAssertEqual(modelConfig.baseClassName, "")
         XCTAssertEqual(modelConfig.prefix, "")
         XCTAssertEqual(modelConfig.constructType, .classType)
+        XCTAssertEqual(modelConfig.accessControl, .internal)
         XCTAssertEqual(modelConfig.modelMappingLibrary, .swiftNormal)
         XCTAssertEqual(modelConfig.separateCodingKeys, true)
         XCTAssertEqual(modelConfig.variablesOptional, true)

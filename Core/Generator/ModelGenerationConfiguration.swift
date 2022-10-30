@@ -22,6 +22,8 @@ struct ModelGenerationConfiguration {
     var prefix: String?
     /// Type of the object that have to be generated.
     var constructType: ConstructType
+    /// Access control for object and properties.
+    var accessControl: AccessControl
     /// Model mapping library to be used.
     var modelMappingLibrary: JSONMappingMethod
     /// Separate coding keys into an enum and not use string.
@@ -36,6 +38,7 @@ struct ModelGenerationConfiguration {
         separateCodingKeys = true
         modelMappingLibrary = .swiftNormal
         constructType = .classType
+        accessControl = .internal
         prefix = ""
         filePath = ""
         baseClassName = ""

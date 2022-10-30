@@ -29,6 +29,26 @@ enum ConstructType: String {
     case structType = "struct"
 }
 
+/// Various types of access control modifiers that can be applied to objects and properties.
+enum AccessControl: String, CaseIterable {
+    case `internal`
+    case `private`
+    case `public`
+
+    /// The prefix to be applied to objects and properties' declarations.
+    var declarationPrefix: String {
+        switch self {
+        case .internal:
+            // The default access control type, no need to explicitly set it
+            return ""
+        case .private:
+            return "private "
+        case .public:
+            return "public "
+        }
+    }
+}
+
 /// JSON mapping options available in the UI
 ///
 /// - Swift: Pure Swift 5 Codeable
