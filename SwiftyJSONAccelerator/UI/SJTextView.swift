@@ -8,37 +8,34 @@
 
 import Cocoa
 
-extension NSColor {
- 
-    @inline(__always) public convenience init(RGB hex: UInt32, alpha: CGFloat = 1) {
-        let red = CGFloat((hex & 0xff0000) >> 16) / 255.0
-        let green = CGFloat((hex & 0xff00) >> 8) / 255.0
-        let blue = CGFloat(hex & 0xff) / 255.0
-        
+public extension NSColor {
+    @inline(__always) convenience init(RGB hex: UInt32, alpha: CGFloat = 1) {
+        let red = CGFloat((hex & 0xFF0000) >> 16) / 255.0
+        let green = CGFloat((hex & 0xFF00) >> 8) / 255.0
+        let blue = CGFloat(hex & 0xFF) / 255.0
+
         self.init(deviceRed: red, green: green, blue: blue, alpha: alpha)
     }
 }
 
-extension NSView {
-    
-    @inline(__always) public var isDarkMode: Bool {
+public extension NSView {
+    @inline(__always) var isDarkMode: Bool {
         if #available(OSX 10.14, *) {
             return effectiveAppearance.name == .darkAqua
         }
-        
+
         return false
     }
 }
 
 /// A textview customization to handle formatting and handling removal of quotes.
 class SJTextView: NSTextView {
-    
-    let lightTextColor = NSColor(RGB: 0x24292d)
-    let lightBackgroundColor = NSColor(RGB: 0xf6f8fa)
-    
-    let darkTextColor = NSColor(RGB: 0xd1d5da)
-    let darkBackgroundColor = NSColor(RGB: 0x24292d)
-    
+    let lightTextColor = NSColor(RGB: 0x24292D)
+    let lightBackgroundColor = NSColor(RGB: 0xF6F8FA)
+
+    let darkTextColor = NSColor(RGB: 0xD1D5DA)
+    let darkBackgroundColor = NSColor(RGB: 0x24292D)
+
     override init(frame frameRect: NSRect, textContainer container: NSTextContainer?) {
         super.init(frame: frameRect, textContainer: container)
         disableAutoReplacement()
@@ -55,11 +52,11 @@ class SJTextView: NSTextView {
 
     internal func updateFormat() {
         textStorage?.font = NSFont(name: "Monaco", size: 12)
-        
-        let color = NSColor(RGB: 0x07c160)
+
+        let color = NSColor(RGB: 0x07C160)
         insertionPointColor = color
         selectedTextAttributes = [.backgroundColor: color.withAlphaComponent(0.2)]
-        
+
         if isDarkMode {
             textColor = darkTextColor
             backgroundColor = darkBackgroundColor
@@ -83,10 +80,10 @@ class SJTextView: NSTextView {
         isAutomaticDashSubstitutionEnabled = false
         isAutomaticTextReplacementEnabled = false
     }
-    
+
     override func layout() {
         super.layout()
-        
+
         updateFormat()
     }
 }

@@ -41,10 +41,8 @@ enum AccessControl: String, CaseIterable {
         case .internal:
             // The default access control type, no need to explicitly set it
             return ""
-        case .private:
-            return "private "
-        case .public:
-            return "public "
+        default:
+            return rawValue
         }
     }
 }
@@ -76,6 +74,6 @@ enum PropertyType: String {
 }
 
 /// Place to store actual constants that don't fit in classes.
-struct Constants {
+enum Constants {
     static let filePathKey: String = "path"
 }

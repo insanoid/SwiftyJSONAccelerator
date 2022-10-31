@@ -82,16 +82,17 @@ class LineNumberRulerView: NSRulerView {
         ruleThickness = 40
     }
 
+    @available(*, unavailable)
     required init(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     override func drawHashMarksAndLabels(in _: NSRect) {
-        if let textView = self.clientView as? NSTextView {
+        if let textView = clientView as? NSTextView {
             if let layoutManager = textView.layoutManager {
                 let relativePoint = convert(NSZeroPoint, from: textView)
                 let lineNumberAttributes = [NSAttributedString.Key.font.rawValue: textView.font!, NSAttributedString.Key.foregroundColor: NSColor.gray] as! [NSAttributedString.Key: Any]
-                let drawLineNumber = { (lineNumberString: String, y: CGFloat) -> Void in
+                let drawLineNumber = { (lineNumberString: String, y: CGFloat) in
                     let attString = NSAttributedString(string: lineNumberString, attributes: lineNumberAttributes)
                     let x = 35 - attString.size().width
                     attString.draw(at: NSPoint(x: x, y: relativePoint.y + y))

@@ -61,7 +61,7 @@ extension FileGenerator {
 
      - returns: Boolean indicating if the process was successful.
      */
-    internal static func writeToFileWith(_ name: String, content: String, path: String) throws {
+    static func writeToFileWith(_ name: String, content: String, path: String) throws {
         let filename = path.appendingFormat("%@", name + ".swift")
         try FileManager.default.createDirectory(at: URL(fileURLWithPath: path),
                                                 withIntermediateDirectories: true,

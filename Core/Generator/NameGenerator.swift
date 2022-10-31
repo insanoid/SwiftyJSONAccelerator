@@ -50,37 +50,36 @@ struct NameGenerator {
     /// - Parameter currentName: The current name which has to be checked.
     /// - Returns: New name for the variable.
     static func replaceKeywords(_ currentName: String) -> String {
-        
         /// Swift keywords from https://docs.swift.org/swift-book/ReferenceManual/LexicalStructure.html#ID413 as of 2020-10-10
         /// Does not include the "sometimes" keywords
         /// Thanks to a PR from @TheMadBug.
         let swiftKeywords: Set = [
-                "associatedtype", "class", "deinit",
-                "enum", "extension", "fileprivate",
-                "func", "import", "init",
-                "inout", "internal", "let",
-                "open", "operator", "private",
-                "protocol", "public", "rethrows",
-                "static", "struct", "subscript",
-                "typealias", "var",
-                "break", "case", "continue",
-                "default", "defer", "do",
-                "else", "fallthrough", "for",
-                "guard", "if", "in",
-                "repeat", "return", "switch",
-                "where", "while",
-                "as", "Any", "catch",
-                "false", "is", "nil",
-                "super", "self", "Self",
-                "throw", "throws", "true",
-                "try"
-            ]
-        
+            "associatedtype", "class", "deinit",
+            "enum", "extension", "fileprivate",
+            "func", "import", "init",
+            "inout", "internal", "let",
+            "open", "operator", "private",
+            "protocol", "public", "rethrows",
+            "static", "struct", "subscript",
+            "typealias", "var",
+            "break", "case", "continue",
+            "default", "defer", "do",
+            "else", "fallthrough", "for",
+            "guard", "if", "in",
+            "repeat", "return", "switch",
+            "where", "while",
+            "as", "Any", "catch",
+            "false", "is", "nil",
+            "super", "self", "Self",
+            "throw", "throws", "true",
+            "try",
+        ]
+
         var keywordsWithReplacements: [String: String] = [:]
         for keyword in swiftKeywords {
             keywordsWithReplacements[keyword] = "\(keyword)Value"
         }
-        
+
         if let value = keywordsWithReplacements[currentName] {
             return value
         }

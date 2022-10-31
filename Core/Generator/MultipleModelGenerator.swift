@@ -51,7 +51,7 @@ enum MultipleModelGeneratorError: Error, Equatable {
 }
 
 /// A structure to generate multiple mdoels from JSON files at once.
-struct MultipleModelGenerator {
+enum MultipleModelGenerator {
     /// Generate models for the JSON files in the given path. Use the `.config.json` to load config.
     ///
     /// - Parameter forPath: Path with the JSON files.

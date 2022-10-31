@@ -21,7 +21,7 @@ struct JSONParserResponse {
 }
 
 /// Provide helpers to handle JSON content that the user provided.
-struct JSONHelper {
+enum JSONHelper {
     /// Validate if the string that is provided can be converted into a valid JSON.
     ///
     /// - Parameter jsonString: Input string that is to be checked as JSON.
@@ -77,16 +77,19 @@ struct JSONHelper {
     /// - Parameter items: An array of JSON items that have to be reduced.
     /// - Returns: Reduced JSON with the common key/value pairs.
     static func reduce(_ items: [JSON]) -> JSON {
-        return items.reduce([:]) { (source, item) -> JSON in
+        return items.reduce([:]) { source, item -> JSON in
             var finalObject = source
             for (key, jsonValue) in item {
                 if let newValue = jsonValue.dictionary {
                     finalObject[key] = reduce([JSON(newValue), finalObject[key]])
                 } else if let newValue = jsonValue.array, newValue.first != nil && (newValue.first!.dictionary != nil || newValue.first!.array != nil) {
                     finalObject[key] = JSON([reduce(newValue + finalObject[key].arrayValue)])
+                    // swiftlint:disable all
+                    // swift-format-ignore
                 } else if jsonValue != JSON.null || !finalObject[key].exists() {
                     finalObject[key] = jsonValue
                 }
+                // swiftlint:enable all
             }
             return finalObject
         }
@@ -126,7 +129,7 @@ extension JSON {
                  .cgFloatType,
                  .doubleType:
                 return .float
-                // Covers any future types for CFNumber.
+            // Covers any future types for CFNumber.
             @unknown default:
                 return .float
             }
