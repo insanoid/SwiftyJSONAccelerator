@@ -14,9 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         NSUserNotificationCenter.default.delegate = self
     }
 
-    func applicationWillTerminate(_: Notification) {
-        // Insert code here to tear down your application
-    }
+    func applicationWillTerminate(_: Notification) {}
 
     func userNotificationCenter(_: NSUserNotificationCenter, shouldPresent _: NSUserNotification) -> Bool {
         // Since our notification is to be shown when app is in focus, this function always returns true.
@@ -27,7 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         guard let pathString = notification.userInfo![Constants.filePathKey] as? String else {
             return
         }
-        // Open the path for the notification.
+        // Open the path mentioned in the notification.
         let urlPath = URL(fileURLWithPath: pathString, isDirectory: true)
         if notification.activationType == .actionButtonClicked {
             NSWorkspace.shared.activateFileViewerSelecting([urlPath])

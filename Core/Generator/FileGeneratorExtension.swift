@@ -12,9 +12,11 @@ extension FileGenerator {
     static func generateFileContentWith(_ modelFile: ModelFile, configuration: ModelGenerationConfiguration) -> String {
         var content = try! loadFileWith("BaseTemplate")
         let singleTab = "  ", doubleTab = "    "
+        let accessPrefix = modelFile.accessControl.declarationPrefix
         content = content.replacingOccurrences(of: "{OBJECT_NAME}", with: modelFile.fileName)
         content = content.replacingOccurrences(of: "{DATE}", with: todayDateString())
         content = content.replacingOccurrences(of: "{OBJECT_KIND}", with: modelFile.type.rawValue)
+        content = content.replacingOccurrences(of: "{ACCESS_CONTROL}", with: accessPrefix)
 
         if let authorName = configuration.authorName {
             content = content.replacingOccurrences(of: "__NAME__", with: authorName)
@@ -33,8 +35,19 @@ extension FileGenerator {
 
         if modelFile.type == .classType {
             content = content.replacingOccurrences(of: "{REQUIRED}", with: "required ")
+            if modelFile.configuration?.shouldGenerateInitMethod == true {
+                let assignment = modelFile.component.initialiserFunctionComponent.map { doubleTab + $0.assignmentString }.joined(separator: "\n")
+                let functionParameters = modelFile.component.initialiserFunctionComponent.map { $0.functionParameter }.joined(separator: ", ")
+                let initialiserFunctionStatement = "\n\(singleTab)\(accessPrefix)init (\(functionParameters)) {"
+                content = content.replacingOccurrences(of: "{INITIALIZER_FUNCTION_DECLRATION}", with: initialiserFunctionStatement)
+                content = content.replacingOccurrences(of: "{INITIALISER_FUNCTION_ASSIGNMENT}", with: assignment)
+                content = content.replacingOccurrences(of: "{INITIALISER_FUNCTION_END}", with: "\(singleTab)}\n")
+            }
         } else {
             content = content.replacingOccurrences(of: "{REQUIRED}", with: "")
+            content = content.replacingOccurrences(of: "{INITIALIZER_FUNCTION_DECLRATION}", with: "")
+            content = content.replacingOccurrences(of: "{INITIALISER_FUNCTION_ASSIGNMENT}", with: "")
+            content = content.replacingOccurrences(of: "{INITIALISER_FUNCTION_END}", with: "")
         }
         return content
     }
@@ -48,7 +61,7 @@ extension FileGenerator {
 
      - returns: Boolean indicating if the process was successful.
      */
-    internal static func writeToFileWith(_ name: String, content: String, path: String) throws {
+    static func writeToFileWith(_ name: String, content: String, path: String) throws {
         let filename = path.appendingFormat("%@", name + ".swift")
         try FileManager.default.createDirectory(at: URL(fileURLWithPath: path),
                                                 withIntermediateDirectories: true,

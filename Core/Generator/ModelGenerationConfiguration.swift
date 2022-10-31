@@ -22,20 +22,26 @@ struct ModelGenerationConfiguration {
     var prefix: String?
     /// Type of the object that have to be generated.
     var constructType: ConstructType
+    /// Access control for object and properties.
+    var accessControl: AccessControl
     /// Model mapping library to be used.
     var modelMappingLibrary: JSONMappingMethod
     /// Separate coding keys into an enum and not use string.
     var separateCodingKeys: Bool
     /// Should header be included.
     var variablesOptional: Bool
+    /// Should generate a init method for the class (applicable only to class).
+    var shouldGenerateInitMethod: Bool
 
     mutating func defaultConfig() {
         variablesOptional = true
         separateCodingKeys = true
         modelMappingLibrary = .swiftNormal
         constructType = .classType
+        accessControl = .internal
         prefix = ""
         filePath = ""
         baseClassName = ""
+        shouldGenerateInitMethod = true
     }
 }

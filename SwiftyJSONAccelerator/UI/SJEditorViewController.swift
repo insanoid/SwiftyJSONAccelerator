@@ -20,7 +20,9 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
     @IBOutlet var authorNameTextField: NSTextField!
     @IBOutlet var variablesOptionalCheckbox: NSButton!
     @IBOutlet var separateCodingKeysCheckbox: NSButton!
+    @IBOutlet var generateInitialiserFunctionCheckbox: NSButton!
     @IBOutlet var librarySelector: NSPopUpButton!
+    @IBOutlet var accessControlSelector: NSPopUpButton!
     @IBOutlet var modelTypeSelectorSegment: NSSegmentedControl!
 
     override func viewDidLoad() {
@@ -29,7 +31,7 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         textView.updateFormat()
         resetView()
         textView!.lnv_setUpLineNumberView()
-
+        accessControlSelector.addItems(withTitles: AccessControl.allCases.map(\.rawValue))
         // Do any additional setup after loading the view.
     }
 
@@ -41,9 +43,12 @@ class SJEditorViewController: NSViewController, NSTextViewDelegate {
         companyNameTextField.stringValue = ""
         prefixClassTextField.stringValue = ""
         librarySelector.selectItem(at: 0)
+        accessControlSelector.selectItem(at: 0)
         modelTypeSelectorSegment.selectSegment(withTag: 0)
         variablesOptionalCheckbox.state = .on
         separateCodingKeysCheckbox.state = .on
+        generateInitialiserFunctionCheckbox.state = .on
+        generateInitialiserFunctionCheckbox.isEnabled = false
     }
 
     /// Validate and updates the textview
@@ -106,12 +111,12 @@ extension SJEditorViewController {
             notify(fileCount: generatedModelInfo.modelFiles.count, path: generatedModelInfo.configuration.filePath)
 
         } catch let error as MultipleModelGeneratorError {
-            let alert: NSAlert = NSAlert()
+            let alert = NSAlert()
             alert.messageText = "Unable to generate the files."
             alert.informativeText = error.errorMessage()
             alert.runModal()
         } catch let error as NSError {
-            let alert: NSAlert = NSAlert()
+            let alert = NSAlert()
             alert.messageText = "Unable to generate the files."
             alert.informativeText = error.localizedDescription
             alert.runModal()
@@ -124,9 +129,11 @@ extension SJEditorViewController {
     }
 
     /// When switching between versions of code being generated
-    @IBAction func librarySwitched(sender: Any) {
-        if let menu = sender as? NSPopUpButton {
-            librarySelector.title = menu.selectedItem!.title
+    @IBAction func modelTypeSwitched(sender _: Any) {
+        if modelTypeSelectorSegment.selectedSegment == 0 {
+            generateInitialiserFunctionCheckbox.isEnabled = false
+        } else {
+            generateInitialiserFunctionCheckbox.isEnabled = true
         }
     }
 
@@ -150,6 +157,7 @@ extension SJEditorViewController {
     }
 
     func notify(fileCount: Int, path: String) {
+        NSUserNotificationCenter.default.removeAllDeliveredNotifications()
         let notification = NSUserNotification()
         notification.identifier = "SwiftyJSONAccelerator-" + UUID().uuidString
         notification.title = "SwiftyJSONAccelerator"
@@ -192,13 +200,15 @@ extension SJEditorViewController {
         }
 
         let parserResponse = JSONHelper.convertToObject(textView?.string)
+        let generateInitialiserFunction = modelTypeSelectorSegment.selectedSegment == 1 ? generateInitialiserFunctionCheckbox.state == .on : false
 
         // Checks for validity of the content, else can cause crashes.
         if parserResponse.parsedObject != nil {
             let destinationPath = filePath!.appending("/")
-            let variablesOptional = variablesOptionalCheckbox.state.rawValue == 1
-            let separateCodingKeys = separateCodingKeysCheckbox.state.rawValue == 1
+            let variablesOptional = variablesOptionalCheckbox.state == .on
+            let separateCodingKeys = separateCodingKeysCheckbox.state == .on
             let constructType = modelTypeSelectorSegment.selectedSegment == 0 ? ConstructType.structType : ConstructType.classType
+            let accessControl = AccessControl.allCases[accessControlSelector.indexOfSelectedItem]
             let libraryType = mappingMethodForIndex(librarySelector.indexOfSelectedItem)
             let configuration = ModelGenerationConfiguration(
                 filePath: destinationPath,
@@ -207,9 +217,11 @@ extension SJEditorViewController {
                 companyName: companyNameTextField.stringValue,
                 prefix: prefixClassTextField.stringValue,
                 constructType: constructType,
+                accessControl: accessControl,
                 modelMappingLibrary: libraryType,
                 separateCodingKeys: separateCodingKeys,
-                variablesOptional: variablesOptional
+                variablesOptional: variablesOptional,
+                shouldGenerateInitMethod: generateInitialiserFunction
             )
             let modelGenerator = ModelGenerator(JSON(parserResponse.parsedObject!), configuration)
             let filesGenerated = modelGenerator.generate()
@@ -220,7 +232,7 @@ extension SJEditorViewController {
                 do {
                     try FileGenerator.writeToFileWith(name, content: content, path: path)
                 } catch let error as NSError {
-                    let alert: NSAlert = NSAlert()
+                    let alert = NSAlert()
                     alert.messageText = "Unable to generate the files, please check the contents of the folder."
                     alert.informativeText = error.localizedDescription
                     alert.runModal()
@@ -228,7 +240,7 @@ extension SJEditorViewController {
             }
             notify(fileCount: filesGenerated.count, path: destinationPath)
         } else {
-            let alert: NSAlert = NSAlert()
+            let alert = NSAlert()
             alert.messageText = "Unable to save the file check the content."
             alert.runModal()
         }

@@ -7,19 +7,22 @@ Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)]
 ![codecov](https://codecov.io/gh/insanoid/SwiftyJSONAccelerator/branch/master/graph/badge.svg)
 
 
-**Version v2.1 Released! (Swift 5)**
+**Version v2.2**
+
+- Generate initializer function for classes
+- **Application Download:** [Download the .app (v2.2.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v2.2.0/SwiftyJSONAccelerator.app.zip)
+
+**Version v2.1**
 
 - Tests are back - major parts of the code is covered.
 - Multiple file model generator is working again.
 
-**Version v2.0 Released! (Swift 5)**
+**Version v2.0 (Swift 5)**
 
 - Generates Swift 5 `Codeable` version along with `CodingKeys`.
 - Allows support to switch between `Optional` and non-optional variations.
 - Temporarily support for CLI and tests have been removed.
 - UI now supports Dark mode!
-
-- **Application Download:** [Download the .app (v2.1.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v2.1.0/SwiftyJSONAccelerator.app.zip)
 
 ## Installing & Building
 
@@ -30,7 +33,7 @@ Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)]
 
   You will also need to install `SwiftFormat` with `brew install swiftformat` and `SwiftLint` with `brew install swiftlint`.
 
-- **Application Only:** [Download the .app (v2.1.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v2.1.0/SwiftyJSONAccelerator.app.zip)
+- **Application Only:** [Download the .app (v2.2.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v2.2.0/SwiftyJSONAccelerator.app.zip)
 
 ## Features
 
@@ -62,6 +65,11 @@ The older version of the project generating older swift code. Please keep in min
 
 Any suggestions regarding code quality of the app, generated code's quality, Swift related improvements and pull requests are all very welcome. Please make sure you submit the pull request to the next release branch and not the master branch.
 
+- [Contributing Guidelines](.github/CONTRIBUTING.md)
+- [Pull Request Template](.github/PULL_REQUEST_TEMPLATE.md)
+- [Issue Template](.github/ISSUE_TEMPLATE.yml)
+- [Code of Conduct](.github/CODE_OF_CONDUCT.yml)
+
 ## License
 
-[MIT License](LICENSE) / [Karthikeya Udupa](https://karthikeya.co.uk)
+[MIT License](LICENSE.md) / [Karthikeya Udupa](https://karthikeya.co.uk)
