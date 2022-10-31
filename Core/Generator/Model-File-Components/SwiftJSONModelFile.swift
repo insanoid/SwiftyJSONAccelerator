@@ -83,7 +83,11 @@ struct SwiftJSONModelFile: ModelFile {
 
     func genPrimitiveVariableDeclaration(_ name: String, _ type: String, _ isOptional: Bool) -> String {
         let optionalSuffix = isOptional ? "?" : ""
-        return "\(accessControl.declarationPrefix)var \(name): \(type)\(optionalSuffix)"
+        var declrationPrefix = ""
+        if !accessControl.declarationPrefix.isEmpty {
+            declrationPrefix = "\(accessControl.declarationPrefix) "
+        }
+        return "\(declrationPrefix)var \(name): \(type)\(optionalSuffix)"
     }
 
     /// Generate the variable declaration string

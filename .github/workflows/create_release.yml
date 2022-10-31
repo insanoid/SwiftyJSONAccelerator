@@ -1,0 +1,44 @@
+name: Create Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  # We create a new version if the branch is master.
+  version_and_publish:
+    name: Create Release
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    outputs:
+      release_version: ${{ steps.generate_version.outputs.release_version }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      # In future we should run tests to ensure if it's worth making a release.
+      - name: Install semantic-release
+        run: |
+          npm set registry https://registry.npmjs.org/
+          sudo npm install -g \
+            semantic-release \
+            @semantic-release/commit-analyzer \
+            @semantic-release/github \
+            @semantic-release/exec \
+            @semantic-release/release-notes-generator \
+            conventional-changelog-conventionalcommits
+
+      - name: Generate version
+        id: generate_version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          npx semantic-release --ci
+
+      - name: No Releases Done
+        if: "!steps.generate_version.outputs.release_version"
+        run: |
+          echo "No Release was done either due to wrong commit or no major changes."

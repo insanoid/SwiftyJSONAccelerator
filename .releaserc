@@ -1,0 +1,47 @@
+{
+  "branches": ["main"],
+  "tagFormat": "${version}",
+  "plugins": [
+    [
+      "@semantic-release/commit-analyzer", {
+        "preset": "conventionalcommits",
+        "releaseRules": [
+          {"type": "doc", "release": false},
+          {"type": "test", "release": false},
+          {"type": "chore", "release": "patch"},
+          {"type": "devx", "release": false}
+        ],
+        "parserOpts": {
+          "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES", "BREAKING"]
+        }
+      }
+    ],
+    "@semantic-release/github",
+    [
+      "@semantic-release/exec", {
+          "publishCmd": "echo \"::set-output name=release_version::${nextRelease.version}\""
+      }
+    ],
+    [
+      "@semantic-release/release-notes-generator", {
+        "preset": "conventionalcommits",
+        "presetConfig": {
+          "types": [
+            {"type": "feat", "section": "Features"},
+            {"type": "fix", "section": "Bug Fixes"},
+            {"type": "doc", "section": "Documentation", "hidden": true},
+            {"type": "test", "section": "Tests", "hidden": true},
+            {"type": "chore", "section": "Chore / Improvements"},
+            {"type": "devx", "section": "Improved Developer Experience", "hidden": false}
+          ]
+        },
+        "parserOpts": {
+          "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES", "BREAKING"]
+        },
+        "writerOpts": {
+          "commitsSort": ["subject", "scope"]
+        }
+      }
+    ]
+  ]
+}
