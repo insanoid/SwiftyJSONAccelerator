@@ -18,6 +18,11 @@ Status](https://travis-ci.org/insanoid/SwiftyJSONAccelerator.svg?branch=master)]
 
 - **Download dmg:** [Download the .app (v2.2.0)](https://github.com/insanoid/SwiftyJSONAccelerator/releases/download/v2.2.0/SwiftyJSONAccelerator.app.zip)
 
+## Common Issues
+
+- **`SwiftyJSONAccelerator` can't be opened because Apple cannot check it for malicious software.**: Run the following command `xattr -d com.apple.quarantine <app-path>`.
+
+
 ## Features
 
 ![Logo](https://github.com/insanoid/SwiftyJSONAccelerator/blob/master/preview.png)
@@ -35,7 +40,4 @@ Any suggestions regarding code quality of the app, generated code's quality, Swi
 
 - [Contributing Guidelines](.github/contributing.md)
 - [Code of Conduct](.github/CODE_OF_CONDUCT.md)
-
-## License
-
-[MIT License](LICENSE.md) / [Karthikeya Udupa](https://karthikeya.co.uk)
+- [MIT License](LICENSE.md) / [Karthikeya Udupa](https://karthikeya.co.uk)
